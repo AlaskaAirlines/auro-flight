@@ -53,7 +53,7 @@ class AuroFlight extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <div class=${this.cssClass}>
+      <div>
         <auro-flight-top-bar 
           flights=${JSON.stringify(this.flights)}
           duration=${this.duration} 

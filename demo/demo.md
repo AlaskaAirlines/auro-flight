@@ -42,6 +42,39 @@ operational disclosures (for instance, AA 3210 is operated by Envoy Air on behal
 
 <div class="exampleWrapper">
           <auro-flight 
+            flights='["AS 9999"]' 
+            duration="1h 99m" 
+            daysChanged="1"
+            departureTime="2:55 pm"
+            departureStation="PVD"
+            arrivalTime="5:10 pm"
+            arrivalStation="ORD"
+            >
+              Hello World!
+          </auro-flight>
+    </div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+  ```html
+          <auro-flight 
+            flights='["AS 9999"]' 
+            duration="1h 99m" 
+            daysChanged="2"
+            departureTime="2:55 pm"
+            departureStation="PVD"
+            arrivalTime="5:10 pm"
+            arrivalStation="ORD"
+            >
+              Hello World!
+          </auro-flight>
+  ```
+
+</auro-accordion>
+
+<div class="exampleWrapper">
+          <auro-flight 
             flights='["AS 9999", "EK9876"]' 
             duration="1h 99m" 
             daysChanged="0"
