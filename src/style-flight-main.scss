@@ -1,0 +1,71 @@
+// Copyright (c) 2021 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// See LICENSE in the project root for license information.
+
+// ---------------------------------------------------------------------
+
+// Import Auro tokens
+@import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables";
+@import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties";
+
+@import "./node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints";
+@import "./node_modules/@alaskaairux/webcorestylesheets/dist/core";
+
+// Support for auroElement styles
+// @import "./node_modules/@alaskaairux/orion-web-core-style-sheets/dist/auroElement/auroElement";
+
+// container styles - defines the look of the outer custom component
+// :host {
+//   ...
+// }
+
+// layout styles - define any layout specifications for UI that is contained WITHIN the component
+// never define layout that would cause effect on element outside the scope of this component
+
+
+// component shape styles
+// .auro-flight {
+//   ...
+// }
+
+
+div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dep-time {
+    color: var(--auro-color-text-primary-on-light);
+    font-size: 28px;
+    line-height: 36px;
+    padding-bottom: var(--auro-size-xxxs);
+    text-align: left;
+}
+
+.dep-station {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--auro-color-text-secondary-on-light);
+    text-align: left;
+}
+
+.arr-time {
+    color: var(--auro-color-text-primary-on-light);
+    font-size: 28px;
+    line-height: 36px;
+    padding-bottom: var(--auro-size-xxxs);
+    text-align: right;
+}
+
+.arr-station {
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--auro-color-text-secondary-on-light);
+    text-align: right;
+}
+
+.arrival,
+.departure {
+    display: inline-flex;
+    flex-direction: column;
+}
