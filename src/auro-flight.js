@@ -6,33 +6,41 @@
 // If use litElement base class
 import { LitElement, html, css } from "lit-element";
 
-// If using auroElement base class
-// See instructions for importing auroElement base class https://git.io/JULq4
-// import { html, css } from "lit-element";
-// import AuroElement from '@alaskaairux/webcorestylesheets/dist/auroElement/auroElement';
-
 // Import touch detection lib
 import "focus-visible/dist/focus-visible.min.js";
-import styleCss from "./style-css.js";
+import styleCss from "./style-flight-css.js";
+import "./auro-flight-top-bar";
+import "./auro-flight-main";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * auro-flight provides users a way to ...
+ * auro-flight renders a DoT compliant Flight listing
+ * This design has been tested via the Alaska Legal team for legal compliance
+ * Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com
  *
- * @attr {String} cssClass - Applies designated CSS class to DOM element.
+ * @attr {Array} flights - Array of flight numbers ['AS 123', 'EK 432']
+ * @attr {String} duration - String for the duration. '1h 23m'
+ * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer
+ * @attr {String} departureTime - String for the departure time. '9:06 am'
+ * @attr {String} departureStation - String for the departure station. 'SEA'
+ * @attr {String} arrivalTime - String for the arrival time. '4:05 pm'
+ * @attr {String} arrivalStation - String for the arrival station. 'PVD'
+ * @slot default - displays data under the fold. DoT DISCLOSURES MUST BE var(--auro-text-body-size-default)!!
  */
 
 // build the component class
 class AuroFlight extends LitElement {
-  // constructor() {
-  //   super();
-  // }
 
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      // ...super.properties,
-      cssClass:   { type: String }
+      flights:   { type: Array },
+      duration: {type: String},
+      daysChanged: {type: Number},
+      departureTime: {type: String},
+      departureStation: {type: String},
+      arrivalTime: {type: String},
+      arrivalStation: {type: String},
     };
   }
 
@@ -42,13 +50,23 @@ class AuroFlight extends LitElement {
     `;
   }
 
-  // When using auroElement, use the following attribute and function when hiding content from screen readers.
-  // aria-hidden="${this.hideAudible(this.hiddenAudible)}"
-
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
       <div class=${this.cssClass}>
+        <auro-flight-top-bar 
+          flights=${JSON.stringify(this.flights)}
+          duration=${this.duration} 
+          daysChanged=${this.daysChanged}
+        >
+        </auro-flight-top-bar>
+        <auro-flight-main
+          arrivalTime=${this.arrivalTime}
+          arrivalStation=${this.arrivalStation}
+          departureTime=${this.departureTime}
+          departureStation=${this.departureStation}
+        >
+        </auro-flight-main>
         <slot></slot>
       </div>
     `;

@@ -3,25 +3,27 @@ import sinon from 'sinon';
 import '../src/auro-flight.js';
 
 describe('auro-flight', () => {
-  it('sets the CSS class on auro-flight > div element', async () => {
-    const el = await fixture(html`
-      <auro-flight cssclass="testClass"></auro-flight>
-    `);
-
-    const div = el.shadowRoot.querySelector('div');
-    expect(div.className).to.equal('testClass');
-  });
 
   it('auro-flight is accessible', async () => {
     const el = await fixture(html`
-      <auro-flight cssclass="testClass"></auro-flight>
-    `);
+          <auro-flight 
+            flights='["AS 9999"]' 
+            duration="1h 99m" 
+            daysChanged="2"
+            departureTime="2:55 pm"
+            departureStation="PVD"
+            arrivalTime="5:10 pm"
+            arrivalStation="ORD"
+            >
+              Hello World!
+          </auro-flight>
+        `);
 
     await expect(el).to.be.accessible();
   });
 
   it('auro-flight custom element is defined', async () => {
-    const el = await !!customElements.get("auro-flight");
+    const el = await Boolean(customElements.get("auro-flight"));
 
     await expect(el).to.be.true;
   });
