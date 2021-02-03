@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Auro Web Component Generator | auro-flight custom element</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://unpkg.com/prismjs@latest/themes/prism.css"
+    />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+  </head>
+  <body>
+    <main></main>
+
+    <script type="module">
+      import 'https://unpkg.com/marked@latest/marked.min.js';
+      import 'https://unpkg.com/prismjs@latest/prism.js';
+      fetch('/demo/demo.md')
+        .then((response) => response.text())
+        .then((text) => {
+          const rawHtml = marked(text);
+          document.querySelector('main').innerHTML = rawHtml;
+          Prism.highlightAll();
+        });
+    </script>
+    <script type="module" src="../src/auro-flight.js"></script>
+    <script src="https://unpkg.com/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js" type="module"></script>
+  </body>
+</html>
