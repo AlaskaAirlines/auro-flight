@@ -67,6 +67,7 @@ class AuroFlightTopBar extends LitElement {
     if (this.daysChanged > ZERO) {
         return `+${this.daysChanged} day${this.daysChanged > ONE ? 's' : ''}`
     }
+
     return null;
   }
 
