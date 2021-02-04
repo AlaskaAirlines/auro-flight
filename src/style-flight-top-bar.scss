@@ -27,16 +27,16 @@
 //   ...
 // }
 
-div {
-    display: flex;
-    justify-content: space-between;
-    font-size: var(--auro-text-body-size-default);
-    color: var(--auro-color-text-secondary-on-light);
-    padding-bottom: var(--auro-size-xxs);
+:host {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--auro-text-body-size-default);
+  color: var(--auro-color-text-secondary-on-light);
+  padding-bottom: var(--auro-size-xxs);
 }
 
-.days-changed {
-    align-self: flex-end;
-    color: var(--auro-color-brand-canyon-500);
-    padding-left: var(--auro-size-sm);
+.daysChanged {
+  align-self: flex-end;
+  color: var(--auro-color-brand-canyon-500);
+  padding-left: var(--auro-size-sm);
 }

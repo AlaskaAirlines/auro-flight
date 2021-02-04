@@ -27,9 +27,9 @@ class AuroFlightTopBar extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      flights:   { type: Array },
-      duration: {type: String},
-      daysChanged: {type: Number},
+      flights:      { type: Array },
+      duration:     { type: String },
+      daysChanged:  { type: Number },
     };
   }
 
@@ -45,14 +45,14 @@ class AuroFlightTopBar extends LitElement {
    * @returns {String} Parsed airline code output
    */
   generateFlights() {
-      switch (this.flights.length) {
-            case ZERO:
-                return null;
-            case ONE:
-                return this.flights[ZERO];
-            default:
-                return 'Multiple flights';
-      }
+    switch (this.flights.length) {
+      case ZERO:
+        return null;
+      case ONE:
+        return this.flights[ZERO];
+      default:
+        return 'Multiple flights';
+    }
   }
 
   /**
@@ -64,26 +64,23 @@ class AuroFlightTopBar extends LitElement {
    * @returns {String} item to display
    */
   generateDays() {
-      if (this.daysChanged > ZERO) {
-          return `+${this.daysChanged} day${this.daysChanged > ONE ? 's' : ''}`
-      }
-
-return null;
+    if (this.daysChanged > ZERO) {
+        return `+${this.daysChanged} day${this.daysChanged > ONE ? 's' : ''}`
+    }
+    return null;
   }
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
+      <span class="flight">
+          ${this.generateFlights()}
+      </span>
       <div>
-        <span class="flight">
-            ${this.generateFlights()}
-        </span>
-        <div>
-            <span class="duration">${this.duration}</span>
-            ${this.daysChanged > ZERO ? html`
-                <span class="days-changed">${this.generateDays()}</span>
-            ` : html``}
-        </div>
+          <span class="duration">${this.duration}</span>
+          ${this.daysChanged > ZERO ? html`
+              <span class="daysChanged">${this.generateDays()}</span>
+          ` : html``}
       </div>
     `;
   }
