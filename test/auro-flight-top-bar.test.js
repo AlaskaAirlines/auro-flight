@@ -17,7 +17,7 @@ describe('auro-flight-top-bar', () => {
       <auro-flight-top-bar flights='["AS 123", "EK 432"]' duration="23h 4m"></auro-flight-top-bar>
     `);
 
-    await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n            Multiple flights\n        ');
+    await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n          Multiple flights\n      ');
   });
 
   it('auro-flight-top-bar says the flight number when flights.length == 1', async () => {
@@ -25,7 +25,7 @@ describe('auro-flight-top-bar', () => {
       <auro-flight-top-bar flights='["AS 123"]' duration="23h 4m"></auro-flight-top-bar>
     `);
 
-await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n            AS 123\n        ');
+await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n          AS 123\n      ');
 });
 
 it('auro-flight-top-bar says nothing when daysChanged == 0', async () => {
@@ -33,7 +33,7 @@ it('auro-flight-top-bar says nothing when daysChanged == 0', async () => {
       <auro-flight-top-bar flights='["AS 123"]' duration="23h 4m"></auro-flight-top-bar>
     `);
 
-await expect(el.shadowRoot.querySelector('.days-changed')).to.equal(null);
+await expect(el.shadowRoot.querySelector('.daysChanged')).to.equal(null);
   });
 
 
@@ -42,7 +42,7 @@ await expect(el.shadowRoot.querySelector('.days-changed')).to.equal(null);
       <auro-flight-top-bar flights='["AS 123"]' duration="23h 4m" daysChanged="1"></auro-flight-top-bar>
     `);
 
-await expect(el.shadowRoot.querySelector('.days-changed').textContent).to.equal('+1 day');
+await expect(el.shadowRoot.querySelector('.daysChanged').textContent).to.equal('+1 day');
   });
 
   it('auro-flight-top-bar says +2 days daysChanged > 1', async () => {
@@ -50,7 +50,7 @@ await expect(el.shadowRoot.querySelector('.days-changed').textContent).to.equal(
       <auro-flight-top-bar flights='["AS 123"]' duration="23h 4m" daysChanged="2"></auro-flight-top-bar>
     `);
 
-await expect(el.shadowRoot.querySelector('.days-changed').textContent).to.equal('+2 days');
+await expect(el.shadowRoot.querySelector('.daysChanged').textContent).to.equal('+2 days');
   });
 
   it('auro-flight-top-bar custom element is defined', async () => {
