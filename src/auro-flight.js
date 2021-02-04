@@ -26,6 +26,7 @@ import "./auro-flight-main";
  * @attr {String} arrivalTime - String for the arrival time. '4:05 pm'
  * @attr {String} arrivalStation - String for the arrival station. 'PVD'
  * @slot default - displays data under the fold. DoT DISCLOSURES MUST BE var(--auro-text-body-size-default)!!
+ * @slot flight-segments - anticipates <auro-flight-segment> instances to fill out the flight timeline
  */
 
 // build the component class
@@ -34,13 +35,13 @@ class AuroFlight extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      flights:   { type: Array },
-      duration: {type: String},
-      daysChanged: {type: Number},
-      departureTime: {type: String},
-      departureStation: {type: String},
-      arrivalTime: {type: String},
-      arrivalStation: {type: String},
+      flights:          { type: Array },
+      duration:         { type: String },
+      daysChanged:      { type: Number },
+      departureTime:    { type: String },
+      departureStation: { type: String },
+      arrivalTime:      { type: String },
+      arrivalStation:   { type: String },
     };
   }
 
@@ -53,22 +54,21 @@ class AuroFlight extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <div>
-        <auro-flight-top-bar 
-          flights=${JSON.stringify(this.flights)}
-          duration=${this.duration} 
-          daysChanged=${this.daysChanged}
-        >
-        </auro-flight-top-bar>
-        <auro-flight-main
-          arrivalTime=${this.arrivalTime}
-          arrivalStation=${this.arrivalStation}
-          departureTime=${this.departureTime}
-          departureStation=${this.departureStation}
-        >
-        </auro-flight-main>
-        <slot></slot>
-      </div>
+      <auro-flight-top-bar 
+        flights=${JSON.stringify(this.flights)}
+        duration=${this.duration} 
+        daysChanged=${this.daysChanged}
+      >
+      </auro-flight-top-bar>
+      <auro-flight-main
+        arrivalTime=${this.arrivalTime}
+        arrivalStation=${this.arrivalStation}
+        departureTime=${this.departureTime}
+        departureStation=${this.departureStation}
+      >
+        <slot name="flight-segments"></slot>
+      </auro-flight-main>
+      <slot name="gutter"></slot>
     `;
   }
 }

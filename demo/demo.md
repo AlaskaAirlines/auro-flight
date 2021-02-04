@@ -1,9 +1,8 @@
 # auro-flight
 
 Auro-flight encapsulates Alaska's flight result logic.
-A departure station and an arrival station are displayed in tandem with all sectors of the flight in an <auro-flightline> component.
-Department of Transportation regulations mandate that the arrival and departure cities' font size and color be identical to the 
-operational disclosures (for instance, AA 3210 is operated by Envoy Air on behalf of American Airlines).
+A departure station and an arrival station are displayed in tandem with all sectors of the flight in an `<auro-flightline>` component.
+Department of Transportation regulations mandate that the arrival and departure cities' font size and color be identical to the operational disclosures (for instance, AA 3210 is operated by Envoy Air on behalf of American Airlines).
 
 
 
@@ -17,6 +16,7 @@ operational disclosures (for instance, AA 3210 is operated by Envoy Air on behal
             arrivalTime="5:10 pm"
             arrivalStation="ORD"
             >
+            <auro-flight-segment iata="SEA" duration="1h 32m"></auro-flight-segment>
               Hello World!
           </auro-flight>
     </div>
@@ -34,6 +34,7 @@ operational disclosures (for instance, AA 3210 is operated by Envoy Air on behal
             arrivalTime="5:10 pm"
             arrivalStation="ORD"
             >
+            
               Hello World!
           </auro-flight>
   ```

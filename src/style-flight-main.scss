@@ -28,45 +28,47 @@
 // }
 
 
-div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-bottom: 16px;
+:host {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-bottom: var(--auro-size-xl);
 }
 
-.dep-time {
-    color: var(--auro-color-text-primary-on-light);
-    font-size: 28px;
-    line-height: 36px;
-    padding-bottom: var(--auro-size-xxxs);
-    text-align: left;
+auro-flightline {
+  padding-left: 25px;
+  padding-right: 25px;
+  flex-grow: 2;
 }
 
-.dep-station {
-    font-size: 16px;
-    line-height: 24px;
-    color: var(--auro-color-text-secondary-on-light);
-    text-align: left;
+.departure-time {
+  color: var(--auro-color-text-primary-on-light);
+  font-size: var(--auro-text-heading-700-size-breakpoint-sm);
+  line-height: var(--auro-text-heading-700-height-breakpoint-md);
+  padding-bottom: var(--auro-size-xxxs);
+  text-align: left;
 }
 
-.arr-time {
-    color: var(--auro-color-text-primary-on-light);
-    font-size: 28px;
-    line-height: 36px;
-    padding-bottom: var(--auro-size-xxxs);
-    text-align: right;
+.departure-station {
+  color: var(--auro-color-text-secondary-on-light);
+  text-align: left;
 }
 
-.arr-station {
-    font-size: 16px;
-    line-height: 24px;
-    color: var(--auro-color-text-secondary-on-light);
-    text-align: right;
+.arrival-time {
+  color: var(--auro-color-text-primary-on-light);
+  font-size: var(--auro-text-heading-700-size-breakpoint-sm);
+  line-height: var(--auro-text-heading-700-height-breakpoint-md);
+  padding-bottom: var(--auro-size-xxxs);
+  text-align: right;
+}
+
+.arrival-station {
+  color: var(--auro-color-text-secondary-on-light);
+  text-align: right;
 }
 
 .arrival,
 .departure {
-    display: inline-flex;
-    flex-direction: column;
+  display: inline-flex;
+  flex-direction: column;
 }
