@@ -66,9 +66,8 @@ class AuroFlight extends LitElement {
         departureTime=${this.departureTime}
         departureStation=${this.departureStation}
       >
-        <slot name="flight-segments"></slot>
       </auro-flight-main>
-      <slot name="gutter"></slot>
+      <slot></slot>
     `;
   }
 }
