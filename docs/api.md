@@ -1,7 +1,6 @@
 # auro-flight-main
 
-auro-flight-main renders the middle 'frame' of the auro-flight component
-with the auro-flightline
+auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
 DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 
 ## Properties
@@ -12,6 +11,12 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | `arrivalTime`      | `arrivalTime`      | `String` | Time of arrival, ex: 9:06 pm   |
 | `departureStation` | `departureStation` | `String` | Station of departure, ex: PVD  |
 | `departureTime`    | `departureTime`    | `String` | Time of departure, ex: 5:36 am |
+
+## Slots
+
+| Name      | Description                                 |
+|-----------|---------------------------------------------|
+| `default` | anticipates <auro-flight-segment> instances |
 
 
 # auro-flight-top-bar
@@ -54,4 +59,5 @@ Please DO NOT modify unit tests pertaining to DoT regulations without contacting
 
 | Name      | Description                                      |
 |-----------|--------------------------------------------------|
+| `content` | anticipates <auro-flightline> instance to fill out the flight timeline |
 | `default` | displays data under the fold. DoT DISCLOSURES MUST BE var(--auro-text-body-size-default)!! |

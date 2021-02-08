@@ -6,7 +6,6 @@ Department of Transportation regulations mandate that the arrival and departure 
 
 
 ## Mainline Nonstop (SEAEWR)
-
 <div class="exampleWrapper">
   <auro-flight 
     flights='["AS 8"]' 
@@ -17,6 +16,8 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="3:55 pm"
     arrivalStation="EWR"
     >
+    <auro-flightline slot="content"></auro-flightline>
+    <span slot="gutter"></span>
   </auro-flight>
 </div>
 
@@ -33,6 +34,8 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="3:55 pm"
       arrivalStation="EWR"
       >
+      <auro-flightline slot="content"></auro-flightline>
+      <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -50,8 +53,9 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="6:35 am"
     arrivalStation="SEA"
     >
-      Hello World!
-  </auro-flight>
+      <auro-flightline slot="content"></auro-flightline>
+      <span slot="gutter"></span>
+    </auro-flight>
 </div>
 
 <auro-accordion lowProfile justifyRight>
@@ -67,7 +71,8 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="6:35 am"
       arrivalStation="SEA"
       >
-        Hello World!
+      <auro-flightline slot="content"></auro-flightline>
+      <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -85,8 +90,11 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="1:05 pm"
     arrivalStation="ADK"
     >
-      Hello World!
-  </auro-flight>
+      <auro-flightline slot="content">
+        <auro-flight-segment stopover iata="CDB"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
+    </auro-flight>
 </div>
 
 <auro-accordion lowProfile justifyRight>
@@ -102,7 +110,10 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="1:05 pm"
       arrivalStation="ADK"
       >
-        Hello World!
+      <auro-flightline slot="content">
+        <auro-flight-segment stopover iata="CDB"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -120,7 +131,11 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="2:53 pm"
     arrivalStation="ANC"
     >
-      Hello World!
+      <auro-flightline slot="content">
+        <auro-flight-segment stopover iata="PSG"></auro-flight-segment>
+        <auro-flight-segment stopover iata="JNU"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
   </auro-flight>
 </div>
 
@@ -137,7 +152,11 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="2:53 pm"
       arrivalStation="ANC"
       >
-        Hello World!
+      <auro-flightline slot="content">
+        <auro-flight-segment stopover iata="PSG"></auro-flight-segment>
+        <auro-flight-segment stopover iata="JNU"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -155,7 +174,12 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="2:53 pm"
     arrivalStation="ANC"
     >
-      Hello World!
+      <auro-flightline slot="content">
+        <auro-flight-segment stopover iata="WRG"></auro-flight-segment>
+        <auro-flight-segment stopover iata="PSG"></auro-flight-segment>
+        <auro-flight-segment stopover iata="JNU"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
   </auro-flight>
 </div>
 
@@ -172,7 +196,12 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="2:53 pm"
       arrivalStation="ANC"
       >
-        Hello World!
+      <auro-flightline slot="content">
+        <auro-flight-segment stopover iata="WRG"></auro-flight-segment>
+        <auro-flight-segment stopover iata="PSG"></auro-flight-segment>
+        <auro-flight-segment stopover iata="JNU"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -190,7 +219,8 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="11:35 am"
     arrivalStation="CPT"
     >
-      EK 772 is subject to government approval
+      <auro-flightline slot="content"></auro-flightline>
+      <span slot="gutter"><auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon> EK 772 is subject to government approval</span>
   </auro-flight>
 </div>
 
@@ -207,7 +237,8 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="11:35 am"
       arrivalStation="CPT"
       >
-        EK 772 is subject to government approval
+      <auro-flightline slot="content"></auro-flightline>
+      <span slot="gutter"><auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>EK 772 is subject to government approval</span>
     </auro-flight>
   ```
 
@@ -226,6 +257,10 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="11:20 am"
     arrivalStation="SJD"
     >
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="LAX">
+      </auro-flightline>
+      <span slot="gutter"></span>
   </auro-flight>
 </div>
 
@@ -242,6 +277,10 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="11:20 am"
       arrivalStation="SJD"
       >
+        <auro-flightline slot="content">
+          <auro-flight-segment iata="LAX">
+        </auro-flightline>
+        <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -260,7 +299,9 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="9:25 am"
     arrivalStation="CDV"
     >
-    First Class Upgrade available
+      <auro-flightline slot="content">
+      </auro-flightline>
+      <span slot="gutter">First Class Upgrade available</span>
   </auro-flight>
 </div>
 
@@ -277,7 +318,9 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="9:25 am"
       arrivalStation="CDV"
       >
-        First Class Upgrade available
+      <auro-flightline slot="content">
+      </auro-flightline>
+      <span slot="gutter">First Class Upgrade available</span>
     </auro-flight>
   ```
 
@@ -295,7 +338,10 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="6:28 am"
     arrivalStation="SEA"
     >
-      AS 2087 is operated by Horizon Air as AlaskaHorizon
+      <auro-flightline slot="content">
+      </auro-flightline>
+      <span slot="gutter"><auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 2087 is operated by Horizon Air as AlaskaHorizon</span>
+      
   </auro-flight>
 </div>
 
@@ -312,7 +358,9 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="6:28 am"
       arrivalStation="SEA"
       >
-        AS 2087 is operated by Horizon Air as AlaskaHorizon
+      <auro-flightline slot="content">
+      </auro-flightline>
+      <span slot="gutter"><auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 2087 is operated by Horizon Air as AlaskaHorizon</span>
     </auro-flight>
   ```
 
@@ -330,7 +378,9 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="6:49 am"
     arrivalStation="PDX"
     >
-      AS 2326 is operated by Horizon Air as AlaskaHorizon
+      <auro-flightline slot="content">
+      </auro-flightline>
+      <span slot="gutter"><auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 2326 is operated by Horizon Air as AlaskaHorizon</span>
   </auro-flight>
 </div>
 
@@ -347,7 +397,9 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="6:49 am"
       arrivalStation="PDX"
       >
-        AS 2326 is operated by Horizon Air as AlaskaHorizon
+      <auro-flightline slot="content">
+      </auro-flightline>
+      <span slot="gutter"><auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 2326 is operated by Horizon Air as AlaskaHorizon</span>
     </auro-flight>
   ```
 
@@ -365,7 +417,10 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="3:50 pm"
     arrivalStation="BOS"
     >
-      
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
   </auro-flight>
 </div>
 
@@ -382,7 +437,10 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="3:50 pm"
       arrivalStation="BOS"
       >
-        
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -401,7 +459,10 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="11:28 am"
     arrivalStation="DEN"
     >
-      
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
   </auro-flight>
 </div>
 
@@ -418,7 +479,10 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="11:28 am"
       arrivalStation="DEN"
       >
-        
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -436,7 +500,11 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="1:05 pm"
     arrivalStation="ADK"
     >
-      
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="ANC" duration="1h 35m"></auro-flight-segment>
+        <auro-flight-segment iata="CDB" stopover></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
   </auro-flight>
 </div>
 
@@ -453,7 +521,11 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="1:05 pm"
       arrivalStation="ADK"
       >
-        
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="ANC" duration="1h 35m"></auro-flight-segment>
+        <auro-flight-segment iata="CDB" stopover></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"></span>
     </auro-flight>
   ```
 
@@ -472,7 +544,11 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="7:52 pm"
     arrivalStation="AVP"
     >
-      AA 3893 is operated by Envoy Air on behalf of American Airlines: ORD - AVP
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="ORD" duration="2h 0m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"><auro-icon category="logos" name="tail-AA" style="width: 32px"></auro-icon>AA 3893 is operated by Envoy Air on behalf of American Airlines: ORD - AVP</span>
+      
   </auro-flight>
 </div>
 
@@ -489,7 +565,10 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="7:52 pm"
       arrivalStation="AVP"
       >
-        AA 3893 is operated by Envoy Air on behalf of American Airlines: ORD - AVP
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="ORD" duration="2h 0m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter"><auro-icon category="logos" name="tail-AA" style="width: 32px"></auro-icon>AA 3893 is operated by Envoy Air on behalf of American Airlines: ORD - AVP</span>
     </auro-flight>
   ```
 
@@ -507,9 +586,16 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="11:44 pm"
     arrivalStation="ALW"
     >
-      EK 231 is operated by Emirates: DXB - LAX
-      AS 1085 is operated by Alaska Airlines: LAX - SEA
-      AS 2086 is operated by Horizon Air as AlaskaHorizon: SEA - ALW
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="SEA" duration="1h 5m"></auro-flight-segment>
+        <auro-flight-segment iata="LAX" duration="3h 45m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter">
+        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>EK 231 is operated by Emirates: DXB - LAX<br />
+        <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 1085 is operated by Alaska Airlines: LAX - SEA<br />
+        <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 2086 is operated by Horizon Air as AlaskaHorizon: SEA - ALW
+      </span>
+
   </auro-flight>
 </div>
 
@@ -526,11 +612,18 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="11:44 pm"
       arrivalStation="ALW"
       >
-        EK 231 is operated by Emirates: DXB - LAX
-        AS 1085 is operated by Alaska Airlines: LAX - SEA
-        AS 2086 is operated by Horizon Air as AlaskaHorizon: SEA - ALW
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="SEA" duration="1h 5m"></auro-flight-segment>
+        <auro-flight-segment iata="LAX" duration="3h 45m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter">
+        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>EK 231 is operated by Emirates: DXB - LAX<br />
+        <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 1085 is operated by Alaska Airlines: LAX - SEA<br />
+        <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 2086 is operated by Horizon Air as AlaskaHorizon: SEA - ALW
+      </span>
     </auro-flight>
   ```
+</auro-accordion>
 
 ## Single Regional, Multiple Partner (ALWCPT)
 
@@ -544,10 +637,18 @@ Department of Transportation regulations mandate that the arrival and departure 
     arrivalTime="10:35 am"
     arrivalStation="CPT"
     >
-      AS 2087 is operated by Horizon Air as AlaskaHorizon: ALW - SEA
-      EK 230, 772 are operated by Emirates: SEA - DXB, DXB - CPT
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="SEA" duration="1h 5m"></auro-flight-segment>
+        <auro-flight-segment iata="DXB" duration="3h 45m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter">
+        <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 2087 is operated by Horizon Air as AlaskaHorizon: ALW - SEA<br />
+        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>EK 230, 772 are operated by Emirates: SEA - DXB, DXB - CPT
+      </span>
+
   </auro-flight>
 </div>
+
 
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
@@ -562,8 +663,14 @@ Department of Transportation regulations mandate that the arrival and departure 
       arrivalTime="10:35 am"
       arrivalStation="CPT"
       >
-        AS 2087 is operated by Horizon Air as AlaskaHorizon: ALW - SEA
-        EK 230, 772 are operated by Emirates: SEA - DXB, DXB - CPT
+      <auro-flightline slot="content">
+        <auro-flight-segment iata="SEA" duration="1h 5m"></auro-flight-segment>
+        <auro-flight-segment iata="DXB" duration="3h 45m"></auro-flight-segment>
+      </auro-flightline>
+      <span slot="gutter">
+        <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>AS 2087 is operated by Horizon Air as AlaskaHorizon: ALW - SEA<br />
+        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>EK 230, 772 are operated by Emirates: SEA - DXB, DXB - CPT
+      </span>
     </auro-flight>
   ```
 

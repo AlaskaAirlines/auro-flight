@@ -48,6 +48,9 @@ class AuroFlightMain extends LitElement {
           <span class="departure-time">${this.departureTime}</span>
           <span class="departure-station">${this.departureStation}</span>
         </div>
+        <div class="slot-container">
+          <slot></slot>
+        </div>
         <div class="arrival">
           <span class="arrival-time">${this.arrivalTime}</span>
           <span class="arrival-station">${this.arrivalStation}</span>
