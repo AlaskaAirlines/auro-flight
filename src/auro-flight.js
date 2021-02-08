@@ -26,7 +26,7 @@ import "./auro-flight-main";
  * @attr {String} arrivalTime - String for the arrival time. '4:05 pm'
  * @attr {String} arrivalStation - String for the arrival station. 'PVD'
  * @slot default - displays data under the fold. DoT DISCLOSURES MUST BE var(--auro-text-body-size-default)!!
- * @slot flight-segments - anticipates <auro-flight-segment> instances to fill out the flight timeline
+ * @slot content - anticipates <auro-flightline> instance to fill out the flight timeline
  */
 
 // build the component class
@@ -66,8 +66,9 @@ class AuroFlight extends LitElement {
         departureTime=${this.departureTime}
         departureStation=${this.departureStation}
       >
+        <slot name="content"></slot>
       </auro-flight-main>
-      <slot></slot>
+      <slot name="gutter"></slot>
     `;
   }
 }
