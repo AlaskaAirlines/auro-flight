@@ -1,3 +1,16 @@
+# auro-flight-header
+
+auro-flight-header displays airline, duration, and day change information
+
+## Properties
+
+| Property      | Attribute     | Type     | Description                                      |
+|---------------|---------------|----------|--------------------------------------------------|
+| `daysChanged` | `daysChanged` | `Number` | Number of days changed due to flight duration and timezone. Positive whole integer |
+| `duration`    | `duration`    | `String` | String for the duration. '1h 23m'                |
+| `flights`     | `flights`     | `Array`  | Array of flight numbers ['AS 123', 'EK 432']     |
+
+
 # auro-flight-main
 
 auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
@@ -19,24 +32,6 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | `default` | anticipates <auro-flight-segment> instances |
 
 
-# auro-flight-top-bar
-
-## Properties
-
-| Property      | Attribute     | Type     |
-|---------------|---------------|----------|
-| `daysChanged` | `daysChanged` | `number` |
-| `duration`    | `duration`    | `string` |
-| `flights`     | `flights`     | `array`  |
-
-## Methods
-
-| Method            | Type         | Description                                      |
-|-------------------|--------------|--------------------------------------------------|
-| `generateDays`    | `(): String` | Internal function to render the day change notification.<br />0 day change = null<br />1 day change = +1 Day<br />2+ day change = +N Days |
-| `generateFlights` | `(): String` | Internal function to render either the flight number OR 'Multiple flights'. |
-
-
 # auro-flight
 
 auro-flight renders a DoT compliant Flight listing
@@ -47,17 +42,17 @@ Please DO NOT modify unit tests pertaining to DoT regulations without contacting
 
 | Property           | Attribute          | Type     | Description                                      |
 |--------------------|--------------------|----------|--------------------------------------------------|
-| `arrivalStation`   | `arrivalStation`   | `String` | String for the arrival station. 'PVD'            |
-| `arrivalTime`      | `arrivalTime`      | `String` | String for the arrival time. '4:05 pm'           |
+| `arrivalStation`   | `arrivalStation`   | `String` | String for the arrival station. `PVD`            |
+| `arrivalTime`      | `arrivalTime`      | `String` | String for the arrival time. `4:05 pm`           |
 | `daysChanged`      | `daysChanged`      | `Number` | Number of days changed due to flight duration and timezone. Positive whole integer |
-| `departureStation` | `departureStation` | `String` | String for the departure station. 'SEA'          |
-| `departureTime`    | `departureTime`    | `String` | String for the departure time. '9:06 am'         |
-| `duration`         | `duration`         | `String` | String for the duration. '1h 23m'                |
-| `flights`          | `flights`          | `Array`  | Array of flight numbers ['AS 123', 'EK 432']     |
+| `departureStation` | `departureStation` | `String` | String for the departure station. `SEA`          |
+| `departureTime`    | `departureTime`    | `String` | String for the departure time. `9:06 am`         |
+| `duration`         | `duration`         | `String` | String for the duration. `1h 23m`                |
+| `flights`          | `flights`          | `Array`  | Array of flight numbers `['AS 123', 'EK 432']`   |
 
 ## Slots
 
 | Name      | Description                                      |
 |-----------|--------------------------------------------------|
-| `content` | anticipates <auro-flightline> instance to fill out the flight timeline |
-| `default` | displays data under the fold. DoT DISCLOSURES MUST BE var(--auro-text-body-size-default)!! |
+| `default` | anticipates `<auro-flightline>` instance to fill out the flight timeline |
+| `footer`  | Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot. |

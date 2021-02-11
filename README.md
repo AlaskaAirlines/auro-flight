@@ -1,6 +1,6 @@
 # auro-flight
 
-`<auro-flight>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of ...
+The <auro-flight> [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an `<auro-flightline>` element.
 
 ## UI development browser support
 
@@ -39,7 +39,17 @@ import "@alaskaairux/auro-flight";
 **Reference component in HTML**
 
 ```html
-<auro-flight>Hello World</auro-flight>
+<auro-flight
+  flights='["AS 8"]'
+  duration="5h 25m"
+  daysChanged="0"
+  departureTime="7:30 am"
+  departureStation="SEA"
+  arrivalTime="3:55 pm"
+  arrivalStation="EWR"
+  >
+  <auro-flightline></auro-flightline>
+</auro-flight>
 ```
 
 ## Install bundled assets from CDN
@@ -58,20 +68,22 @@ Since the legacy bundle includes many polyfills that are not needed by modern br
 <script src="https://unpkg.com/@alaskaairux/auro-flight@latest/dist/auro-flight__bundled.es5.js" nomodule></script>
 ```
 
-## auro-flight use cases
-
-The `<auro-flight>` element should be used in situations where users may:
-
-* ...
-* ...
-* ...
-
 ## API Code Examples
 
 Default auro-flight
 
 ```html
-<auro-flight>Hello World</auro-flight>
+<auro-flight
+  flights='["AS 8"]'
+  duration="5h 25m"
+  daysChanged="0"
+  departureTime="7:30 am"
+  departureStation="SEA"
+  arrivalTime="3:55 pm"
+  arrivalStation="EWR"
+  >
+  <auro-flightline></auro-flightline>
+</auro-flight>
 ```
 
 ## Development
