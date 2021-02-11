@@ -8,21 +8,20 @@ import { LitElement, html, css } from "lit-element";
 
 // Import touch detection lib
 import "focus-visible/dist/focus-visible.min.js";
-import styleCss from "./style-flight-top-bar-css.js";
+import styleCss from "./style-flight-header-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * auro-flight-top-bar displays airline, duration, and day change information
+ * auro-flight-header displays airline, duration, and day change information
  *
  * @attr {Array} flights - Array of flight numbers ['AS 123', 'EK 432']
  * @attr {String} duration - String for the duration. '1h 23m'
  * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer
  */
-const ONE = 1,
-ZERO = 0;
+
 // build the component class
 
-class AuroFlightTopBar extends LitElement {
+class AuroFlightHeader extends LitElement {
 
   // function to define props used within the scope of this component
   static get properties() {
@@ -40,32 +39,31 @@ class AuroFlightTopBar extends LitElement {
   }
 
   /**
-   * Internal function to render either the flight number OR 'Multiple flights'.
-   *
+   * @private Internal function to render either the flight number OR 'Multiple flights'
    * @returns {String} Parsed airline code output
    */
-  generateFlights() {
+  flightType() {
     switch (this.flights.length) {
-      case ZERO:
+      case 0:
         return null;
-      case ONE:
-        return this.flights[ZERO];
+      case 1:
+        return this.flights[0];
       default:
         return 'Multiple flights';
     }
   }
 
   /**
-   * Internal function to render the day change notification.
+   * @private Internal function to render the day change notification.
    * 0 day change = null
    * 1 day change = +1 Day
    * 2+ day change = +N Days
    *
    * @returns {String} item to display
    */
-  generateDays() {
-    if (this.daysChanged > ZERO) {
-        return `+${this.daysChanged} day${this.daysChanged > ONE ? 's' : ''}`
+  flightDuration() {
+    if (this.daysChanged > 0) {
+        return `+${this.daysChanged} day${this.daysChanged > 1 ? 's' : ''}`
     }
 
     return null;
@@ -75,12 +73,12 @@ class AuroFlightTopBar extends LitElement {
   render() {
     return html`
       <span class="flight">
-          ${this.generateFlights()}
+          ${this.flightType()}
       </span>
       <div>
           <span class="duration">${this.duration}</span>
-          ${this.daysChanged > ZERO ? html`
-              <span class="daysChanged">${this.generateDays()}</span>
+          ${this.daysChanged > 0 ? html`
+              <span class="daysChanged">${this.flightDuration()}</span>
           ` : html``}
       </div>
     `;
@@ -89,6 +87,6 @@ class AuroFlightTopBar extends LitElement {
 
 /* istanbul ignore else */
 // define the name of the custom component
-if (!customElements.get("auro-flight-top-bar")) {
-  customElements.define("auro-flight-top-bar", AuroFlightTopBar);
+if (!customElements.get("auro-flight-header")) {
+  customElements.define("auro-flight-header", AuroFlightHeader);
 }
