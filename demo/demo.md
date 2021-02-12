@@ -266,7 +266,7 @@ In this example for a flight that requires government approval, you can use the 
       <auro-flightline></auro-flightline>
       <span slot="footer">
         <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
-        K 772 is subject to government approval
+        EK 772 is subject to government approval
       </span>
   </auro-flight>
   ```
