@@ -230,7 +230,7 @@ The following example illustrates a change of gauge flight with a layover in SEA
 
 ## Using the footer slot
 
-In this example for a flight that requires government approval, you can use the `footer` custom element slot to insert additional information into the scope of the component. In the code you will see the use of `<auro-icon>` and text within the named slot element.
+In this example for a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. In the code you will see the use of `<auro-icon>` and text within the named slot element.
 
 <div class="exampleWrapper">
   <auro-flight
@@ -245,7 +245,9 @@ In this example for a flight that requires government approval, you can use the 
       <auro-flightline></auro-flightline>
       <span slot="footer">
         <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
-        K 772 is subject to government approval
+        EK 772 is subject to government approval <br />
+        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
+        EK 772 is operated by Emirates
       </span>
   </auro-flight>
 </div>
@@ -266,7 +268,9 @@ In this example for a flight that requires government approval, you can use the 
       <auro-flightline></auro-flightline>
       <span slot="footer">
         <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
-        EK 772 is subject to government approval
+        EK 772 is subject to government approval <br />
+        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
+        EK 772 is operated by Emirates
       </span>
   </auro-flight>
   ```
