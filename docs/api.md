@@ -40,15 +40,16 @@ Please DO NOT modify unit tests pertaining to DoT regulations without contacting
 
 ## Properties
 
-| Property           | Attribute          | Type     | Description                                      |
-|--------------------|--------------------|----------|--------------------------------------------------|
-| `arrivalStation`   | `arrivalStation`   | `String` | String for the arrival station. `PVD`            |
-| `arrivalTime`      | `arrivalTime`      | `String` | String for the arrival time. `4:05 pm`           |
-| `daysChanged`      | `daysChanged`      | `Number` | Number of days changed due to flight duration and timezone. Positive whole integer |
-| `departureStation` | `departureStation` | `String` | String for the departure station. `SEA`          |
-| `departureTime`    | `departureTime`    | `String` | String for the departure time. `9:06 am`         |
-| `duration`         | `duration`         | `String` | String for the duration. `1h 23m`                |
-| `flights`          | `flights`          | `Array`  | Array of flight numbers `['AS 123', 'EK 432']`   |
+| Property           | Attribute          | Type      | Default | Description                                      |
+|--------------------|--------------------|-----------|---------|--------------------------------------------------|
+| `ariaHidden`       | `ariaHidden`       | `Boolean` | false   | When `true` element will be hidden from screen readers |
+| `arrivalStation`   | `arrivalStation`   | `String`  |         | String for the arrival station. `PVD`            |
+| `arrivalTime`      | `arrivalTime`      | `String`  |         | String for the arrival time. `4:05 pm`           |
+| `daysChanged`      | `daysChanged`      | `Number`  |         | Number of days changed due to flight duration and timezone. Positive whole integer |
+| `departureStation` | `departureStation` | `String`  |         | String for the departure station. `SEA`          |
+| `departureTime`    | `departureTime`    | `String`  |         | String for the departure time. `9:06 am`         |
+| `duration`         | `duration`         | `String`  |         | String for the duration. `1h 23m`                |
+| `flights`          | `flights`          | `Array`   |         | Array of flight numbers `['AS 123', 'EK 432']`   |
 
 ## Slots
 
