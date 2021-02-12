@@ -27,12 +27,19 @@ import "./auro-flight-main";
  * @attr {String} departureStation - String for the departure station. `SEA`
  * @attr {String} arrivalTime - String for the arrival time. `4:05 pm`
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
+ * @attr {Boolean} ariaHidden - When `true` element will be hidden from screen readers
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot.
  */
 
 // build the component class
 class AuroFlight extends LitElement {
+
+  constructor() {
+    super();
+
+    this.ariaHidden = false;
+  }
 
   // function to define props used within the scope of this component
   static get properties() {
@@ -44,6 +51,7 @@ class AuroFlight extends LitElement {
       departureStation: { type: String },
       arrivalTime:      { type: String },
       arrivalStation:   { type: String },
+      ariaHidden:       { type: Boolean },
     };
   }
 
@@ -68,23 +76,26 @@ class AuroFlight extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <auro-flight-header
-        flights=${JSON.stringify(this.flights)}
-        duration=${this.duration}
-        daysChanged=${this.daysChanged}
-      >
-      </auro-flight-header>
-      <auro-flight-main
-        arrivalTime=${this.arrivalTime}
-        arrivalStation=${this.arrivalStation}
-        departureTime=${this.departureTime}
-        departureStation=${this.departureStation}
-      >
-        <slot></slot>
-      </auro-flight-main>
-      <div class="flight-footer" id="flight-footer">
-        <slot name="footer" id="footer"></slot>
-      </div>
+
+      <section aria-hidden="${this.ariaHidden}">
+        <auro-flight-header
+          flights=${JSON.stringify(this.flights)}
+          duration=${this.duration}
+          daysChanged=${this.daysChanged}
+        >
+        </auro-flight-header>
+        <auro-flight-main
+          arrivalTime=${this.arrivalTime}
+          arrivalStation=${this.arrivalStation}
+          departureTime=${this.departureTime}
+          departureStation=${this.departureStation}
+        >
+          <slot></slot>
+        </auro-flight-main>
+        <footer class="flight-footer" id="flight-footer">
+          <slot name="footer" id="footer"></slot>
+        </footer>
+      </section>
     `;
   }
 }
