@@ -1,6 +1,6 @@
 # auro-flight
 
-The <auro-flight> [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an `<auro-flightline>` element.
+The `<auro-flight>` [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an `<auro-flightline>` element.
 
 ## UI development browser support
 
