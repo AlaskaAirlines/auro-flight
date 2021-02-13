@@ -28,7 +28,7 @@ import "./auro-flight-main";
  * @attr {String} arrivalTime - String for the arrival time. `4:05 pm`
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
  * @attr {Boolean} ariaHidden - When `true` element will be hidden from screen readers
- * @slot default - anticipates `auro-flightline` instance to fill out the flight timeline
+ * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot.
  */
 

@@ -14,8 +14,8 @@ import styleCss from "./style-flight-header-css.js";
 /**
  * auro-flight-header displays airline, duration, and day change information
  *
- * @attr {Array} flights - Array of flight numbers ['AS 123', 'EK 432']
- * @attr {String} duration - String for the duration. '1h 23m'
+ * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
+ * @attr {String} duration - String for the duration. `1h 23m`
  * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer
  */
 

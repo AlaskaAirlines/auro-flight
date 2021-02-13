@@ -15,11 +15,11 @@ import styleCss from "./style-flight-main-css.js";
  * auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
  *
- * @attr {String} arrivalTime - Time of arrival, ex: 9:06 pm
- * @attr {String} arrivalStation - Station of arrival, ex: SEA
- * @attr {String} departureTime - Time of departure, ex: 5:36 am
- * @attr {String} departureStation - Station of departure, ex: PVD
- * @slot default - anticipates <auro-flight-segment> instances
+ * @attr {String} arrivalTime - Time of arrival, ex: `9:06 pm`
+ * @attr {String} arrivalStation - Station of arrival, ex: `SEA`
+ * @attr {String} departureTime - Time of departure, ex: `5:36 am`
+ * @attr {String} departureStation - Station of departure, ex: `PVD`
+ * @slot default - anticipates `<auro-flight-segment>` instances
  */
 
 // build the component class

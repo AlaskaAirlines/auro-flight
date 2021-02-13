@@ -7,8 +7,8 @@ auro-flight-header displays airline, duration, and day change information
 | Property      | Attribute     | Type     | Description                                      |
 |---------------|---------------|----------|--------------------------------------------------|
 | `daysChanged` | `daysChanged` | `Number` | Number of days changed due to flight duration and timezone. Positive whole integer |
-| `duration`    | `duration`    | `String` | String for the duration. '1h 23m'                |
-| `flights`     | `flights`     | `Array`  | Array of flight numbers ['AS 123', 'EK 432']     |
+| `duration`    | `duration`    | `String` | String for the duration. `1h 23m`                |
+| `flights`     | `flights`     | `Array`  | Array of flight numbers `['AS 123', 'EK 432']`   |
 
 
 # auro-flight-main
@@ -18,18 +18,18 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 
 ## Properties
 
-| Property           | Attribute          | Type     | Description                    |
-|--------------------|--------------------|----------|--------------------------------|
-| `arrivalStation`   | `arrivalStation`   | `String` | Station of arrival, ex: SEA    |
-| `arrivalTime`      | `arrivalTime`      | `String` | Time of arrival, ex: 9:06 pm   |
-| `departureStation` | `departureStation` | `String` | Station of departure, ex: PVD  |
-| `departureTime`    | `departureTime`    | `String` | Time of departure, ex: 5:36 am |
+| Property           | Attribute          | Type     | Description                      |
+|--------------------|--------------------|----------|----------------------------------|
+| `arrivalStation`   | `arrivalStation`   | `String` | Station of arrival, ex: `SEA`    |
+| `arrivalTime`      | `arrivalTime`      | `String` | Time of arrival, ex: `9:06 pm`   |
+| `departureStation` | `departureStation` | `String` | Station of departure, ex: `PVD`  |
+| `departureTime`    | `departureTime`    | `String` | Time of departure, ex: `5:36 am` |
 
 ## Slots
 
-| Name      | Description                                 |
-|-----------|---------------------------------------------|
-| `default` | anticipates <auro-flight-segment> instances |
+| Name      | Description                                   |
+|-----------|-----------------------------------------------|
+| `default` | anticipates `<auro-flight-segment>` instances |
 
 
 # auro-flight
@@ -55,5 +55,5 @@ Please DO NOT modify unit tests pertaining to DoT regulations without contacting
 
 | Name      | Description                                      |
 |-----------|--------------------------------------------------|
-| `default` | anticipates `auro-flightline` instance to fill out the flight timeline |
+| `default` | anticipates `<auro-flightline>` instance to fill out the flight timeline |
 | `footer`  | Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot. |
