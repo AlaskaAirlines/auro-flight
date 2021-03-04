@@ -208,6 +208,12 @@ The following example illustrates a change of gauge flight with a layover in SEA
       <auro-flightline>
         <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
       </auro-flightline>
+      <span slot="footer">
+        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+        EK 772 is subject to government approval <br />
+        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+        EK 772 is operated by Emirates
+      </span>
   </auro-flight>
 </div>
 
@@ -227,6 +233,12 @@ The following example illustrates a change of gauge flight with a layover in SEA
     <auro-flightline>
       <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
     </auro-flightline>
+    <span slot="footer">
+      <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+      EK 772 is subject to government approval <br />
+      <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+      EK 772 is operated by Emirates
+    </span>
   </auro-flight>
   ```
 
@@ -248,9 +260,9 @@ In this example for a flight that requires government approval or a flight that 
     >
       <auro-flightline></auro-flightline>
       <span slot="footer">
-        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
+        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
         EK 772 is subject to government approval <br />
-        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
+        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
         EK 772 is operated by Emirates
       </span>
   </auro-flight>
@@ -271,9 +283,9 @@ In this example for a flight that requires government approval or a flight that 
     >
       <auro-flightline></auro-flightline>
       <span slot="footer">
-        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
+        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
         EK 772 is subject to government approval <br />
-        <auro-icon category="logos" name="tail-EK" style="width: 32px"></auro-icon>
+        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
         EK 772 is operated by Emirates
       </span>
   </auro-flight>

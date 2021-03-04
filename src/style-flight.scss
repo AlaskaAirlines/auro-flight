@@ -14,5 +14,9 @@
 // @import "./node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement";
 
 .flight-footer {
-  padding-top: var(--auro-size-xl);
+  padding-top: var(--auro-size-md);
+}
+
+slot[name=footer] {
+  color: var(--auro-color-text-secondary-on-light);
 }
