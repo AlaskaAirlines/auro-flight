@@ -53,7 +53,7 @@ See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) f
 
 AlaskaHorizon, AlaskaSkyWest, American Eagle, Delta Connection, QantasLink, and United Express fares are sold as mainline tickets operated by Part 131 air carriers doing business as the mainline.
 
-DoT regulates the disclosure of this instance as illustrated in this example flight from ALW to SEA
+DoT regulates the disclosure of this instance as illustrated in this example flight from ALW to SEA (The font color and size of the stations match the font color and size of the disclosure):
 
 <div class="exampleWrapper">
   <auro-flight
