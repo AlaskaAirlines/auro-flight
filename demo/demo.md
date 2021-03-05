@@ -148,7 +148,7 @@ This example illustrates a one-stop `stopover` flight from ANC to ADK (ANCADK). 
 
 ## Mainline multi-stop
 
-The following example illustrates a mainline multi-stop `stopover` flight from DXB to CPT (KTNANC)
+The following example illustrates a mainline multi-stop `stopover` flight from KTN to ANC (KTNANC)
 
 <div class="exampleWrapper">
   <auro-flight
@@ -197,7 +197,7 @@ The following example illustrates a change of gauge flight with a layover in SEA
 
 <div class="exampleWrapper">
   <auro-flight
-    flights='["AS 110", "AS 12"]'
+    flights='["AS 110", "AA 12"]'
     duration="11h 5m"
     daysChanged="0"
     departureTime="12:45 am"
@@ -209,10 +209,10 @@ The following example illustrates a change of gauge flight with a layover in SEA
         <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
       </auro-flightline>
       <span slot="footer">
-        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-        EK 772 is subject to government approval <br />
-        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-        EK 772 is operated by Emirates
+        <auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
+        AS110 is subject to government approval <br />
+        <auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
+        AA12 is operated by American Airlines
       </span>
   </auro-flight>
 </div>
@@ -234,10 +234,10 @@ The following example illustrates a change of gauge flight with a layover in SEA
       <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
     </auro-flightline>
     <span slot="footer">
-      <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-      EK 772 is subject to government approval <br />
-      <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-      EK 772 is operated by Emirates
+      <auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
+      AS110 is subject to government approval <br />
+      <auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
+      AA12 is operated by American Airlines
     </span>
   </auro-flight>
   ```
