@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.0.1](https://github.com/AlaskaAirlines/auro-flight/compare/v1.0.0...v1.0.1) (2021-03-05)
+
+
+### Bug Fixes
+
+* update footer styles and doc demo example ([7654865](https://github.com/AlaskaAirlines/auro-flight/commit/7654865dabeb608fe51f741470f135748c4deead))
+
 # 1.0.0 (2021-02-12)
 
 
