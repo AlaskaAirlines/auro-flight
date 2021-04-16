@@ -29,6 +29,8 @@ import "./auro-flight-main";
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
  * @attr {Boolean} ariaHidden - When `true` element will be hidden from screen readers
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
+ * @slot leftHeader - Header on top of the departure station's time
+ * @slot rightHeader - Header on top of the arrival station's time
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot.
  */
 
