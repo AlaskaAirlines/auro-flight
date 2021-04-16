@@ -53,7 +53,9 @@ Please DO NOT modify unit tests pertaining to DoT regulations without contacting
 
 ## Slots
 
-| Name      | Description                                      |
-|-----------|--------------------------------------------------|
-| `default` | anticipates `<auro-flightline>` instance to fill out the flight timeline |
-| `footer`  | Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot. |
+| Name          | Description                                      |
+|---------------|--------------------------------------------------|
+| `default`     | anticipates `<auro-flightline>` instance to fill out the flight timeline |
+| `footer`      | Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot. |
+| `leftHeader`  | Header on top of the departure station's time    |
+| `rightHeader` | Header on top of the arrival station's time      |
