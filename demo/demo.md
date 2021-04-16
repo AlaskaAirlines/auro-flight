@@ -68,6 +68,46 @@ This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
 
 </auro-accordion>
 
+## Header Slot Example
+
+This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
+
+<div class="exampleWrapper">
+  <auro-flight
+    flights='["AS 8"]'
+    duration="5h 25m"
+    daysChanged="0"
+    departureTime="7:30 am"
+    departureStation="SEA"
+    arrivalTime="3:55 pm"
+    arrivalStation="EWR"
+    >
+    <auro-flightline></auro-flightline>
+    <span slot="leftHeader">Scheduled 7:15am</span>
+    <span slot="rightHeader">Scheduled 4:15pm</span>
+
+  </auro-flight>
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+  ```html
+  <auro-flight
+    flights='["AS 8"]'
+    duration="5h 25m"
+    daysChanged="0"
+    departureTime="7:30 am"
+    departureStation="SEA"
+    arrivalTime="3:55 pm"
+    arrivalStation="EWR"
+    >
+    <auro-flightline></auro-flightline>
+  </auro-flight>
+  ```
+
+</auro-accordion>
+
 ## Mainline next day arr/dep
 
 This example illustrates a mainline nonstop with a next day arrival or departure from KOA to SEA (KOASEA)

@@ -84,6 +84,10 @@ class AuroFlight extends LitElement {
           daysChanged=${this.daysChanged}
         >
         </auro-flight-header>
+        <div class="header-container">
+          <slot name="leftHeader"></slot>
+          <slot name="rightHeader"></slot>
+        </div>
         <auro-flight-main
           arrivalTime=${this.arrivalTime}
           arrivalStation=${this.arrivalStation}
