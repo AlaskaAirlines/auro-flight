@@ -20,3 +20,8 @@
 slot[name=footer] {
   color: var(--auro-color-text-secondary-on-light);
 }
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+}
