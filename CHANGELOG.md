@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [1.1.0](https://github.com/AlaskaAirlines/auro-flight/compare/v1.0.1...v1.1.0) (2021-04-23)
+
+
+### Features
+
+* adds header slots ([7a9c30c](https://github.com/AlaskaAirlines/auro-flight/commit/7a9c30cea1f30d3c101f850d077c1e6cede65f56))
+
 ## [1.0.1](https://github.com/AlaskaAirlines/auro-flight/compare/v1.0.0...v1.0.1) (2021-03-05)
 
 
