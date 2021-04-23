@@ -332,9 +332,9 @@ In this example, the `footer` slot is used to alert the customer that a First Cl
 
 </auro-accordion>
 
-## Header Slot Example
+## Using the optional departure/arrival header slots
 
-This example illustrates some data populated above the station and time information.
+The following example illustrates additional data regarding departure and arrival information.
 
 <div class="exampleWrapper">
   <auro-flight
