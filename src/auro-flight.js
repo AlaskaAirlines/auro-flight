@@ -66,10 +66,10 @@ class AuroFlight extends LitElement {
   // This function removes a CSS selector if the footer slot is empty
   firstUpdated() {
     const slot = this.shadowRoot.querySelector("#footer"),
-      slotWrapper = this.shadowRoot.querySelector("#flight-footer");
+      slotWrapper = this.shadowRoot.querySelector("#flightFooter");
 
     if (!this.unformatted && slot.assignedNodes().length === 0) {
-      return slotWrapper.classList.remove("flight-footer");
+      return slotWrapper.classList.remove("flightFooter");
     }
 
     return null
@@ -98,7 +98,7 @@ class AuroFlight extends LitElement {
         >
           <slot></slot>
         </auro-flight-main>
-        <footer class="flightFooter" id="flight-footer">
+        <footer class="flightFooter" id="flightFooter">
           <slot name="footer" id="footer"></slot>
         </footer>
       </section>
