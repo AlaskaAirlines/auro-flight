@@ -13,7 +13,7 @@
 // Support for auroElement styles
 // @import "./node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement";
 
-.flight-footer {
+.flightFooter {
   padding-top: var(--auro-size-md);
 }
 
@@ -21,7 +21,7 @@ slot[name=footer] {
   color: var(--auro-color-text-secondary-on-light);
 }
 
-.header-container {
+.headerContainer {
   display: flex;
   justify-content: space-between;
 }

@@ -34,14 +34,14 @@
   justify-content: space-between;
 }
 
-.slot-container {
+.slotContainer {
   padding-top: var(--auro-size-xs);
   padding-left: 25px;
   padding-right: 25px;
   flex-grow: 2;
 }
 
-.departure-time {
+.departureTime {
   color: var(--auro-color-text-primary-on-light);
   font-size: var(--auro-text-heading-700-size-breakpoint-sm);
   line-height: var(--auro-text-heading-700-height-breakpoint-md);
@@ -49,12 +49,12 @@
   text-align: left;
 }
 
-.departure-station {
+.departureStation {
   color: var(--auro-color-text-secondary-on-light);
   text-align: left;
 }
 
-.arrival-time {
+.arrivalTime {
   color: var(--auro-color-text-primary-on-light);
   font-size: var(--auro-text-heading-700-size-breakpoint-sm);
   line-height: var(--auro-text-heading-700-height-breakpoint-md);
@@ -62,7 +62,7 @@
   text-align: right;
 }
 
-.arrival-station {
+.arrivalStation {
   color: var(--auro-color-text-secondary-on-light);
   text-align: right;
 }
