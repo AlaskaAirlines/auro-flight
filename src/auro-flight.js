@@ -86,7 +86,7 @@ class AuroFlight extends LitElement {
           daysChanged=${this.daysChanged}
         >
         </auro-flight-header>
-        <div class="header-container">
+        <div class="headerContainer">
           <slot name="departureHeader"></slot>
           <slot name="arrivalHeader"></slot>
         </div>
@@ -98,7 +98,7 @@ class AuroFlight extends LitElement {
         >
           <slot></slot>
         </auro-flight-main>
-        <footer class="flight-footer" id="flight-footer">
+        <footer class="flightFooter" id="flight-footer">
           <slot name="footer" id="footer"></slot>
         </footer>
       </section>
