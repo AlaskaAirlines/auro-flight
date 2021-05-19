@@ -18,8 +18,8 @@ describe('auro-flight-main', () => {
 
     await expect(el.shadowRoot.querySelector('.departureTime').textContent).to.equal('9:06 am');
     await expect(el.shadowRoot.querySelector('.arrivalTime').textContent).to.equal('4:53 pm');
-    await expect(el.shadowRoot.querySelector('.departureStation').textContent).to.equal('SEA');
-    await expect(el.shadowRoot.querySelector('.arrivalStation').textContent).to.equal('PVD');
+    await expect(el.shadowRoot.querySelector('.departureStation').textContent.trim()).to.equal('SEA');
+    await expect(el.shadowRoot.querySelector('.arrivalStation').textContent.trim()).to.equal('PVD');
 
   });
 

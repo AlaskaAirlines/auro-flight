@@ -27,12 +27,14 @@ import "./auro-flight-main";
  * @attr {String} departureStation - String for the departure station. `SEA`
  * @attr {String} arrivalTime - String for the arrival time. `4:05 pm`
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
+ * @attr {String} oldDepartureStation - String for the new departure station for rerouted flights. `PDX`
+ * @attr {String} oldArrivalStation - String for the new arrival station for rerouted flights. `AVP`
  * @attr {Boolean} ariaHidden - When `true` element will be hidden from screen readers
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
  * @slot departureHeader - Text on top of the departure station's time
  * @slot arrivalHeader - Text on top of the arrival station's time
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot.
- */
+*/
 
 // build the component class
 class AuroFlight extends LitElement {
@@ -46,14 +48,17 @@ class AuroFlight extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      flights:          { type: Array },
-      duration:         { type: String },
-      daysChanged:      { type: Number },
-      departureTime:    { type: String },
-      departureStation: { type: String },
-      arrivalTime:      { type: String },
-      arrivalStation:   { type: String },
-      ariaHidden:       { type: Boolean },
+      flights:             { type: Array },
+      duration:            { type: String },
+      daysChanged:         { type: Number },
+      departureTime:       { type: String },
+      departureStation:    { type: String },
+      arrivalTime:         { type: String },
+      arrivalStation:      { type: String },
+      oldArrivalStation:   { type: String },
+      newDepartureStation: { type: String },
+      ariaHidden:          { type: Boolean },
+
     };
   }
 
@@ -95,6 +100,8 @@ class AuroFlight extends LitElement {
           arrivalStation=${this.arrivalStation}
           departureTime=${this.departureTime}
           departureStation=${this.departureStation}
+          oldArrivalStation=${this.oldArrivalStation}
+          newDepartureStation=${this.newDepartureStation}
         >
           <slot></slot>
         </auro-flight-main>

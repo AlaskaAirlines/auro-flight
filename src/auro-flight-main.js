@@ -15,10 +15,12 @@ import styleCss from "./style-flight-main-css.js";
  * auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
  *
- * @attr {String} arrivalTime - Time of arrival, ex: `9:06 pm`
- * @attr {String} arrivalStation - Station of arrival, ex: `SEA`
- * @attr {String} departureTime - Time of departure, ex: `5:36 am`
- * @attr {String} departureStation - Station of departure, ex: `PVD`
+ * @attr {String} arrivalTime - Time of arrival, e.g. `9:06 pm`
+ * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
+ * @attr {String} departureTime - Time of departure, e.g. `5:36 am`
+ * @attr {String} departureStation - Station of departure, e.g. `PVD`
+ * @attr {String} oldDepartureStation - Station of rerouted departure, e.g. `PDX`
+ * @attr {String} oldArrivalStation - Station of rerouted arrival, e.g. `AVP`
  * @slot default - anticipates `<auro-flight-segment>` instances
  */
 
@@ -32,6 +34,8 @@ class AuroFlightMain extends LitElement {
       arrivalStation:   { type: String },
       departureTime:    { type: String },
       departureStation: { type: String },
+      oldDepartureStation: {type: String},
+      oldArrivalStation: {type: String},
     };
   }
 
@@ -46,14 +50,30 @@ class AuroFlightMain extends LitElement {
     return html`
         <div class="departure">
           <span class="departureTime">${this.departureTime}</span>
-          <span class="departureStation">${this.departureStation}</span>
+          <span class="departureStation">
+          ${this.oldDepartureStation === "undefined" ? html`` : html`
+            <span class="util_lineThrough">
+              ${this.oldDepartureStation}
+            </span>
+          `}
+
+            ${this.departureStation}
+          </span>
         </div>
         <div class="slotContainer">
           <slot></slot>
         </div>
         <div class="arrival">
           <span class="arrivalTime">${this.arrivalTime}</span>
-          <span class="arrivalStation">${this.arrivalStation}</span>
+          <span class="arrivalStation">
+            ${this.oldArrivalStation === "undefined" ? html`` : html`
+            <span class="util_lineThrough">
+              ${this.oldArrivalStation}
+            </span>
+            `}
+
+            ${this.arrivalStation}
+          </span>
         </div>
     `;
   }
