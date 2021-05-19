@@ -72,3 +72,9 @@
   display: inline-flex;
   flex-direction: column;
 }
+
+.util_lineThrough {
+  color: var(--auro-color-alert-error-on-light);
+  text-decoration: line-through;
+  padding-right: var(--auro-size-md);
+}
