@@ -56,7 +56,7 @@ class AuroFlight extends LitElement {
       arrivalTime:         { type: String },
       arrivalStation:      { type: String },
       oldArrivalStation:   { type: String },
-      newDepartureStation: { type: String },
+      oldDepartureStation: { type: String },
       ariaHidden:          { type: Boolean },
 
     };
@@ -101,7 +101,7 @@ class AuroFlight extends LitElement {
           departureTime=${this.departureTime}
           departureStation=${this.departureStation}
           oldArrivalStation=${this.oldArrivalStation}
-          newDepartureStation=${this.newDepartureStation}
+          oldDepartureStation=${this.oldDepartureStation}
         >
           <slot></slot>
         </auro-flight-main>

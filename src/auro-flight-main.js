@@ -51,11 +51,11 @@ class AuroFlightMain extends LitElement {
         <div class="departure">
           <span class="departureTime">${this.departureTime}</span>
           <span class="departureStation">
-          ${this.oldDepartureStation === "undefined" ? html`` : html`
-            <span class="util_lineThrough">
-              ${this.oldDepartureStation}
-            </span>
-          `}
+            ${this.oldDepartureStation === "undefined" ? html`` : html`
+              <span class="util_lineThrough">
+                ${this.oldDepartureStation}
+              </span>
+            `}
 
             ${this.departureStation}
           </span>
