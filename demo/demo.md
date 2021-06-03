@@ -345,8 +345,8 @@ The following example illustrates additional data regarding departure and arriva
     departureStation="SEA"
     arrivalTime="3:55 pm"
     arrivalStation="EWR"
-    oldDepartureStation="PDX"
-    oldArrivalStation="AVP"
+    reroutedDepartureStation="PDX"
+    reroutedArrivalStation="AVP"
     >
     <auro-flightline></auro-flightline>
     <span slot="departureHeader">Scheduled 7:15am</span>
@@ -366,8 +366,8 @@ The following example illustrates additional data regarding departure and arriva
     departureStation="SEA"
     arrivalTime="3:55 pm"
     arrivalStation="EWR"
-    oldDepartureStation="PDX"
-    oldArrivalStation="AVP"
+    reroutedDepartureStation="PDX"
+    reroutedArrivalStation="AVP"
     >
     <auro-flightline></auro-flightline>
     <span slot="departureHeader">Scheduled 7:15am</span>

@@ -24,8 +24,8 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | `arrivalTime`         | `arrivalTime`         | `String` | Time of arrival, e.g. `9:06 pm`           |
 | `departureStation`    | `departureStation`    | `String` | Station of departure, e.g. `PVD`          |
 | `departureTime`       | `departureTime`       | `String` | Time of departure, e.g. `5:36 am`         |
-| `oldArrivalStation`   | `oldArrivalStation`   | `String` | Station of rerouted arrival, e.g. `AVP`   |
-| `oldDepartureStation` | `oldDepartureStation` | `String` | Station of rerouted departure, e.g. `PDX` |
+| `reroutedArrivalStation`   | `reroutedArrivalStation`   | `String` | Station of rerouted arrival, e.g. `AVP`   |
+| `reroutedDepartureStation` | `reroutedDepartureStation` | `String` | Station of rerouted departure, e.g. `PDX` |
 
 ## Slots
 
@@ -44,7 +44,7 @@ Please DO NOT modify unit tests pertaining to DoT regulations without contacting
 
 | Attribute             | Type     | Description                                      |
 |-----------------------|----------|--------------------------------------------------|
-| `oldDepartureStation` | `String` | String for the new departure station for rerouted flights. `PDX` |
+| `reroutedDepartureStation` | `String` | String for the new departure station for rerouted flights. `PDX` |
 
 ## Properties
 
@@ -59,7 +59,7 @@ Please DO NOT modify unit tests pertaining to DoT regulations without contacting
 | `duration`            | `duration`            | `String`  |         | String for the duration. `1h 23m`                |
 | `flights`             | `flights`             | `Array`   |         | Array of flight numbers `['AS 123', 'EK 432']`   |
 | `newDepartureStation` | `newDepartureStation` | `string`  |         |                                                  |
-| `oldArrivalStation`   | `oldArrivalStation`   | `String`  |         | String for the new arrival station for rerouted flights. `AVP` |
+| `reroutedArrivalStation`   | `reroutedArrivalStation`   | `String`  |         | String for the new arrival station for rerouted flights. `AVP` |
 
 ## Slots
 

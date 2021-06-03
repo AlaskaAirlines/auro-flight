@@ -27,8 +27,8 @@ import "./auro-flight-main";
  * @attr {String} departureStation - String for the departure station. `SEA`
  * @attr {String} arrivalTime - String for the arrival time. `4:05 pm`
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
- * @attr {String} oldDepartureStation - String for the new departure station for rerouted flights. `PDX`
- * @attr {String} oldArrivalStation - String for the new arrival station for rerouted flights. `AVP`
+ * @attr {String} reroutedDepartureStation - String for the new departure station for rerouted flights. `PDX`
+ * @attr {String} reroutedArrivalStation - String for the new arrival station for rerouted flights. `AVP`
  * @attr {Boolean} ariaHidden - When `true` element will be hidden from screen readers
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
  * @slot departureHeader - Text on top of the departure station's time
@@ -55,8 +55,8 @@ class AuroFlight extends LitElement {
       departureStation:    { type: String },
       arrivalTime:         { type: String },
       arrivalStation:      { type: String },
-      oldArrivalStation:   { type: String },
-      oldDepartureStation: { type: String },
+      reroutedArrivalStation:   { type: String },
+      reroutedDepartureStation: { type: String },
       ariaHidden:          { type: Boolean },
 
     };
@@ -100,8 +100,8 @@ class AuroFlight extends LitElement {
           arrivalStation=${this.arrivalStation}
           departureTime=${this.departureTime}
           departureStation=${this.departureStation}
-          oldArrivalStation=${this.oldArrivalStation}
-          oldDepartureStation=${this.oldDepartureStation}
+          reroutedArrivalStation=${this.reroutedArrivalStation}
+          reroutedDepartureStation=${this.reroutedDepartureStation}
         >
           <slot></slot>
         </auro-flight-main>
