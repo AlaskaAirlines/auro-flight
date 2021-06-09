@@ -19,8 +19,8 @@ import styleCss from "./style-flight-main-css.js";
  * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
  * @attr {String} departureTime - Time of departure, e.g. `5:36 am`
  * @attr {String} departureStation - Station of departure, e.g. `PVD`
- * @attr {String} oldDepartureStation - Station of rerouted departure, e.g. `PDX`
- * @attr {String} oldArrivalStation - Station of rerouted arrival, e.g. `AVP`
+ * @attr {String} reroutedDepartureStation - Station of rerouted departure, e.g. `PDX`
+ * @attr {String} reroutedArrivalStation - Station of rerouted arrival, e.g. `AVP`
  * @slot default - anticipates `<auro-flight-segment>` instances
  */
 
@@ -34,8 +34,8 @@ class AuroFlightMain extends LitElement {
       arrivalStation:   { type: String },
       departureTime:    { type: String },
       departureStation: { type: String },
-      oldDepartureStation: {type: String},
-      oldArrivalStation: {type: String},
+      reroutedDepartureStation: {type: String},
+      reroutedArrivalStation: {type: String},
     };
   }
 
@@ -51,9 +51,9 @@ class AuroFlightMain extends LitElement {
         <div class="departure">
           <span class="departureTime">${this.departureTime}</span>
           <span class="departureStation">
-            ${this.oldDepartureStation === "undefined" ? html`` : html`
+            ${this.reroutedDepartureStation === "undefined" ? html`` : html`
               <span class="util_lineThrough">
-                ${this.oldDepartureStation}
+                ${this.reroutedDepartureStation}
               </span>
             `}
 
@@ -66,9 +66,9 @@ class AuroFlightMain extends LitElement {
         <div class="arrival">
           <span class="arrivalTime">${this.arrivalTime}</span>
           <span class="arrivalStation">
-            ${this.oldArrivalStation === "undefined" ? html`` : html`
+            ${this.reroutedArrivalStation === "undefined" ? html`` : html`
             <span class="util_lineThrough">
-              ${this.oldArrivalStation}
+              ${this.reroutedArrivalStation}
             </span>
             `}
 
