@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [1.2.0](https://github.com/AlaskaAirlines/auro-flight/compare/v1.1.0...v1.2.0) (2021-06-09)
+
+
+### Features
+
+* **irrops:** add reroute support [#12](https://github.com/AlaskaAirlines/auro-flight/issues/12) ([db712df](https://github.com/AlaskaAirlines/auro-flight/commit/db712df8f91a119bcc9574cd27c3bd2bdddcb498))
+
 # [1.1.0](https://github.com/AlaskaAirlines/auro-flight/compare/v1.0.1...v1.1.0) (2021-04-23)
 
 
