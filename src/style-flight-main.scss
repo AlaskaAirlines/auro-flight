@@ -36,8 +36,8 @@
 
 .slotContainer {
   padding-top: var(--auro-size-xs);
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: var(--auro-size-md);
+  padding-right: var(--auro-size-md);
   flex-grow: 2;
 }
 
