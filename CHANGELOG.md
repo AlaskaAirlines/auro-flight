@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.2.1](https://github.com/AlaskaAirlines/auro-flight/compare/v1.2.0...v1.2.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* **padding:** update space around slotted content ([3d9fa72](https://github.com/AlaskaAirlines/auro-flight/commit/3d9fa7295c281caf2fa4715435274c08207c8379))
+
 # [1.2.0](https://github.com/AlaskaAirlines/auro-flight/compare/v1.1.0...v1.2.0) (2021-06-09)
 
 
