@@ -19,7 +19,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@alaskaairux/auro-badge": "^1.2.1",
-    "@alaskaairux/auro-flightline": "^1.0.1",
+    "@alaskaairux/auro-flightline": "^1.1.2",
     "chalk": "^4.1.0",
     "lit-element": "^2.4.0"
   },
