@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [1.2.2](https://github.com/AlaskaAirlines/auro-flight/compare/v1.2.1...v1.2.2) (2022-01-10)
+
+
+### Bug Fixes
+
+* **flightline:** update to latest version of dependency ([3d66bff](https://github.com/AlaskaAirlines/auro-flight/commit/3d66bffc8a84e68f2978800a71bcd2a993404bf2))
+
 ## [1.2.1](https://github.com/AlaskaAirlines/auro-flight/compare/v1.2.0...v1.2.1) (2021-06-21)
 
 
