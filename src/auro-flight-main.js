@@ -27,15 +27,21 @@ import styleCss from "./style-flight-main-css.js";
 // build the component class
 class AuroFlightMain extends LitElement {
 
+  // constructor() {
+  //   super();
+  // }
+
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      arrivalTime:      { type: String },
-      arrivalStation:   { type: String },
-      departureTime:    { type: String },
-      departureStation: { type: String },
-      reroutedDepartureStation: {type: String},
-      reroutedArrivalStation: {type: String},
+      flights:                  { type: String },
+      duration:                 { type: String },
+      arrivalTime:              { type: String },
+      arrivalStation:           { type: String },
+      departureTime:            { type: String },
+      departureStation:         { type: String },
+      reroutedDepartureStation: { type: String },
+      reroutedArrivalStation:   { type: String }
     };
   }
 
@@ -45,34 +51,102 @@ class AuroFlightMain extends LitElement {
     `;
   }
 
-  // function that renders the HTML and CSS into  the scope of the component
+  connectedCallback() {
+    super.connectedCallback();
+
+    /**
+     * Time template object used by convertTime() method.
+     */
+    this.timeTemplate = {
+      hour: "2-digit",
+      minute: "2-digit",
+      timeZone: this.timeZone
+    };
+
+    this.template = {};
+  }
+
+  /**
+   * @private
+   * @param {*string} time
+   * @returns Localized time based from UTC string.
+   */
+  convertTime(time) {
+    let newTime = new Date();
+
+    this.timeTemplate.timeZone = 'UTC';
+    newTime = new Date(time);
+
+    let localizedTime = newTime.toLocaleString('en-us', this.timeTemplate).replace(/^0+/u, '');
+
+    return localizedTime;
+  }
+
+  /**
+   * @private
+   * @param {string} station
+   * @returns mutated string
+   */
+  readStation(station) {
+    return Array.from(station).join(' ');
+  }
+
+//the answer in both cases will be 3
+
+  // Maintain content polarity between text read by screen reader and visual content.
   render() {
     return html`
-        <div class="departure">
-          <span class="departureTime">${this.departureTime}</span>
-          <span class="departureStation">
-            ${this.reroutedDepartureStation === "undefined" ? html`` : html`
-              <span class="util_lineThrough">
-                ${this.reroutedDepartureStation}
-              </span>
-            `}
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org/",
+            "@type": "Flight",
+            "departureTime": "${this.departureTime}",
+            "arrivalTime": "${this.arrivalTime}",
+            "estimatedFlightDuration": "${this.duration}",
+            "name": "Flight(s) ${this.flights}",
+            "arrivalAirport": "${this.arrivalStation}",
+            "departureAirport": "${this.departureStation}",
+            "description": "Departs from ${this.departureStation} at ${this.convertTime(this.departureTime)}, arrives ${this.arrivalStation} at ${this.convertTime(this.arrivalTime)}"
+          }
+        </script>
+        <div class="util_displayHiddenVisually" style="width: 100%">
+          ${this.reroutedDepartureStation !== 'undefined' ? `Flight ${this.readStation(this.reroutedDepartureStation)} to ${this.readStation(this.reroutedArrivalStation)} has been re-routed.` : ''}
+          ${`${this.reroutedDepartureStation !== 'undefined' ? 'The flight now departs ' : 'Departs '} from ${this.readStation(this.departureStation)} at ${this.convertTime(this.departureTime)}, arrives ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)}`}
+        </div>
 
-            ${this.departureStation}
+        <div class="departure" aria-hidden="true">
+          <time class="departureTime">
+            <auro-datetime type="time" utc="${this.departureTime}"></auro-datetime>
+          </time>
+          <span class="departureStation">
+            ${this.reroutedDepartureStation === 'undefined'
+              ? html``
+              : html`
+                <span class="util_lineThrough">
+                  ${this.reroutedDepartureStation}
+                </span>
+              `
+            }
+            <span>${this.departureStation}</span>
           </span>
         </div>
         <div class="slotContainer">
           <slot></slot>
         </div>
-        <div class="arrival">
-          <span class="arrivalTime">${this.arrivalTime}</span>
+        <div class="arrival" aria-hidden="true">
+          <time class="arrivalTime">
+            <auro-datetime type="time" utc="${this.arrivalTime}"></auro-datetime>
+          </time>
           <span class="arrivalStation">
-            ${this.reroutedArrivalStation === "undefined" ? html`` : html`
-            <span class="util_lineThrough">
-              ${this.reroutedArrivalStation}
-            </span>
-            `}
-
-            ${this.arrivalStation}
+            ${this.reroutedArrivalStation === 'undefined'
+              ? html``
+              : html`
+                <span class="util_lineThrough">
+                  ${this.reroutedArrivalStation}
+                </span>
+              `
+            }
+            <span>${this.arrivalStation}</span>
           </span>
         </div>
     `;

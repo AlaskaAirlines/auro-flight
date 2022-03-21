@@ -1,48 +1,37 @@
-# Flight
+<!-- # Flight component
 
-The `<auro-flight>` element encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
+The scope of this demo is to illustrate an opportunity to create a better accessibility experience.
 
-## DoT regulations
+## The problem
 
-Department of Transportation regulations mandate that the arrival and departure cities' font size and color be identical to the operational disclosures (for instance, AA 3210 is operated by Envoy Air on behalf of American Airlines).
+A content element like auro-flight uses a complex UI layout and common visual queues to communicate a flight option to customers. The areas of content include the flight number, duration of flight, departing and arriving airports, departing and arriving times, and any stops. Additional complexity includes re-routed flights, changed schedules and stopover/layover information.
 
-## Dependencies
+For visual users, aesthetics assumptions are made that visual context and layout will convey information that does not need to be described. E.g. the placement of content like `AS 366` means that this is `Flight AS 366`. But without that visual context, is `AS 366` alone enough? The same can be said for any other part of this element. Additionally stopovers and layovers only contain airport codes. Without visual context, is this content meaningful?
 
-The `<auro-flight>` element has dependencies on the following additional Auro custom elements.
+An additional problem comes with the current state of technology at this time. Browsers and screen readers share many issues when it comes to clearly understanding the flow of content when faced with complex UI layouts like auro-flight.
 
-```
-  └── @alaskaairux/auro-flightline
-  |  ├── (internal dependency) @alaskaairux/auro-flight-segment
-  |  └── (external dependency) @alaskaairux/auro-badge
+## The hypothesis
 
-  └── @alaskaairux/auro-flight
-  |  ├── (internal dependency) @alaskaairux/auro-flight-header
-  |  └── (internal dependency) @alaskaairux/auro-flight-body
-```
+Why force a complex UI layout to read a cohesive message for users with visual impairments? The examples below convey the data in a visual way that is easy for non-impaired users to quickly scan the content and get the information they are looking for. The intent of this test is to take that same data and present it in a way that is as easily consumable via screen readers by reading back the same data with additional contextual queues in a predictable way.
 
-See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) for additional information regarding the `<auro-flight-segment>` API.
+## Test the demo
 
-## Attributes
+To use this demo, please turn on your screen reader of choice and consume the content as you prefer. The test is to evaluate whether the content is easier to consume, harder to consume or if there is no discernable difference. -->
 
-The `<auro-flight>` custom element's API consists of a series of attributes to be defined at the time of use. Be sure to review the [api documentation](https://auro.alaskaair.com/components/auro/flight/api) for this element.
+<hr>
 
-## Accessibility
-
-The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element if this information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, it is recommended that the `ariaHidden` attribute be used.
-
-
-## Mainline Nonstop
+### Mainline Nonstop
 
 This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
 
 <div class="exampleWrapper">
   <auro-flight
     flights='["AS 8"]'
-    duration="5h 25m"
+    duration="320"
     daysChanged="0"
-    departureTime="7:30 am"
+    departureTime="2022-04-13T01:10:00-07:00"
     departureStation="SEA"
-    arrivalTime="3:55 pm"
+    arrivalTime="2022-04-13T12:30:00-04:00"
     arrivalStation="EWR"
     >
     <auro-flightline></auro-flightline>
@@ -55,11 +44,11 @@ This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
   ```html
   <auro-flight
     flights='["AS 8"]'
-    duration="5h 25m"
+    duration="320"
     daysChanged="0"
-    departureTime="7:30 am"
+    departureTime="2022-04-13T01:10:00-07:00"
     departureStation="SEA"
-    arrivalTime="3:55 pm"
+    arrivalTime="2022-04-13T12:30:00-04:00"
     arrivalStation="EWR"
     >
     <auro-flightline></auro-flightline>
@@ -68,18 +57,17 @@ This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
 
 </auro-accordion>
 
-## Mainline next day arr/dep
+### Mainline next day arrival/departure
 
 This example illustrates a mainline nonstop with a next day arrival or departure from KOA to SEA (KOASEA)
 
 <div class="exampleWrapper">
   <auro-flight
     flights='["AS 880"]'
-    duration="5h 45m"
-    daysChanged="1"
-    departureTime="10:50 pm"
+    duration="350"
+    departureTime="2022-04-06T12:25:00-10:00"
     departureStation="KOA"
-    arrivalTime="6:35 am"
+    arrivalTime="2022-04-07T00:15:00-07:00"
     arrivalStation="SEA"
     >
       <auro-flightline></auro-flightline>
@@ -92,11 +80,10 @@ This example illustrates a mainline nonstop with a next day arrival or departure
   ```html
   <auro-flight
     flights='["AS 880"]'
-    duration="5h 45m"
-    daysChanged="1"
-    departureTime="10:50 pm"
+    duration="350"
+    departureTime="2022-04-06T12:25:00-10:00"
     departureStation="KOA"
-    arrivalTime="6:35 am"
+    arrivalTime="2022-04-07T00:15:00-07:00"
     arrivalStation="SEA"
     >
     <auro-flightline></auro-flightline>
@@ -105,7 +92,7 @@ This example illustrates a mainline nonstop with a next day arrival or departure
 
 </auro-accordion>
 
-## Mainline One-stop
+<!-- ### Mainline one-stop
 
 This example illustrates a one-stop `stopover` flight from ANC to ADK (ANCADK). Notice the additional information required for the `auro-flight-segment` element.
 
@@ -146,7 +133,7 @@ This example illustrates a one-stop `stopover` flight from ANC to ADK (ANCADK). 
 
 </auro-accordion>
 
-## Mainline multi-stop
+### Mainline multi-stop
 
 The following example illustrates a mainline multi-stop `stopover` flight from KTN to ANC (KTNANC)
 
@@ -191,13 +178,13 @@ The following example illustrates a mainline multi-stop `stopover` flight from K
 
 </auro-accordion>
 
-## Mainline + mainline connection w/layover
+### Mainline + mainline connection w/layover
 
 The following example illustrates a change of gauge flight with a layover in SEA for 1h 35m.
 
 <div class="exampleWrapper">
   <auro-flight
-    flights='["AS 110", "AA 12"]'
+    flights='["AS 110", "AS 12"]'
     duration="11h 5m"
     daysChanged="0"
     departureTime="12:45 am"
@@ -205,15 +192,13 @@ The following example illustrates a change of gauge flight with a layover in SEA
     arrivalTime="3:50 pm"
     arrivalStation="BOS"
     >
-      <auro-flightline>
-        <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
-      </auro-flightline>
-      <span slot="footer">
-        <auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
-        AS110 is subject to government approval <br />
-        <auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
-        AA12 is operated by American Airlines
-      </span>
+    <auro-flightline>
+      <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+    </auro-flightline>
+    <span slot="footer">
+      <div><auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>AS110 is subject to government approval</div>
+      <div><auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>AA12 is operated by American Airlines</div>
+    </span>
   </auro-flight>
 </div>
 
@@ -234,17 +219,15 @@ The following example illustrates a change of gauge flight with a layover in SEA
       <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
     </auro-flightline>
     <span slot="footer">
-      <auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
-      AS110 is subject to government approval <br />
-      <auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
-      AA12 is operated by American Airlines
+      <div><auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>AS110 is subject to government approval </div>
+      <div><auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>AA12 is operated by American Airlines</div>
     </span>
   </auro-flight>
   ```
 
 </auro-accordion>
 
-## Using the footer slot
+### Using the footer slot
 
 In this example for a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. In the code you will see the use of `<auro-icon>` and text within the named slot element.
 
@@ -260,10 +243,8 @@ In this example for a flight that requires government approval or a flight that 
     >
       <auro-flightline></auro-flightline>
       <span slot="footer">
-        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-        EK 772 is subject to government approval <br />
-        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-        EK 772 is operated by Emirates
+        <div><auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>EK 772 is subject to government approval</div>
+        <div><auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>EK 772 is operated by Emirates</div>
       </span>
   </auro-flight>
 </div>
@@ -283,10 +264,8 @@ In this example for a flight that requires government approval or a flight that 
     >
       <auro-flightline></auro-flightline>
       <span slot="footer">
-        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-        EK 772 is subject to government approval <br />
-        <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-        EK 772 is operated by Emirates
+        <div><auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>EK 772 is subject to government approval</div>
+        <div><auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>EK 772 is operated by Emirates</div>
       </span>
   </auro-flight>
   ```
@@ -332,7 +311,7 @@ In this example, the `footer` slot is used to alert the customer that a First Cl
 
 </auro-accordion>
 
-## Using the optional departure/arrival header slots
+### Using the optional departure/arrival header slots
 
 The following example illustrates additional data regarding departure and arrival information.
 
@@ -349,8 +328,8 @@ The following example illustrates additional data regarding departure and arriva
     reroutedArrivalStation="AVP"
     >
     <auro-flightline></auro-flightline>
-    <span slot="departureHeader">Scheduled 7:15am</span>
-    <span slot="arrivalHeader">Scheduled 4:15pm</span>
+    <span slot="departureHeader">Previously scheduled departure 7:15 AM</span>
+    <span slot="arrivalHeader">Previously scheduled arrival 4:15 PM</span>
   </auro-flight>
 </div>
 
@@ -370,10 +349,10 @@ The following example illustrates additional data regarding departure and arriva
     reroutedArrivalStation="AVP"
     >
     <auro-flightline></auro-flightline>
-    <span slot="departureHeader">Scheduled 7:15am</span>
-    <span slot="arrivalHeader">Scheduled 4:15pm</span>
+    <span slot="departureHeader">Scheduled 7:15 AM</span>
+    <span slot="arrivalHeader">Scheduled 4:15 PM</span>
 
   </auro-flight>
   ```
 
-</auro-accordion>
+</auro-accordion> -->

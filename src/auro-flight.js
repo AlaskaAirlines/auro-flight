@@ -21,8 +21,7 @@ import "./auro-flight-main";
  * Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
- * @attr {String} duration - String for the duration. `1h 23m`
- * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer
+ * @attr {Number} duration - Number in minutes for flight duration. `83`
  * @attr {String} departureTime - String for the departure time. `9:06 am`
  * @attr {String} departureStation - String for the departure station. `SEA`
  * @attr {String} arrivalTime - String for the arrival time. `4:05 pm`
@@ -49,7 +48,7 @@ class AuroFlight extends LitElement {
   static get properties() {
     return {
       flights:             { type: Array },
-      duration:            { type: String },
+      duration:            { type: Number },
       daysChanged:         { type: Number },
       departureTime:       { type: String },
       departureStation:    { type: String },
@@ -68,7 +67,10 @@ class AuroFlight extends LitElement {
     `;
   }
 
-  // This function removes a CSS selector if the footer slot is empty
+  /**
+   * Removes CSS selector from footer slot if no content.
+   * @returns {void}
+   */
   firstUpdated() {
     const slot = this.shadowRoot.querySelector("#footer"),
       slotWrapper = this.shadowRoot.querySelector("#flightFooter");
@@ -80,6 +82,15 @@ class AuroFlight extends LitElement {
     return null
   }
 
+  /**
+   * @private
+   * @param {number} duration
+   * @returns {string} Number converted to hours and min string for UI.
+   */
+  convertDuration(duration) {
+    return `${parseInt(duration / 60)}h ${parseInt(duration % 60) === 0 ? '' : parseInt(duration % 60)+'m'}`
+  }
+
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
@@ -87,8 +98,9 @@ class AuroFlight extends LitElement {
       <section aria-hidden="${this.ariaHidden}">
         <auro-flight-header
           flights=${JSON.stringify(this.flights)}
-          duration=${this.duration}
-          daysChanged=${this.daysChanged}
+          duration=${this.convertDuration(this.duration)}
+          departureTime=${this.departureTime}
+          arrivalTime=${this.arrivalTime}
         >
         </auro-flight-header>
         <div class="headerContainer">
@@ -96,6 +108,8 @@ class AuroFlight extends LitElement {
           <slot name="arrivalHeader"></slot>
         </div>
         <auro-flight-main
+          flights=${this.flights.join(', ')}
+          duration=${this.convertDuration(this.duration)},
           arrivalTime=${this.arrivalTime}
           arrivalStation=${this.arrivalStation}
           departureTime=${this.departureTime}

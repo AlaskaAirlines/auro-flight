@@ -28,7 +28,8 @@ class AuroFlightHeader extends LitElement {
     return {
       flights:      { type: Array },
       duration:     { type: String },
-      daysChanged:  { type: Number },
+      departureTime:{ type: String },
+      arrivalTime:  { type: String }
     };
   }
 
@@ -54,32 +55,34 @@ class AuroFlightHeader extends LitElement {
   }
 
   /**
-   * @private Internal function to render the day change notification.
-   * 0 day change = null
-   * 1 day change = +1 Day
-   * 2+ day change = +N Days
-   *
+   * Internal function to render the day change notification.
+   * @private
    * @returns {String} item to display
    */
   flightDuration() {
-    if (this.daysChanged > 0) {
-        return `+${this.daysChanged} day${this.daysChanged > 1 ? 's' : ''}`
-    }
+    const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
 
-    return null;
+    return dayDiff > 0
+      ? html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`
+      : html``
   }
 
-  // function that renders the HTML and CSS into  the scope of the component
+  readFlight(flight) {
+    return Array.from(flight).join(' ');
+  }
+
+  // Maintain content polarity between text read by screen reader and visual content.
   render() {
     return html`
-      <span class="flight">
-          ${this.flightType()}
+      <span class="util_displayHiddenVisually" style="width: 50%">${`${this.flightType().includes('flights') ? this.flightType() : 'Flight ' +  this.readFlight(this.flightType())}`}</span>
+
+      <span class="flight" aria-hidden="true">
+        ${this.flightType()}
       </span>
       <div>
-          <span class="duration">${this.duration}</span>
-          ${this.daysChanged > 0 ? html`
-              <span class="daysChanged">${this.flightDuration()}</span>
-          ` : html``}
+        <span class="util_displayHiddenVisually" style="width: 50%">${`Duration ${this.duration}`}</span>
+        <time class="duration" aria-hidden="true">${this.duration}</time>
+        ${this.flightDuration()}
       </div>
     `;
   }
