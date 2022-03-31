@@ -12,7 +12,7 @@ import styleCss from "./style-flight-main-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
+ * The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
  *
  * @attr {String} arrivalTime - Time of arrival, e.g. `9:06 pm`

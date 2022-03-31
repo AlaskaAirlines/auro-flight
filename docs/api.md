@@ -1,39 +1,3 @@
-# auro-flight-header
-
-auro-flight-header displays airline, duration, and day change information
-
-## Properties
-
-| Property      | Attribute     | Type     | Description                                      |
-|---------------|---------------|----------|--------------------------------------------------|
-| `daysChanged` | `daysChanged` | `Number` | Number of days changed due to flight duration and timezone. Positive whole integer |
-| `duration`    | `duration`    | `String` | String for the duration. `1h 23m`                |
-| `flights`     | `flights`     | `Array`  | Array of flight numbers `['AS 123', 'EK 432']`   |
-
-
-# auro-flight-main
-
-auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
-DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
-
-## Properties
-
-| Property                   | Attribute                  | Type     | Description                               |
-|----------------------------|----------------------------|----------|-------------------------------------------|
-| `arrivalStation`           | `arrivalStation`           | `String` | Station of arrival, e.g. `SEA`            |
-| `arrivalTime`              | `arrivalTime`              | `String` | Time of arrival, e.g. `9:06 pm`           |
-| `departureStation`         | `departureStation`         | `String` | Station of departure, e.g. `PVD`          |
-| `departureTime`            | `departureTime`            | `String` | Time of departure, e.g. `5:36 am`         |
-| `reroutedArrivalStation`   | `reroutedArrivalStation`   | `String` | Station of rerouted arrival, e.g. `AVP`   |
-| `reroutedDepartureStation` | `reroutedDepartureStation` | `String` | Station of rerouted departure, e.g. `PDX` |
-
-## Slots
-
-| Name      | Description                                   |
-|-----------|-----------------------------------------------|
-| `default` | anticipates `<auro-flight-segment>` instances |
-
-
 # auro-flight
 
 auro-flight renders a DoT compliant Flight listing
