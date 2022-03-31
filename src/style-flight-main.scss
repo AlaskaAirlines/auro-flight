@@ -4,14 +4,14 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables";
-@import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties";
+@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties';
 
-@import "./node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints";
-@import "./node_modules/@alaskaairux/webcorestylesheets/dist/core";
+@import './../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints';
+@import './../node_modules/@alaskaairux/webcorestylesheets/dist/core';
 
 // Support for auroElement styles
-// @import "./node_modules/@alaskaairux/orion-web-core-style-sheets/dist/auroElement/auroElement";
+// @import './../node_modules/@alaskaairux/orion-web-core-style-sheets/dist/auroElement/auroElement';
 
 // container styles - defines the look of the outer custom component
 // :host {
@@ -21,12 +21,10 @@
 // layout styles - define any layout specifications for UI that is contained WITHIN the component
 // never define layout that would cause effect on element outside the scope of this component
 
-
 // component shape styles
 // .auro-flight {
 //   ...
 // }
-
 
 :host {
   display: flex;
@@ -35,17 +33,17 @@
 }
 
 .slotContainer {
-  padding-top: var(--auro-size-xs);
-  padding-left: var(--auro-size-md);
-  padding-right: var(--auro-size-md);
   flex-grow: 2;
+  padding-top: var(--auro-size-xs);
+  padding-right: var(--auro-size-md);
+  padding-left: var(--auro-size-md);
 }
 
 .departureTime {
+  padding-bottom: var(--auro-size-xxxs);
   color: var(--auro-color-text-primary-on-light);
   font-size: var(--auro-text-heading-700-size-breakpoint-sm);
   line-height: var(--auro-text-heading-700-height-breakpoint-md);
-  padding-bottom: var(--auro-size-xxxs);
   text-align: left;
 }
 
@@ -55,10 +53,10 @@
 }
 
 .arrivalTime {
+  padding-bottom: var(--auro-size-xxxs);
   color: var(--auro-color-text-primary-on-light);
   font-size: var(--auro-text-heading-700-size-breakpoint-sm);
   line-height: var(--auro-text-heading-700-height-breakpoint-md);
-  padding-bottom: var(--auro-size-xxxs);
   text-align: right;
 }
 
@@ -74,7 +72,7 @@
 }
 
 .util_lineThrough {
+  padding-right: var(--auro-size-md);
   color: var(--auro-color-alert-error-on-light);
   text-decoration: line-through;
-  padding-right: var(--auro-size-md);
 }

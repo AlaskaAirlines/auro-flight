@@ -12,11 +12,11 @@ import styleCss from "./style-flight-header-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * auro-flight-header displays airline, duration, and day change information
+ * The auro-flight-header element displays airline, duration, and day change information.
  *
- * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
- * @attr {String} duration - String for the duration. `1h 23m`
- * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer
+ * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`.
+ * @attr {String} duration - String for the duration. `1h 23m`.
+ * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer.
  */
 
 // build the component class
@@ -39,8 +39,9 @@ class AuroFlightHeader extends LitElement {
   }
 
   /**
-   * @private Internal function to render either the flight number OR 'Multiple flights'
-   * @returns {String} Parsed airline code output
+   * @private
+   * @returns {String} Parsed airline code output.
+   * Internal function to render either the flight number OR 'Multiple flights'.
    */
   flightType() {
     switch (this.flights.length) {
@@ -54,16 +55,12 @@ class AuroFlightHeader extends LitElement {
   }
 
   /**
-   * @private Internal function to render the day change notification.
-   * 0 day change = null
-   * 1 day change = +1 Day
-   * 2+ day change = +N Days
-   *
-   * @returns {String} item to display
+   * @private
+   * @returns {String}
    */
   flightDuration() {
     if (this.daysChanged > 0) {
-        return `+${this.daysChanged} day${this.daysChanged > 1 ? 's' : ''}`
+      return `+${this.daysChanged} day${this.daysChanged > 1 ? 's' : ''}`;
     }
 
     return null;
@@ -73,13 +70,13 @@ class AuroFlightHeader extends LitElement {
   render() {
     return html`
       <span class="flight">
-          ${this.flightType()}
+        ${this.flightType()}
       </span>
       <div>
-          <span class="duration">${this.duration}</span>
-          ${this.daysChanged > 0 ? html`
-              <span class="daysChanged">${this.flightDuration()}</span>
-          ` : html``}
+        <span class="duration">${this.duration}</span>
+        ${this.daysChanged > 0 ? html`
+          <span class="daysChanged">${this.flightDuration()}</span>
+        ` : html``}
       </div>
     `;
   }

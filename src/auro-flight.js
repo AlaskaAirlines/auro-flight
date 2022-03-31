@@ -16,9 +16,9 @@ import "./auro-flight-main";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * auro-flight renders a DoT compliant Flight listing
- * This design has been tested via the Alaska Legal team for legal compliance
- * Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com
+ * The auro-flight element renders a DoT compliant Flight listing.
+ * This design has been tested via the Alaska Legal team for legal compliance.
+ * Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com.
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
  * @attr {String} duration - String for the duration. `1h 23m`
@@ -34,7 +34,7 @@ import "./auro-flight-main";
  * @slot departureHeader - Text on top of the departure station's time
  * @slot arrivalHeader - Text on top of the arrival station's time
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot.
-*/
+ */
 
 // build the component class
 class AuroFlight extends LitElement {
@@ -77,7 +77,7 @@ class AuroFlight extends LitElement {
       return slotWrapper.classList.remove("flightFooter");
     }
 
-    return null
+    return null;
   }
 
   // function that renders the HTML and CSS into  the scope of the component
