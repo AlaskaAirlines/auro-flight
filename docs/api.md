@@ -1,8 +1,8 @@
 # auro-flight
 
-auro-flight renders a DoT compliant Flight listing
-This design has been tested via the Alaska Legal team for legal compliance
-Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com
+The auro-flight element renders a DoT compliant Flight listing.
+This design has been tested via the Alaska Legal team for legal compliance.
+Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com.
 
 ## Properties
 
