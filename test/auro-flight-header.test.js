@@ -16,7 +16,7 @@ describe('auro-flight-header', () => {
       <auro-flight-header flights='["AS 123", "EK 432"]' duration="23h 4m"></auro-flight-header>
     `);
 
-    await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n          Multiple flights\n      ');
+    await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n        Multiple flights\n      ');
   });
 
   it('auro-flight-header says the flight number when flights.length == 1', async () => {
@@ -24,7 +24,7 @@ describe('auro-flight-header', () => {
       <auro-flight-header flights='["AS 123"]' duration="23h 4m"></auro-flight-header>
     `);
 
-await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n          AS 123\n      ');
+await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n        AS 123\n      ');
 });
 
 it('auro-flight-header says nothing when daysChanged == 0', async () => {
