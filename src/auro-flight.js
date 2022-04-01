@@ -5,9 +5,6 @@
 
 // If use litElement base class
 import { LitElement, html, css } from "lit-element";
-
-// Import touch detection lib
-import "focus-visible/dist/focus-visible.min.js";
 import styleCss from "./style-flight-css.js";
 import "@alaskaairux/auro-flightline";
 import "@alaskaairux/auro-flightline/dist/auro-flight-segment";
