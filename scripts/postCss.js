@@ -1,6 +1,5 @@
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
-const postcssCustomProperties = require('postcss-custom-properties');
 const removeRules = require('postcss-remove-rules');
 const comments = require('postcss-discard-comments');
 const path = require('path');
@@ -30,7 +29,7 @@ fs.readdir(directoryPath, function (err, files) {
  */
  function standardProcessor(file) {
   fs.readFile(`src/${file}`, (err, css) => {
-    postcss([autoprefixer, postcssCustomProperties, comments])
+    postcss([autoprefixer, comments])
     .use(comments({
       remove: function(comment) { return comment[0] == "@"; }
     }))
