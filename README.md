@@ -19,18 +19,55 @@ The following sections are editable by making changes to the following files:
 
 # Flight
 
-`<auro-flight>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of ...
+<!-- AUROLABS-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/labsDisclaimer.md) -->
+<!-- AUROLABS-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
+<!-- The below content is automatically added from ./../docs/partials/description.md -->
+The `<auro-flight>` element encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis in tellus nec pellentesque. Integer bibendum ligula sit amet vehicula gravida. Maecenas accumsan, ligula vitae molestie iaculis, tellus mi laoreet ex [install instructions](https://auro.alaskaair.com/components/auro/button/install), ac malesuada velit dolor vel mi. Cras et rutrum urna. Sed mattis mi eu tortor ullamcorper, egestas bibendum mauris cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra eros eget neque commodo vulputate. In tempus eu velit at dictum.
+## DoT regulations
 
-Nulla at augue facilisis `odio lobortis` molestie vitae a nulla.
+Department of Transportation regulations mandate that the arrival and departure cities' font size and color be identical to the operational disclosures (for instance, AA 3210 is operated by Envoy Air on behalf of American Airlines).
+
+## Dependencies
+
+The `<auro-flight>` element has dependencies on the following additional Auro custom elements.
+
+```
+  └── @alaskaairux/auro-flightline
+  |  ├── (internal dependency) @alaskaairux/auro-flight-segment
+  |  └── (external dependency) @alaskaairux/auro-badge
+
+  └── @alaskaairux/auro-flight
+  |  ├── (internal dependency) @alaskaairux/auro-flight-header
+  |  └── (internal dependency) @alaskaairux/auro-flight-body
+```
+
+See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) for additional information regarding the `<auro-flight-segment>` API.
+
+## Attributes
+
+The `<auro-flight>` custom element's API consists of a series of attributes to be defined at the time of use. Be sure to review the [api documentation](https://auro.alaskaair.com/components/auro/flight/api) for this element.
+
+## Accessibility
+
+The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element if this information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, it is recommended that the `ariaHidden` attribute be used.
+<!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/readmeAddlInfo.md) -->
+<!-- The below content is automatically added from ./../docs/partials/readmeAddlInfo.md -->
+<!-- AURO-GENERATED-CONTENT This file is to be used for any additional content that should be included in the README.md which is specific to this component. -->
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ## UI development browser support
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/browserSupport.md) -->
 For the most up to date information on [UI development browser support](https://auro.alaskaair.com/support/browsersSupport)
+
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ## Install
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/componentInstall.md) -->
 [![Build Status](https://img.shields.io/github/workflow/status/AlaskaAirlines/auro-flight/Test%20and%20publish?branch=master&style=for-the-badge)](https://github.com/AlaskaAirlines/auro-flight/actions?query=workflow%3A%22test+and+publish%22)
 [![See it on NPM!](https://img.shields.io/npm/v/@aurodesignsystem/auro-flight?style=for-the-badge&color=orange)](https://www.npmjs.com/package/@aurodesignsystem/auro-flight)
 [![License](https://img.shields.io/npm/l/@aurodesignsystem/auro-flight?color=blue&style=for-the-badge)](https://www.apache.org/licenses/LICENSE-2.0)
@@ -41,37 +78,67 @@ $ npm i @aurodesignsystem/auro-flight
 
 Installing as a direct, dev or peer dependency is up to the user installing the package. If you are unsure as to what type of dependency you should use, consider reading this [stack overflow](https://stackoverflow.com/questions/18875674/whats-the-difference-between-dependencies-devdependencies-and-peerdependencies) answer.
 
+<!-- AURO-GENERATED-CONTENT:END -->
+
 ### Design Token CSS Custom Property dependency
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/designTokens.md) -->
 The use of any Auro custom element has a dependency on the [Auro Design Tokens](https://auro.alaskaair.com/getting-started/developers/design-tokens).
+
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ### CSS Custom Property fallbacks
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/cssFallbacks.md) -->
 [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) are [not supported](https://auro.alaskaair.com/support/custom-properties) in older browsers. For this, fallback properties are pre-generated and included with the npm.
 
 Any update to the Auro Design Tokens will be immediately reflected with browsers that support CSS custom properties, legacy browsers will require updated components with pre-generated fallback properties.
 
+<!-- AURO-GENERATED-CONTENT:END -->
+
 ### Define dependency in project component
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/componentImportDescription.md) -->
 Defining the component dependency within each component that is using the `<auro-flight>` component.
+
+<!-- AURO-GENERATED-CONTENT:END -->
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/componentImport.md) -->
 
 ```js
 import "@aurodesignsystem/auro-flight";
 ```
 
+<!-- AURO-GENERATED-CONTENT:END -->
 **Reference component in HTML**
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
 
 ```html
-<auro-flight>Hello World</auro-flight>
+<auro-flight
+  flights='["AS 8"]'
+  duration="5h 25m"
+  daysChanged="0"
+  departureTime="7:30 am"
+  departureStation="SEA"
+  arrivalTime="3:55 pm"
+  arrivalStation="EWR">
+  <auro-flightline></auro-flightline>
+</auro-flight>
 ```
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ## Install bundled assets from CDN
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/bundleInstallDescription.md) -->
 In cases where the project is not able to process JS assets, there are pre-processed assets available for use. Two bundles are available -- `auro-flight__bundled.js` for modern browsers and `auro-flight__bundled.es5.js` for legacy browsers (including IE11).
 
 Since the legacy bundle includes many polyfills that are not needed by modern browsers, we recommend you load these bundles using [differential serving](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) so that the browser only loads the bundle it needs. To accomplish this, the script tag for the modern bundle should have `type="module"` and the script tag for the legacy bundle should have the `nomodule` attribute. See the example below.
 
+<!-- AURO-GENERATED-CONTENT:END -->
+
 ### Bundle example code
+
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/bundleUse.md) -->
 
 ```html
 <!-- **NOTE:** Be sure to replace `@latest` in the URL with the version of the asset you want. @latest is NOT aware of any MAJOR releases, use at your own risk. -->
@@ -81,30 +148,52 @@ Since the legacy bundle includes many polyfills that are not needed by modern br
 <script src="https://unpkg.com/@aurodesignsystem/auro-flight@latest/dist/auro-flight__bundled.es5.js" nomodule></script>
 ```
 
+<!-- AURO-GENERATED-CONTENT:END -->
+
 ## auro-flight use cases
 
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/useCases.md) -->
+<!-- The below content is automatically added from ./../docs/partials/useCases.md -->
 The `<auro-flight>` element should be used in situations where users may:
 
-* ...
-* ...
-* ...
+* list all the available data for a flight
+* list all stopovers or layovers for a flight
+* list connecting flights or other important information
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ## API Code Examples
 
 ### Default auro-flight
 
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/basic.html -->
+
 ```html
-<auro-flight>Hello World</auro-flight>
+<auro-flight
+  flights='["AS 8"]'
+  duration="5h 25m"
+  daysChanged="0"
+  departureTime="7:30 am"
+  departureStation="SEA"
+  arrivalTime="3:55 pm"
+  arrivalStation="EWR">
+  <auro-flightline></auro-flightline>
+</auro-flight>
 ```
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ## Development
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/developmentDescription.md) -->
 In order to develop against this project, if you are not part of the core team, you will be required to fork the project prior to submitting a pull request.
 
 Please be sure to review the [contribution guidelines](https://auro.alaskaair.com/contributing) for this project. Please make sure to **pay special attention** to the **conventional commits** section of the document.
 
+<!-- AURO-GENERATED-CONTENT:END -->
+
 ### Start development environment
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/localhost.md) -->
 Once the project has been cloned to your local resource and you have installed all the dependencies you will need to open a shell session to run the **dev server**.
 
 ```shell
@@ -121,19 +210,32 @@ $ npm run build:watch
 $ npm run serve
 ```
 
+<!-- AURO-GENERATED-CONTENT:END -->
+
 ### API generation
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/api.md) -->
 The custom element API file is generated in the build and committed back to the repo with a version change. If the API doc has changed without a version change, author's are to run `npm run build:api` to generate the doc and commit to version control.
+
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ### Testing
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/testing.md) -->
 Automated tests are required for every Auro component. See `.\test\auro-flight.test.js` for the tests for this component. Run `npm test` to run the tests and check code coverage. Tests must pass and meet a certain coverage threshold to commit. See [the testing documentation](https://auro.alaskaair.com/support/tests) for more details.
+
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ### Bundled assets
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/bundles.md) -->
 Bundled assets are only generated in the remote and not merged back to this repo. To review and/or test a bundled asset locally, run `$ npm run bundler` to generate assets.
+
+<!-- AURO-GENERATED-CONTENT:END -->
 
 ### Demo deployment
 
+<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/deploymentDemo.md) -->
 To deploy a demo version of the component for review, run `npm run build:demo` to create a `./build` directory that can be pushed to any static server.
 
+<!-- AURO-GENERATED-CONTENT:END -->
