@@ -1,59 +1,395 @@
 # Flight
 
-`<auro-flight>` is a [HTML custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements) for the purpose of ...
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./description.md) -->
+<!-- The below content is automatically added from ./description.md -->
+The `<auro-flight>` element encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis in tellus nec pellentesque. Integer bibendum ligula sit amet vehicula gravida. Maecenas accumsan, ligula vitae molestie iaculis, tellus mi laoreet ex [install instructions](https://auro.alaskaair.com/components/auro/button/install), ac malesuada velit dolor vel mi. Cras et rutrum urna. Sed mattis mi eu tortor ullamcorper, egestas bibendum mauris cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus viverra eros eget neque commodo vulputate. In tempus eu velit at dictum.
+## DoT regulations
 
-Nulla at augue facilisis `odio lobortis` molestie vitae a nulla.
+Department of Transportation regulations mandate that the arrival and departure cities' font size and color be identical to the operational disclosures (for instance, AA 3210 is operated by Envoy Air on behalf of American Airlines).
 
-## auro-flight use cases
+## Dependencies
 
-The `<auro-flight>` element should be used in situations where users may:
+The `<auro-flight>` element has dependencies on the following additional Auro custom elements.
 
-* ...
-* ...
-* ...
+```
+  └── @alaskaairux/auro-flightline
+  |  ├── (internal dependency) @alaskaairux/auro-flight-segment
+  |  └── (external dependency) @alaskaairux/auro-badge
 
-## Additional Information
-
-> Interdum et malesuada fames ac ante ipsum primis in faucibus. Nam fermentum libero ipsum, ac tempor sapien blandit in. Nam tincidunt non felis molestie varius.
-
-|convallis|tristique|nisl dignissim|eleifend|
-|---|---|---|---|
-|√|√|||
-|||√|√|
-
-Aenean at blandit lorem. Fusce imperdiet mi nec gravida maximus. Quisque nisl libero, condimentum in nisi a, imperdiet lacinia arcu.
-
-```javascript
-toggleDialog = (elName) => {
-  let dialog = document.querySelector(elName);
-  const html = document.querySelector('html');
-
-  html.style.overflow = 'hidden';
-  dialog.removeAttribute("open");
-  dialog.setAttribute("open", true);
-}
-
-toggleDialogClose = (elName) => {
-  let dialog = document.querySelector(elName);
-  const html = document.querySelector('html');
-
-  html.style.overflow = '';
-  dialog.removeAttribute("open");
-}
+  └── @alaskaairux/auro-flight
+  |  ├── (internal dependency) @alaskaairux/auro-flight-header
+  |  └── (internal dependency) @alaskaairux/auro-flight-body
 ```
 
-## Example(s)
+See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) for additional information regarding the `<auro-flight-segment>` API.
+
+## Attributes
+
+The `<auro-flight>` custom element's API consists of a series of attributes to be defined at the time of use. Be sure to review the [api documentation](https://auro.alaskaair.com/components/auro/flight/api) for this element.
+
+## Accessibility
+
+The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element if this information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, it is recommended that the `ariaHidden` attribute be used.
+<!-- AURO-GENERATED-CONTENT:END -->
+
+## Mainline Nonstop
+
+This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
 
 <div class="exampleWrapper">
-  <auro-flight>Hello World</auro-flight>
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
+  <auro-flight
+    flights='["AS 8"]'
+    duration="5h 25m"
+    daysChanged="0"
+    departureTime="7:30 am"
+    departureStation="SEA"
+    arrivalTime="3:55 pm"
+    arrivalStation="EWR">
+    <auro-flightline></auro-flightline>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
 
 ```html
-<auro-flight>Hello World</auro-flight>
+<auro-flight
+  flights='["AS 8"]'
+  duration="5h 25m"
+  daysChanged="0"
+  departureTime="7:30 am"
+  departureStation="SEA"
+  arrivalTime="3:55 pm"
+  arrivalStation="EWR">
+  <auro-flightline></auro-flightline>
+</auro-flight>
 ```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
 
+## Mainline next day arrival/departure
+
+This example illustrates a mainline nonstop with a next day arrival or departure from KOA to SEA (KOASEA)
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/nextDay.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/nextDay.html -->
+  <auro-flight
+    flights='["AS 880"]'
+    duration="5h 45m"
+    daysChanged="1"
+    departureTime="10:50 pm"
+    departureStation="KOA"
+    arrivalTime="6:35 am"
+    arrivalStation="SEA">
+    <auro-flightline></auro-flightline>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/nextDay.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/nextDay.html -->
+
+```html
+<auro-flight
+  flights='["AS 880"]'
+  duration="5h 45m"
+  daysChanged="1"
+  departureTime="10:50 pm"
+  departureStation="KOA"
+  arrivalTime="6:35 am"
+  arrivalStation="SEA">
+  <auro-flightline></auro-flightline>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## Mainline One-stop
+
+This example illustrates a one-stop `stopover` flight from ANC to ADK (ANCADK). Notice the additional information required for the `auro-flight-segment` element.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/oneStop.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/oneStop.html -->
+  <auro-flight
+    flights='["AS 184"]'
+    duration="3h 55m"
+    daysChanged="0"
+    departureTime="10:10 am"
+    departureStation="ANC"
+    arrivalTime="1:05 pm"
+    arrivalStation="ADK">
+    <auro-flightline>
+      <auro-flight-segment stopover iata="CDB"></auro-flight-segment>
+    </auro-flightline>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/oneStop.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/oneStop.html -->
+
+```html
+<auro-flight
+  flights='["AS 184"]'
+  duration="3h 55m"
+  daysChanged="0"
+  departureTime="10:10 am"
+  departureStation="ANC"
+  arrivalTime="1:05 pm"
+  arrivalStation="ADK">
+  <auro-flightline>
+    <auro-flight-segment stopover iata="CDB"></auro-flight-segment>
+  </auro-flightline>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## Mainline multi-stop
+
+The following example illustrates a mainline multi-stop `stopover` flight from KTN to ANC (KTNANC)
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/multiStop.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/multiStop.html -->
+  <auro-flight
+    flights='["AS 65"]'
+    duration="5h 53m"
+    daysChanged="0"
+    departureTime="9:00 am"
+    departureStation="KTN"
+    arrivalTime="2:53 pm"
+    arrivalStation="ANC">
+    <auro-flightline>
+      <auro-flight-segment stopover iata="WRG"></auro-flight-segment>
+      <auro-flight-segment stopover iata="PSG"></auro-flight-segment>
+      <auro-flight-segment stopover iata="JNU"></auro-flight-segment>
+    </auro-flightline>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/multiStop.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/multiStop.html -->
+
+```html
+<auro-flight
+  flights='["AS 65"]'
+  duration="5h 53m"
+  daysChanged="0"
+  departureTime="9:00 am"
+  departureStation="KTN"
+  arrivalTime="2:53 pm"
+  arrivalStation="ANC">
+  <auro-flightline>
+    <auro-flight-segment stopover iata="WRG"></auro-flight-segment>
+    <auro-flight-segment stopover iata="PSG"></auro-flight-segment>
+    <auro-flight-segment stopover iata="JNU"></auro-flight-segment>
+  </auro-flightline>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## Mainline + mainline connection w/layover
+
+The following example illustrates a change of gauge flight with a layover in SEA for 1h 35m.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/connection.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/connection.html -->
+  <auro-flight
+    flights='["AS 110", "AA 12"]'
+    duration="11h 5m"
+    daysChanged="0"
+    departureTime="12:45 am"
+    departureStation="ANC"
+    arrivalTime="3:50 pm"
+    arrivalStation="BOS">
+    <auro-flightline>
+      <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+    </auro-flightline>
+    <span slot="footer">
+      <auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
+      AS110 is subject to government approval <br />
+      <auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
+      AA12 is operated by American Airlines
+    </span>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/connection.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/connection.html -->
+
+```html
+<auro-flight
+  flights='["AS 110", "AA 12"]'
+  duration="11h 5m"
+  daysChanged="0"
+  departureTime="12:45 am"
+  departureStation="ANC"
+  arrivalTime="3:50 pm"
+  arrivalStation="BOS">
+  <auro-flightline>
+    <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+  </auro-flightline>
+  <span slot="footer">
+    <auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
+    AS110 is subject to government approval <br />
+    <auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
+    AA12 is operated by American Airlines
+  </span>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## Using the footer slot
+
+In this example for a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. In the code you will see the use of `<auro-icon>` and text within the named slot element.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/footerSlot.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/footerSlot.html -->
+  <auro-flight
+    flights='["EK 772"]'
+    duration="9h 45m"
+    daysChanged="0"
+    departureTime="3:50 am"
+    departureStation="DXB"
+    arrivalTime="11:35 am"
+    arrivalStation="CPT">
+    <auro-flightline></auro-flightline>
+    <span slot="footer">
+      <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+      EK 772 is subject to government approval <br />
+      <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+      EK 772 is operated by Emirates
+    </span>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/footerSlot.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/footerSlot.html -->
+
+```html
+<auro-flight
+  flights='["EK 772"]'
+  duration="9h 45m"
+  daysChanged="0"
+  departureTime="3:50 am"
+  departureStation="DXB"
+  arrivalTime="11:35 am"
+  arrivalStation="CPT">
+  <auro-flightline></auro-flightline>
+  <span slot="footer">
+    <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+    EK 772 is subject to government approval <br />
+    <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+    EK 772 is operated by Emirates
+  </span>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+In this example, the `footer` slot is used to alert the customer that a First Class option is available.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/footerSlot2.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/footerSlot2.html -->
+  <auro-flight
+    flights='["AS 73"]'
+    duration="1h 40m"
+    daysChanged="0"
+    departureTime="7:45 am"
+    departureStation="JNU"
+    arrivalTime="9:25 am"
+    arrivalStation="CDV">
+    <auro-flightline>
+    </auro-flightline>
+    <span slot="footer">First Class Upgrade available</span>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/footerSlot2.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/footerSlot2.html -->
+
+```html
+<auro-flight
+  flights='["AS 73"]'
+  duration="1h 40m"
+  daysChanged="0"
+  departureTime="7:45 am"
+  departureStation="JNU"
+  arrivalTime="9:25 am"
+  arrivalStation="CDV">
+  <auro-flightline>
+  </auro-flightline>
+  <span slot="footer">First Class Upgrade available</span>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## Using the optional departure/arrival header slots
+
+The following example illustrates additional data regarding departure and arrival information.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/headerSlot.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/headerSlot.html -->
+  <auro-flight
+    flights='["AS 8"]'
+    duration="5h 25m"
+    daysChanged="0"
+    departureTime="7:30 am"
+    departureStation="SEA"
+    arrivalTime="3:55 pm"
+    arrivalStation="EWR"
+    reroutedDepartureStation="PDX"
+    reroutedArrivalStation="AVP">
+    <auro-flightline></auro-flightline>
+    <span slot="departureHeader">Scheduled 7:15am</span>
+    <span slot="arrivalHeader">Scheduled 4:15pm</span>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/headerSlot.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/headerSlot.html -->
+
+```html
+<auro-flight
+  flights='["AS 8"]'
+  duration="5h 25m"
+  daysChanged="0"
+  departureTime="7:30 am"
+  departureStation="SEA"
+  arrivalTime="3:55 pm"
+  arrivalStation="EWR"
+  reroutedDepartureStation="PDX"
+  reroutedArrivalStation="AVP">
+  <auro-flightline></auro-flightline>
+  <span slot="departureHeader">Scheduled 7:15am</span>
+  <span slot="arrivalHeader">Scheduled 4:15pm</span>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
