@@ -18,11 +18,10 @@ import "./auro-flight-main";
  * Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com.
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
- * @attr {String} duration - String for the duration. `1h 23m`
- * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer
- * @attr {String} departureTime - String for the departure time. `9:06 am`
+ * @attr {Number} duration - String for the duration. `505`
+ * @attr {String} departureTime - String for the departure UTC time. `2022-04-13T12:30:00-04:00`
  * @attr {String} departureStation - String for the departure station. `SEA`
- * @attr {String} arrivalTime - String for the arrival time. `4:05 pm`
+ * @attr {String} arrivalTime - String for the arrival UTC time. `2022-04-13T12:30:00-04:00`
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
  * @attr {String} reroutedDepartureStation - String for the new departure station for rerouted flights. `PDX`
  * @attr {String} reroutedArrivalStation - String for the new arrival station for rerouted flights. `AVP`
@@ -46,8 +45,7 @@ class AuroFlight extends LitElement {
   static get properties() {
     return {
       flights:             { type: Array },
-      duration:            { type: String },
-      daysChanged:         { type: Number },
+      duration:            { type: Number },
       departureTime:       { type: String },
       departureStation:    { type: String },
       arrivalTime:         { type: String },
@@ -77,6 +75,20 @@ class AuroFlight extends LitElement {
     return null;
   }
 
+  /**
+   * @private
+   * @param {number} duration - Number that defines duration of flight in minutes.
+   * @returns {string} Number converted to hours and min string for UI.
+   */
+  convertDuration(duration) {
+    const hour = 60;
+    const hours = `${parseInt(duration / hour, 10)}h`;
+    const calcMins = parseInt(duration % hour, 10);
+    const minsString = calcMins === 0 ? '' : `${calcMins}m`;
+
+    return `${hours} ${minsString}`;
+  }
+
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
@@ -84,8 +96,9 @@ class AuroFlight extends LitElement {
       <section aria-hidden="${this.ariaHidden}">
         <auro-flight-header
           flights=${JSON.stringify(this.flights)}
-          duration=${this.duration}
-          daysChanged=${this.daysChanged}
+          duration=${this.convertDuration(this.duration)}
+          departureTime=${this.departureTime}
+          arrivalTime=${this.arrivalTime}
         >
         </auro-flight-header>
         <div class="headerContainer">
@@ -99,6 +112,8 @@ class AuroFlight extends LitElement {
           departureStation=${this.departureStation}
           reroutedArrivalStation=${this.reroutedArrivalStation}
           reroutedDepartureStation=${this.reroutedDepartureStation}
+          duration=${this.duration}
+          flights=${JSON.stringify(this.flights)}
         >
           <slot></slot>
         </auro-flight-main>
