@@ -5,49 +5,46 @@
 [Change of Gauge flights](https://www.travelweekly.com/Mark-Pestronk/Agents-must-identify-change-of-gauge-services) are flights with the same flight number, but with an equipment swap at a intermediate stop.
 
 <auro-alerts information>Change of Gauge flights are a pain point for guests with physical disabilities whom may not expect to need to depart the aircraft. Even with the physical change of planes, these flights are still considered Direct. Qantas runs a COG JFK-SYD.</auro-alerts>
-
 The following illustrates change of gauge flight, from SEA to SJD.
 
 See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) for additional information regarding the `<auro-flight-segment>` API.
 
 <div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/changeofgauge.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/changeofgauge.html -->
   <auro-flight
-    flights='["AS 200"]'
-    duration="4h 20m"
-    daysChanged="0"
-    departureTime="6:00 am"
+    flights='["AS 8"]'
+    duration="500"
+    departureTime="2022-04-13T01:10:00-07:00"
     departureStation="SEA"
-    arrivalTime="11:20 am"
-    arrivalStation="SJD"
-    >
-      <auro-flightline>
-        <auro-flight-segment iata="LAX">
-      </auro-flightline>
+    arrivalTime="2022-04-13T12:30:00-04:00"
+    arrivalStation="EWR">
+    <auro-flightline>
+      <auro-flight-segment iata="LAX">
+    </auro-flightline>
   </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/changeofgauge.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/changeofgauge.html -->
 
-  ```html
-  <auro-flight
-    flights='["AS 200"]'
-    duration="4h 20m"
-    daysChanged="0"
-    departureTime="6:00 am"
-    departureStation="SEA"
-    arrivalTime="11:20 am"
-    arrivalStation="SJD"
-    >
-      <auro-flightline>
-        <auro-flight-segment iata="LAX">
-      </auro-flightline>
-
-  </auro-flight>
-  ```
-
+```html
+<auro-flight
+  flights='["AS 8"]'
+  duration="500"
+  departureTime="2022-04-13T01:10:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-04-13T12:30:00-04:00"
+  arrivalStation="EWR">
+  <auro-flightline>
+    <auro-flight-segment iata="LAX">
+  </auro-flightline>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
-
 
 ## Regional Nonstop
 
@@ -56,46 +53,42 @@ AlaskaHorizon, AlaskaSkyWest, American Eagle, Delta Connection, QantasLink, and 
 DoT regulates the disclosure of this instance as illustrated in this example flight from ALW to SEA (The font color and size of the stations match the font color and size of the disclosure):
 
 <div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/regionalnonstop.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/regionalnonstop.html -->
   <auro-flight
-    flights='["AS 2087"]'
-    duration="1h 3m"
-    daysChanged="0"
-    departureTime="5:25 am"
-    departureStation="ALW"
-    arrivalTime="6:28 am"
-    arrivalStation="SEA"
-    >
-      <auro-flightline>
-      </auro-flightline>
-      <span slot="footer">
-        <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>
-        AS 2087 is operated by Horizon Air as AlaskaHorizon
-      </span>
-
+    flights='["AS 8"]'
+    duration="500"
+    departureTime="2022-04-13T01:10:00-07:00"
+    departureStation="SEA"
+    arrivalTime="2022-04-13T12:30:00-04:00"
+    arrivalStation="EWR">
+    <auro-flightline></auro-flightline>
+    <span slot="footer">
+      <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>
+      AS 2087 is operated by Horizon Air as AlaskaHorizon
+    </span>
   </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-
 <auro-accordion lowProfile justifyRight>
   <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/regionalnonstop.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/regionalnonstop.html -->
 
-  ```html
-  <auro-flight
-    flights='["AS 2087"]'
-    duration="1h 3m"
-    daysChanged="0"
-    departureTime="5:25 am"
-    departureStation="ALW"
-    arrivalTime="6:28 am"
-    arrivalStation="SEA"
-    >
-      <auro-flightline>
-      </auro-flightline>
-      <span slot="footer">
-        <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>
-        AS 2087 is operated by Horizon Air as AlaskaHorizon
-      </span>
-
-  </auro-flight>
-  ```
-
+```html
+<auro-flight
+  flights='["AS 8"]'
+  duration="500"
+  departureTime="2022-04-13T01:10:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-04-13T12:30:00-04:00"
+  arrivalStation="EWR">
+  <auro-flightline></auro-flightline>
+  <span slot="footer">
+    <auro-icon category="logos" name="tail-AS" style="width: 32px"></auro-icon>
+    AS 2087 is operated by Horizon Air as AlaskaHorizon
+  </span>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
