@@ -25,9 +25,9 @@ The following sections are editable by making changes to the following files:
 <!-- The below content is automatically added from ./../docs/partials/description.md -->
 The `<auro-flight>` element encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
 
-## DoT regulations
+## Attributes
 
-Department of Transportation regulations mandate that the arrival and departure cities' font size and color be identical to the operational disclosures (for instance, AA 3210 is operated by Envoy Air on behalf of American Airlines).
+The `<auro-flight>` custom element's API consists of a series of attributes to be defined at the time of use. Be sure to review the [api documentation](https://auro.alaskaair.com/components/auro/flight/api) for this element.
 
 ## Dependencies
 
@@ -40,18 +40,11 @@ The `<auro-flight>` element has dependencies on the following additional Auro cu
 
   └── @alaskaairux/auro-flight
   |  ├── (internal dependency) @alaskaairux/auro-flight-header
-  |  └── (internal dependency) @alaskaairux/auro-flight-body
+  |  ├── (internal dependency) @alaskaairux/auro-flight-body
+  |  └── (external dependency) @alaskaairux/auro-datetime
 ```
 
 See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) for additional information regarding the `<auro-flight-segment>` API.
-
-## Attributes
-
-The `<auro-flight>` custom element's API consists of a series of attributes to be defined at the time of use. Be sure to review the [api documentation](https://auro.alaskaair.com/components/auro/flight/api) for this element.
-
-## Accessibility
-
-The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element if this information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, it is recommended that the `ariaHidden` attribute be used.
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/readmeAddlInfo.md) -->
 <!-- The below content is automatically added from ./../docs/partials/readmeAddlInfo.md -->
@@ -115,13 +108,12 @@ import "@aurodesignsystem/auro-flight";
 
 ```html
 <auro-flight
-  flights='["AS 8"]'
-  duration="5h 25m"
-  daysChanged="0"
-  departureTime="7:30 am"
+  flights='["AS 1436"]'
+  duration="161"
+  departureTime="2022-07-13T12:15:00-07:00"
   departureStation="SEA"
-  arrivalTime="3:55 pm"
-  arrivalStation="EWR">
+  arrivalTime="2022-07-13T14:56:00-07:00"
+  arrivalStation="LAX">
   <auro-flightline></auro-flightline>
 </auro-flight>
 ```
@@ -170,13 +162,12 @@ The `<auro-flight>` element should be used in situations where users may:
 
 ```html
 <auro-flight
-  flights='["AS 8"]'
-  duration="5h 25m"
-  daysChanged="0"
-  departureTime="7:30 am"
+  flights='["AS 1436"]'
+  duration="161"
+  departureTime="2022-07-13T12:15:00-07:00"
   departureStation="SEA"
-  arrivalTime="3:55 pm"
-  arrivalStation="EWR">
+  arrivalTime="2022-07-13T14:56:00-07:00"
+  arrivalStation="LAX">
   <auro-flightline></auro-flightline>
 </auro-flight>
 ```
