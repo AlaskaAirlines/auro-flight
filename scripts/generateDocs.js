@@ -162,6 +162,28 @@ function processDemo() {
   markdownMagic(markdownPath, configDemo, callback);
 }
 
+function processDot() {
+
+  const callback = function(updatedContent, outputConfig) {
+    if (fs.existsSync('./demo/dotCompliance.md')) {
+      fs.readFile('./demo/dotCompliance.md', 'utf8', function(err, data) {
+        formatTemplateFileContents(data, './demo/dotCompliance.md');
+      });
+    } else {
+      console.log(chalk.red('ERROR: ./demo/dotCompliance.md file is missing'));
+    }
+  };
+
+  const configDemo = {
+    matchWord: 'AURO-GENERATED-CONTENT',
+    outputDir: './demo'
+  };
+
+  const markdownPath = path.join(__dirname, '../docs/partials/dotCompliance.md');
+
+  markdownMagic(markdownPath, configDemo, callback);
+}
+
 /**
  * Compiles `./docTemplates/apiExamples.md` -> `./demo/apiExamples.md`
  */
@@ -222,3 +244,4 @@ function copyReadmeLocally() {
  */
 copyReadmeLocally();
 processDemo();
+processDot();
