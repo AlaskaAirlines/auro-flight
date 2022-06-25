@@ -7,13 +7,14 @@
 import { LitElement, html, css } from "lit-element";
 import styleCss from "./style-flight-header-css.js";
 
+/* eslint no-magic-numbers: ["error", { "ignore": [-6, 0, 1] }] */
+
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * The auro-flight-header element displays airline, duration, and day change information.
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`.
- * @attr {String} duration - String for the duration. `1h 23m`.
- * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer.
+ * @attr {String} duration - String for the duration. `505`.
  */
 
 // build the component class
@@ -25,7 +26,8 @@ class AuroFlightHeader extends LitElement {
     return {
       flights:      { type: Array },
       duration:     { type: String },
-      daysChanged:  { type: Number },
+      departureTime:{ type: String },
+      arrivalTime:  { type: String }
     };
   }
 
@@ -52,15 +54,18 @@ class AuroFlightHeader extends LitElement {
   }
 
   /**
+   * Internal function to render the day change notification.
    * @private
-   * @returns {String}
+   * @returns {String} Item to display.
    */
   flightDuration() {
-    if (this.daysChanged > 0) {
-      return `+${this.daysChanged} day${this.daysChanged > 1 ? 's' : ''}`;
-    }
+    const departure = this.departureTime.slice(0, -6);
+    const arrival = this.arrivalTime.slice(0, -6);
+    const dayDiff = new Date(arrival).getDate() - new Date(departure).getDate();
 
-    return null;
+    return dayDiff > 0
+      ? html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`
+      : html``;
   }
 
   // function that renders the HTML and CSS into  the scope of the component
@@ -70,10 +75,8 @@ class AuroFlightHeader extends LitElement {
         ${this.flightType()}
       </span>
       <div>
-        <span class="duration">${this.duration}</span>
-        ${this.daysChanged > 0 ? html`
-          <span class="daysChanged">${this.flightDuration()}</span>
-        ` : html``}
+        <time class="duration">${this.duration}</time>
+        ${this.flightDuration()}
       </div>
     `;
   }
