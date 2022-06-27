@@ -46,8 +46,8 @@ class AuroFlightMain extends LitElement {
     `;
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  constructor() {
+    super();
 
     /**
      * Time template object used by convertTime() method.
@@ -55,7 +55,6 @@ class AuroFlightMain extends LitElement {
     this.timeTemplate = {
       hour: "2-digit",
       minute: "2-digit",
-      timeZone: this.timeZone
     };
 
     this.template = {};
