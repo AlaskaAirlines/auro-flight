@@ -11,8 +11,10 @@ import styleCss from "./style-flight-header-css.js";
 /**
  * The auro-flight-header element displays airline, duration, and day change information.
  *
- * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`.
- * @attr {String} duration - String for the duration. `505`.
+ * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
+ * @attr {String} duration - String for the duration. `505`
+ * @attr {String} departureTime - String for the departure ISO 8601 time. `2022-04-13T12:30:00-04:00`
+ * @attr {String} arrivalTime - String for the arrival ISO 8601 time. `2022-04-13T12:30:00-04:00`
  */
 
 // build the component class

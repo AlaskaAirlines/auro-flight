@@ -15,13 +15,13 @@ import "./auro-flight-main";
 /**
  * The auro-flight element renders a DoT compliant Flight listing.
  * This design has been tested via the Alaska Legal team for legal compliance.
- * Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com.
+ * Please DO NOT modify unit tests pertaining to DoT regulations.
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
  * @attr {Number} duration - String for the duration. `505`
- * @attr {String} departureTime - String for the departure UTC time. `2022-04-13T12:30:00-04:00`
+ * @attr {String} departureTime - String for the departureISO 8601 time. `2022-04-13T12:30:00-04:00`
  * @attr {String} departureStation - String for the departure station. `SEA`
- * @attr {String} arrivalTime - String for the arrival UTC time. `2022-04-13T12:30:00-04:00`
+ * @attr {String} arrivalTime - String for the arrivalISO 8601 time. `2022-04-13T12:30:00-04:00`
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
  * @attr {String} reroutedDepartureStation - String for the new departure station for rerouted flights. `PDX`
  * @attr {String} reroutedArrivalStation - String for the new arrival station for rerouted flights. `AVP`
@@ -29,7 +29,7 @@ import "./auro-flight-main";
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
  * @slot departureHeader - Text on top of the departure station's time
  * @slot arrivalHeader - Text on top of the arrival station's time
- * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot.
+ * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot
  */
 
 // build the component class
