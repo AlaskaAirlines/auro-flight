@@ -69,7 +69,7 @@ class AuroFlightMain extends LitElement {
   convertTime(time) {
     const slicedTime = time.slice(0, -6);
     const newTime = new Date(slicedTime);
-    const localizedTime = newTime.toLocaleString('en-us', this.timeTemplate).replace(/^0+/u, '');
+    const localizedTime = newTime.toLocaleString('en-US', this.timeTemplate).replace(/^0+/u, '');
 
     return localizedTime;
   }
