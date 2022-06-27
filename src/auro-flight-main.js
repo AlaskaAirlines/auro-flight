@@ -7,8 +7,6 @@
 import { LitElement, html, css } from "lit-element";
 import styleCss from "./style-flight-main-css.js";
 
-/* eslint no-magic-numbers: ["error", { "ignore": [-6, 0] }] */
-
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
