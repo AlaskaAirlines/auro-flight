@@ -84,7 +84,7 @@ class AuroFlightMain extends LitElement {
             "departureTime": "${this.departureTime}",
             "arrivalTime": "${this.arrivalTime}",
             "estimatedFlightDuration": "${this.duration}",
-            "name": "Flight(s) ${this.flights}",
+            "name": "Flight(s) ${this.flights.join(',')}",
             "arrivalAirport": "${this.arrivalStation}",
             "departureAirport": "${this.departureStation}",
             "description": "Departs from ${this.departureStation} at ${this.convertTime(this.departureTime)}, arrives ${this.arrivalStation} at ${this.convertTime(this.arrivalTime)}"
