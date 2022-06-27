@@ -12,12 +12,14 @@ import styleCss from "./style-flight-main-css.js";
  * The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
  *
- * @attr {String} arrivalTime - UTC Time of arrival, e.g. `2022-04-13T12:30:00-04:00`
+ * @attr {String} arrivalTime - ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00`
  * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
- * @attr {String} departureTime - UTC Time of departure, e.g. `2022-04-13T12:30:00-04:00`
+ * @attr {String} departureTime - ISO 8601 time of departure, e.g. `2022-04-13T12:30:00-04:00`
  * @attr {String} departureStation - Station of departure, e.g. `PVD`
  * @attr {String} reroutedDepartureStation - Station of rerouted departure, e.g. `PDX`
  * @attr {String} reroutedArrivalStation - Station of rerouted arrival, e.g. `AVP`
+ * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
+ * @attr {Number} duration - String for the duration. `505`
  * @slot default - anticipates `<auro-flight-segment>` instances
  */
 
