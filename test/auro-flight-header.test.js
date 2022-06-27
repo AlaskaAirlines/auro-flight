@@ -35,7 +35,7 @@ describe('auro-flight-header', () => {
     await expect(el.shadowRoot.querySelector('.daysChanged')).to.equal(null);
   });
 
-  it('determines no day change +1', async () => {
+  it('determines +1 day change', async () => {
     const el = await fixture(html`
       <auro-flight-header flights='["AS 123"]' departureTime="2022-04-13T01:10:00-07:00" arrivalTime="2022-04-14T12:30:00-04:00"></auro-flight-header>
     `);
@@ -43,7 +43,7 @@ describe('auro-flight-header', () => {
     await expect(el.shadowRoot.querySelector('.daysChanged').textContent).to.equal('+1 day');
   });
 
-  it('determines no day change +2', async () => {
+  it('determines +2 day change', async () => {
     const el = await fixture(html`
       <auro-flight-header flights='["AS 123"]' departureTime="2022-04-13T01:10:00-07:00" arrivalTime="2022-04-15T12:30:00-04:00"></auro-flight-header>
     `);
