@@ -26,8 +26,8 @@
     "lit-html": "^1.4.1"
   },
   "peerDependencies": {
-    "@alaskaairux/auro-datetime": "^1.2.0",
-    "@alaskaairux/design-tokens": "^3.7.0",
+    "@alaskaairux/auro-datetime": "^1.3.0",
+    "@alaskaairux/design-tokens": "^3.9.1",
     "@alaskaairux/webcorestylesheets": "^3.7.3"
   },
   "devDependencies": {
@@ -36,8 +36,8 @@
     "@alaskaairux/icons": "^4.14.0",
     "@alaskaairux/webcorestylesheets": "^3.7.3",
     "@aurodesignsystem/eslint-config": "^1.3.0",
-    "@commitlint/cli": "^17.0.2",
-    "@commitlint/config-conventional": "^17.0.2",
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
     "@open-wc/testing": "^3.1.6",
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-node-resolve": "^13.3.0",
@@ -52,7 +52,7 @@
     "concat": "^1.0.3",
     "concurrently": "^7.2.2",
     "copyfiles": "^2.4.1",
-    "core-js": "^3.23.2",
+    "core-js": "^3.23.3",
     "eslint": "^8.18.0",
     "eslint-plugin-jsdoc": "^39.3.3",
     "husky": "^7.0.0",
