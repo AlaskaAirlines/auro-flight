@@ -76,6 +76,7 @@ class AuroFlightMain extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
+
         <script type="application/ld+json">
           {
             "@context": "https://schema.org/",
@@ -83,7 +84,7 @@ class AuroFlightMain extends LitElement {
             "departureTime": "${this.departureTime}",
             "arrivalTime": "${this.arrivalTime}",
             "estimatedFlightDuration": "${this.duration}",
-            "name": "Flight(s) ${this.flights.join(',')}",
+            "name": "Flight${this.flights.length > 1 ? 's' : ''} ${this.flights.join(',')}",
             "arrivalAirport": "${this.arrivalStation}",
             "departureAirport": "${this.departureStation}",
             "description": "Departs from ${this.departureStation} at ${this.convertTime(this.departureTime)}, arrives ${this.arrivalStation} at ${this.convertTime(this.arrivalTime)}"
