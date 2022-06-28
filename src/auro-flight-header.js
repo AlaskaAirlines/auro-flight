@@ -59,9 +59,10 @@ class AuroFlightHeader extends LitElement {
    * @returns {String} Item to display.
    */
   flightDuration() {
-    const departure = this.departureTime.slice(0, -6);
-    const arrival = this.arrivalTime.slice(0, -6);
-    const dayDiff = new Date(arrival).getDate() - new Date(departure).getDate();
+    const departure = this.departureTime.slice(0, -15);
+    const arrival = this.arrivalTime.slice(0, -15);
+    const timeDiff = new Date(arrival).getTime() - new Date(departure).getTime();
+    const dayDiff = timeDiff / (1000 * 3600 * 24);
 
     return dayDiff > 0
       ? html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`

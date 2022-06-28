@@ -76,9 +76,9 @@ This example illustrates a mainline nonstop with a next day arrival or departure
   <auro-flight
     flights='["AS 880"]'
     duration="350"
-    departureTime="2022-08-03T21:55:00-10:00"
+    departureTime="2022-05-31T21:55:00-10:00"
     departureStation="KOA"
-    arrivalTime="2022-08-04T06:45:00-07:00"
+    arrivalTime="2022-06-01T06:45:00-07:00"
     arrivalStation="SEA">
     <auro-flightline></auro-flightline>
   </auro-flight>
@@ -93,9 +93,9 @@ This example illustrates a mainline nonstop with a next day arrival or departure
 <auro-flight
   flights='["AS 880"]'
   duration="350"
-  departureTime="2022-08-03T21:55:00-10:00"
+  departureTime="2022-05-31T21:55:00-10:00"
   departureStation="KOA"
-  arrivalTime="2022-08-04T06:45:00-07:00"
+  arrivalTime="2022-06-01T06:45:00-07:00"
   arrivalStation="SEA">
   <auro-flightline></auro-flightline>
 </auro-flight>
