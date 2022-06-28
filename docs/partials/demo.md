@@ -153,7 +153,7 @@ The `<auro-flight>` custom element is accessible by screen readers by default. D
 
 ## SEO
 
-This element makes use of the data provided in the various properties to auto-generate the appropriate structured data. See the following for an example.
+This element makes use of the data provided in the various properties to auto-generate the appropriate structured data. See the following for an example. To validate the SEO content schema, please run this URL through the [Schema Markup Validator](https://developers.google.com/search/docs/advanced/structured-data).
 
 ```html
 <script type="application/ld+json">
