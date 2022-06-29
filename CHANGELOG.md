@@ -1,5 +1,35 @@
 # Semantic Release Automated Changelog
 
+# [2.0.0](https://github.com/AlaskaAirlines/auro-flight/compare/v1.2.2...v2.0.0) (2022-06-29)
+
+
+### Code Refactoring
+
+* **generator migration:** upgrade to latest generator build [#7](https://github.com/AlaskaAirlines/auro-flight/issues/7) ([5de1772](https://github.com/AlaskaAirlines/auro-flight/commit/5de1772f1ec88f185ea2900a44f14779f64028b5))
+
+
+### Features
+
+* **automate data:** add support for direct data without bff [#26](https://github.com/AlaskaAirlines/auro-flight/issues/26) [#27](https://github.com/AlaskaAirlines/auro-flight/issues/27) [#31](https://github.com/AlaskaAirlines/auro-flight/issues/31) ([f5bd86b](https://github.com/AlaskaAirlines/auro-flight/commit/f5bd86bd8b4d12df70edbb4d792f81e197e3be5d))
+
+
+### BREAKING CHANGES
+
+* **automate data:** This feature update removes the need to convert data to
+a human readable string for use in the element. Users may now pass in
+data directly from the flight API and the element will make the
+necessary conversions. See the following API changes.
+
+1. daysChanged is deprecated
+2. duration requires number of minutes for the flight
+3. departureTime and arrivalTime only require the full time stamp
+
+Changes to be committed:
+modified:   src/auro-flight-header.js
+modified:   src/auro-flight-main.js
+modified:   src/auro-flight.js
+* **generator migration:** This PR includes a change in the npm namespace for the element.
+
 ## [1.2.2](https://github.com/AlaskaAirlines/auro-flight/compare/v1.2.1...v1.2.2) (2022-01-10)
 
 

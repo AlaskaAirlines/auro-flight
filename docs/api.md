@@ -51,9 +51,9 @@ Please DO NOT modify unit tests pertaining to DoT regulations.
 |----------------------------|----------------------------|-----------|---------|--------------------------------------------------|
 | `ariaHidden`               | `ariaHidden`               | `Boolean` | false   | When `true` element will be hidden from screen readers |
 | `arrivalStation`           | `arrivalStation`           | `String`  |         | String for the arrival station. `PVD`            |
-| `arrivalTime`              | `arrivalTime`              | `String`  |         | String for the arrivalISO 8601 time. `2022-04-13T12:30:00-04:00` |
+| `arrivalTime`              | `arrivalTime`              | `String`  |         | String for the arrival ISO 8601 time. `2022-04-13T12:30:00-04:00` |
 | `departureStation`         | `departureStation`         | `String`  |         | String for the departure station. `SEA`          |
-| `departureTime`            | `departureTime`            | `String`  |         | String for the departureISO 8601 time. `2022-04-13T12:30:00-04:00` |
+| `departureTime`            | `departureTime`            | `String`  |         | String for the departure ISO 8601 time. `2022-04-13T12:30:00-04:00` |
 | `duration`                 | `duration`                 | `Number`  |         | String for the duration. `505`                   |
 | `flights`                  | `flights`                  | `Array`   |         | Array of flight numbers `['AS 123', 'EK 432']`   |
 | `reroutedArrivalStation`   | `reroutedArrivalStation`   | `String`  |         | String for the new arrival station for rerouted flights. `AVP` |
