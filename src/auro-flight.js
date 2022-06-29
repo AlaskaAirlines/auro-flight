@@ -19,9 +19,9 @@ import "./auro-flight-main";
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
  * @attr {Number} duration - String for the duration. `505`
- * @attr {String} departureTime - String for the departureISO 8601 time. `2022-04-13T12:30:00-04:00`
+ * @attr {String} departureTime - String for the departure ISO 8601 time. `2022-04-13T12:30:00-04:00`
  * @attr {String} departureStation - String for the departure station. `SEA`
- * @attr {String} arrivalTime - String for the arrivalISO 8601 time. `2022-04-13T12:30:00-04:00`
+ * @attr {String} arrivalTime - String for the arrival ISO 8601 time. `2022-04-13T12:30:00-04:00`
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
  * @attr {String} reroutedDepartureStation - String for the new departure station for rerouted flights. `PDX`
  * @attr {String} reroutedArrivalStation - String for the new arrival station for rerouted flights. `AVP`
