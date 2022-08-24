@@ -5,7 +5,7 @@ describe('auro-flight-main', () => {
 
   it('auro-flight-main is accessible', async () => {
     const el = await fixture(html`
-      <auro-flight-main departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA" arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD" flights='["AS 1436"]'></auro-flight-main>
+      <auro-flight-main departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA" arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD" flights='["AS 1436"]' reroutedArrivalStation={null} reroutedDepartureStation={null}></auro-flight-main>
     `);
 
     await expect(el).to.be.accessible();
@@ -13,7 +13,7 @@ describe('auro-flight-main', () => {
 
   it('auro-flight-main fills in information as expected', async () => {
     const el = await fixture(html`
-      <auro-flight-main departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA" arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD" flights='["AS 1436"]'></auro-flight-main>
+      <auro-flight-main departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA" arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD" flights='["AS 1436"]' reroutedArrivalStation="{null}" reroutedDepartureStation={null}></auro-flight-main>
     `);
 
     await expect(el.shadowRoot.querySelector('.departureTime').querySelector('auro-datetime').getAttribute('setDate')).to.equal('2022-05-04T00:30:00-07:00');

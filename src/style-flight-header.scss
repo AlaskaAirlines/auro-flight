@@ -4,13 +4,15 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables";
+@import "./node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties";
 
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/core';
+@import "./node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints";
+@import "./node_modules/@alaskaairux/webcorestylesheets/dist/core";
+@import "./node_modules/@alaskaairux/webcorestylesheets/dist/utilityClasses/displayProperties";
 
 // Support for auroElement styles
-// @import './../node_modules/@alaskaairux/orion-web-core-style-sheets/dist/auroElement/auroElement';
+// @import "./node_modules/@alaskaairux/orion-web-core-style-sheets/dist/auroElement/auroElement";
 
 // container styles - defines the look of the outer custom component
 // :host {
@@ -20,6 +22,7 @@
 // layout styles - define any layout specifications for UI that is contained WITHIN the component
 // never define layout that would cause effect on element outside the scope of this component
 
+
 // component shape styles
 // .auro-flight {
 //   ...
@@ -28,13 +31,13 @@
 :host {
   display: flex;
   justify-content: space-between;
-  padding-bottom: var(--auro-size-xxs);
-  color: var(--auro-color-text-secondary-on-light);
   font-size: var(--auro-text-body-size-default);
+  color: var(--auro-color-text-secondary-on-light);
+  padding-bottom: var(--auro-size-xxs);
 }
 
 .daysChanged {
   align-self: flex-end;
-  padding-left: var(--auro-size-sm);
   color: var(--auro-color-brand-canyon-500);
+  padding-left: var(--auro-size-sm);
 }

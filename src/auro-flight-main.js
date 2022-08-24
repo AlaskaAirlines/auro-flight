@@ -5,38 +5,43 @@
 
 // If use litElement base class
 import { LitElement, html, css } from "lit-element";
+
+// Import touch detection lib
+import "focus-visible/dist/focus-visible.min.js";
 import styleCss from "./style-flight-main-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
+ * auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
  *
- * @attr {String} arrivalTime - ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00`
+ * @attr {String} arrivalTime - Time of arrival, e.g. `9:06 pm`
  * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
- * @attr {String} departureTime - ISO 8601 time of departure, e.g. `2022-04-13T12:30:00-04:00`
+ * @attr {String} departureTime - Time of departure, e.g. `5:36 am`
  * @attr {String} departureStation - Station of departure, e.g. `PVD`
  * @attr {String} reroutedDepartureStation - Station of rerouted departure, e.g. `PDX`
  * @attr {String} reroutedArrivalStation - Station of rerouted arrival, e.g. `AVP`
- * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
- * @attr {Number} duration - String for the duration. `505`
  * @slot default - anticipates `<auro-flight-segment>` instances
  */
 
 // build the component class
 class AuroFlightMain extends LitElement {
 
+  // constructor() {
+  //   super();
+  // }
+
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      arrivalTime:      { type: String },
-      arrivalStation:   { type: String },
-      departureTime:    { type: String },
-      departureStation: { type: String },
+      flights:                  { type: String },
+      duration:                 { type: String },
+      arrivalTime:              { type: String },
+      arrivalStation:           { type: String },
+      departureTime:            { type: String },
+      departureStation:         { type: String },
       reroutedDepartureStation: { type: String },
-      reroutedArrivalStation: { type: String },
-      duration:         { type: Number },
-      flights:          { type: Array }
+      reroutedArrivalStation:   { type: String }
     };
   }
 
@@ -46,8 +51,8 @@ class AuroFlightMain extends LitElement {
     `;
   }
 
-  constructor() {
-    super();
+  connectedCallback() {
+    super.connectedCallback();
 
     /**
      * Time template object used by convertTime() method.
@@ -55,6 +60,7 @@ class AuroFlightMain extends LitElement {
     this.timeTemplate = {
       hour: "2-digit",
       minute: "2-digit",
+      timeZone: this.timeZone
     };
 
     this.template = {};
@@ -62,21 +68,34 @@ class AuroFlightMain extends LitElement {
 
   /**
    * @private
-   * @param {string} time - UTC time.
+   * @param {*string} time
    * @returns Localized time based from UTC string.
    */
   convertTime(time) {
-    const slicedTime = time.slice(0, -6);
-    const newTime = new Date(slicedTime);
-    const localizedTime = newTime.toLocaleString('en-US', this.timeTemplate).replace(/^0+/u, '');
+    let newTime = new Date();
+
+    this.timeTemplate.timeZone = 'UTC';
+    newTime = new Date(time);
+
+    let localizedTime = newTime.toLocaleString('en-us', this.timeTemplate).replace(/^0+/u, '');
 
     return localizedTime;
   }
 
-  // function that renders the HTML and CSS into  the scope of the component
+  /**
+   * @private
+   * @param {string} station
+   * @returns mutated string
+   */
+  readStation(station) {
+    return Array.from(station).join(' ');
+  }
+
+//the answer in both cases will be 3
+
+  // Maintain content polarity between text read by screen reader and visual content.
   render() {
     return html`
-
         <script type="application/ld+json">
           {
             "@context": "https://schema.org/",
@@ -84,42 +103,50 @@ class AuroFlightMain extends LitElement {
             "departureTime": "${this.departureTime}",
             "arrivalTime": "${this.arrivalTime}",
             "estimatedFlightDuration": "${this.duration}",
-            "name": "Flight${this.flights.length > 1 ? 's' : ''} ${this.flights.join(',')}",
+            "name": "Flight(s) ${this.flights}",
             "arrivalAirport": "${this.arrivalStation}",
             "departureAirport": "${this.departureStation}",
             "description": "Departs from ${this.departureStation} at ${this.convertTime(this.departureTime)}, arrives ${this.arrivalStation} at ${this.convertTime(this.arrivalTime)}"
           }
         </script>
+        <div class="util_displayHiddenVisually" style="width: 100%">
+          ${this.reroutedDepartureStation !== 'undefined' ? `Flight ${this.readStation(this.reroutedDepartureStation)} to ${this.readStation(this.reroutedArrivalStation)} has been re-routed.` : ''}
+          ${`${this.reroutedDepartureStation !== 'undefined' ? 'The flight now departs ' : 'Departs '} from ${this.readStation(this.departureStation)} at ${this.convertTime(this.departureTime)}, arrives ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)}`}
+        </div>
 
-        <div class="departure">
+        <div class="departure" aria-hidden="true">
           <time class="departureTime">
-            <auro-datetime type="tzTime" setDate="${this.departureTime}"></auro-datetime>
+            <auro-datetime type="time" utc="${this.departureTime}"></auro-datetime>
           </time>
           <span class="departureStation">
-            ${this.reroutedDepartureStation === "undefined" ? html`` : html`
-              <span class="util_lineThrough">
-                ${this.reroutedDepartureStation}
-              </span>
-            `}
-
-            ${this.departureStation}
+            ${this.reroutedDepartureStation === 'undefined'
+              ? html``
+              : html`
+                <span class="util_lineThrough">
+                  ${this.reroutedDepartureStation}
+                </span>
+              `
+            }
+            <span>${this.departureStation}</span>
           </span>
         </div>
         <div class="slotContainer">
           <slot></slot>
         </div>
-        <div class="arrival">
+        <div class="arrival" aria-hidden="true">
           <time class="arrivalTime">
-            <auro-datetime type="tzTime" setDate="${this.arrivalTime}"></auro-datetime>
+            <auro-datetime type="time" utc="${this.arrivalTime}"></auro-datetime>
           </time>
           <span class="arrivalStation">
-            ${this.reroutedArrivalStation === "undefined" ? html`` : html`
-            <span class="util_lineThrough">
-              ${this.reroutedArrivalStation}
-            </span>
-            `}
-
-            ${this.arrivalStation}
+            ${this.reroutedArrivalStation === 'undefined'
+              ? html``
+              : html`
+                <span class="util_lineThrough">
+                  ${this.reroutedArrivalStation}
+                </span>
+              `
+            }
+            <span>${this.arrivalStation}</span>
           </span>
         </div>
     `;

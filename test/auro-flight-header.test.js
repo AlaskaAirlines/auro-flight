@@ -16,7 +16,7 @@ describe('auro-flight-header', () => {
       <auro-flight-header flights='["AS 123", "EK 432"]' duration="180" departureTime="2022-05-04T01:55:00-09:00" arrivalTime="2022-05-04T03:55:00-09:00"></auro-flight-header>
     `);
 
-    await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n        Multiple flights\n      ');
+    await expect(el.shadowRoot.querySelector('span').textContent).to.equal('Multiple flights');
   });
 
   it('auro-flight-header says the flight number when flights.length == 1', async () => {
@@ -24,7 +24,7 @@ describe('auro-flight-header', () => {
       <auro-flight-header flights='["AS 123"]' duration="180" departureTime="2022-05-04T01:55:00-09:00" arrivalTime="2022-05-04T03:55:00-09:00"></auro-flight-header>
     `);
 
-    await expect(el.shadowRoot.querySelector('span').textContent).to.equal('\n        AS 123\n      ');
+    await expect(el.shadowRoot.querySelector('span').textContent).to.equal('Flight A S   1 2 3');
   });
 
   it('determines no day change', async () => {
