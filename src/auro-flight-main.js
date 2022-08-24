@@ -109,12 +109,7 @@ class AuroFlightMain extends LitElement {
             "description": "Departs from ${this.departureStation} at ${this.convertTime(this.departureTime)}, arrives ${this.arrivalStation} at ${this.convertTime(this.arrivalTime)}"
           }
         </script>
-        <div class="util_displayHiddenVisually" style="width: 100%">
-          ${this.reroutedDepartureStation !== 'undefined' ? `Flight ${this.readStation(this.reroutedDepartureStation)} to ${this.readStation(this.reroutedArrivalStation)} has been re-routed.` : ''}
-          ${`${this.reroutedDepartureStation !== 'undefined' ? 'The flight now departs ' : 'Departs '} from ${this.readStation(this.departureStation)} at ${this.convertTime(this.departureTime)}, arrives ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)}`}
-        </div>
-
-        <div class="departure" aria-hidden="true">
+        <div class="departure">
           <time class="departureTime">
             <auro-datetime type="time" utc="${this.departureTime}"></auro-datetime>
           </time>
@@ -133,7 +128,7 @@ class AuroFlightMain extends LitElement {
         <div class="slotContainer">
           <slot></slot>
         </div>
-        <div class="arrival" aria-hidden="true">
+        <div class="arrival">
           <time class="arrivalTime">
             <auro-datetime type="time" utc="${this.arrivalTime}"></auro-datetime>
           </time>

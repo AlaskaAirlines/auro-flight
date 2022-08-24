@@ -33,6 +33,7 @@ This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
     departureStation="SEA"
     arrivalTime="2022-04-13T12:30:00-04:00"
     arrivalStation="EWR"
+    ariaHidden="true"
     >
     <auro-flightline></auro-flightline>
   </auro-flight>
@@ -50,6 +51,7 @@ This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
     departureStation="SEA"
     arrivalTime="2022-04-13T12:30:00-04:00"
     arrivalStation="EWR"
+    ariaHidden="true"
     >
     <auro-flightline></auro-flightline>
   </auro-flight>
@@ -69,8 +71,11 @@ This example illustrates a mainline nonstop with a next day arrival or departure
     departureStation="KOA"
     arrivalTime="2022-04-07T00:15:00-07:00"
     arrivalStation="SEA"
+    ariaHidden="true"
     >
-      <auro-flightline></auro-flightline>
+      <auro-flightline>
+        <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+      </auro-flightline>
     </auro-flight>
 </div>
 
@@ -85,8 +90,11 @@ This example illustrates a mainline nonstop with a next day arrival or departure
     departureStation="KOA"
     arrivalTime="2022-04-07T00:15:00-07:00"
     arrivalStation="SEA"
+    ariaHidden="true"
     >
-    <auro-flightline></auro-flightline>
+    <auro-flightline>
+      <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+    </auro-flightline>
   </auro-flight>
   ```
 

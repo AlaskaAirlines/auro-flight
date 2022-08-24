@@ -47,16 +47,16 @@ class AuroFlight extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      flights:             { type: Array },
-      duration:            { type: Number },
-      daysChanged:         { type: Number },
-      departureTime:       { type: String },
-      departureStation:    { type: String },
-      arrivalTime:         { type: String },
-      arrivalStation:      { type: String },
-      reroutedArrivalStation:   { type: String },
+      flights: { type: Array },
+      duration: { type: Number },
+      daysChanged: { type: Number },
+      departureTime: { type: String },
+      departureStation: { type: String },
+      arrivalTime: { type: String },
+      arrivalStation: { type: String },
+      reroutedArrivalStation: { type: String },
       reroutedDepartureStation: { type: String },
-      ariaHidden:          { type: Boolean },
+      ariaHidden: { type: Boolean },
 
     };
   }
@@ -88,19 +88,23 @@ class AuroFlight extends LitElement {
    * @returns {string} Number converted to hours and min string for UI.
    */
   convertDuration(duration) {
-    return `${parseInt(duration / 60)}h ${parseInt(duration % 60) === 0 ? '' : parseInt(duration % 60)+'m'}`
+    return `${parseInt(duration / 60)}h ${parseInt(duration % 60) === 0 ? '' : parseInt(duration % 60) + 'm'}`
   }
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
+    //   <div class="util_displayHiddenVisually" style="width: 100%">
+    //   ${this.reroutedDepartureStation !== 'undefined' ? `Flight ${this.readStation(this.reroutedDepartureStation)} to ${this.readStation(this.reroutedArrivalStation)} has been re-routed.` : ''}
+    //   ${`${this.reroutedDepartureStation !== 'undefined' ? 'The flight now departs ' : 'Departs '} from ${this.readStation(this.departureStation)} at ${this.convertTime(this.departureTime)}, arrives ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)}`}
+    // </div>
     return html`
-
-      <section aria-hidden="${this.ariaHidden}">
+      <section>
         <auro-flight-header
           flights=${JSON.stringify(this.flights)}
           duration=${this.convertDuration(this.duration)}
           departureTime=${this.departureTime}
           arrivalTime=${this.arrivalTime}
+          aria-hidden="true"
         >
         </auro-flight-header>
         <div class="headerContainer">
@@ -116,10 +120,11 @@ class AuroFlight extends LitElement {
           departureStation=${this.departureStation}
           reroutedArrivalStation=${this.reroutedArrivalStation}
           reroutedDepartureStation=${this.reroutedDepartureStation}
+          aria-hidden="true"
         >
           <slot></slot>
         </auro-flight-main>
-        <footer class="flightFooter" id="flightFooter">
+        <footer class="flightFooter" id="flightFooter" aria-hidden="true">
           <slot name="footer" id="footer"></slot>
         </footer>
       </section>

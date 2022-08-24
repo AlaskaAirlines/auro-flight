@@ -29,7 +29,7 @@ class AuroFlightHeader extends LitElement {
       flights:      { type: Array },
       duration:     { type: String },
       departureTime:{ type: String },
-      arrivalTime:  { type: String }
+      arrivalTime:  { type: String },
     };
   }
 
@@ -74,14 +74,11 @@ class AuroFlightHeader extends LitElement {
   // Maintain content polarity between text read by screen reader and visual content.
   render() {
     return html`
-      <span class="util_displayHiddenVisually" style="width: 50%">${`${this.flightType().includes('flights') ? this.flightType() : 'Flight ' +  this.readFlight(this.flightType())}`}</span>
-
-      <span class="flight" aria-hidden="true">
+      <span class="flight">
         ${this.flightType()}
       </span>
       <div>
-        <span class="util_displayHiddenVisually" style="width: 50%">${`Duration ${this.duration}`}</span>
-        <time class="duration" aria-hidden="true">${this.duration}</time>
+        <time class="duration">${this.duration}</time>
         ${this.flightDuration()}
       </div>
     `;
