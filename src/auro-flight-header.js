@@ -30,6 +30,8 @@ class AuroFlightHeader extends LitElement {
       duration:     { type: String },
       departureTime:{ type: String },
       arrivalTime:  { type: String },
+      reroutedDepartureStation: { type: String },
+      reroutedArrivalStation:   { type: String }
     };
   }
 
@@ -59,7 +61,7 @@ class AuroFlightHeader extends LitElement {
    * @private
    * @returns {String} item to display
    */
-  flightDuration() {
+  setChangeOfDayLabel() {
     const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
 
     return dayDiff > 0
@@ -71,16 +73,30 @@ class AuroFlightHeader extends LitElement {
     return Array.from(flight).join(' ');
   }
 
+  /**
+   * @private
+   * @returns composed screen reader summary
+  */
+  composeScreenReaderSummary(){
+    return html`
+      ${this.flightType().includes('flights') ? 
+        this.flightType() : 
+        `Flight ${this.readFlight(this.flightType())}, nonstop` 
+      },
+      Duration: ${this.duration}
+    `;
+  }
+
   // Maintain content polarity between text read by screen reader and visual content.
   render() {
     return html`
-      <span class="flight">
+      <p class="util_displayHiddenVisually" style="width: 100%">
+        ${this.composeScreenReaderSummary()}  
+      </p>
+      <span class="flight" aria-hidden="true">
         ${this.flightType()}
       </span>
-      <div>
-        <time class="duration">${this.duration}</time>
-        ${this.flightDuration()}
-      </div>
+      <time class="duration" aria-hidden="true">${this.duration}${this.setChangeOfDayLabel()}</time>
     `;
   }
 }
