@@ -99,7 +99,7 @@ class AuroFlightMain extends LitElement {
   */
   composeScreenReaderSummary(){
     return html`
-      ${!this.reroutedDepartureStation ? 
+      ${this.reroutedDepartureStation === 'undefined'? 
         `Departs from ${this.readStation(this.departureStation)} 
           at ${this.convertTime(this.departureTime)}, 
           arrives ${this.readStation(this.arrivalStation)} 
