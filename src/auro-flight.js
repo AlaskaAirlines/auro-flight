@@ -37,13 +37,6 @@ import "./auro-flight-main";
 
 // build the component class
 class AuroFlight extends LitElement {
-
-  constructor() {
-    super();
-
-    this.ariaHidden = false;
-  }
-
   // function to define props used within the scope of this component
   static get properties() {
     return {
@@ -57,7 +50,6 @@ class AuroFlight extends LitElement {
       reroutedArrivalStation: { type: String },
       reroutedDepartureStation: { type: String },
       ariaHidden: { type: Boolean },
-
     };
   }
 
@@ -79,6 +71,9 @@ class AuroFlight extends LitElement {
       return slotWrapper.classList.remove("flightFooter");
     }
 
+    console.log("🚀 ~ file: auro-flight.js ~ line 75 ~ AuroFlight ~ firstUpdated ~ this.reroutedArrivalStation", this.reroutedArrivalStation)
+    console.log("🚀 ~ file: auro-flight.js ~ line 75 ~ AuroFlight ~ firstUpdated ~ this.reroutedDepartureStation", this.reroutedDepartureStation)
+
     return null
   }
 
@@ -93,10 +88,6 @@ class AuroFlight extends LitElement {
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
-    //   <div class="util_displayHiddenVisually" style="width: 100%">
-    //   ${this.reroutedDepartureStation !== 'undefined' ? `Flight ${this.readStation(this.reroutedDepartureStation)} to ${this.readStation(this.reroutedArrivalStation)} has been re-routed.` : ''}
-    //   ${`${this.reroutedDepartureStation !== 'undefined' ? 'The flight now departs ' : 'Departs '} from ${this.readStation(this.departureStation)} at ${this.convertTime(this.departureTime)}, arrives ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)}`}
-    // </div>
     return html`
       <section>
         <auro-flight-header
@@ -104,7 +95,6 @@ class AuroFlight extends LitElement {
           duration=${this.convertDuration(this.duration)}
           departureTime=${this.departureTime}
           arrivalTime=${this.arrivalTime}
-          aria-hidden="true"
         >
         </auro-flight-header>
         <div class="headerContainer">
@@ -120,7 +110,6 @@ class AuroFlight extends LitElement {
           departureStation=${this.departureStation}
           reroutedArrivalStation=${this.reroutedArrivalStation}
           reroutedDepartureStation=${this.reroutedDepartureStation}
-          aria-hidden="true"
         >
           <slot></slot>
         </auro-flight-main>

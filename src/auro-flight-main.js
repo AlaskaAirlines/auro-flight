@@ -31,25 +31,6 @@ class AuroFlightMain extends LitElement {
   //   super();
   // }
 
-  // function to define props used within the scope of this component
-  static get properties() {
-    return {
-      flights:                  { type: String },
-      duration:                 { type: String },
-      arrivalTime:              { type: String },
-      arrivalStation:           { type: String },
-      departureTime:            { type: String },
-      departureStation:         { type: String },
-      reroutedDepartureStation: { type: String },
-      reroutedArrivalStation:   { type: String }
-    };
-  }
-
-  static get styles() {
-    return css`
-      ${styleCss}
-    `;
-  }
 
   connectedCallback() {
     super.connectedCallback();
@@ -82,19 +63,61 @@ class AuroFlightMain extends LitElement {
     return localizedTime;
   }
 
+
   /**
    * @private
    * @param {string} station
    * @returns mutated string
-   */
-  readStation(station) {
+  */
+   readStation(station) {
     return Array.from(station).join(' ');
+  }
+
+  // function to define props used within the scope of this component
+  static get properties() {
+    return {
+      flights:                  { type: String },
+      duration:                 { type: String },
+      arrivalTime:              { type: String },
+      arrivalStation:           { type: String },
+      departureTime:            { type: String },
+      departureStation:         { type: String },
+      reroutedDepartureStation:   { type: String },
+      reroutedArrivalStation:   { type: String }
+    };
+  }
+
+  static get styles() {
+    return css`
+      ${styleCss}
+    `;
+  }
+
+     /**
+   * @private
+   * @returns composed screen reader summary
+  */
+  composeScreenReaderSummary(){
+    return html`
+      ${this.reroutedDepartureStation === 'undefined'? 
+        `Departs from ${this.readStation(this.departureStation)} 
+          at ${this.convertTime(this.departureTime)}, 
+          arrives ${this.readStation(this.arrivalStation)} 
+          at ${this.convertTime(this.arrivalTime)}` :
+        `Flight ${this.readStation(this.reroutedDepartureStation)} to 
+          ${this.readStation(this.reroutedArrivalStation)} has been re-routed. 
+          The flight now departs from ${this.readStation(this.departureStation)}
+          at ${this.convertTime(this.departureTime)}, and arrives 
+          ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)} 
+      `}
+    `;
   }
 
 //the answer in both cases will be 3
 
   // Maintain content polarity between text read by screen reader and visual content.
   render() {
+    // ${this.reroutedDepartureStation !== 'undefined' ? `Flight ${this.readStation(this.reroutedDepartureStation)} to ${this.readStation(this.reroutedArrivalStation)} has been re-routed.` : ''}
     return html`
         <script type="application/ld+json">
           {
@@ -109,7 +132,10 @@ class AuroFlightMain extends LitElement {
             "description": "Departs from ${this.departureStation} at ${this.convertTime(this.departureTime)}, arrives ${this.arrivalStation} at ${this.convertTime(this.arrivalTime)}"
           }
         </script>
-        <div class="departure">
+        <div class="util_displayHiddenVisually" style="width: 100%">
+          ${this.composeScreenReaderSummary()}
+        </div>
+        <div class="departure" aria-hidden="true">
           <time class="departureTime">
             <auro-datetime type="time" utc="${this.departureTime}"></auro-datetime>
           </time>
@@ -128,7 +154,7 @@ class AuroFlightMain extends LitElement {
         <div class="slotContainer">
           <slot></slot>
         </div>
-        <div class="arrival">
+        <div class="arrival" aria-hidden="true">
           <time class="arrivalTime">
             <auro-datetime type="time" utc="${this.arrivalTime}"></auro-datetime>
           </time>
