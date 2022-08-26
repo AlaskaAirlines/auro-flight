@@ -102,7 +102,6 @@ class AuroFlightMain extends LitElement {
   composeScreenReaderSummary() {
     const isNonstop = !!this.stops; 
     const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
-    console.log(dayDiff)
     const layoverStopoverStringArray = this.stops?.length > 0 ? this.stops?.map((segment, idx) => {
       return html`
       with a ${segment.isStopover ? "stop" : "layover"} in ${segment.arrivalStation} ${segment.duration ? `for ${segment.duration}` : ""} ${idx === this.stops.length - 2 ? "and" 
