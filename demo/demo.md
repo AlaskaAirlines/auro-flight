@@ -280,7 +280,7 @@ This example illustrates a mainline nonstop with a next day arrival or departure
     reroutedArrivalStation="PAE"
     >
     <auro-flightline>
-      <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+      <auro-flight-segment iata="LAX" duration="1h 35m"></auro-flight-segment>
     </auro-flightline>
   </auro-flight>
   ```

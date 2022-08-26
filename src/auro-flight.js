@@ -83,6 +83,8 @@ class AuroFlight extends LitElement {
    * @returns {string} Number converted to hours and min string for UI.
    */
   convertDuration(duration) {
+   // console.log(JSON.stringify(this.stops))
+
     return `${parseInt(duration / 60)}h ${parseInt(duration % 60) === 0 ? '' : parseInt(duration % 60) + 'm'}`
   }
 
@@ -95,6 +97,7 @@ class AuroFlight extends LitElement {
           duration=${this.convertDuration(this.duration)}
           departureTime=${this.departureTime}
           arrivalTime=${this.arrivalTime}
+          isNonstop=${!!this.stops}
         >
         </auro-flight-header>
         <div class="headerContainer">
