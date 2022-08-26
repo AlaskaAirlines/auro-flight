@@ -121,7 +121,7 @@ class AuroFlightMain extends LitElement {
           ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)} 
       `}
       ${dayDiff > 0 ? dayDiff === 1 ? " next day" : ` ${dayDiff} days later` : ""}
-      ${isNotNonstop ? ", nonstop" : layoverStopoverStringArray}.
+      ${isNotNonstop ? layoverStopoverStringArray : ", nonstop"}.
 
     `;
   }
