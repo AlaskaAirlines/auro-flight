@@ -61,7 +61,7 @@ class AuroFlightHeader extends LitElement {
    * @private
    * @returns {String} item to display
    */
-  setChangeOfDayLabel() {
+   flightDuration() {
     const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
 
     return dayDiff > 0
@@ -96,7 +96,10 @@ class AuroFlightHeader extends LitElement {
       <span class="flight" aria-hidden="true">
         ${this.flightType()}
       </span>
-      <time class="duration" aria-hidden="true">${this.duration}${this.setChangeOfDayLabel()}</time>
+      <div>
+      <time class="duration">${this.duration}</time>
+      ${this.flightDuration()}
+    </div>
     `;
   }
 }
