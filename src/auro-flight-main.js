@@ -21,6 +21,7 @@ import styleCss from "./style-flight-main-css.js";
  * @attr {String} departureStation - Station of departure, e.g. `PVD`
  * @attr {String} reroutedDepartureStation - Station of rerouted departure, e.g. `PDX`
  * @attr {String} reroutedArrivalStation - Station of rerouted arrival, e.g. `AVP`
+ * @attr {Array} stops - Flight segment list that includes duration and departure station, and if it is a stop over
  * @slot default - anticipates `<auro-flight-segment>` instances
  */
 
@@ -69,21 +70,22 @@ class AuroFlightMain extends LitElement {
    * @param {string} station
    * @returns mutated string
   */
-   readStation(station) {
+  readStation(station) {
     return Array.from(station).join(' ');
   }
 
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      flights:                  { type: String },
-      duration:                 { type: String },
-      arrivalTime:              { type: String },
-      arrivalStation:           { type: String },
-      departureTime:            { type: String },
-      departureStation:         { type: String },
-      reroutedDepartureStation:   { type: String },
-      reroutedArrivalStation:   { type: String }
+      flights: { type: String },
+      duration: { type: String },
+      arrivalTime: { type: String },
+      arrivalStation: { type: String },
+      departureTime: { type: String },
+      departureStation: { type: String },
+      reroutedDepartureStation: { type: String },
+      reroutedArrivalStation: { type: String },
+      stops: { type: Array }
     };
   }
 
@@ -93,13 +95,22 @@ class AuroFlightMain extends LitElement {
     `;
   }
 
-     /**
-   * @private
-   * @returns composed screen reader summary
-  */
-  composeScreenReaderSummary(){
+  /**
+* @private
+* @returns composed screen reader summary
+*/
+  composeScreenReaderSummary() {
+    //const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
+    console.log(this.stops)
+    const layoverStopoverStringArray = this.stops?.length > 0 ? this.stops?.map((segment, idx) => {
+      console.log(segment)
+      return html`
+      with a ${segment.isStopover ? "stop" : "layover"} in ${segment.arrivalStation} ${segment.duration ? `for ${segment.duration}` : ""} ${idx === this.stops.length - 2 ? "and" 
+        : idx === this.stops.length - 1 ? "" : ","
+      }`
+    }) : ""
     return html`
-      ${this.reroutedDepartureStation === 'undefined'? 
+      ${this.reroutedDepartureStation === 'undefined' ?
         `Departs from ${this.readStation(this.departureStation)} 
           at ${this.convertTime(this.departureTime)}, 
           arrives ${this.readStation(this.arrivalStation)} 
@@ -110,10 +121,11 @@ class AuroFlightMain extends LitElement {
           at ${this.convertTime(this.departureTime)}, and arrives 
           ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)} 
       `}
+      ${layoverStopoverStringArray}.
     `;
   }
 
-//the answer in both cases will be 3
+  //the answer in both cases will be 3
 
   // Maintain content polarity between text read by screen reader and visual content.
   render() {
@@ -141,17 +153,17 @@ class AuroFlightMain extends LitElement {
           </time>
           <span class="departureStation">
             ${this.reroutedDepartureStation === 'undefined'
-              ? html``
-              : html`
+        ? html``
+        : html`
                 <span class="util_lineThrough">
                   ${this.reroutedDepartureStation}
                 </span>
               `
-            }
+      }
             <span>${this.departureStation}</span>
           </span>
         </div>
-        <div class="slotContainer">
+        <div class="slotContainer" aria-hidden="true">
           <slot></slot>
         </div>
         <div class="arrival" aria-hidden="true">
@@ -160,13 +172,13 @@ class AuroFlightMain extends LitElement {
           </time>
           <span class="arrivalStation">
             ${this.reroutedArrivalStation === 'undefined'
-              ? html``
-              : html`
+        ? html``
+        : html`
                 <span class="util_lineThrough">
                   ${this.reroutedArrivalStation}
                 </span>
               `
-            }
+      }
             <span>${this.arrivalStation}</span>
           </span>
         </div>

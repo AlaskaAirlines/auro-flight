@@ -31,7 +31,8 @@ class AuroFlightHeader extends LitElement {
       departureTime:{ type: String },
       arrivalTime:  { type: String },
       reroutedDepartureStation: { type: String },
-      reroutedArrivalStation:   { type: String }
+      reroutedArrivalStation:   { type: String },
+      isNonstop: { type: Boolean }
     };
   }
 
@@ -81,7 +82,7 @@ class AuroFlightHeader extends LitElement {
     return html`
       ${this.flightType().includes('flights') ? 
         this.flightType() : 
-        `Flight ${this.readFlight(this.flightType())}, nonstop` 
+        `Flight ${this.readFlight(this.flightType())}, ${this.isNonstop ? "nonstop" : ""}` 
       },
       Duration: ${this.duration}
     `;
