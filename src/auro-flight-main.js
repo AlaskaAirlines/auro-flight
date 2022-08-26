@@ -150,7 +150,7 @@ class AuroFlightMain extends LitElement {
         </div>
         <div class="departure" aria-hidden="true">
           <time class="departureTime">
-            <auro-datetime type="time" utc="${this.departureTime}"></auro-datetime>
+            <auro-datetime type="tzTime" setDate="${this.departureTime}"></auro-datetime>
           </time>
           <span class="departureStation">
             ${this.reroutedDepartureStation === 'undefined'
@@ -169,7 +169,7 @@ class AuroFlightMain extends LitElement {
         </div>
         <div class="arrival" aria-hidden="true">
           <time class="arrivalTime">
-            <auro-datetime type="time" utc="${this.arrivalTime}"></auro-datetime>
+            <auro-datetime type="tzTime" setDate="${this.arrivalTime}"></auro-datetime>
           </time>
           <span class="arrivalStation">
             ${this.reroutedArrivalStation === 'undefined'
