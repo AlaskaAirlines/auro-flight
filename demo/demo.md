@@ -59,9 +59,9 @@ This example illustrates a mainline nonstop flight from SEA to EWR (SEAEWR)
 
 </auro-accordion>
 
-### Mainline next day arrival/departure
+### Mainline next day arrival/departure with Stop
 
-This example illustrates a mainline nonstop with a next day arrival or departure from KOA to SEA (KOASEA)
+This example illustrates a mainline with a stop and a next day arrival or departure from KOA to SEA (KOASEA)
 
 <div class="exampleWrapper">
   <auro-flight
@@ -72,9 +72,20 @@ This example illustrates a mainline nonstop with a next day arrival or departure
     arrivalTime="2022-04-07T00:15:00-07:00"
     arrivalStation="SEA"
     ariaHidden="true"
+    stops='[{
+      "arrivalStation": "LAX",
+      "duration": "1h 35m",
+      "isStopover": false
+      },
+      {
+      "arrivalStation": "SFO",
+      "duration": "1hr 42m",
+      "isStopover": true
+    }]'
     >
       <auro-flightline>
-        <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+        <auro-flight-segment iata="LAX" duration="1h 35m" stopover></auro-flight-segment>
+         <auro-flight-segment iata="SFO" duration="1hr 42m"></auro-flight-segment>
       </auro-flightline>
     </auro-flight>
 </div>
@@ -93,7 +104,97 @@ This example illustrates a mainline nonstop with a next day arrival or departure
     ariaHidden="true"
     >
     <auro-flightline>
-      <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+      <auro-flight-segment iata="LAX" duration="1h 35m"></auro-flight-segment>
+    </auro-flightline>
+  </auro-flight>
+  ```
+
+</auro-accordion>
+
+### Mainline next day arrival/departure with Stop
+
+This example illustrates a mainline with a stop and a next day arrival or departure from KOA to SEA (KOASEA)
+
+<div class="exampleWrapper">
+  <auro-flight
+    flights='["AS 880"]'
+    duration="350"
+    departureTime="2022-04-06T12:25:00-10:00"
+    departureStation="KOA"
+    arrivalTime="2022-04-07T00:15:00-07:00"
+    arrivalStation="SEA"
+    ariaHidden="true"
+    stops='[{
+      "arrivalStation": "LAX",
+      "duration": "1hr 42m",
+      "isStopover": false
+      }]'
+    >
+      <auro-flightline>
+        <auro-flight-segment iata="LAX" stopover></auro-flight-segment>
+      </auro-flightline>
+    </auro-flight>
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+  ```html
+  <auro-flight
+    flights='["AS 880"]'
+    duration="350"
+    departureTime="2022-04-06T12:25:00-10:00"
+    departureStation="KOA"
+    arrivalTime="2022-04-07T00:15:00-07:00"
+    arrivalStation="SEA"
+    ariaHidden="true"
+    >
+    <auro-flightline>
+      <auro-flight-segment iata="LAX" duration="1h 35m"></auro-flight-segment>
+    </auro-flightline>
+  </auro-flight>
+  ```
+
+</auro-accordion>
+
+This example illustrates a mainline with  layover a next day arrival or departure from KOA to SEA (KOASEA)
+
+<div class="exampleWrapper">
+  <auro-flight
+    flights='["AS 880"]'
+    duration="350"
+    departureTime="2022-04-06T12:25:00-10:00"
+    departureStation="KOA"
+    arrivalTime="2022-04-07T00:15:00-07:00"
+    arrivalStation="SEA"
+    ariaHidden="true"  
+    stops='[{
+      "arrivalStation": "LAX",
+      "duration": "1hr 42m",
+      "isStopover": false
+      }]'
+    >
+      <auro-flightline>
+        <auro-flight-segment iata="LAX" duration="1h 35m"></auro-flight-segment>
+      </auro-flightline>
+    </auro-flight>
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+  ```html
+  <auro-flight
+    flights='["AS 880"]'
+    duration="350"
+    departureTime="2022-04-06T12:25:00-10:00"
+    departureStation="KOA"
+    arrivalTime="2022-04-07T00:15:00-07:00"
+    arrivalStation="SEA"
+    ariaHidden="true"
+    >
+    <auro-flightline>
+      <auro-flight-segment iata="LAX" duration="1h 35m"></auro-flight-segment>
     </auro-flightline>
   </auro-flight>
   ```
@@ -136,7 +237,7 @@ This example illustrates a mainline nonstop with a next day arrival or departure
     reroutedArrivalStation="PAE"
     >
     <auro-flightline>
-      <auro-flight-segment iata="SEA" duration="1h 35m"></auro-flight-segment>
+      <auro-flight-segment iata="LAX" duration="1h 35m"></auro-flight-segment>
     </auro-flightline>
   </auro-flight>
   ```

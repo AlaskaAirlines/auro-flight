@@ -28,7 +28,7 @@ import "./auro-flight-main";
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
  * @attr {String} reroutedDepartureStation - String for the new departure station for rerouted flights. `PDX`
  * @attr {String} reroutedArrivalStation - String for the new arrival station for rerouted flights. `AVP`
- * @attr {Boolean} ariaHidden - When `true` element will be hidden from screen readers
+ * @attr {Array} stops - Flight segment list that includes duration and departure station, and if it is a stop over
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
  * @slot departureHeader - Text on top of the departure station's time
  * @slot arrivalHeader - Text on top of the arrival station's time
@@ -49,7 +49,7 @@ class AuroFlight extends LitElement {
       arrivalStation: { type: String },
       reroutedArrivalStation: { type: String },
       reroutedDepartureStation: { type: String },
-      ariaHidden: { type: Boolean },
+      stops: { type: Array }
     };
   }
 
@@ -83,6 +83,8 @@ class AuroFlight extends LitElement {
    * @returns {string} Number converted to hours and min string for UI.
    */
   convertDuration(duration) {
+   // console.log(JSON.stringify(this.stops))
+
     return `${parseInt(duration / 60)}h ${parseInt(duration % 60) === 0 ? '' : parseInt(duration % 60) + 'm'}`
   }
 
@@ -95,6 +97,7 @@ class AuroFlight extends LitElement {
           duration=${this.convertDuration(this.duration)}
           departureTime=${this.departureTime}
           arrivalTime=${this.arrivalTime}
+          isNonstop=${!!this.stops}
         >
         </auro-flight-header>
         <div class="headerContainer">
@@ -110,6 +113,7 @@ class AuroFlight extends LitElement {
           departureStation=${this.departureStation}
           reroutedArrivalStation=${this.reroutedArrivalStation}
           reroutedDepartureStation=${this.reroutedDepartureStation}
+          stops=${this.stops ? JSON.stringify(this.stops) : null}
         >
           <slot></slot>
         </auro-flight-main>
