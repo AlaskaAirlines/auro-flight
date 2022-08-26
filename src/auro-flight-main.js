@@ -100,8 +100,9 @@ class AuroFlightMain extends LitElement {
 * @returns composed screen reader summary
 */
   composeScreenReaderSummary() {
-    //const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
-    console.log(this.stops)
+    const isNonstop = !!this.stops; 
+    const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
+    console.log(dayDiff)
     const layoverStopoverStringArray = this.stops?.length > 0 ? this.stops?.map((segment, idx) => {
       console.log(segment)
       return html`
@@ -121,7 +122,9 @@ class AuroFlightMain extends LitElement {
           at ${this.convertTime(this.departureTime)}, and arrives 
           ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)} 
       `}
-      ${layoverStopoverStringArray}.
+      ${dayDiff > 0 ? dayDiff === 1 ? " next day." : ` ${dayDiff} days later.` : ""}
+      ${isNonstop ? ", nonstop" : layoverStopoverStringArray}.
+
     `;
   }
 
