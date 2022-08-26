@@ -97,7 +97,6 @@ class AuroFlight extends LitElement {
           duration=${this.convertDuration(this.duration)}
           departureTime=${this.departureTime}
           arrivalTime=${this.arrivalTime}
-          isNonstop=${!!this.stops}
         >
         </auro-flight-header>
         <div class="headerContainer">
