@@ -1,8 +1,6 @@
 const { browserslist: defaultBrowserslist } = require('./package.json');
 
-const modernBrowserslist = defaultBrowserslist.filter(
-  (browser) => browser !== 'ie 11'
-);
+const modernBrowserslist = defaultBrowserslist.filter((browser) => browser !== 'ie 11');
 
 const sharedPlugins = [
   '@babel/plugin-syntax-dynamic-import',
@@ -23,7 +21,10 @@ module.exports = {
   env: {
     modern: {
       // lit-element supports the last two versions of modern browsers, so we don't need to polyfill
-      exclude: ['node_modules/lit-element/**', 'node_modules/lit-html/**'],
+      exclude: [
+        'node_modules/lit-element/**',
+        'node_modules/lit-html/**'
+      ],
       presets: [
         [
           '@babel/preset-env',

@@ -5,29 +5,29 @@
 
 // If use litElement base class
 import { LitElement, html, css } from "lit-element";
+
+// Import touch detection lib
+import "focus-visible/dist/focus-visible.min.js";
 import styleCss from "./style-flight-header-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * The auro-flight-header element displays airline, duration, and day change information.
+ * Auro-flight-header displays airline, duration, and day change information.
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
- * @attr {String} duration - String for the duration. `505`
- * @attr {String} departureTime - String for the departure ISO 8601 time. `2022-04-13T12:30:00-04:00`
- * @attr {String} arrivalTime - String for the arrival ISO 8601 time. `2022-04-13T12:30:00-04:00`
+ * @attr {String} duration - String for the duration. `1h 23m`
+ * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer.
  */
 
-// build the component class
-
 class AuroFlightHeader extends LitElement {
-
-  // function to define props used within the scope of this component
   static get properties() {
     return {
       flights:      { type: Array },
       duration:     { type: String },
       departureTime:{ type: String },
-      arrivalTime:  { type: String }
+      arrivalTime:  { type: String },
+      reroutedDepartureStation: { type: String },
+      reroutedArrivalStation:   { type: String },
     };
   }
 
@@ -38,9 +38,9 @@ class AuroFlightHeader extends LitElement {
   }
 
   /**
+   * Internal function to render either the flight number OR 'Multiple flights'.
    * @private
    * @returns {String} Parsed airline code output.
-   * Internal function to render either the flight number OR 'Multiple flights'.
    */
   flightType() {
     switch (this.flights.length) {
@@ -59,26 +59,44 @@ class AuroFlightHeader extends LitElement {
    * @returns {String} Item to display.
    */
   flightDuration() {
-    const departure = this.departureTime.slice(0, -15);
-    const arrival = this.arrivalTime.slice(0, -15);
-    const timeDiff = new Date(arrival).getTime() - new Date(departure).getTime();
-    const dayDiff = timeDiff / (1000 * 3600 * 24);
+    const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
 
     return dayDiff > 0
       ? html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`
       : html``;
   }
 
-  // function that renders the HTML and CSS into  the scope of the component
+  readFlight(flight) {
+    return Array.from(flight).join(' ');
+  }
+
+  /**
+   * @private
+   * @returns Composed screen reader summary.
+   */
+  composeScreenReaderSummary() {
+    return html`
+      ${this.flightType().includes('flights')
+        ? this.flightType()
+        : `Flight ${this.readFlight(this.flightType())}`
+      },
+      Duration: ${this.duration}
+    `;
+  }
+
+  // Maintain content polarity between text read by screen reader and visual content.
   render() {
     return html`
-      <span class="flight">
+      <p class="util_displayHiddenVisually" style="width: 100%">
+        ${this.composeScreenReaderSummary()}  
+      </p>
+      <span class="flight" aria-hidden="true">
         ${this.flightType()}
       </span>
       <div>
-        <time class="duration">${this.duration}</time>
-        ${this.flightDuration()}
-      </div>
+      <time class="duration">${this.duration}</time>
+      ${this.flightDuration()}
+    </div>
     `;
   }
 }

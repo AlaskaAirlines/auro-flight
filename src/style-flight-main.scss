@@ -4,13 +4,15 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import '../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import '../node_modules/@alaskaairux/design-tokens/dist/tokens/SassCustomProperties';
 
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/core';
+@import '../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints';
+@import '../node_modules/@alaskaairux/webcorestylesheets/dist/core';
+@import '../node_modules/@alaskaairux/webcorestylesheets/dist/utilityClasses/displayProperties';
 
 // Support for auroElement styles
-// @import './../node_modules/@alaskaairux/orion-web-core-style-sheets/dist/auroElement/auroElement';
+// @import "./node_modules/@alaskaairux/orion-web-core-style-sheets/dist/auroElement/auroElement";
 
 // container styles - defines the look of the outer custom component
 // :host {
@@ -56,6 +58,10 @@
   color: var(--auro-color-text-primary-on-light);
   font-size: var(--auro-text-heading-700-size-breakpoint-sm);
   line-height: var(--auro-text-heading-700-height-breakpoint-md);
+  text-align: right;
+}
+
+.arrivalStations {
   text-align: right;
 }
 
