@@ -16,22 +16,17 @@ import styleCss from "./style-flight-main-css.js";
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
  *
  * @attr {String} arrivalTime - Time of arrival, e.g. `9:06 pm`
- * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
+ * @attr {String} arrivalStation - (Updated) Station of arrival, e.g. `SEA`
  * @attr {String} departureTime - Time of departure, e.g. `5:36 am`
- * @attr {String} departureStation - Station of departure, e.g. `PVD`
- * @attr {String} reroutedDepartureStation - Station of rerouted departure, e.g. `PDX`
- * @attr {String} reroutedArrivalStation - Station of rerouted arrival, e.g. `AVP`
+ * @attr {String} departureStation - (Updated) Station of departure, e.g. `PVD`
+ * @attr {String} reroutedDepartureStation - Station of rerouted (original departure station) departure, e.g. `PDX`
+ * @attr {String} reroutedArrivalStation - Station of rerouted (original arrival station) arrival, e.g. `AVP`
  * @attr {Array} stops - Flight segment list that includes duration and departure station, and if it is a stop over
  * @slot default - anticipates `<auro-flight-segment>` instances
  */
 
 // build the component class
 class AuroFlightMain extends LitElement {
-
-  // constructor() {
-  //   super();
-  // }
-
 
   connectedCallback() {
     super.connectedCallback();
@@ -59,7 +54,7 @@ class AuroFlightMain extends LitElement {
     this.timeTemplate.timeZone = 'UTC';
     newTime = new Date(time);
 
-    let localizedTime = newTime.toLocaleString('en-us', this.timeTemplate).replace(/^0+/u, '');
+    const localizedTime = newTime.toLocaleString('en-us', this.timeTemplate).replace(/^0+/u, '');
 
     return localizedTime;
   }
@@ -94,20 +89,31 @@ class AuroFlightMain extends LitElement {
       ${styleCss}
     `;
   }
+  /**
+   * @private
+   * @param {number} idx
+   * @returns a comma string or an empty string
+  */
+  addComma(idx){
+    return  idx === this.stops.length - 1 ? "" : ",";
+  }
 
   /**
 * @private
 * @returns composed screen reader summary
 */
   composeScreenReaderSummary() {
-    const isNotNonstop = !!this.stops; 
+
+    const isNotNonstop = Boolean(this.stops);
     const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
-    const layoverStopoverStringArray = this.stops?.length > 0 ? this.stops?.map((segment, idx) => {
-      return html`
-      with a ${segment.isStopover ? "stop" : "layover"} in ${segment.arrivalStation} ${segment.duration ? `for ${segment.duration}` : ""} ${idx === this.stops.length - 2 ? "and" 
-        : idx === this.stops.length - 1 ? "" : ","
-      }`
-    }) : ""
+    const daysFromDeparture = dayDiff === 1 ? " next day" : ` ${dayDiff} days later`;
+    const secondToLastIndex = 2;
+    const layoverStopoverStringArray = this.stops.length > 0 ? this.stops.map((segment, idx) =>
+      html`
+      with a ${segment.isStopover ? "stop" : "layover"} in ${segment.arrivalStation} 
+      ${segment.duration ? `for ${segment.duration}` : ""} 
+      ${idx === this.stops.length - secondToLastIndex ? "and" : this.addComma(idx)}`
+    ) : "";
     return html`
       ${this.reroutedDepartureStation === 'undefined' ?
         `Departs from ${this.readStation(this.departureStation)} 
@@ -120,9 +126,8 @@ class AuroFlightMain extends LitElement {
           at ${this.convertTime(this.departureTime)}, and arrives 
           ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)} 
       `}
-      ${dayDiff > 0 ? dayDiff === 1 ? " next day" : ` ${dayDiff} days later` : ""}
+      ${dayDiff > 0 ? daysFromDeparture : ""}
       ${isNotNonstop ? layoverStopoverStringArray : ", nonstop"}.
-
     `;
   }
 
@@ -152,7 +157,7 @@ class AuroFlightMain extends LitElement {
           <time class="departureTime">
             <auro-datetime type="tzTime" setDate="${this.departureTime}"></auro-datetime>
           </time>
-          <span class="departureStation">
+          <span>
             ${this.reroutedDepartureStation === 'undefined'
         ? html``
         : html`
@@ -161,7 +166,7 @@ class AuroFlightMain extends LitElement {
                 </span>
               `
       }
-            <span>${this.departureStation}</span>
+            <span class="departureStation">${this.departureStation}</span>
           </span>
         </div>
         <div class="slotContainer" aria-hidden="true">
@@ -171,7 +176,7 @@ class AuroFlightMain extends LitElement {
           <time class="arrivalTime">
             <auro-datetime type="tzTime" setDate="${this.arrivalTime}"></auro-datetime>
           </time>
-          <span class="arrivalStation">
+          <span class="arrivalStations">
             ${this.reroutedArrivalStation === 'undefined'
         ? html``
         : html`
@@ -180,7 +185,7 @@ class AuroFlightMain extends LitElement {
                 </span>
               `
       }
-            <span>${this.arrivalStation}</span>
+            <span class="arrivalStation" >${this.arrivalStation}</span>
           </span>
         </div>
     `;
