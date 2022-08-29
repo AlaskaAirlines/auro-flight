@@ -11,8 +11,8 @@ import "focus-visible/dist/focus-visible.min.js";
 import styleCss from "./style-flight-main-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
-/**
- * auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
+/** .
+ * Auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
  *
  * @attr {String} arrivalTime - Time of arrival, e.g. `9:06 pm`
@@ -40,12 +40,16 @@ class AuroFlightMain extends LitElement {
       timeZone: this.timeZone
     };
 
+    if(!this.stops){
+      this.stops = [];
+    }
+
     this.template = {};
   }
 
   /**
    * @private
-   * @param {*string} time
+   * @param {*string} time String representation of time to convert to localized time string ex: 5am.
    * @returns Localized time based from UTC string.
    */
   convertTime(time) {
@@ -62,9 +66,9 @@ class AuroFlightMain extends LitElement {
 
   /**
    * @private
-   * @param {string} station
-   * @returns mutated string
-  */
+   * @param {string} station Airport code ex: SEA.
+   * @returns Mutated string.
+   */
   readStation(station) {
     return Array.from(station).join(' ');
   }
@@ -89,38 +93,38 @@ class AuroFlightMain extends LitElement {
       ${styleCss}
     `;
   }
+
   /**
+   * @param {number} idx A numbered index correlated to current stop.
    * @private
-   * @param {number} idx
-   * @returns a comma string or an empty string
-  */
-  addComma(idx){
-    return  idx === this.stops.length - 1 ? "" : ",";
+   * @returns A comma string or an empty string.
+   */
+  addComma(idx) {
+    return idx === this.stops.length - 1 ? "" : ",";
   }
 
   /**
-* @private
-* @returns composed screen reader summary
-*/
+   * @private
+   * @returns Composed screen reader summary.
+   */
   composeScreenReaderSummary() {
-
     const isNotNonstop = Boolean(this.stops);
     const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
     const daysFromDeparture = dayDiff === 1 ? " next day" : ` ${dayDiff} days later`;
     const secondToLastIndex = 2;
-    const layoverStopoverStringArray = this.stops.length > 0 ? this.stops.map((segment, idx) =>
-      html`
+    const layoverStopoverStringArray = this.stops.length > 0 ? this.stops.map((segment, idx) => html`
       with a ${segment.isStopover ? "stop" : "layover"} in ${segment.arrivalStation} 
       ${segment.duration ? `for ${segment.duration}` : ""} 
-      ${idx === this.stops.length - secondToLastIndex ? "and" : this.addComma(idx)}`
-    ) : "";
+      ${idx === this.stops.length - secondToLastIndex ? "and" : this.addComma(idx)}`)
+      : "";
+
     return html`
-      ${this.reroutedDepartureStation === 'undefined' ?
-        `Departs from ${this.readStation(this.departureStation)} 
+      ${this.reroutedDepartureStation === 'undefined'
+        ? `Departs from ${this.readStation(this.departureStation)} 
           at ${this.convertTime(this.departureTime)}, 
           arrives ${this.readStation(this.arrivalStation)} 
-          at ${this.convertTime(this.arrivalTime)}` :
-        `Flight ${this.readStation(this.reroutedDepartureStation)} to 
+          at ${this.convertTime(this.arrivalTime)}`
+        : `Flight ${this.readStation(this.reroutedDepartureStation)} to 
           ${this.readStation(this.reroutedArrivalStation)} has been re-routed. 
           The flight now departs from ${this.readStation(this.departureStation)}
           at ${this.convertTime(this.departureTime)}, and arrives 
@@ -131,11 +135,7 @@ class AuroFlightMain extends LitElement {
     `;
   }
 
-  //the answer in both cases will be 3
-
-  // Maintain content polarity between text read by screen reader and visual content.
   render() {
-    // ${this.reroutedDepartureStation !== 'undefined' ? `Flight ${this.readStation(this.reroutedDepartureStation)} to ${this.readStation(this.reroutedArrivalStation)} has been re-routed.` : ''}
     return html`
         <script type="application/ld+json">
           {

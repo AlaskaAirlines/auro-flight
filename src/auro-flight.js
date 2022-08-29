@@ -16,9 +16,9 @@ import "./auro-flight-main";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * auro-flight renders a DoT compliant Flight listing
- * This design has been tested via the Alaska Legal team for legal compliance
- * Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com
+ * Auro-flight renders a DoT compliant Flight listing.
+ * This design has been tested via the Alaska Legal team for legal compliance.
+ * Please DO NOT modify unit tests pertaining to DoT regulations without contacting gus@alaskaair.com.
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
  * @attr {Number} duration - Number in minutes for flight duration. `83`
@@ -33,7 +33,7 @@ import "./auro-flight-main";
  * @slot departureHeader - Text on top of the departure station's time
  * @slot arrivalHeader - Text on top of the arrival station's time
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot.
-*/
+ */
 
 // build the component class
 class AuroFlight extends LitElement {
@@ -71,21 +71,18 @@ class AuroFlight extends LitElement {
       return slotWrapper.classList.remove("flightFooter");
     }
 
-    console.log("🚀 ~ file: auro-flight.js ~ line 75 ~ AuroFlight ~ firstUpdated ~ this.reroutedArrivalStation", this.reroutedArrivalStation)
-    console.log("🚀 ~ file: auro-flight.js ~ line 75 ~ AuroFlight ~ firstUpdated ~ this.reroutedDepartureStation", this.reroutedDepartureStation)
-
-    return null
+    return null;
   }
 
   /**
    * @private
-   * @param {number} duration
+   * @param {number} duration Duration of entire slice, including stopovers/layovers.
    * @returns {string} Number converted to hours and min string for UI.
    */
   convertDuration(duration) {
-   // console.log(JSON.stringify(this.stops))
-
-    return `${parseInt(duration / 60)}h ${parseInt(duration % 60) === 0 ? '' : parseInt(duration % 60) + 'm'}`
+    const minsPerHr = 60;
+    const secsPerMin = 60;
+    return `${parseInt(duration / minsPerHr, 10)}h ${parseInt(duration % secsPerMin, 10) === 0 ? '' : `${parseInt(duration % secsPerMin, 10)}m`}`;
   }
 
   // function that renders the HTML and CSS into  the scope of the component
@@ -105,7 +102,7 @@ class AuroFlight extends LitElement {
         </div>
         <auro-flight-main
           flights=${this.flights.join(', ')}
-          duration=${this.convertDuration(this.duration)},
+          duration=${this.convertDuration(this.duration)}
           arrivalTime=${this.arrivalTime}
           arrivalStation=${this.arrivalStation}
           departureTime=${this.departureTime}

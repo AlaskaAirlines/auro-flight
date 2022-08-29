@@ -3,15 +3,17 @@ const bundle = 'auro-flight__bundled.js';
 const indexFile = './build/index.html';
 
 // File destination.txt will be created or overwritten by default.
-let copyFiles = async function() {
+const copyFiles = async function() {
   fs.copyFile(`./dist/${bundle}`, `./build/${bundle}`, (err) => {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
     console.log(`${bundle} was copied to ./build dir`);
   });
-}
+};
 
 // Edit string in new index.html file
-fs.readFile(indexFile, 'utf8', function (err,data) {
+fs.readFile(indexFile, 'utf8', (err, data) => {
   copyFiles();
 
   if (err) {
@@ -20,7 +22,9 @@ fs.readFile(indexFile, 'utf8', function (err,data) {
 
   const element = data.replace(`../src/auro-flight.js`, `auro-flight__bundled.js`);
 
-  fs.writeFile(indexFile, element, 'utf8', function (err) {
-     if (err) return console.log(err);
+  fs.writeFile(indexFile, element, 'utf8', (err) => {
+    if (err) {
+      return console.log(err);
+    }
   });
 });

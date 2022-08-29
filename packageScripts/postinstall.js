@@ -1,4 +1,4 @@
-'use strict';
+
 
 const chalk = require('chalk');
 const pjson = require('../package.json');
@@ -22,5 +22,4 @@ console.log(chalk.hex('#f26135')(`
                 of `) + chalk.hex('#ffd200').bold(`auro-flight v${pjson.version}.`) + chalk.hex('#f26135')(`
 
 ╰─────────────────────────────── ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─╯
-`)
-);
+`));
