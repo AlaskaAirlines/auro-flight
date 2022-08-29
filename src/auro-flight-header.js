@@ -12,18 +12,14 @@ import styleCss from "./style-flight-header-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * auro-flight-header displays airline, duration, and day change information
+ * Auro-flight-header displays airline, duration, and day change information.
  *
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
  * @attr {String} duration - String for the duration. `1h 23m`
- * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer
+ * @attr {Number} daysChanged - Number of days changed due to flight duration and timezone. Positive whole integer.
  */
 
-// build the component class
-
 class AuroFlightHeader extends LitElement {
-
-  // function to define props used within the scope of this component
   static get properties() {
     return {
       flights:      { type: Array },
@@ -42,8 +38,9 @@ class AuroFlightHeader extends LitElement {
   }
 
   /**
-   * @private Internal function to render either the flight number OR 'Multiple flights'
-   * @returns {String} Parsed airline code output
+   * Internal function to render either the flight number OR 'Multiple flights'.
+   * @private
+   * @returns {String} Parsed airline code output.
    */
   flightType() {
     switch (this.flights.length) {
@@ -59,14 +56,14 @@ class AuroFlightHeader extends LitElement {
   /**
    * Internal function to render the day change notification.
    * @private
-   * @returns {String} item to display
+   * @returns {String} Item to display.
    */
-   flightDuration() {
+  flightDuration() {
     const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
 
     return dayDiff > 0
       ? html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`
-      : html``
+      : html``;
   }
 
   readFlight(flight) {
@@ -75,13 +72,13 @@ class AuroFlightHeader extends LitElement {
 
   /**
    * @private
-   * @returns composed screen reader summary
-  */
-  composeScreenReaderSummary(){
+   * @returns Composed screen reader summary.
+   */
+  composeScreenReaderSummary() {
     return html`
-      ${this.flightType().includes('flights') ? 
-        this.flightType() : 
-        `Flight ${this.readFlight(this.flightType())}` 
+      ${this.flightType().includes('flights')
+        ? this.flightType()
+        : `Flight ${this.readFlight(this.flightType())}`
       },
       Duration: ${this.duration}
     `;

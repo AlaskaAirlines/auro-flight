@@ -11,7 +11,10 @@ const production = !process.env.ROLLUP_WATCH;
 const getSharedPlugins = (isLegacy) => [
   resolve({
     // in case of multiple lit-element versions (e.g. importing another auro component)
-    dedupe: ['lit-element', 'lit-html']
+    dedupe: [
+      'lit-element',
+      'lit-html'
+    ]
   }),
   commonjs(),
   // skipPreflightCheck flag needed or else build fails

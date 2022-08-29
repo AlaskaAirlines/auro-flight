@@ -11,27 +11,22 @@ import "focus-visible/dist/focus-visible.min.js";
 import styleCss from "./style-flight-main-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
-/**
- * auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
+/** .
+ * Auro-flight-main renders the middle 'frame' of the auro-flight component with the auro-flightline
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
  *
  * @attr {String} arrivalTime - Time of arrival, e.g. `9:06 pm`
- * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
+ * @attr {String} arrivalStation - (Updated) Station of arrival, e.g. `SEA`
  * @attr {String} departureTime - Time of departure, e.g. `5:36 am`
- * @attr {String} departureStation - Station of departure, e.g. `PVD`
- * @attr {String} reroutedDepartureStation - Station of rerouted departure, e.g. `PDX`
- * @attr {String} reroutedArrivalStation - Station of rerouted arrival, e.g. `AVP`
+ * @attr {String} departureStation - (Updated) Station of departure, e.g. `PVD`
+ * @attr {String} reroutedDepartureStation - Station of rerouted (original departure station) departure, e.g. `PDX`
+ * @attr {String} reroutedArrivalStation - Station of rerouted (original arrival station) arrival, e.g. `AVP`
  * @attr {Array} stops - Flight segment list that includes duration and departure station, and if it is a stop over
  * @slot default - anticipates `<auro-flight-segment>` instances
  */
 
 // build the component class
 class AuroFlightMain extends LitElement {
-
-  // constructor() {
-  //   super();
-  // }
-
 
   connectedCallback() {
     super.connectedCallback();
@@ -45,12 +40,16 @@ class AuroFlightMain extends LitElement {
       timeZone: this.timeZone
     };
 
+    if(!this.stops){
+      this.stops = [];
+    }
+
     this.template = {};
   }
 
   /**
    * @private
-   * @param {*string} time
+   * @param {*string} time String representation of time to convert to localized time string ex: 5am.
    * @returns Localized time based from UTC string.
    */
   convertTime(time) {
@@ -59,7 +58,7 @@ class AuroFlightMain extends LitElement {
     this.timeTemplate.timeZone = 'UTC';
     newTime = new Date(time);
 
-    let localizedTime = newTime.toLocaleString('en-us', this.timeTemplate).replace(/^0+/u, '');
+    const localizedTime = newTime.toLocaleString('en-us', this.timeTemplate).replace(/^0+/u, '');
 
     return localizedTime;
   }
@@ -67,9 +66,9 @@ class AuroFlightMain extends LitElement {
 
   /**
    * @private
-   * @param {string} station
-   * @returns mutated string
-  */
+   * @param {string} station Airport code ex: SEA.
+   * @returns Mutated string.
+   */
   readStation(station) {
     return Array.from(station).join(' ');
   }
@@ -96,41 +95,47 @@ class AuroFlightMain extends LitElement {
   }
 
   /**
-* @private
-* @returns composed screen reader summary
-*/
+   * @param {number} idx A numbered index correlated to current stop.
+   * @private
+   * @returns A comma string or an empty string.
+   */
+  addComma(idx) {
+    return idx === this.stops.length - 1 ? "" : ",";
+  }
+
+  /**
+   * @private
+   * @returns Composed screen reader summary.
+   */
   composeScreenReaderSummary() {
-    const isNotNonstop = !!this.stops; 
+    const isNotNonstop = Boolean(this.stops);
     const dayDiff = new Date(this.arrivalTime).getUTCDay() - new Date(this.departureTime).getUTCDay();
-    const layoverStopoverStringArray = this.stops?.length > 0 ? this.stops?.map((segment, idx) => {
-      return html`
-      with a ${segment.isStopover ? "stop" : "layover"} in ${segment.arrivalStation} ${segment.duration ? `for ${segment.duration}` : ""} ${idx === this.stops.length - 2 ? "and" 
-        : idx === this.stops.length - 1 ? "" : ","
-      }`
-    }) : ""
+    const daysFromDeparture = dayDiff === 1 ? " next day" : ` ${dayDiff} days later`;
+    const secondToLastIndex = 2;
+    const layoverStopoverStringArray = this.stops.length > 0 ? this.stops.map((segment, idx) => html`
+      with a ${segment.isStopover ? "stop" : "layover"} in ${segment.arrivalStation} 
+      ${segment.duration ? `for ${segment.duration}` : ""} 
+      ${idx === this.stops.length - secondToLastIndex ? "and" : this.addComma(idx)}`)
+      : "";
+
     return html`
-      ${this.reroutedDepartureStation === 'undefined' ?
-        `Departs from ${this.readStation(this.departureStation)} 
+      ${this.reroutedDepartureStation === 'undefined'
+        ? `Departs from ${this.readStation(this.departureStation)} 
           at ${this.convertTime(this.departureTime)}, 
           arrives ${this.readStation(this.arrivalStation)} 
-          at ${this.convertTime(this.arrivalTime)}` :
-        `Flight ${this.readStation(this.reroutedDepartureStation)} to 
+          at ${this.convertTime(this.arrivalTime)}`
+        : `Flight ${this.readStation(this.reroutedDepartureStation)} to 
           ${this.readStation(this.reroutedArrivalStation)} has been re-routed. 
           The flight now departs from ${this.readStation(this.departureStation)}
           at ${this.convertTime(this.departureTime)}, and arrives 
           ${this.readStation(this.arrivalStation)} at ${this.convertTime(this.arrivalTime)} 
       `}
-      ${dayDiff > 0 ? dayDiff === 1 ? " next day" : ` ${dayDiff} days later` : ""}
+      ${dayDiff > 0 ? daysFromDeparture : ""}
       ${isNotNonstop ? layoverStopoverStringArray : ", nonstop"}.
-
     `;
   }
 
-  //the answer in both cases will be 3
-
-  // Maintain content polarity between text read by screen reader and visual content.
   render() {
-    // ${this.reroutedDepartureStation !== 'undefined' ? `Flight ${this.readStation(this.reroutedDepartureStation)} to ${this.readStation(this.reroutedArrivalStation)} has been re-routed.` : ''}
     return html`
         <script type="application/ld+json">
           {
@@ -152,7 +157,7 @@ class AuroFlightMain extends LitElement {
           <time class="departureTime">
             <auro-datetime type="tzTime" setDate="${this.departureTime}"></auro-datetime>
           </time>
-          <span class="departureStation">
+          <span>
             ${this.reroutedDepartureStation === 'undefined'
         ? html``
         : html`
@@ -161,7 +166,7 @@ class AuroFlightMain extends LitElement {
                 </span>
               `
       }
-            <span>${this.departureStation}</span>
+            <span class="departureStation">${this.departureStation}</span>
           </span>
         </div>
         <div class="slotContainer" aria-hidden="true">
@@ -171,7 +176,7 @@ class AuroFlightMain extends LitElement {
           <time class="arrivalTime">
             <auro-datetime type="tzTime" setDate="${this.arrivalTime}"></auro-datetime>
           </time>
-          <span class="arrivalStation">
+          <span class="arrivalStations">
             ${this.reroutedArrivalStation === 'undefined'
         ? html``
         : html`
@@ -180,7 +185,7 @@ class AuroFlightMain extends LitElement {
                 </span>
               `
       }
-            <span>${this.arrivalStation}</span>
+            <span class="arrivalStation" >${this.arrivalStation}</span>
           </span>
         </div>
     `;

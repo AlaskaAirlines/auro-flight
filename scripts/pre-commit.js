@@ -1,4 +1,4 @@
-'use strict';
+
 
 const chalk = require('chalk');
 console.log(chalk.hex('#ffd200')(`
@@ -13,5 +13,4 @@ console.log(chalk.hex('#ffd200')(`
              to ensure that you are compliant.`) + chalk.hex('#ffd200')(`
 
 ╰─────────────────────────────── ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─╯
-`)
-);
+`));

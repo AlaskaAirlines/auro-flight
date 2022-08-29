@@ -7,15 +7,15 @@ const fs = require('fs');
 const directoryPath = path.join(__dirname, '../src');
 
 /**
- * Default postCSS run
+ * Default postCSS run.
  */
-fs.readdir(directoryPath, function (err, files) {
-  //handling error
+fs.readdir(directoryPath, (err, files) => {
+  // handling error
   if (err) {
-      return console.log('Unable to scan directory: ' + err);
+    return console.log(`Unable to scan directory: ${err}`);
   }
-  //listing all files using forEach
-  files.forEach(function (file) {
+  // listing all files using forEach
+  files.forEach((file) => {
     if (file.includes(".css")) {
       standardProcessor(file);
     }
@@ -27,20 +27,26 @@ fs.readdir(directoryPath, function (err, files) {
  * and completes a post cleanup.
  * @param {string} file
  */
- function standardProcessor(file) {
+function standardProcessor(file) {
   fs.readFile(`src/${file}`, (err, css) => {
-    postcss([autoprefixer, comments])
-    .use(comments({
-      remove: function(comment) { return comment[0] == "@"; }
-    }))
-    .use(removeRules({
-      rulesToRemove: {
-        ':root': '*'
-      }
-    }))
-    .process(css, { from: `src/${file}`, to: `src/${file}` })
-    .then(result => {
-      fs.writeFile(`src/${file}`, result.css, () => true)
-    })
+    postcss([
+      autoprefixer,
+      comments
+    ]).
+      use(comments({
+        remove(comment) {
+          return comment[0] == "@";
+        }
+      })).
+      use(removeRules({
+        rulesToRemove: {
+          ':root': '*'
+        }
+      })).
+      process(css, { from: `src/${file}`,
+        to: `src/${file}` }).
+      then((result) => {
+        fs.writeFile(`src/${file}`, result.css, () => true);
+      });
   });
 }
