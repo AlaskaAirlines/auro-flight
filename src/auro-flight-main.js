@@ -40,7 +40,7 @@ class AuroFlightMain extends LitElement {
       timeZone: this.timeZone
     };
 
-    if(!this.stops){
+    if (!this.stops) {
       this.stops = [];
     }
 
