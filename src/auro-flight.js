@@ -17,6 +17,7 @@ import "./auro-flight-main";
  * This design has been tested via the Alaska Legal team for legal compliance.
  * Please DO NOT modify unit tests pertaining to DoT regulations.
  *
+ * @attr {Array} stops - Array of objects representing stopovers or layovers: "isStopover": bool, "arrivalStation": string, "duration": string ["123hr 123m"] (layover only). This content will not be used in the UI, but only constructs the a11y conversational phrase for screen readers and has no effect on the `auro-flight-segment` content.
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
  * @attr {Number} duration - String for the duration. `505`
  * @attr {String} departureTime - String for the departure ISO 8601 time. `2022-04-13T12:30:00-04:00`
@@ -25,7 +26,6 @@ import "./auro-flight-main";
  * @attr {String} arrivalStation - String for the arrival station. `PVD`
  * @attr {String} reroutedDepartureStation - String for the new departure station for rerouted flights. `PDX`
  * @attr {String} reroutedArrivalStation - String for the new arrival station for rerouted flights. `AVP`
- * @attr {Boolean} ariaHidden - When `true` element will be hidden from screen readers
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
  * @slot departureHeader - Text on top of the departure station's time
  * @slot arrivalHeader - Text on top of the arrival station's time
@@ -34,26 +34,18 @@ import "./auro-flight-main";
 
 // build the component class
 class AuroFlight extends LitElement {
-
-  constructor() {
-    super();
-
-    this.ariaHidden = false;
-  }
-
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      flights:             { type: Array },
-      duration:            { type: Number },
-      departureTime:       { type: String },
-      departureStation:    { type: String },
-      arrivalTime:         { type: String },
-      arrivalStation:      { type: String },
+      stops:                    { type: Array },
+      flights:                  { type: Array },
+      duration:                 { type: Number },
+      departureTime:            { type: String },
+      arrivalTime:              { type: String },
+      arrivalStation:           { type: String },
+      departureStation:         { type: String },
       reroutedArrivalStation:   { type: String },
-      reroutedDepartureStation: { type: String },
-      ariaHidden:          { type: Boolean },
-
+      reroutedDepartureStation: { type: String }
     };
   }
 
@@ -92,8 +84,7 @@ class AuroFlight extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-
-      <section aria-hidden="${this.ariaHidden}">
+      <section>
         <auro-flight-header
           flights=${JSON.stringify(this.flights)}
           duration=${this.convertDuration(this.duration)}
@@ -106,14 +97,15 @@ class AuroFlight extends LitElement {
           <slot name="arrivalHeader"></slot>
         </div>
         <auro-flight-main
+          flights=${JSON.stringify(this.flights)}
+          duration=${this.convertDuration(this.duration)}
           arrivalTime=${this.arrivalTime}
           arrivalStation=${this.arrivalStation}
           departureTime=${this.departureTime}
           departureStation=${this.departureStation}
           reroutedArrivalStation=${this.reroutedArrivalStation}
           reroutedDepartureStation=${this.reroutedDepartureStation}
-          duration=${this.duration}
-          flights=${JSON.stringify(this.flights)}
+          stops=${this.stops ? JSON.stringify(this.stops) : null}
         >
           <slot></slot>
         </auro-flight-main>

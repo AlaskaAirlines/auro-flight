@@ -116,7 +116,8 @@ This example illustrates a one-stop `stopover` flight from ANC to ADK. Notice th
     departureTime="2022-05-04T01:55:00-09:00"
     departureStation="ANC"
     arrivalTime="2022-05-04T03:55:00-09:00"
-    arrivalStation="ADK">
+    arrivalStation="ADK"
+    stops='[{ "isStopover": true, "arrivalStation": "CDB"}]'>
     <auro-flightline>
       <auro-flight-segment stopover iata="CDB"></auro-flight-segment>
     </auro-flightline>
@@ -135,7 +136,8 @@ This example illustrates a one-stop `stopover` flight from ANC to ADK. Notice th
   departureTime="2022-05-04T01:55:00-09:00"
   departureStation="ANC"
   arrivalTime="2022-05-04T03:55:00-09:00"
-  arrivalStation="ADK">
+  arrivalStation="ADK"
+  stops='[{ "isStopover": true, "arrivalStation": "CDB"}]'>
   <auro-flightline>
     <auro-flight-segment stopover iata="CDB"></auro-flight-segment>
   </auro-flightline>
@@ -157,7 +159,10 @@ The following example illustrates a mainline multi-stop `stopover` flight from K
     departureTime="2022-05-04T00:00:00-09:00"
     departureStation="KTN"
     arrivalTime="2022-05-04T05:53:00-09:00"
-    arrivalStation="ANC">
+    arrivalStation="ANC"    
+    stops='[{ "isStopover": true, "arrivalStation": "WRG"}, 
+      { "isStopover": true, "arrivalStation": "PSG"}, 
+      { "isStopover": true, "arrivalStation": "JNU"}]'>
     <auro-flightline>
       <auro-flight-segment stopover iata="WRG"></auro-flight-segment>
       <auro-flight-segment stopover iata="PSG"></auro-flight-segment>
@@ -178,7 +183,10 @@ The following example illustrates a mainline multi-stop `stopover` flight from K
   departureTime="2022-05-04T00:00:00-09:00"
   departureStation="KTN"
   arrivalTime="2022-05-04T05:53:00-09:00"
-  arrivalStation="ANC">
+  arrivalStation="ANC"    
+  stops='[{ "isStopover": true, "arrivalStation": "WRG"}, 
+    { "isStopover": true, "arrivalStation": "PSG"}, 
+    { "isStopover": true, "arrivalStation": "JNU"}]'>
   <auro-flightline>
     <auro-flight-segment stopover iata="WRG"></auro-flight-segment>
     <auro-flight-segment stopover iata="PSG"></auro-flight-segment>
@@ -202,14 +210,15 @@ The following example illustrates a change of gauge flight with a layover in SEA
     departureTime="2022-07-21T00:55:00-09:00"
     departureStation="ANC"
     arrivalTime="2022-07-21T16:39:00-04:00"
-    arrivalStation="BOS">
+    arrivalStation="BOS"
+    stops='[{ "isStopover": false, "arrivalStation": "ORD", "duration":"3h 10m" }]'>
     <auro-flightline>
       <auro-flight-segment iata="ORD" duration="3h 10m"></auro-flight-segment>
     </auro-flightline>
     <span slot="footer">
-      <auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
-      AS161 is subject to government approval <br />
-      <auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
+      <auro-icon category="logos" name="tail-AS" style="width: 24px" aria-hidden="true"></auro-icon>
+      AS161 is subject to government approval <br aria-hidden="true"/>
+      <auro-icon category="logos" name="tail-AA" style="width: 24px" aria-hidden="true"></auro-icon>
       AA2269 is operated by American Airlines
     </span>
   </auro-flight>
@@ -227,14 +236,15 @@ The following example illustrates a change of gauge flight with a layover in SEA
   departureTime="2022-07-21T00:55:00-09:00"
   departureStation="ANC"
   arrivalTime="2022-07-21T16:39:00-04:00"
-  arrivalStation="BOS">
+  arrivalStation="BOS"
+  stops='[{ "isStopover": false, "arrivalStation": "ORD", "duration":"3h 10m" }]'>
   <auro-flightline>
     <auro-flight-segment iata="ORD" duration="3h 10m"></auro-flight-segment>
   </auro-flightline>
   <span slot="footer">
-    <auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
-    AS161 is subject to government approval <br />
-    <auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
+    <auro-icon category="logos" name="tail-AS" style="width: 24px" aria-hidden="true"></auro-icon>
+    AS161 is subject to government approval <br aria-hidden="true"/>
+    <auro-icon category="logos" name="tail-AA" style="width: 24px" aria-hidden="true"></auro-icon>
     AA2269 is operated by American Airlines
   </span>
 </auro-flight>
@@ -244,7 +254,9 @@ The following example illustrates a change of gauge flight with a layover in SEA
 
 ## Using the footer slot
 
-In this example for a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. In the code you will see the use of `<auro-icon>` and text within the named slot element.
+In this example for a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. Notice the use of `<auro-icon>` and text within the named slot element.
+
+This slot requires the consumer to manually manage what is read back via the screen reader through the use of `aria-hidden="true"`.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/footerSlot.html) -->
@@ -258,9 +270,9 @@ In this example for a flight that requires government approval or a flight that 
     arrivalStation="CPT">
     <auro-flightline></auro-flightline>
     <span slot="footer">
-      <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-      EK 772 is subject to government approval <br />
-      <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+      <auro-icon category="logos" name="tail-EK" style="width: 24px" aria-hidden="true"></auro-icon>
+      EK 772 is subject to government approval <br  aria-hidden="true"/>
+      <auro-icon category="logos" name="tail-EK" style="width: 24px" aria-hidden="true"></auro-icon>
       EK 772 is operated by Emirates
     </span>
   </auro-flight>
@@ -281,9 +293,9 @@ In this example for a flight that requires government approval or a flight that 
   arrivalStation="CPT">
   <auro-flightline></auro-flightline>
   <span slot="footer">
-    <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
-    EK 772 is subject to government approval <br />
-    <auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
+    <auro-icon category="logos" name="tail-EK" style="width: 24px" aria-hidden="true"></auro-icon>
+    EK 772 is subject to government approval <br  aria-hidden="true"/>
+    <auro-icon category="logos" name="tail-EK" style="width: 24px" aria-hidden="true"></auro-icon>
     EK 772 is operated by Emirates
   </span>
 </auro-flight>
@@ -381,7 +393,7 @@ Department of Transportation regulations mandate that the arrival and departure 
 
 ## Accessibility
 
-The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element if this information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, it is recommended that the `ariaHidden` attribute be used.
+The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element to determine if information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, `aria-hidden='true'` is recommended.
 
 ## SEO
 
