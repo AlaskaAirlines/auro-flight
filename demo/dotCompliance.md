@@ -18,7 +18,8 @@ See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) f
     departureTime="2022-04-13T01:10:00-07:00"
     departureStation="SEA"
     arrivalTime="2022-04-13T12:30:00-04:00"
-    arrivalStation="EWR">
+    arrivalStation="EWR"
+    stops='[{ "isStopover": true, "arrivalStation": "LAX"}]'>
     <auro-flightline>
       <auro-flight-segment iata="LAX">
     </auro-flightline>
@@ -37,7 +38,8 @@ See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) f
   departureTime="2022-04-13T01:10:00-07:00"
   departureStation="SEA"
   arrivalTime="2022-04-13T12:30:00-04:00"
-  arrivalStation="EWR">
+  arrivalStation="EWR"
+  stops='[{ "isStopover": true, "arrivalStation": "LAX"}]'>
   <auro-flightline>
     <auro-flight-segment iata="LAX">
   </auro-flightline>

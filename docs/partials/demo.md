@@ -93,7 +93,9 @@ The following example illustrates a change of gauge flight with a layover in SEA
 
 ## Using the footer slot
 
-In this example for a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. In the code you will see the use of `<auro-icon>` and text within the named slot element.
+In this example for a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. Notice the use of `<auro-icon>` and text within the named slot element.
+
+This slot requires the consumer to manually manage what is read back via the screen reader through the use of `aria-hidden="true"`.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/footerSlot.html) -->
@@ -149,7 +151,7 @@ Department of Transportation regulations mandate that the arrival and departure 
 
 ## Accessibility
 
-The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element if this information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, it is recommended that the `ariaHidden` attribute be used.
+The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element to determine if information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, `aria-hidden='true'` is recommended.
 
 ## SEO
 

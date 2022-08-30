@@ -5,6 +5,7 @@
 
 // If use litElement base class
 import { LitElement, html, css } from "lit-element";
+import { getDateDifference } from "../util/util.js";
 import styleCss from "./style-flight-header-css.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
@@ -59,23 +60,37 @@ class AuroFlightHeader extends LitElement {
    * @returns {String} Item to display.
    */
   flightDuration() {
-    const departure = this.departureTime.slice(0, -15);
-    const arrival = this.arrivalTime.slice(0, -15);
-    const timeDiff = new Date(arrival).getTime() - new Date(departure).getTime();
-    const dayDiff = timeDiff / (1000 * 3600 * 24);
+    const dayDiff = getDateDifference(this.departureTime, this.arrivalTime);
 
     return dayDiff > 0
       ? html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`
       : html``;
   }
 
+  /**
+   * @private
+   * @returns Composed screen reader header.
+   */
+  composeScreenReaderHeader() {
+    return html`
+      ${this.flightType().includes('flights')
+        ? this.flightType()
+        : `Flight ${Array.from(this.flightType()).join(' ')}`
+      },
+      Duration: ${this.duration}
+    `;
+  }
+
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <span class="flight">
+      <p class="util_displayHiddenVisually">
+        ${this.composeScreenReaderHeader()}  
+      </p>
+      <span class="flight" aria-hidden="true">
         ${this.flightType()}
       </span>
-      <div>
+      <div aria-hidden="true">
         <time class="duration">${this.duration}</time>
         ${this.flightDuration()}
       </div>

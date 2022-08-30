@@ -56,4 +56,23 @@ describe('auro-flight-header', () => {
 
     await expect(el).to.be.true;
   });
+
+  it('auro-flight-header Single Flight screen reader verbiage', async () => {
+    const el = await fixture(html`
+      <auro-flight-header flights='["AS 123"]' duration="180" departureTime="2022-05-04T01:55:00-09:00" arrivalTime="2022-05-04T03:55:00-09:00"></auro-flight-header>
+    `);
+
+    const flightInfoText = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
+    
+    await expect(flightInfoText).to.contain('Flight A S   1 2 3,      Duration: 180');
+  });
+
+  it('auro-flight-header Multiple Flights screen reader verbiage', async () => {
+    const el = await fixture(html`
+      <auro-flight-header flights='["AS 123", "EK 432"]' duration="180" departureTime="2022-05-04T01:55:00-09:00" arrivalTime="2022-05-04T03:55:00-09:00"></auro-flight-header>
+    `);
+    const multipleFlightInfoText = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
+
+    await expect(multipleFlightInfoText).to.equal('Multiple flights,      Duration: 180');
+  });
 });
