@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [2.1.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.0.1...v2.1.0) (2022-09-19)
+
+
+### Features
+
+* **a11y:** natural language messaging for screen readers [#25](https://github.com/AlaskaAirlines/auro-flight/issues/25) ([3d1b0c4](https://github.com/AlaskaAirlines/auro-flight/commit/3d1b0c43246845fd3549106b1c55c9ca90963efd))
+
 ## [2.0.1](https://github.com/AlaskaAirlines/auro-flight/compare/v2.0.0...v2.0.1) (2022-06-29)
 
 

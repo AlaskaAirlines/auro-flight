@@ -58,7 +58,7 @@ Please DO NOT modify unit tests pertaining to DoT regulations.
 | `flights`                  | `flights`                  | `Array`  | Array of flight numbers `['AS 123', 'EK 432']`   |
 | `reroutedArrivalStation`   | `reroutedArrivalStation`   | `String` | String for the new arrival station for rerouted flights. `AVP` |
 | `reroutedDepartureStation` | `reroutedDepartureStation` | `String` | String for the new departure station for rerouted flights. `PDX` |
-| `stops`                    | `stops`                    | `Array`  | Array of objects representing stopovers or layovers: "isStopover": bool, "arrivalStation": string, "duration": string ["123hr 123m"] (layover only) |
+| `stops`                    | `stops`                    | `Array`  | Array of objects representing stopovers or layovers: "isStopover": bool, "arrivalStation": string, "duration": string ["123hr 123m"] (layover only). This content will not be used in the UI, but only constructs the a11y conversational phrase for screen readers and has no effect on the `auro-flight-segment` content. |
 
 ## Slots
 
