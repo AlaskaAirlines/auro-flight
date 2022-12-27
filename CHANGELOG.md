@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [2.2.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.1.0...v2.2.0) (2022-12-27)
+
+
+### Features
+
+* **daycolor:** updated days changed to error on light ([4729047](https://github.com/AlaskaAirlines/auro-flight/commit/4729047cc9315e1484193eeccf00a476682b902b))
+
 # [2.1.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.0.1...v2.1.0) (2022-09-19)
 
 
