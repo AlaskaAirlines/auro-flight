@@ -1,5 +1,5 @@
 import { fixture, html, expect } from '@open-wc/testing';
-import '../src/auro-flight.js';
+import '../index.js';
 
 describe('auro-flight', () => {
 

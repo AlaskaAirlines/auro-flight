@@ -20,7 +20,7 @@ import styleCss from "./style-flight-header-css.js";
 
 // build the component class
 
-class AuroFlightHeader extends LitElement {
+export class AuroFlightHeader extends LitElement {
 
   // function to define props used within the scope of this component
   static get properties() {
@@ -85,7 +85,7 @@ class AuroFlightHeader extends LitElement {
   render() {
     return html`
       <p class="util_displayHiddenVisually">
-        ${this.composeScreenReaderHeader()}  
+        ${this.composeScreenReaderHeader()}
       </p>
       <span class="flight" aria-hidden="true">
         ${this.flightType()}
@@ -98,8 +98,7 @@ class AuroFlightHeader extends LitElement {
   }
 }
 
-/* istanbul ignore else */
-// define the name of the custom component
+/* eslint max-statements: ["error", 11] */
 if (!customElements.get("auro-flight-header")) {
   customElements.define("auro-flight-header", AuroFlightHeader);
 }

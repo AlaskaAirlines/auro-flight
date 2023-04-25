@@ -18,4 +18,5 @@ demo/**/*.html
 index.html
 
 # ignore src
-src/**/*
+src/**/*.scss
+src/**/*.css

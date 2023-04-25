@@ -33,7 +33,7 @@ import "./auro-flight-main";
  */
 
 // build the component class
-class AuroFlight extends LitElement {
+export class AuroFlight extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
@@ -117,8 +117,7 @@ class AuroFlight extends LitElement {
   }
 }
 
-/* istanbul ignore else */
-// define the name of the custom component
+/* eslint max-statements: ["error", 11] */
 if (!customElements.get("auro-flight")) {
   customElements.define("auro-flight", AuroFlight);
 }
