@@ -207,3 +207,45 @@ This element makes use of the data provided in the various properties to auto-ge
   }
 </script>
 ```
+
+## Recommended Use and Version Control
+
+There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom clement. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-flight` custom element is defined automatically.
+
+To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `registerComponent(name)` method and pass in a unique name.
+
+```js
+import './node_modules/@alaskaairux/auro-flight';
+registerComponent('custom-flight');
+```
+
+This will create a new custom element that you can use in your HTML that will function identically to the `auro-flight` element.
+
+<div class="exampleWrapper">
+  <custom-flight
+    flights='["AS 1436"]'
+    duration="161"
+    departureTime="2022-07-13T12:15:00-07:00"
+    departureStation="SEA"
+    arrivalTime="2022-07-13T14:56:00-07:00"
+    arrivalStation="LAX">
+    <custom-flightline></custom-flightline>
+  </custom-flight>
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+  ```html
+  <custom-flight
+    flights='["AS 1436"]'
+    duration="161"
+    departureTime="2022-07-13T12:15:00-07:00"
+    departureStation="SEA"
+    arrivalTime="2022-07-13T14:56:00-07:00"
+    arrivalStation="LAX">
+    <custom-flightline></custom-flightline>
+  </custom-flight>
+  ```
+
+</auro-accordion>

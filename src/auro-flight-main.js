@@ -26,7 +26,7 @@ import { getDateDifference } from './../util/util';
  */
 
 // build the component class
-class AuroFlightMain extends LitElement {
+export class AuroFlightMain extends LitElement {
 
   // function to define props used within the scope of this component
   static get properties() {
@@ -196,8 +196,7 @@ class AuroFlightMain extends LitElement {
   }
 }
 
-/* istanbul ignore else */
-// define the name of the custom component
+/* eslint max-statements: ["error", 18] */
 if (!customElements.get("auro-flight-main")) {
   customElements.define("auro-flight-main", AuroFlightMain);
 }

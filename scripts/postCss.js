@@ -1,6 +1,5 @@
 const autoprefixer = require('autoprefixer');
 const postcss = require('postcss');
-const removeRules = require('postcss-remove-rules');
 const comments = require('postcss-discard-comments');
 const path = require('path');
 const fs = require('fs');
@@ -32,11 +31,6 @@ fs.readdir(directoryPath, function (err, files) {
     postcss([autoprefixer, comments])
     .use(comments({
       remove: function(comment) { return comment[0] == "@"; }
-    }))
-    .use(removeRules({
-      rulesToRemove: {
-        ':root': '*'
-      }
     }))
     .process(css, { from: `src/${file}`, to: `src/${file}` })
     .then(result => {

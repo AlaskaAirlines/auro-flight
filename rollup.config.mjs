@@ -4,9 +4,7 @@ import serve from 'rollup-plugin-serve';
 const production = !process.env.ROLLUP_WATCH,
 
  modernConfig = {
-  input: {
-    'auro-flight__bundled': './index.js',
-  },
+  input: 'index.js',
   output: {
     format: 'esm',
     dir: 'dist/'
