@@ -4,7 +4,7 @@
 // ---------------------------------------------------------------------
 
 // If use litElement base class
-import { LitElement, html, css } from "lit-element";
+import { LitElement, html, css } from "lit";
 import styleCss from "./style-flight-css.js";
 import "@alaskaairux/auro-flightline";
 import "@alaskaairux/auro-flightline/dist/auro-flight-segment";

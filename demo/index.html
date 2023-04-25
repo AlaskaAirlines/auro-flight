@@ -4,33 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Auro Web Component Generator | auro-flight custom element</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://unpkg.com/prismjs@latest/themes/prism.css"
-    />
-    <link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css">
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@alaskaairux/webcorestylesheets@latest/dist/demoWrapper.css" />
-    <link rel="stylesheet" type="text/css" href="https://unpkg.com/@alaskaairux/webcorestylesheets@latest/dist/elementDemoStyles.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/demoWrapper.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/elementDemoStyles.css" />
   </head>
   <body>
     <main></main>
 
     <script type="module">
-      import 'https://unpkg.com/marked@latest/marked.min.js';
-      import 'https://unpkg.com/prismjs@latest/prism.js';
+      import 'https://cdn.jsdelivr.net/npm/marked@latest/marked.min.js';
       fetch('/demo/demo.md')
         .then((response) => response.text())
         .then((text) => {
           const rawHtml = marked.parse(text);
           document.querySelector('main').innerHTML = rawHtml;
-          Prism.highlightAll();
         });
     </script>
     <script type="module" src="../src/auro-flight.js"></script>
-    <script src="https://unpkg.com/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js" type="module"></script>
-    <script src="https://unpkg.com/@alaskaairux/auro-icon@latest/dist/auro-icon__bundled.js" type="module"></script>
-    <script src="https://unpkg.com/@alaskaairux/auro-alerts@latest/dist/auro-alerts__bundled.js" type="module"></script>
-    <script src="https://unpkg.com/@alaskaairux/auro-datetime@latest/dist/auro-datetime__bundled.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@alaskaairux/auro-accordion@latest/dist/auro-accordion__bundled.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@alaskaairux/auro-icon@latest/dist/auro-icon__bundled.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@alaskaairux/auro-alerts@latest/dist/auro-alerts__bundled.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@alaskaairux/auro-datetime@latest/dist/auro-datetime__bundled.js" type="module"></script>
   </body>
 </html>

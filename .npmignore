@@ -15,8 +15,6 @@ demo/**/*.css
 demo/**/*.scss
 demo/**/*.html
 
-dist/es5.js
-
 index.html
 
 # ignore src
