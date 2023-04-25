@@ -4,7 +4,7 @@
 // ---------------------------------------------------------------------
 
 // If use litElement base class
-import { LitElement, html, css } from "lit-element";
+import { LitElement, html, css } from "lit";
 import { getDateDifference } from "../util/util.js";
 import styleCss from "./style-flight-header-css.js";
 
