@@ -99,7 +99,9 @@ class AuroFlightMain extends LitElement {
    * @returns Composed screen reader summary.
    */
   composeScreenReaderSummary() {
-    const hasReroute = this.reroutedDepartureStation && this.reroutedDepartureStation !== 'undefined';
+    const hasDepartureReroute = this.reroutedDepartureStation && this.reroutedDepartureStation !== 'undefined';
+    const hasArrivalReroute = this.reroutedArrivalStation && this.reroutedArrivalStation !== 'undefined';
+    const hasReroute = hasDepartureReroute || hasArrivalReroute;
     const dayDiff = getDateDifference(this.departureTime, this.arrivalTime);
     const daysFromDeparture = dayDiff === 1 ? 'next day' : `${dayDiff} days later`;
     const secondToLastIndex = 2;
@@ -117,24 +119,29 @@ class AuroFlightMain extends LitElement {
     let reroutedDepartureStation = '';
     let reroutedArrivalStation = '';
 
-    if (hasReroute) {
+    if (hasDepartureReroute) {
       reroutedDepartureStation = this.readStation(this.reroutedDepartureStation);
+    }
+
+    if (hasArrivalReroute) {
       reroutedArrivalStation = this.readStation(this.reroutedArrivalStation);
     }
 
     return html`
       ${!hasReroute
         ? `Departs from ${departureStation} at ${departureTime}, arrives ${arrivalStation} at ${arrivalTime}`
-        : `Flight ${reroutedDepartureStation} to ${reroutedArrivalStation} has been re-routed.
-        The flight now departs from ${departureStation} at ${departureTime},
-        and arrives ${arrivalStation} at ${arrivalTime}`} ${dayDiff > 0 ? `, ${daysFromDeparture}` : ''}
+        : `Flight ${departureStation} to ${arrivalStation} has been re-routed.
+        The flight now departs from ${hasDepartureReroute ? reroutedDepartureStation : departureStation} at 
+        ${departureTime},
+        and arrives  ${hasArrivalReroute ? reroutedArrivalStation : arrivalStation} at ${arrivalTime}`} ${dayDiff > 0 ? `, ${daysFromDeparture}` : ''}
         ${this.stops ? ', ' : ''} ${layoverStopoverStringArray}.
     `;
   }
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
-    const hasReroute = this.reroutedDepartureStation && this.reroutedDepartureStation !== 'undefined';
+    const hasDepartureReroute = this.reroutedDepartureStation && this.reroutedDepartureStation !== 'undefined';
+    const hasArrivalReroute = this.reroutedArrivalStation && this.reroutedArrivalStation !== 'undefined';
     return html`
         <script type="application/ld+json">
           {
@@ -157,7 +164,7 @@ class AuroFlightMain extends LitElement {
             <auro-datetime type="tzTime" setDate="${this.departureTime}"></auro-datetime>
           </time>
           <span class="departureStation">
-          ${hasReroute
+          ${hasDepartureReroute
             ? html`
               <span class="util_lineThrough">
                 ${this.reroutedDepartureStation}
@@ -175,7 +182,7 @@ class AuroFlightMain extends LitElement {
             <auro-datetime type="tzTime" setDate="${this.arrivalTime}"></auro-datetime>
           </time>
           <span class="arrivalStation">
-            ${hasReroute
+            ${hasArrivalReroute
               ? html`
                 <span class="util_lineThrough">
                   ${this.reroutedArrivalStation}
