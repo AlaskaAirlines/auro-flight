@@ -1,7 +1,7 @@
 <!--
 The README.md file is a compiled document. No edits should be made directly to this file.
 
-README.md is created by running `npm run build:markdownDocs`.
+README.md is created by running `npm run build:docs`.
 
 This file is generated based on a template fetched from
 `https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/README.md`
@@ -19,8 +19,6 @@ The following sections are editable by making changes to the following files:
 
 # Flight
 
-<!-- AUROLABS-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/labsDisclaimer.md) -->
-<!-- AUROLABS-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
 <!-- The below content is automatically added from ./../docs/partials/description.md -->
 The `<auro-flight>` element encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
@@ -64,7 +62,6 @@ For the most up to date information on [UI development browser support](https://
 [![Build Status](https://img.shields.io/github/actions/workflow/status/AlaskaAirlines/auro-flight/testPublish.yml?style=for-the-badge)](https://github.com/AlaskaAirlines/auro-flight/actions/workflows/testPublish.yml)
 [![See it on NPM!](https://img.shields.io/npm/v/@aurodesignsystem/auro-flight?style=for-the-badge&color=orange)](https://www.npmjs.com/package/@aurodesignsystem/auro-flight)
 [![License](https://img.shields.io/npm/l/@aurodesignsystem/auro-flight?color=blue&style=for-the-badge)](https://www.apache.org/licenses/LICENSE-2.0)
-[![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/@aurodesignsystem/auro-flight?style=for-the-badge)](https://snyk.io/test/npm/@aurodesignsystem/auro-flight?tab=issues)
 
 ```shell
 $ npm i @aurodesignsystem/auro-flight
@@ -123,9 +120,9 @@ import "@aurodesignsystem/auro-flight";
 ## Install bundled assets from CDN
 
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/bundleInstallDescription.md) -->
-In cases where the project is not able to process JS assets, there are pre-processed assets available for use. Two bundles are available -- `auro-flight__bundled.js` for modern browsers and `auro-flight__bundled.es5.js` for legacy browsers (including IE11).
+In cases where the project is not able to process JS assets, there are pre-processed assets available for use. See -- `auro-flight__bundled.js` for modern browsers. Legacy browsers such as IE11 are no longer supported.
 
-Since the legacy bundle includes many polyfills that are not needed by modern browsers, we recommend you load these bundles using [differential serving](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) so that the browser only loads the bundle it needs. To accomplish this, the script tag for the modern bundle should have `type="module"` and the script tag for the legacy bundle should have the `nomodule` attribute. See the example below.
+We recommend you load these bundles using [differential serving](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) so that the browser only loads the bundle correctly. To accomplish this, the script tag for the modern bundle should have `type="module"` and the script tag.
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
@@ -135,10 +132,9 @@ Since the legacy bundle includes many polyfills that are not needed by modern br
 
 ```html
 <!-- **NOTE:** Be sure to replace `@latest` in the URL with the version of the asset you want. @latest is NOT aware of any MAJOR releases, use at your own risk. -->
-<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
-<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/webcorestylesheets@latest/dist/bundled/essentials.css" />
-<script src="https://unpkg.com/@aurodesignsystem/auro-flight@latest/dist/auro-flight__bundled.js" type="module"></script>
-<script src="https://unpkg.com/@aurodesignsystem/auro-flight@latest/dist/auro-flight__bundled.es5.js" nomodule></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/bundled/essentials.css" />
+<script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-flight@latest/dist/auro-flight__bundled.js" type="module"></script>
 ```
 
 <!-- AURO-GENERATED-CONTENT:END -->
