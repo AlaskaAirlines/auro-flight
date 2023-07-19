@@ -125,6 +125,44 @@ In this example, the `footer` slot is used to alert the customer that a First Cl
 
 </auro-accordion>
 
+## Using the optional departure reroute information
+
+The following example illustrates additional data regarding departure reroute information.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/reroute1.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/reroute1.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+<hr/>
+
+## Using the optional arrival reroute information
+
+The following example illustrates additional data regarding arrival reroute information.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/reroute2.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/reroute2.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+<hr/>
+
 ## Using the optional departure/arrival header slots
 
 The following example illustrates additional data regarding departure and arrival information.
@@ -143,6 +181,7 @@ The following example illustrates additional data regarding departure and arriva
 </auro-accordion>
 
 <hr/>
+
 
 
 ## DoT regulations
