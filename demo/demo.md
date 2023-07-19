@@ -341,6 +341,92 @@ In this example, the `footer` slot is used to alert the customer that a First Cl
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
+## Using the optional departure reroute information
+
+The following example illustrates additional data regarding departure reroute information.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/reroute1.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/reroute1.html -->
+  <auro-flight
+    flights='["AS 8"]'
+    duration="330"
+    departureTime="2022-07-30T07:40:00-07:00"
+    departureStation="SEA"
+    arrivalTime="2022-07-30T16:40:00-04:00"
+    arrivalStation="EWR"
+    reroutedArrivalStation="AVP">
+    <auro-flightline></auro-flightline>
+    <span slot="departureHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-07-30T07:20:00-07:00"></auro-datetime></span>
+    <span slot="arrivalHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-05-04T17:48:00-04:00"></auro-datetime></span>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/reroute1.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/reroute1.html -->
+
+```html
+<auro-flight
+  flights='["AS 8"]'
+  duration="330"
+  departureTime="2022-07-30T07:40:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-07-30T16:40:00-04:00"
+  arrivalStation="EWR"
+  reroutedArrivalStation="AVP">
+  <auro-flightline></auro-flightline>
+  <span slot="departureHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-07-30T07:20:00-07:00"></auro-datetime></span>
+  <span slot="arrivalHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-05-04T17:48:00-04:00"></auro-datetime></span>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+## Using the optional arrival reroute information
+
+The following example illustrates additional data regarding arrival reroute information.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/reroute2.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/reroute2.html -->
+  <auro-flight
+    flights='["AS 8"]'
+    duration="330"
+    departureTime="2022-07-30T07:40:00-07:00"
+    departureStation="SEA"
+    arrivalTime="2022-07-30T16:40:00-04:00"
+    arrivalStation="EWR"
+    reroutedDepartureStation="PAE">
+    <auro-flightline></auro-flightline>
+    <span slot="departureHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-07-30T07:20:00-07:00"></auro-datetime></span>
+    <span slot="arrivalHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-05-04T17:48:00-04:00"></auro-datetime></span>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion lowProfile justifyRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/reroute2.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/reroute2.html -->
+
+```html
+<auro-flight
+  flights='["AS 8"]'
+  duration="330"
+  departureTime="2022-07-30T07:40:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-07-30T16:40:00-04:00"
+  arrivalStation="EWR"
+  reroutedDepartureStation="PAE">
+  <auro-flightline></auro-flightline>
+  <span slot="departureHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-07-30T07:20:00-07:00"></auro-datetime></span>
+  <span slot="arrivalHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-05-04T17:48:00-04:00"></auro-datetime></span>
+</auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
 ## Using the optional departure/arrival header slots
 
 The following example illustrates additional data regarding departure and arrival information.
