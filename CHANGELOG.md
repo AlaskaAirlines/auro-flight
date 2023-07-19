@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [2.3.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.2.0...v2.3.0) (2023-07-19)
+
+
+### Features
+
+* supoprt individual arrival and departure rerouts [#91](https://github.com/AlaskaAirlines/auro-flight/issues/91) ([1448823](https://github.com/AlaskaAirlines/auro-flight/commit/144882315779c9e4d0f31712f5d198b1bbf05712))
+
 # [2.2.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.1.0...v2.2.0) (2022-12-27)
 
 
