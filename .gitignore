@@ -1,6 +1,7 @@
 .DS_Store
 node_modules/
 .cache/
+docTemplates/
 
 ## Demo support files
 demo/*.css
