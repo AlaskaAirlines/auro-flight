@@ -6,8 +6,8 @@
 // If use litElement base class
 import { LitElement, html, css } from "lit";
 import styleCss from "./style-flight-css.js";
-import "@alaskaairux/auro-flightline";
-import "@alaskaairux/auro-flightline/dist/auro-flight-segment";
+import "@aurodesignsystem/auro-flightline";
+import "@aurodesignsystem/auro-flightline/dist/auro-flight-segment__bundled.js";
 import "./auro-flight-header";
 import "./auro-flight-main";
 
