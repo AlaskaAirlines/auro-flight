@@ -139,24 +139,6 @@ We recommend you load these bundles using [differential serving](https://philipw
 
 <!-- AURO-GENERATED-CONTENT:END -->
 
-Since the legacy bundle includes many polyfills that are not needed by modern browsers, we recommend you load these bundles using [differential serving](https://philipwalton.com/articles/deploying-es2015-code-in-production-today/) so that the browser only loads the bundle it needs. To accomplish this, the script tag for the modern bundle should have `type="module"` and the script tag for the legacy bundle should have the `nomodule` attribute. See the example below.
-
-<!-- AURO-GENERATED-CONTENT:END -->
-
-### Bundle example code
-
-<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/usage/bundleUse.md) -->
-
-```html
-<!-- **NOTE:** Be sure to replace `@latest` in the URL with the version of the asset you want. @latest is NOT aware of any MAJOR releases, use at your own risk. -->
-<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
-<link rel="stylesheet" href="https://unpkg.com/@alaskaairux/webcorestylesheets@latest/dist/bundled/essentials.css" />
-<script src="https://unpkg.com/@aurodesignsystem/auro-flight@latest/dist/auro-flight__bundled.js" type="module"></script>
-<script src="https://unpkg.com/@aurodesignsystem/auro-flight@latest/dist/auro-flight__bundled.es5.js" nomodule></script>
-```
-
-<!-- AURO-GENERATED-CONTENT:END -->
-
 ## auro-flight use cases
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/useCases.md) -->
@@ -236,12 +218,5 @@ Automated tests are required for every Auro component. See `.\test\auro-flight.t
 
 <!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/bundles.md) -->
 Bundled assets are only generated in the remote and not merged back to this repo. To review and/or test a bundled asset locally, run `$ npm run bundler` to generate assets.
-
-<!-- AURO-GENERATED-CONTENT:END -->
-
-### Demo deployment
-
-<!-- AURO-GENERATED-CONTENT:START (REMOTE:url=https://raw.githubusercontent.com/AlaskaAirlines/WC-Generator/master/componentDocs/partials/development/deploymentDemo.md) -->
-To deploy a demo version of the component for review, run `npm run build:demo` to create a `./build` directory that can be pushed to any static server.
 
 <!-- AURO-GENERATED-CONTENT:END -->
