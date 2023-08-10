@@ -1,7 +1,7 @@
 .DS_Store
 node_modules/
-.cache/
 docTemplates/
+.cache/
 
 ## Demo support files
 demo/*.css
@@ -18,5 +18,5 @@ src/*.css.map
 dist/
 build/
 
-## Karma code coverage reports
+## Code coverage reports
 coverage/
