@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+# [2.4.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.3.0...v2.4.0) (2023-08-16)
+
+
+### Features
+
+* **node18:** address updated resources [#57](https://github.com/AlaskaAirlines/auro-flight/issues/57), [#58](https://github.com/AlaskaAirlines/auro-flight/issues/58) ([9f09da1](https://github.com/AlaskaAirlines/auro-flight/commit/9f09da176fa64f2166fc5289f635eb4d4efd47fa))
+
+
+### Performance Improvements
+
+* remove legacy processes, update to Lit2.0 ([9f020c8](https://github.com/AlaskaAirlines/auro-flight/commit/9f020c82030e8564c5c076b5f07a157b04c87f33)), closes [#56](https://github.com/AlaskaAirlines/auro-flight/issues/56) [#57](https://github.com/AlaskaAirlines/auro-flight/issues/57)
+
 # [2.3.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.2.0...v2.3.0) (2023-07-19)
 
 
