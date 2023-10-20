@@ -4,11 +4,14 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/core';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/utilityClasses/displayProperties';
+// Support for fallback values
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables.scss';
+
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
 
 // Support for auroElement styles
 // @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/auroElement/auroElement';
@@ -29,13 +32,13 @@
 :host {
   display: flex;
   justify-content: space-between;
-  padding-bottom: var(--auro-size-xxs);
-  color: var(--auro-color-text-secondary-on-light);
-  font-size: var(--auro-text-body-size-default);
+  padding-bottom: var(--ds-size-50, $ds-size-50);
+  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
+  font-size: var(--ds-text-body-size-default, $ds-text-body-size-default);
 }
 
 .daysChanged {
   align-self: flex-end;
-  padding-left: var(--auro-size-sm);
-  color: var(--auro-color-alert-error-on-light);
+  padding-left: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
+  color: var(--ds-color-alert-error-default, $ds-color-alert-error-default);
 }
