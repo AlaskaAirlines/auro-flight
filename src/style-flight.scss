@@ -4,21 +4,24 @@
 // ---------------------------------------------------------------------
 
 // Import Auro tokens
-@import './../node_modules/@alaskaairux/design-tokens/dist/tokens/SCSSVariables';
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/breakpoints';
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/core';
-@import './../node_modules/@alaskaairux/webcorestylesheets/dist/utilityClasses/displayProperties';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
+
+// Support for fallback values
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables.scss';
 
 // Support for auroElement styles
 // @import './node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement';
 
 .flightFooter {
-  padding-top: var(--auro-size-md);
+  padding-top: var(--ds-size-200, $ds-size-200);
 }
 
 [name='footer'] {
-  color: var(--auro-color-text-secondary-on-light);
+  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
 }
 
 .headerContainer {
