@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.4.1](https://github.com/AlaskaAirlines/auro-flight/compare/v2.4.0...v2.4.1) (2023-10-30)
+
+
+### Bug Fixes
+
+* **font:** make departure/arrival time mobile font smaller [#55](https://github.com/AlaskaAirlines/auro-flight/issues/55) ([bbfd5bf](https://github.com/AlaskaAirlines/auro-flight/commit/bbfd5bfc8e4e89e15de41f58e5b058f92440bc23))
+
 # [2.4.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.3.0...v2.4.0) (2023-08-16)
 
 
