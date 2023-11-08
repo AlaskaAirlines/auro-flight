@@ -18,7 +18,7 @@ body:
     attributes:
       value: >
         [![See it on
-        NPM!](https://img.shields.io/npm/v/@alaskaairux/auro-flight?style=for-the-badge&color=orange)](https://www.npmjs.com/package/@alaskaairux/auro-flight)
+        NPM!](https://img.shields.io/npm/v/@aurodesignsystem/auro-flight?style=for-the-badge&color=orange)](https://www.npmjs.com/package/@aurodesignsystem/auro-flight)
   - type: textarea
     id: details
     attributes:
@@ -58,3 +58,9 @@ body:
     attributes:
       label: Additional context
       description: Add any other context about the problem here.
+  - type: textarea
+    id: exit-criteria
+    attributes:
+      label: Exit criteria
+      description: Define your issue's exit criteria
+      placeholder: "This issue can be closed once the error has been corrected. Any additional scope e.g. updates or refactors, should be discussed PRIOR to adding scope to this issue."
