@@ -16,7 +16,7 @@
   "main": "index.js",
   "license": "Apache-2.0",
   "engines": {
-    "node": ">=18.15.0"
+    "node": "^18 || ^20"
   },
   "dependencies": {
     "@aurodesignsystem/auro-badge": "^2.3.1",
