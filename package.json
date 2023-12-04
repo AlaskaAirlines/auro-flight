@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@aurodesignsystem/auro-badge": "^2.3.1",
-    "@aurodesignsystem/auro-flightline": "^2.0.1",
+    "@aurodesignsystem/auro-flightline": "^2.0.2",
     "chalk": "^5.3.0",
     "lit": "^3.1.0"
   },
