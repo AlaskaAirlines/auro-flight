@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+# [2.5.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.4.1...v2.5.0) (2023-12-05)
+
+
+### Features
+
+* update node support to include version 20 ([e7ae9c3](https://github.com/AlaskaAirlines/auro-flight/commit/e7ae9c31c4759cd483570bd24283e5d6f516948f))
+
+
+### Performance Improvements
+
+* **token:** update token per new theming [#97](https://github.com/AlaskaAirlines/auro-flight/issues/97) ([4db8ddf](https://github.com/AlaskaAirlines/auro-flight/commit/4db8ddfa7d411900e2269c4b5d06a280e96a84d5))
+
 ## [2.4.1](https://github.com/AlaskaAirlines/auro-flight/compare/v2.4.0...v2.4.1) (2023-10-30)
 
 
