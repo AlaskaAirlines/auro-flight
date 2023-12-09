@@ -1,1 +1,18 @@
 blank_issues_enabled: false
+
+blank_issues_enabled: false
+
+contact_links:
+  - name: Feature request
+    url: https://github.com/AlaskaAirlines/auro-flight/discussions/new?category=feature-requests
+    about: New ideas and feature opportunities
+  - name: General discussions
+    url: https://github.com/AlaskaAirlines/auro-flight/discussions/new?category=general-discussions
+    about: Chat about anything and everything here
+  - name: General ideas
+    url: https://github.com/AlaskaAirlines/auro-flight/discussions/new?category=general-ideas
+    about: Suggestions that are not related to bugs or new features
+  - name: Please help!
+    url: https://github.com/AlaskaAirlines/auro-flight/discussions/new?category=please-help
+    about: Have something to share with the Auro team?
+
