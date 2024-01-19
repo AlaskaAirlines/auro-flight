@@ -47,7 +47,7 @@ This example illustrates a mainline nonstop flight from SEA to LAX
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/basic.html -->
@@ -84,7 +84,7 @@ This example illustrates a mainline nonstop with a next day arrival or departure
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/nextDay.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/nextDay.html -->
@@ -124,7 +124,7 @@ This example illustrates a one-stop `stopover` flight from ANC to ADK. Notice th
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/oneStop.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/oneStop.html -->
@@ -171,7 +171,7 @@ The following example illustrates a mainline multi-stop `stopover` flight from K
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/multiStop.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/multiStop.html -->
@@ -224,7 +224,7 @@ The following example illustrates a change of gauge flight with a layover in SEA
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/connection.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/connection.html -->
@@ -278,7 +278,7 @@ This slot requires the consumer to manually manage what is read back via the scr
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/footerSlot.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/footerSlot.html -->
@@ -320,7 +320,7 @@ In this example, the `footer` slot is used to alert the customer that a First Cl
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/footerSlot2.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/footerSlot2.html -->
@@ -362,7 +362,7 @@ The following example illustrates additional data regarding departure reroute in
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/reroute1.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/reroute1.html -->
@@ -405,7 +405,7 @@ The following example illustrates additional data regarding arrival reroute info
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/reroute2.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/reroute2.html -->
@@ -449,7 +449,7 @@ The following example illustrates additional data regarding departure and arriva
   </auro-flight>
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/headerSlot.html) -->
 <!-- The below code snippet is automatically added from ./../../apiExamples/headerSlot.html -->
