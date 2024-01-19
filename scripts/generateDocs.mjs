@@ -1,8 +1,3 @@
-/**
- * This version is sans dependencies
- * Create for use with the SSR updates
- */
-
 import path from 'path';
 import markdownMagic from 'markdown-magic';
 import fs from 'fs';
@@ -54,8 +49,8 @@ function formatTemplateFileContents(content, destination) {
    * Replace placeholder strings
    */
   result = result.replace(/\[npm]/g, nameExtractionData.npm);
-  result = result.replace(/\[name]/g, nameExtractionData.name);
-  result = result.replace(/\[Name]/g, nameExtractionData.nameCap);
+  result = result.replace(/\[name](?!\()/g, nameExtractionData.name);
+  result = result.replace(/\[Name](?!\()/g, nameExtractionData.nameCap);
   result = result.replace(/\[namespace]/g, nameExtractionData.namespace);
   result = result.replace(/\[Namespace]/g, nameExtractionData.namespaceCap);
 
@@ -81,14 +76,14 @@ function formatApiTableContents(content, destination) {
   let result = content;
 
   result = result
-    .replace(/\r\n|\r|\n####\s`([a-zA-Z]*)`/g, `\r\n#### <a name="$1"></a>\`$1\`<a href="#${wcName}" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>`)
+    .replace(/\r\n|\r|\n####\s`([a-zA-Z]*)`/g, `\r\n#### <a name="$1"></a>\`$1\`<a href="#" style="float: right; font-size: 1rem; font-weight: 100;">back to top</a>`)
     .replace(/\r\n|\r|\n\|\s`([a-zA-Z]*)`/g, '\r\n| [$1](#$1)')
     .replace(/\| \[\]\(#\)/g, "");
 
   fs.writeFileSync(destination, result, { encoding: 'utf8'});
 
-  fs.readFile('./demo/api.md', 'utf8', function(err, data) {
-    formatTemplateFileContents(data, './demo/api.md');
+  fs.readFile('./demo/apiExamples.md', 'utf8', function(err, data) {
+    formatTemplateFileContents(data, './demo/apiExamples.md');
   });
 }
 
@@ -149,12 +144,12 @@ function processDemo() {
 
 function processApiExamples() {
   const callback = function(updatedContent, outputConfig) {
-    if (fs.existsSync('./demo/api.md')) {
-      fs.readFile('./demo/api.md', 'utf8', function(err, data) {
-        formatApiTableContents(data, './demo/api.md');
+    if (fs.existsSync('./demo/apiExamples.md')) {
+      fs.readFile('./demo/apiExamples.md', 'utf8', function(err, data) {
+        formatApiTableContents(data, './demo/apiExamples.md');
       });
     } else {
-      console.log('ERROR: ./demo/api.md file is missing');
+      console.log('ERROR: ./demo/apiExamples.md file is missing');
     }
   };
 
@@ -163,7 +158,7 @@ function processApiExamples() {
     outputDir: './demo'
   };
 
-  const markdownPath = path.join(__dirname, '../docs/partials/api.md');
+  const markdownPath = path.join(__dirname, '../docs/partials/apiExamples.md');
 
   markdownMagic(markdownPath, config, callback);
 }
