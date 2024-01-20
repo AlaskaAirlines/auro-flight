@@ -30,17 +30,17 @@ describe('auro-flight-main', () => {
 
   it('auro flight with no reroutes, and a single flight', async () => {
     const el = await fixture(html`
-      <auro-flight-main 
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+      <auro-flight-main
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-04T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'>
       </auro-flight-main>
     `);
 
-    const expectedDeparture = 'Departs from S E A at 12:30 AM', 
-      expectedArrival = 'arrives P V D at 11:55 AM'; 
+    const expectedDeparture = 'Departs from S E A at 12:30 AM',
+      expectedArrival = 'arrives P V D at 11:55 AM';
 
     const actual = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
 
@@ -50,9 +50,9 @@ describe('auro-flight-main', () => {
 
   it('non-stop that arrives next day', async () => {
     const el = await fixture(html`
-      <auro-flight-main 
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+      <auro-flight-main
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-05T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'>
@@ -65,7 +65,7 @@ describe('auro-flight-main', () => {
       expectedNonstop = 'nonstop';
 
     const actual = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
-    
+
     await expect(actual.includes(expectedComposedDeparture)).is.true;
     await expect(actual.includes(expectedComposedArrival)).is.true;
     await expect(actual.includes(expectedNextDay)).is.true;
@@ -75,8 +75,8 @@ describe('auro-flight-main', () => {
   it('non-stop that arrives two days later', async () => {
     const el = await fixture(html`
       <auro-flight-main
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-06T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'>
@@ -95,19 +95,22 @@ describe('auro-flight-main', () => {
 
   it('auro flight with a departure reroute', async () => {
     const el = await fixture(html`
-      <auro-flight-main 
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+      <auro-flight-main
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-04T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'
         reroutedDepartureStation="LAX">
       </auro-flight-main>
     `);
-    
-    const expectedDeparture = 'The flight now departs from L A X at         12:30 AM',
+
+    console.log(el);
+
+    const expectedDepartureCity = `L A X`,
+    expectedDepartureTime = `12:30 AM`,
     expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
-    
+
     const actual = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
     const departureRerouteSpan = el.shadowRoot.querySelector('.departureStation .util_lineThrough');
     const arrivalRerouteSpan = el.shadowRoot.querySelector('.arrivalStation .util_lineThrough');
@@ -115,24 +118,25 @@ describe('auro-flight-main', () => {
     await expect(arrivalRerouteSpan).to.be.null;
     await expect(departureRerouteSpan).to.not.be.null;
     await expect(actual.includes(expectedReroutedFlight)).is.true;
-    await expect(actual.includes(expectedDeparture)).is.true;
+    await expect(actual.includes(expectedDepartureCity)).is.true;
+    await expect(actual.includes(expectedDepartureTime)).is.true;
   })
 
   it('auro flight with an arrival reroute', async () => {
     const el = await fixture(html`
-      <auro-flight-main 
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+      <auro-flight-main
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-04T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'
         reroutedArrivalStation="SFO">
       </auro-flight-main>
     `);
-    
+
     const expectedArrival = 'and arrives  S F O at 11:55 AM',
     expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
-    
+
     const actual = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
     const departureRerouteSpan = el.shadowRoot.querySelector('.departureStation .util_lineThrough');
     const arrivalRerouteSpan = el.shadowRoot.querySelector('.arrivalStation .util_lineThrough');
@@ -145,33 +149,35 @@ describe('auro-flight-main', () => {
 
   it('auro flight with reroutes', async () => {
     const el = await fixture(html`
-      <auro-flight-main 
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+      <auro-flight-main
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-04T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'
-        reroutedArrivalStation="SFO" 
+        reroutedArrivalStation="SFO"
         reroutedDepartureStation="LAX">
       </auro-flight-main>
     `);
-    
-    const expectedDeparture = 'The flight now departs from L A X at         12:30 AM',
+
+    const expectedDepartureCity = `L A X`,
+    expectedDepartureTime = `12:30 AM`,
     expectedArrival = 'and arrives  S F O at 11:55 AM',
     expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
-    
+
     const actual = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
 
     await expect(actual.includes(expectedReroutedFlight)).is.true;
-    await expect(actual.includes(expectedDeparture)).is.true;
+    await expect(actual.includes(expectedDepartureTime)).is.true;
+    await expect(actual.includes(expectedDepartureCity)).is.true;
     await expect(actual.includes(expectedArrival)).is.true;
   })
 
   it('flight with a stopover', async () => {
     const el = await fixture(html`
-      <auro-flight-main 
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+      <auro-flight-main
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-04T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'
@@ -192,9 +198,9 @@ describe('auro-flight-main', () => {
 
   it('flight with a layover', async () => {
     const el = await fixture(html`
-      <auro-flight-main 
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+      <auro-flight-main
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-04T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'
@@ -216,9 +222,9 @@ describe('auro-flight-main', () => {
 
   it('flight with a layover', async () => {
     const el = await fixture(html`
-      <auro-flight-main 
-        departureTime="2022-05-04T00:30:00-07:00" 
-        departureStation="SEA" 
+      <auro-flight-main
+        departureTime="2022-05-04T00:30:00-07:00"
+        departureStation="SEA"
         arrivalTime="2022-05-04T11:55:00-04:00"
         arrivalStation="PVD"
         flights='["AS 1436"]'

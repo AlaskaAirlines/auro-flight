@@ -131,7 +131,7 @@ export class AuroFlightMain extends LitElement {
       ${!hasReroute
         ? `Departs from ${departureStation} at ${departureTime}, arrives ${arrivalStation} at ${arrivalTime}`
         : `Flight ${departureStation} to ${arrivalStation} has been re-routed.
-        The flight now departs from ${hasDepartureReroute ? reroutedDepartureStation : departureStation} at 
+        The flight now departs from ${hasDepartureReroute ? reroutedDepartureStation : departureStation} at
         ${departureTime},
         and arrives  ${hasArrivalReroute ? reroutedArrivalStation : arrivalStation} at ${arrivalTime}`} ${dayDiff > 0 ? `, ${daysFromDeparture}` : ''}
         ${this.stops ? ', ' : ''} ${layoverStopoverStringArray}.
@@ -143,19 +143,6 @@ export class AuroFlightMain extends LitElement {
     const hasDepartureReroute = this.reroutedDepartureStation && this.reroutedDepartureStation !== 'undefined';
     const hasArrivalReroute = this.reroutedArrivalStation && this.reroutedArrivalStation !== 'undefined';
     return html`
-        <script type="application/ld+json">
-          {
-            "@context": "https://schema.org/",
-            "@type": "Flight",
-            "departureTime": "${this.departureTime}",
-            "arrivalTime": "${this.arrivalTime}",
-            "estimatedFlightDuration": "${this.duration}",
-            "name": "Flight${this.flights.length > 1 ? 's' : ''} ${this.flights.join(',')}",
-            "arrivalAirport": "${this.arrivalStation}",
-            "departureAirport": "${this.departureStation}",
-            "description": "Departs from ${this.departureStation} at ${this.convertTime(this.departureTime)}, arrives ${this.arrivalStation} at ${this.convertTime(this.arrivalTime)}"
-          }
-        </script>
         <div class="util_displayHiddenVisually">
           ${this.composeScreenReaderSummary()}
         </div>
