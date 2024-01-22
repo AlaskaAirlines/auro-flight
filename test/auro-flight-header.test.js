@@ -51,6 +51,14 @@ describe('auro-flight-header', () => {
     await expect(el.shadowRoot.querySelector('.daysChanged').textContent).to.equal('+2 days');
   });
 
+  it('determines -1 day change', async () => {
+    const el = await fixture(html`
+      <auro-flight-header flights='["AS 123"]' departureTime="2022-04-14T01:10:00-07:00" arrivalTime="2022-04-13T12:30:00-04:00"></auro-flight-header>
+    `);
+
+    await expect(el.shadowRoot.querySelector('.daysChanged').textContent).to.equal('-1 day');
+  });
+
   it('auro-flight-header custom element is defined', async () => {
     const el = await Boolean(customElements.get("auro-flight-header"));
 
@@ -63,7 +71,7 @@ describe('auro-flight-header', () => {
     `);
 
     const flightInfoText = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
-    
+
     await expect(flightInfoText).to.contain('Flight A S   1 2 3,      Duration: 180');
   });
 
