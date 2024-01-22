@@ -1,5 +1,23 @@
 # Semantic Release Automated Changelog
 
+# [2.6.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.5.0...v2.6.0) (2024-01-22)
+
+
+### Bug Fixes
+
+* **docs:** correct the URL import for auro-alert ([ac697e4](https://github.com/AlaskaAirlines/auro-flight/commit/ac697e44ba8fd0ff92d74564ad22bb0ebf433492))
+* remove offending SEO code [#99](https://github.com/AlaskaAirlines/auro-flight/issues/99) ([2d70224](https://github.com/AlaskaAirlines/auro-flight/commit/2d7022458ef3d040b6540942b468acb719aac2a6))
+
+
+### Features
+
+* add suport for SSR projects ([765795b](https://github.com/AlaskaAirlines/auro-flight/commit/765795b2fce459500035091a3caf4389aa2b4236))
+
+
+### Performance Improvements
+
+* update datetime dependency ref [#95](https://github.com/AlaskaAirlines/auro-flight/issues/95) ([79dda0e](https://github.com/AlaskaAirlines/auro-flight/commit/79dda0e0bc275a5c67b72ead720100b48b3bae0d))
+
 # [2.5.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.4.1...v2.5.0) (2023-12-05)
 
 
