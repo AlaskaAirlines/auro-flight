@@ -61,10 +61,16 @@ export class AuroFlightHeader extends LitElement {
    */
   flightDuration() {
     const dayDiff = getDateDifference(this.departureTime, this.arrivalTime);
+    const arriveOneDayBefore = -1;
+    let daysChanged = html``;
 
-    return dayDiff > 0
-      ? html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`
-      : html``;
+    if (dayDiff > 0) {
+      daysChanged = html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`;
+    } else if (dayDiff === arriveOneDayBefore) {
+      daysChanged = html`<span class="daysChanged">${dayDiff} day</span>`;
+    }
+
+    return daysChanged;
   }
 
   /**
