@@ -108,8 +108,8 @@ This example illustrates a mainline nonstop with a next day arrival or departure
 This example illustrates a mainline nonstop with a -1 day arrival or departure from KOA to SEA
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/nextDay.html) -->
-  <!-- The below content is automatically added from ./../../apiExamples/nextDay.html -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/arriveOneDayBefore.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/arriveOneDayBefore.html -->
   <auro-flight
     flights='["AS 880"]'
     duration="350"
@@ -123,8 +123,8 @@ This example illustrates a mainline nonstop with a -1 day arrival or departure f
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/nextDay.html) -->
-<!-- The below code snippet is automatically added from ./../../apiExamples/nextDay.html -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/arriveOneDayBefore.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/arriveOneDayBefore.html -->
 
 ```html
 <auro-flight
@@ -196,9 +196,9 @@ The following example illustrates a mainline multi-stop `stopover` flight from K
     departureTime="2022-05-04T00:00:00-09:00"
     departureStation="KTN"
     arrivalTime="2022-05-04T05:53:00-09:00"
-    arrivalStation="ANC"
-    stops='[{ "isStopover": true, "arrivalStation": "WRG"},
-      { "isStopover": true, "arrivalStation": "PSG"},
+    arrivalStation="ANC"    
+    stops='[{ "isStopover": true, "arrivalStation": "WRG"}, 
+      { "isStopover": true, "arrivalStation": "PSG"}, 
       { "isStopover": true, "arrivalStation": "JNU"}]'>
     <auro-flightline>
       <auro-flight-segment stopover iata="WRG"></auro-flight-segment>
@@ -220,9 +220,9 @@ The following example illustrates a mainline multi-stop `stopover` flight from K
   departureTime="2022-05-04T00:00:00-09:00"
   departureStation="KTN"
   arrivalTime="2022-05-04T05:53:00-09:00"
-  arrivalStation="ANC"
-  stops='[{ "isStopover": true, "arrivalStation": "WRG"},
-    { "isStopover": true, "arrivalStation": "PSG"},
+  arrivalStation="ANC"    
+  stops='[{ "isStopover": true, "arrivalStation": "WRG"}, 
+    { "isStopover": true, "arrivalStation": "PSG"}, 
     { "isStopover": true, "arrivalStation": "JNU"}]'>
   <auro-flightline>
     <auro-flight-segment stopover iata="WRG"></auro-flight-segment>
