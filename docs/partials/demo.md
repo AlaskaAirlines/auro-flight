@@ -40,6 +40,23 @@ This example illustrates a mainline nonstop with a next day arrival or departure
 
 </auro-accordion>
 
+## Mainline -1 day arrival/departure
+
+This example illustrates a mainline nonstop with a -1 day arrival or departure from KOA to SEA
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/arriveOneDayBefore.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/arriveOneDayBefore.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
 ## Mainline one-stop
 
 This example illustrates a one-stop `stopover` flight from ANC to ADK. Notice the additional information required for the `auro-flight-segment` element.
