@@ -105,8 +105,6 @@ describe('auro-flight-main', () => {
       </auro-flight-main>
     `);
 
-    console.log(el);
-
     const expectedDepartureCity = `L A X`,
     expectedDepartureTime = `12:30 AM`,
     expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
