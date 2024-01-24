@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.6.2](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.1...v2.6.2) (2024-01-24)
+
+
+### Bug Fixes
+
+* -1 Days unsupported (International Date Line) ([28ea46c](https://github.com/AlaskaAirlines/auro-flight/commit/28ea46c6e64fbc3a3796343b338c28b70d68217f))
+
 ## [2.6.1](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.0...v2.6.1) (2024-01-22)
 
 
