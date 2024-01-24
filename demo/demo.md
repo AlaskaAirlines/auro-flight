@@ -517,23 +517,3 @@ Department of Transportation regulations mandate that the arrival and departure 
 ## Accessibility
 
 The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element to determine if information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, `aria-hidden='true'` is recommended.
-
-## SEO
-
-This element makes use of the data provided in the various properties to auto-generate the appropriate structured data. See the following for an example. To validate the SEO content schema, please run this URL through the [Schema Markup Validator](https://developers.google.com/search/docs/advanced/structured-data).
-
-```html
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org/",
-    "@type": "Flight",
-    "departureTime": "2022-04-13T01:10:00-07:00",
-    "arrivalTime": "2022-04-13T12:30:00-04:00",
-    "estimatedFlightDuration": "",
-    "name": "Flight(s) ",
-    "arrivalAirport": "EWR",
-    "departureAirport": "SEA",
-    "description": "Departs from SEA at 8:10 AM, arrives EWR at 4:30 PM"
-  }
-</script>
-```
