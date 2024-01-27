@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.6.3](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.2...v2.6.3) (2024-01-27)
+
+
+### Performance Improvements
+
+* update index per SSR support ([5b21df1](https://github.com/AlaskaAirlines/auro-flight/commit/5b21df1a11417938d7df73ad665f43959f675269))
+
 ## [2.6.2](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.1...v2.6.2) (2024-01-24)
 
 
