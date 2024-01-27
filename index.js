@@ -1,4 +1,4 @@
-import { AuroFlight } from './src/auro-flight';
+import { AuroFlight } from './src/auro-flight.js';
 
 /**
  * Register Custom Element.
