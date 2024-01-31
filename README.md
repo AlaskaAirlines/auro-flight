@@ -32,14 +32,14 @@ The `<auro-flight>` custom element's API consists of a series of attributes to b
 The `<auro-flight>` element has dependencies on the following additional Auro custom elements.
 
 ```
-  └── @alaskaairux/auro-flightline
-  |  ├── (internal dependency) @alaskaairux/auro-flight-segment
-  |  └── (external dependency) @alaskaairux/auro-badge
+  └── @aurodesignsystem/auro-flightline
+  |  ├── (internal dependency) @aurodesignsystem/auro-flight-segment
+  |  └── (external dependency) @aurodesignsystem/auro-badge
 
-  └── @alaskaairux/auro-flight
-  |  ├── (internal dependency) @alaskaairux/auro-flight-header
-  |  ├── (internal dependency) @alaskaairux/auro-flight-body
-  |  └── (external dependency) @alaskaairux/auro-datetime
+  └── @aurodesignsystem/auro-flight
+  |  ├── (internal dependency) @aurodesignsystem/auro-flight-header
+  |  ├── (internal dependency) @aurodesignsystem/auro-flight-body
+  |  └── (external dependency) @aurodesignsystem/auro-datetime
 ```
 
 See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) for additional information regarding the `<auro-flight-segment>` API.
@@ -132,7 +132,7 @@ We recommend you load these bundles using [differential serving](https://philipw
 
 ```html
 <!-- **NOTE:** Be sure to replace `@latest` in the URL with the version of the asset you want. @latest is NOT aware of any MAJOR releases, use at your own risk. -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@alaskaairux/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@latest/dist/tokens/CSSCustomProperties.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/bundled/essentials.css" />
 <script src="https://cdn.jsdelivr.net/npm/@aurodesignsystem/auro-flight@latest/dist/auro-flight__bundled.js" type="module"></script>
 ```
