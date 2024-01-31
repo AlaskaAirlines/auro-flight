@@ -15,7 +15,7 @@ See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) f
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/changeofgauge.html) -->
@@ -34,7 +34,7 @@ DoT regulates the disclosure of this instance as illustrated in this example fli
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
-<auro-accordion lowProfile justifyRight>
+<auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/regionalnonstop.html) -->

@@ -13,9 +13,6 @@
 // Support for fallback values
 @import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables.scss';
 
-// Support for auroElement styles
-// @import './node_modules/@alaskaairux/webcorestylesheets/dist/auroElement/auroElement';
-
 .flightFooter {
   padding-top: var(--ds-size-200, $ds-size-200);
 }

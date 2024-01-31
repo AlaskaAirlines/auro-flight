@@ -10,22 +10,6 @@
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
 
-// Support for auroElement styles
-// @import './../node_modules/@alaskaairux/orion-web-core-style-sheets/dist/auroElement/auroElement';
-
-// container styles - defines the look of the outer custom component
-// :host {
-//   ...
-// }
-
-// layout styles - define any layout specifications for UI that is contained WITHIN the component
-// never define layout that would cause effect on element outside the scope of this component
-
-// component shape styles
-// .auro-flight {
-//   ...
-// }
-
 :host {
   display: flex;
   flex-direction: row;
