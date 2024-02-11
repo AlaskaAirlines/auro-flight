@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.6.5](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.4...v2.6.5) (2024-02-11)
+
+
+### Performance Improvements
+
+* update ESM support ([039073e](https://github.com/AlaskaAirlines/auro-flight/commit/039073e4c26fccab93571f7891d3a4ce45312230))
+
 ## [2.6.4](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.3...v2.6.4) (2024-01-31)
 
 
