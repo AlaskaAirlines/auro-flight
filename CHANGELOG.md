@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [2.6.6](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.5...v2.6.6) (2024-02-11)
+
+
+### Bug Fixes
+
+* update missing fallback token ([b801e7b](https://github.com/AlaskaAirlines/auro-flight/commit/b801e7be737f3e1e3cd8c4f76cd2afeccb4386e9))
+
 ## [2.6.5](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.4...v2.6.5) (2024-02-11)
 
 
