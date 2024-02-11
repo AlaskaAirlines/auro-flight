@@ -6,7 +6,7 @@
 // If use litElement base class
 import { LitElement, html, css } from "lit";
 import styleCss from "./style-flight-main-css.js";
-import { getDateDifference } from './../util/util';
+import { getDateDifference } from './../util/util.js';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**

@@ -7,9 +7,9 @@
 import { LitElement, html, css } from "lit";
 import styleCss from "./style-flight-css.js";
 import "@aurodesignsystem/auro-flightline";
-import "@aurodesignsystem/auro-flightline/dist/auro-flight-segment__bundled.js";
-import "./auro-flight-header";
-import "./auro-flight-main";
+import "@aurodesignsystem/auro-flightline/src/auro-flight-segment.js";
+import "./auro-flight-header.js";
+import "./auro-flight-main.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
