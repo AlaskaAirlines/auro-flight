@@ -64,6 +64,6 @@
 
 @include auro_breakpoint--sm {
   .departureTime, .arrivalTime {
-    font-size: var(--auro-text-heading-700-size-breakpoint-sm);
+    font-size: var(--ds-text-heading-700-size-breakpoint-sm, $ds-text-heading-700-size-breakpoint-sm);
   }
 }
