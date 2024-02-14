@@ -75,22 +75,20 @@ Please DO NOT modify unit tests pertaining to DoT regulations.
 
 ### Basic
 
-<div class="twoColDemoRow">
-  <div>
-    <div class="exampleWrapper">
-      <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
-      <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
-      <auro-flight
-        flights='["AS 1436"]'
-        duration="161"
-        departureTime="2022-07-13T12:15:00-07:00"
-        departureStation="SEA"
-        arrivalTime="2022-07-13T14:56:00-07:00"
-        arrivalStation="LAX">
-        <auro-flightline></auro-flightline>
-      </auro-flight>
-      <!-- AURO-GENERATED-CONTENT:END -->
-    </div>
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/basic.html -->
+  <auro-flight
+    flights='["AS 1436"]'
+    duration="161"
+    departureTime="2022-07-13T12:15:00-07:00"
+    departureStation="SEA"
+    arrivalTime="2022-07-13T14:56:00-07:00"
+    arrivalStation="LAX">
+    <auro-flightline></auro-flightline>
+  </auro-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 <!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
