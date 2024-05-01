@@ -30,6 +30,7 @@ import "./auro-flight-main.js";
  * @slot departureHeader - Text on top of the departure station's time
  * @slot arrivalHeader - Text on top of the arrival station's time
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot
+ * @csspart flightContainer - Apply css to the elements within the flight component container
  */
 
 // build the component class
@@ -84,7 +85,7 @@ export class AuroFlight extends LitElement {
   // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <section>
+      <section part="flightContainer">
         <auro-flight-header
           flights=${JSON.stringify(this.flights)}
           duration=${this.convertDuration(this.duration)}

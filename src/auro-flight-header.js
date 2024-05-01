@@ -16,6 +16,8 @@ import styleCss from "./style-flight-header-css.js";
  * @attr {String} duration - String for the duration. `505`
  * @attr {String} departureTime - String for the departure ISO 8601 time. `2022-04-13T12:30:00-04:00`
  * @attr {String} arrivalTime - String for the arrival ISO 8601 time. `2022-04-13T12:30:00-04:00`
+ * @csspart durationContainer - Apply css to the duration container
+ * @csspart flightType - Apply css to the flight type
  */
 
 // build the component class
@@ -93,10 +95,10 @@ export class AuroFlightHeader extends LitElement {
       <p class="util_displayHiddenVisually">
         ${this.composeScreenReaderHeader()}
       </p>
-      <span class="flight" aria-hidden="true">
+      <span class="flight" aria-hidden="true" part="flightType">
         ${this.flightType()}
       </span>
-      <div aria-hidden="true">
+      <div aria-hidden="true" part="durationContainer">
         <time class="duration">${this.duration}</time>
         ${this.flightDuration()}
       </div>

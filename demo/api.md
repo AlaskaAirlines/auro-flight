@@ -14,6 +14,13 @@ The auro-flight-header element displays airline, duration, and day change inform
 | [duration](#duration)      | `duration`      | `String` | String for the duration. `505`                   |
 | [flights](#flights)       | `flights`       | `Array`  | Array of flight numbers `['AS 123', 'EK 432']`   |
 
+## CSS Shadow Parts
+
+| Part                | Description                         |
+|---------------------|-------------------------------------|
+| [durationContainer](#durationContainer) | Apply css to the duration container |
+| [flightType](#flightType)        | Apply css to the flight type        |
+
 # auro-flight-main
 
 The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
@@ -40,6 +47,13 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | Name      | Description                                   |
 |-----------|-----------------------------------------------|
 | [default](#default) | anticipates `<auro-flight-segment>` instances |
+
+## CSS Shadow Parts
+
+| Part                 | Description                                      |
+|----------------------|--------------------------------------------------|
+| [arrivalContainer](#arrivalContainer)   | Apply css to the elements within the arrival container |
+| [departureContainer](#departureContainer) | Apply css to the elements within the departure container |
 
 # auro-flight
 
@@ -69,6 +83,12 @@ Please DO NOT modify unit tests pertaining to DoT regulations.
 | [default](#default)         | anticipates `<auro-flightline>` instance to fill out the flight timeline |
 | [departureHeader](#departureHeader) | Text on top of the departure station's time      |
 | [footer](#footer)          | Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot |
+
+## CSS Shadow Parts
+
+| Part              | Description                                      |
+|-------------------|--------------------------------------------------|
+| [flightContainer](#flightContainer) | Apply css to the elements within the flight component container |
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## API Examples

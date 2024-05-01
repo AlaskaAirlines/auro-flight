@@ -23,6 +23,8 @@ import { getDateDifference } from './../util/util.js';
  * @attr {String} reroutedDepartureStation - Station of rerouted departure, e.g. `PDX`
  * @attr {String} reroutedArrivalStation - Station of rerouted arrival, e.g. `AVP`
  * @slot default - anticipates `<auro-flight-segment>` instances
+ * @csspart arrivalContainer - Apply css to the elements within the arrival container
+ * @csspart departureContainer - Apply css to the elements within the departure container
  */
 
 // build the component class
@@ -146,7 +148,7 @@ export class AuroFlightMain extends LitElement {
         <div class="util_displayHiddenVisually">
           ${this.composeScreenReaderSummary()}
         </div>
-        <div class="departure" aria-hidden="true">
+        <div class="departure" aria-hidden="true" part="departureContainer">
           <time class="departureTime">
             <auro-datetime type="tzTime" setDate="${this.departureTime}"></auro-datetime>
           </time>
@@ -164,7 +166,7 @@ export class AuroFlightMain extends LitElement {
         <div class="slotContainer" aria-hidden="true">
           <slot></slot>
         </div>
-        <div class="arrival" aria-hidden="true">
+        <div class="arrival" aria-hidden="true" part="arrivalContainer">
           <time class="arrivalTime">
             <auro-datetime type="tzTime" setDate="${this.arrivalTime}"></auro-datetime>
           </time>

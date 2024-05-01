@@ -11,6 +11,13 @@ The auro-flight-header element displays airline, duration, and day change inform
 | `duration`      | `duration`      | `String` | String for the duration. `505`                   |
 | `flights`       | `flights`       | `Array`  | Array of flight numbers `['AS 123', 'EK 432']`   |
 
+## CSS Shadow Parts
+
+| Part                | Description                         |
+|---------------------|-------------------------------------|
+| `durationContainer` | Apply css to the duration container |
+| `flightType`        | Apply css to the flight type        |
+
 
 # auro-flight-main
 
@@ -38,6 +45,13 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | Name      | Description                                   |
 |-----------|-----------------------------------------------|
 | `default` | anticipates `<auro-flight-segment>` instances |
+
+## CSS Shadow Parts
+
+| Part                 | Description                                      |
+|----------------------|--------------------------------------------------|
+| `arrivalContainer`   | Apply css to the elements within the arrival container |
+| `departureContainer` | Apply css to the elements within the departure container |
 
 
 # auro-flight
@@ -68,3 +82,9 @@ Please DO NOT modify unit tests pertaining to DoT regulations.
 | `default`         | anticipates `<auro-flightline>` instance to fill out the flight timeline |
 | `departureHeader` | Text on top of the departure station's time      |
 | `footer`          | Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot |
+
+## CSS Shadow Parts
+
+| Part              | Description                                      |
+|-------------------|--------------------------------------------------|
+| `flightContainer` | Apply css to the elements within the flight component container |
