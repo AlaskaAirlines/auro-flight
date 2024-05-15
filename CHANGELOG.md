@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [2.7.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.8...v2.7.0) (2024-05-15)
+
+
+### Features
+
+* **parts:** add cssparts to each flight component [#116](https://github.com/AlaskaAirlines/auro-flight/issues/116) ([8a565ea](https://github.com/AlaskaAirlines/auro-flight/commit/8a565ead2a7d26dc3121a8a09b4cebe1bd6fabe7))
+
 ## [2.6.8](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.7...v2.6.8) (2024-02-15)
 
 
