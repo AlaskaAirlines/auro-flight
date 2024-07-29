@@ -6,16 +6,16 @@ import { FlatCompat } from "@eslint/eslintrc";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const compat = new FlatCompat({
-    baseDirectory: __dirname,
-    recommendedConfig: js.configs.recommended,
-    allConfig: js.configs.all
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+  allConfig: js.configs.all
 });
 
 export default [...compat.extends("@aurodesignsystem/eslint-config"), {
-    rules: {
-        "no-magic-numbers": ["error", {
-            ignore: [0, 1],
-            ignoreArrayIndexes: true,
-        }],
-    },
+  rules: {
+    "no-magic-numbers": ["error", {
+      ignore: [0, 1],
+      ignoreArrayIndexes: true,
+    }],
+  },
 }];
