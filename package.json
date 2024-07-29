@@ -55,7 +55,7 @@
     "copyfiles": "^2.4.1",
     "core-js": "^3.38.0",
     "eslint": "^9.8.0",
-    "eslint-plugin-jsdoc": "^50.0.0",
+    "eslint-plugin-jsdoc": "^50.2.2",
     "husky": "^9.1.4",
     "lodash": "^4.17.21",
     "markdown-magic": "^2.6.1",
