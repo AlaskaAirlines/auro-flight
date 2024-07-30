@@ -14,10 +14,6 @@
   padding-top: var(--ds-size-200, $ds-size-200);
 }
 
-[name='footer'] {
-  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
-}
-
 .headerContainer {
   display: flex;
   justify-content: space-between;

@@ -1,0 +1,33 @@
+// Copyright (c) 2024 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// See LICENSE in the project root for license information.
+
+// ---------------------------------------------------------------------
+
+/* stylelint-disable selector-class-pattern */
+
+// Import Auro tokens
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
+
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
+@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
+
+.departureTime {
+  color: var(--ds-auro-flight-main-time-text-color);
+}
+
+.departureStation {
+  color: var(--ds-auro-flight-main-station-text-color);
+}
+
+.arrivalTime {
+  color: var(--ds-auro-flight-main-time-text-color);
+}
+
+.arrivalStation {
+  color: var(--ds-auro-flight-main-station-text-color);
+}
+
+.util_lineThrough {
+  color: var(--ds-auro-flight-main-cancelled-station-text-color);
+}

@@ -6,8 +6,12 @@
 // If use litElement base class
 import { LitElement, html, css } from "lit";
 import styleCss from "./style-flight-css.js";
+import colorFlightCss from "./color-flight-css.js";
+import tokensCss from "./tokens-css.js";
+
 import "@aurodesignsystem/auro-flightline";
 import "@aurodesignsystem/auro-flightline/src/auro-flight-segment.js";
+
 import "./auro-flight-header.js";
 import "./auro-flight-main.js";
 
@@ -51,9 +55,11 @@ export class AuroFlight extends LitElement {
   }
 
   static get styles() {
-    return css`
-      ${styleCss}
-    `;
+    return [
+      css`${styleCss}`,
+      css`${colorFlightCss}`,
+      css`${tokensCss}`
+    ];
   }
 
   // This function removes a CSS selector if the footer slot is empty
