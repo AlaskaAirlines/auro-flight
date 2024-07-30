@@ -317,3 +317,24 @@ Explanation and use description.
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
+
+### Theme Support
+
+The component may be restyled using the following code sample and changing the values of the following token(s).
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../src/tokens.scss) -->
+<!-- The below code snippet is automatically added from ./../../src/tokens.scss -->
+
+```scss
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
+
+:host {
+  --ds-auro-flight-footer-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
+  --ds-auro-flight-header-days-changed-text-color: var(--ds-color-utility-error-default, #{$ds-color-utility-error-default});
+  --ds-auro-flight-header-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
+  --ds-auro-flight-cancelled-station-text-color: var(--ds-color-utility-error-default, #{$ds-color-utility-error-default});
+  --ds-auro-flight-station-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
+  --ds-auro-flight-time-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+}
+```
+<!-- AURO-GENERATED-CONTENT:END -->

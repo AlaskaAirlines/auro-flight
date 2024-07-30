@@ -3,12 +3,20 @@
 
 // ---------------------------------------------------------------------
 
+/* stylelint-disable selector-class-pattern, scss/percent-placeholder-pattern */
+
 // Import Auro tokens
 @import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
+
+%flightTimeStyles {
+  padding-bottom: var(--ds-size-25, $ds-size-25);
+  font-size: var(--ds-text-heading-300-size, $ds-text-heading-300-size);
+  line-height: var(--ds-text-heading-700-height-breakpoint-md, $ds-text-heading-700-height-breakpoint-md);
+}
 
 :host {
   display: flex;
@@ -24,28 +32,22 @@
 }
 
 .departureTime {
-  padding-bottom: var(--ds-size-25, $ds-size-25);
-  color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
-  font-size: var(--ds-text-heading-300-size, $ds-text-heading-300-size);
-  line-height: var(--ds-text-heading-700-height-breakpoint-md, $ds-text-heading-700-height-breakpoint-md);
+  @extend %flightTimeStyles;
+
   text-align: left;
 }
 
 .departureStation {
-  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
   text-align: left;
 }
 
 .arrivalTime {
-  padding-bottom: var(--ds-size-25, $ds-size-25);
-  color: var(--ds-color-text-primary-default, $ds-color-text-primary-default);
-  font-size: var(--ds-text-heading-300-size, $ds-text-heading-300-size);
-  line-height: var(--ds-text-heading-700-height-breakpoint-md, $ds-text-heading-700-height-breakpoint-md);
+  @extend %flightTimeStyles;
+
   text-align: right;
 }
 
 .arrivalStation {
-  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
   text-align: right;
 }
 
@@ -55,10 +57,8 @@
   flex-direction: column;
 }
 
-/* stylelint-disable */
 .util_lineThrough {
   padding-right: var(--ds-size-200, $ds-size-200);
-  color: var(--ds-color-alert-error-default,  $ds-color-alert-error-default);
   text-decoration: line-through;
 }
 
