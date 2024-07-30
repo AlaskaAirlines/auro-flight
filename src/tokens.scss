@@ -1,0 +1,10 @@
+@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
+
+:host {
+  --ds-auro-flight-footer-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
+  --ds-auro-flight-header-days-changed-text-color: var(--ds-color-utility-error-default, #{$ds-color-utility-error-default});
+  --ds-auro-flight-header-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
+  --ds-auro-flight-cancelled-station-text-color: var(--ds-color-utility-error-default, #{$ds-color-utility-error-default});
+  --ds-auro-flight-station-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
+  --ds-auro-flight-time-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+}

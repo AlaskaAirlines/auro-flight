@@ -6,39 +6,18 @@
 // Import Auro tokens
 @import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
 
-// Support for fallback values
-@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables.scss';
-
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
 @import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
-
-// Support for auroElement styles
-// @import './../node_modules/@aurodesignsystem/webcorestylesheets/dist/auroElement/auroElement';
-
-// container styles - defines the look of the outer custom component
-// :host {
-//   ...
-// }
-
-// layout styles - define any layout specifications for UI that is contained WITHIN the component
-// never define layout that would cause effect on element outside the scope of this component
-
-// component shape styles
-// .auro-flight {
-//   ...
-// }
 
 :host {
   display: flex;
   justify-content: space-between;
   padding-bottom: var(--ds-size-50, $ds-size-50);
-  color: var(--ds-color-text-secondary-default, $ds-color-text-secondary-default);
   font-size: var(--ds-text-body-size-default, $ds-text-body-size-default);
 }
 
 .daysChanged {
   align-self: flex-end;
   padding-left: var(--ds-text-body-size-xs, $ds-text-body-size-xs);
-  color: var(--ds-color-alert-error-default, $ds-color-alert-error-default);
 }
