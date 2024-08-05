@@ -37,14 +37,14 @@ class AuroFlight extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      stops:                    { type: Array },
-      flights:                  { type: Array },
-      duration:                 { type: Number },
-      departureTime:            { type: String },
-      arrivalTime:              { type: String },
-      arrivalStation:           { type: String },
-      departureStation:         { type: String },
-      reroutedArrivalStation:   { type: String },
+      stops: { type: Array },
+      flights: { type: Array },
+      duration: { type: Number },
+      departureTime: { type: String },
+      arrivalTime: { type: String },
+      arrivalStation: { type: String },
+      departureStation: { type: String },
+      reroutedArrivalStation: { type: String },
       reroutedDepartureStation: { type: String }
     };
   }
@@ -109,6 +109,7 @@ class AuroFlight extends LitElement {
         >
           <slot></slot>
         </auro-flight-main>
+
         <footer class="flightFooter" id="flightFooter">
           <slot name="footer" id="footer"></slot>
         </footer>
