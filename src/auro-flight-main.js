@@ -37,14 +37,14 @@ export class AuroFlightMain extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      stops:                    { type: Array },
-      flights:                  { type: Array },
-      duration:                 { type: Number },
-      arrivalTime:              { type: String },
-      arrivalStation:           { type: String },
-      departureTime:            { type: String },
-      departureStation:         { type: String },
-      reroutedArrivalStation:   { type: String },
+      stops: { type: Array },
+      flights: { type: Array },
+      duration: { type: Number },
+      arrivalTime: { type: String },
+      arrivalStation: { type: String },
+      departureTime: { type: String },
+      departureStation: { type: String },
+      reroutedArrivalStation: { type: String },
       reroutedDepartureStation: { type: String },
     };
   }
@@ -160,13 +160,14 @@ export class AuroFlightMain extends LitElement {
           </time>
           <span class="departureStation">
           ${hasDepartureReroute
-            ? html`
-              <span class="util_lineThrough">
+        ? html`
+              <span>
                 ${this.reroutedDepartureStation}
               </span>`
-            : html``}
+        : html``}
 
-            ${this.departureStation}
+            <span class=${hasDepartureReroute ? "util_lineThrough" : ""}>
+              ${this.departureStation}
           </span>
         </div>
         <div class="slotContainer" aria-hidden="true">
@@ -178,13 +179,15 @@ export class AuroFlightMain extends LitElement {
           </time>
           <span class="arrivalStation">
             ${hasArrivalReroute
-              ? html`
-                <span class="util_lineThrough">
+        ? html`
+                <span>
                   ${this.reroutedArrivalStation}
                 </span>`
-              : html``}
+        : html``}
 
-            ${this.arrivalStation}
+            <span class=${hasArrivalReroute ? "util_lineThrough" : ""}>
+              ${this.arrivalStation}
+            </span>
           </span>
         </div>
     `;
