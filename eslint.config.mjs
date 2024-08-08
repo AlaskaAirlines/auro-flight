@@ -14,7 +14,8 @@ const compat = new FlatCompat({
 export default [...compat.extends("@aurodesignsystem/eslint-config"), {
     rules: {
         "no-magic-numbers": ["error", {
-            ignore: [-15, -6, 0, 1, 1000, 3600, 24],
+            ignore: [0, 1],
+            ignoreArrayIndexes: true,
         }],
     },
 }];
