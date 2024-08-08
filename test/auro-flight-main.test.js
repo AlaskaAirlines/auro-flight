@@ -106,8 +106,8 @@ describe('auro-flight-main', () => {
     `);
 
     const expectedDepartureCity = `L A X`,
-      expectedDepartureTime = `12:30 AM`,
-      expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
+    expectedDepartureTime = `12:30 AM`,
+    expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
 
     const actual = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
     const departureRerouteSpan = el.shadowRoot.querySelector('.departureStation .util_lineThrough');
@@ -133,7 +133,7 @@ describe('auro-flight-main', () => {
     `);
 
     const expectedArrival = 'and arrives  S F O at 11:55 AM',
-      expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
+    expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
 
     const actual = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
     const departureRerouteSpan = el.shadowRoot.querySelector('.departureStation .util_lineThrough');
@@ -159,9 +159,9 @@ describe('auro-flight-main', () => {
     `);
 
     const expectedDepartureCity = `L A X`,
-      expectedDepartureTime = `12:30 AM`,
-      expectedArrival = 'and arrives  S F O at 11:55 AM',
-      expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
+    expectedDepartureTime = `12:30 AM`,
+    expectedArrival = 'and arrives  S F O at 11:55 AM',
+    expectedReroutedFlight = 'Flight S E A to P V D has been re-routed.';
 
     const actual = el.shadowRoot.querySelector('.util_displayHiddenVisually').textContent.trim().replace(/\n|\r/g, "");
     const departureRerouteSpan = el.shadowRoot.querySelector('.departureStation .util_lineThrough');

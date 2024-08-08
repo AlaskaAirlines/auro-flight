@@ -33,14 +33,14 @@ export class AuroFlightMain extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      stops: { type: Array },
-      flights: { type: Array },
-      duration: { type: Number },
-      arrivalTime: { type: String },
-      arrivalStation: { type: String },
-      departureTime: { type: String },
-      departureStation: { type: String },
-      reroutedArrivalStation: { type: String },
+      stops:                    { type: Array },
+      flights:                  { type: Array },
+      duration:                 { type: Number },
+      arrivalTime:              { type: String },
+      arrivalStation:           { type: String },
+      departureTime:            { type: String },
+      departureStation:         { type: String },
+      reroutedArrivalStation:   { type: String },
       reroutedDepartureStation: { type: String },
     };
   }
@@ -154,11 +154,11 @@ export class AuroFlightMain extends LitElement {
           </time>
           <span class="departureStation">
           ${hasDepartureReroute
-        ? html`
+            ? html`
               <span>
                 ${this.reroutedDepartureStation}
               </span>`
-        : html``}
+            : html``}
 
             <span class=${hasDepartureReroute ? "util_lineThrough" : ""}>
               ${this.departureStation}
@@ -173,11 +173,11 @@ export class AuroFlightMain extends LitElement {
           </time>
           <span class="arrivalStation">
             ${hasArrivalReroute
-        ? html`
+              ? html`
                 <span>
                   ${this.reroutedArrivalStation}
                 </span>`
-        : html``}
+              : html``}
 
             <span class=${hasArrivalReroute ? "util_lineThrough" : ""}>
               ${this.arrivalStation}
