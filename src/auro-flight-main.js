@@ -77,7 +77,7 @@ export class AuroFlightMain extends LitElement {
    * @returns Localized time based from UTC string.
    */
   convertTime(time) {
-    const slicedTime = time.slice(0, -6);
+    const slicedTime = time.slice(0, -6); // eslint-disable-line no-magic-numbers
     const newTime = new Date(slicedTime);
     const localizedTime = newTime.toLocaleString('en-US', this.timeTemplate).replace(/^0+/u, '');
 
