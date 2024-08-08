@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+# [2.8.0-beta.1](https://github.com/AlaskaAirlines/auro-flight/compare/v2.7.0...v2.8.0-beta.1) (2024-08-08)
+
+
+### Features
+
+* implement tier 3 token structure [#121](https://github.com/AlaskaAirlines/auro-flight/issues/121) ([874e9ce](https://github.com/AlaskaAirlines/auro-flight/commit/874e9cedd9d092a1f327bb8d9651fef6eac22a54))
+
+
+### Performance Improvements
+
+* update deps and refactor scripts to use auro-library versions ([238a929](https://github.com/AlaskaAirlines/auro-flight/commit/238a92976dfa248447e4a11c68b8dbf9ae0b6519))
+
 # [2.7.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.8...v2.7.0) (2024-05-15)
 
 
