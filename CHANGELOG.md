@@ -1,16 +1,11 @@
 # Semantic Release Automated Changelog
 
-# [2.8.0-beta.1](https://github.com/AlaskaAirlines/auro-flight/compare/v2.7.0...v2.8.0-beta.1) (2024-08-08)
+## [2.7.1](https://github.com/AlaskaAirlines/auro-flight/compare/v2.7.0...v2.7.1) (2024-08-08)
 
 
-### Features
+### Bug Fixes
 
-* implement tier 3 token structure [#121](https://github.com/AlaskaAirlines/auro-flight/issues/121) ([874e9ce](https://github.com/AlaskaAirlines/auro-flight/commit/874e9cedd9d092a1f327bb8d9651fef6eac22a54))
-
-
-### Performance Improvements
-
-* update deps and refactor scripts to use auro-library versions ([238a929](https://github.com/AlaskaAirlines/auro-flight/commit/238a92976dfa248447e4a11c68b8dbf9ae0b6519))
+* **#123:** rerouted departure and arrival stations display as expected now ([5201a33](https://github.com/AlaskaAirlines/auro-flight/commit/5201a337c1abe6e7b0eb05928ac88cbdcaedfe00)), closes [#123](https://github.com/AlaskaAirlines/auro-flight/issues/123)
 
 # [2.7.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.6.8...v2.7.0) (2024-05-15)
 
