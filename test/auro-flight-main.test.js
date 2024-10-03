@@ -16,8 +16,10 @@ describe('auro-flight-main', () => {
       <auro-flight-main departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA" arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD" flights='["AS 1436"]' reroutedArrivalStation="SFO" reroutedDepartureStation="LAX"></auro-flight-main>
     `);
 
-    await expect(el.shadowRoot.querySelector('.departureTime').querySelector('auro-datetime').getAttribute('setDate')).to.equal('2022-05-04T00:30:00-07:00');
-    await expect(el.shadowRoot.querySelector('.arrivalTime').querySelector('auro-datetime').getAttribute('setDate')).to.equal('2022-05-04T11:55:00-04:00');
+    console.log("this:", el.shadowRoot.querySelector('.departureTime'));
+
+    await expect(el.shadowRoot.querySelector('.departureTime').querySelector('[auro-datetime]').getAttribute('setDate')).to.equal('2022-05-04T00:30:00-07:00');
+    await expect(el.shadowRoot.querySelector('.arrivalTime').querySelector('[auro-datetime]').getAttribute('setDate')).to.equal('2022-05-04T11:55:00-04:00');
     await expect(el.shadowRoot.querySelector('.departureStation').textContent.trim()).to.contain('SEA');
     await expect(el.shadowRoot.querySelector('.arrivalStation').textContent.trim()).to.contain('PVD');
   });
