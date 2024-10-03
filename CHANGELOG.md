@@ -1,5 +1,25 @@
 # Semantic Release Automated Changelog
 
+# [3.0.0-beta.1](https://github.com/AlaskaAirlines/auro-flight/compare/v2.8.0-beta.2...v3.0.0-beta.1) (2024-10-03)
+
+
+### Features
+
+* add custom registered auro-datetime ([33a189b](https://github.com/AlaskaAirlines/auro-flight/commit/33a189b1e866a241d5a5a6fda14effae134270b6))
+* add tag name as attribute when custom registered ([26808eb](https://github.com/AlaskaAirlines/auro-flight/commit/26808eb68e4256275954d61c0ba0923bc7517f0d))
+
+
+### Performance Improvements
+
+* refactor custom component registration config ([1f3e0de](https://github.com/AlaskaAirlines/auro-flight/commit/1f3e0de1444896aef66bc4f1fe75e1ce65e77640))
+* remove github label colors ([b5187c0](https://github.com/AlaskaAirlines/auro-flight/commit/b5187c0b4c15de55189e68cdbb7756f234651ad8))
+* update dependencies ([2de3a30](https://github.com/AlaskaAirlines/auro-flight/commit/2de3a30d015c11eaedc6178126ccc5b22cf625ab))
+
+
+### BREAKING CHANGES
+
+* trigger major release for color theme support #121
+
 # [2.8.0-beta.2](https://github.com/AlaskaAirlines/auro-flight/compare/v2.8.0-beta.1...v2.8.0-beta.2) (2024-08-19)
 
 
