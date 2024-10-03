@@ -24,12 +24,18 @@ The auro-flight-header element displays airline, duration, and day change inform
 The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
 DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 
+## Attributes
+
+| Attribute | Type     | Description                                      |
+|-----------|----------|--------------------------------------------------|
+| `da`      | `String` | ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00` |
+
 ## Properties
 
 | Property                   | Attribute                  | Type     | Default                               | Description                                      |
 |----------------------------|----------------------------|----------|---------------------------------------|--------------------------------------------------|
 | `arrivalStation`           | `arrivalStation`           | `String` |                                       | Station of arrival, e.g. `SEA`                   |
-| `arrivalTime`              | `arrivalTime`              | `String` |                                       | ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00` |
+| `arrivalTime`              | `arrivalTime`              | `string` |                                       |                                                  |
 | `departureStation`         | `departureStation`         | `String` |                                       | Station of departure, e.g. `PVD`                 |
 | `departureTime`            | `departureTime`            | `String` |                                       | ISO 8601 time of departure, e.g. `2022-04-13T12:30:00-04:00` |
 | `duration`                 | `duration`                 | `Number` |                                       | String for the duration. `505`                   |

@@ -3,12 +3,20 @@
 
 // ---------------------------------------------------------------------
 
+/* eslint-disable lit/binding-positions, lit/no-invalid-html */
+
 // If use litElement base class
-import { LitElement, html, css } from "lit";
+import { LitElement, css } from "lit";
+import { html } from 'lit/static-html.js';
 
 import styleFlightMainCss from "./style-flight-main-css.js";
 import colorFlightMainCss from "./color-flight-main-css.js";
 import tokensCss from "./tokens-css.js";
+
+import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
+
+import { AuroDatetime } from '@aurodesignsystem/auro-datetime/src/auro-datetime.js';
+import datetimeVersion from './datetimeVersion.js';
 
 import { getDateDifference } from './../util/util.js';
 
@@ -20,7 +28,7 @@ import { getDateDifference } from './../util/util.js';
  * @attr {Array} stops - Array of objects representing stopovers or layovers: "isStopover": bool, "arrivalStation": string, "duration": string ["123hr 123m"] (layover only). This content will not be used in the UI, but only constructs the a11y conversational phrase for screen readers and has no effect on the `auro-flight-segment` content.
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
  * @attr {Number} duration - String for the duration. `505`
- * @attr {String} arrivalTime - ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00`
+ * @attr {String} da - ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00`
  * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
  * @attr {String} departureTime - ISO 8601 time of departure, e.g. `2022-04-13T12:30:00-04:00`
  * @attr {String} departureStation - Station of departure, e.g. `PVD`
@@ -69,6 +77,13 @@ export class AuroFlightMain extends LitElement {
     };
 
     this.template = {};
+
+    const versioning = new AuroDependencyVersioning();
+
+    /**
+     * @private
+     */
+    this.datetimeTag = versioning.generateTag('auro-datetime', datetimeVersion, AuroDatetime);
   }
 
   /**
@@ -156,7 +171,7 @@ export class AuroFlightMain extends LitElement {
         </div>
         <div class="departure" aria-hidden="true" part="departureContainer">
           <time class="departureTime">
-            <auro-datetime type="tzTime" setDate="${this.departureTime}"></auro-datetime>
+            <${this.datetimeTag} type="tzTime" setDate="${this.departureTime}"></${this.datetimeTag}>
           </time>
           <span class="departureStation">
           ${hasDepartureReroute
@@ -175,7 +190,7 @@ export class AuroFlightMain extends LitElement {
         </div>
         <div class="arrival" aria-hidden="true" part="arrivalContainer">
           <time class="arrivalTime">
-            <auro-datetime type="tzTime" setDate="${this.arrivalTime}"></auro-datetime>
+            <${this.datetimeTag} type="tzTime" setDate="${this.arrivalTime}"></${this.datetimeTag}>
           </time>
           <span class="arrivalStation">
             ${hasArrivalReroute
