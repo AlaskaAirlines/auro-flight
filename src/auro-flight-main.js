@@ -28,7 +28,7 @@ import { getDateDifference } from './../util/util.js';
  * @attr {Array} stops - Array of objects representing stopovers or layovers: "isStopover": bool, "arrivalStation": string, "duration": string ["123hr 123m"] (layover only). This content will not be used in the UI, but only constructs the a11y conversational phrase for screen readers and has no effect on the `auro-flight-segment` content.
  * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
  * @attr {Number} duration - String for the duration. `505`
- * @attr {String} da - ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00`
+ * @attr {String} arrivalTime - ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00`
  * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
  * @attr {String} departureTime - ISO 8601 time of departure, e.g. `2022-04-13T12:30:00-04:00`
  * @attr {String} departureStation - Station of departure, e.g. `PVD`
