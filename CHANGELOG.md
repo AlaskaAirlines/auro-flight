@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [3.0.1](https://github.com/AlaskaAirlines/auro-flight/compare/v3.0.0...v3.0.1) (2024-10-08)
+
+
+### Bug Fixes
+
+* moves auro library to dependencies in package.json [#133](https://github.com/AlaskaAirlines/auro-flight/issues/133) ([2ae2381](https://github.com/AlaskaAirlines/auro-flight/commit/2ae2381b44b64952fb99c8af64f91ba0882211ed))
+
 # [3.0.0](https://github.com/AlaskaAirlines/auro-flight/compare/v2.7.1...v3.0.0) (2024-10-04)
 
 
