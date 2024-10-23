@@ -18,7 +18,7 @@ import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts
 import { AuroDatetime } from '@aurodesignsystem/auro-datetime/src/auro-datetime.js';
 import datetimeVersion from './datetimeVersion.js';
 
-import { getDateDifference } from './../util/util.js';
+import { getDateDifference } from '../util/util.js';
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
