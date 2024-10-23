@@ -517,3 +517,50 @@ Department of Transportation regulations mandate that the arrival and departure 
 ## Accessibility
 
 The `<auro-flight>` custom element is accessible by screen readers by default. Due to the style of content within, while this is accessible, it's up to the user of the element to determine if information is useable and/or necessary for a screen reader experience. If this element is being used for illustrative purposes and the details of the flight are outlined in greater detail outside the scope of this element, `aria-hidden='true'` is recommended.
+
+## Recommended Use and Version Control
+
+There are two important parts of every Auro component. The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">class</a> and the custom element. The class is exported and then used as part of defining the Web Component. When importing this component as described in the <a href="#install">install</a> section, the class is imported and the `auro-flight` custom element is defined automatically.
+
+To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `AuroFlight.register(name)` method and pass in a unique name.
+
+```js
+import { AuroFlight } from './src/auro-flight.js';
+
+AuroFlight.register('custom-flight');
+```
+
+This will create a new custom element that you can use in your HTML that will function identically to the `<auro-flight>` element.
+
+<div class="exampleWrapper exampleWrapper--flex">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/custom.html) -->
+  <!-- The below content is automatically added from ./../../apiExamples/custom.html -->
+  <custom-flight
+    flights='["AS 1436"]'
+    duration="161"
+    departureTime="2022-07-13T12:15:00-07:00"
+    departureStation="SEA"
+    arrivalTime="2022-07-13T14:56:00-07:00"
+    arrivalStation="LAX">
+    <auro-flightline></auro-flightline>
+  </custom-flight>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/custom.html) -->
+<!-- The below code snippet is automatically added from ./../../apiExamples/custom.html -->
+
+```html
+<custom-flight
+  flights='["AS 1436"]'
+  duration="161"
+  departureTime="2022-07-13T12:15:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-07-13T14:56:00-07:00"
+  arrivalStation="LAX">
+  <auro-flightline></auro-flightline>
+</custom-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>

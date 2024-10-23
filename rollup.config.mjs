@@ -19,4 +19,14 @@ const production = !process.env.ROLLUP_WATCH,
   ]
 };
 
-export default [modernConfig];
+const indexExamplesConfig = {
+  input: {
+    ['index.min']: './demo/index.js',
+  },
+  output: {
+    format: 'esm',
+    dir: 'demo/'
+  }
+};
+
+export default [modernConfig, indexExamplesConfig];

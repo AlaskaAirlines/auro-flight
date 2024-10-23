@@ -74,6 +74,19 @@ export class AuroFlight extends LitElement {
     ];
   }
 
+  /**
+   * This will register this element with the browser.
+   * @param {string} [name="auro-flight"] - The name of element that you want to register to.
+   *
+   * @example
+   * AuroFlight.register("custom-flight") // this will register this element to <custom-flight/>
+   *
+   */
+  static register(name = "auro-flight") {
+    AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroFlight);
+  }
+
+
   // This function removes a CSS selector if the footer slot is empty
   firstUpdated() {
     // Add the tag name as an attribute if it is different than the component name
@@ -137,9 +150,4 @@ export class AuroFlight extends LitElement {
       </section>
     `;
   }
-}
-
-/* eslint max-statements: ["error", 11] */
-if (!customElements.get("auro-flight")) {
-  customElements.define("auro-flight", AuroFlight);
 }
