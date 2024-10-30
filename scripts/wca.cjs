@@ -1,28 +1,22 @@
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
+const util = require('util');
+const promisifiedGlob = util.promisify(glob);
 
 const { getTemplatedComponentCode }  = require('./auro-component-template.wca.cjs');
 const TEMP_DIR = path.resolve(__dirname, './wca-tmp');
 
-function globPath(sources) {
-  return new Promise((res) => {
-    const result = [];
-    let count = 0;
-    for (let i = 0; i < sources.length; i++) {
-      glob(sources[i], (err, files) => {
-        count++;
-        if (err) {
-          console.error('cannot find file: ', filePath);
-        } else {
-          result.push(...files);
-        }
-        if (sources.length === count) {
-          res(result);
-        }
-      });
-    }
-  });
+async function globPath(sources) {
+  try {
+    const fileArrays = await Promise.all(
+      sources.map(source => promisifiedGlob(source))
+    );
+    return fileArrays.flat();
+  } catch (err) {
+    console.error('Error processing glob patterns:', err);
+    throw err; // Re-throw to handle failure at caller
+  }
 }
 
 async function createTempFiles(filePaths) {
@@ -33,7 +27,7 @@ async function createTempFiles(filePaths) {
   const tmpPaths = [];
   for (const filePath of filePaths) {
     const resolvedPath = path.resolve(__dirname, filePath);
-    const fileContent = fs.readFileSync(resolvedPath, 'utf-8');
+    const fileContent = await fs.promises.readFile(resolvedPath, 'utf-8',);
     const newPath = path.resolve(TEMP_DIR, `${path.basename(filePath).replace('.js', '.tmp.js')}`);
     const newCode = getTemplatedComponentCode(fileContent);
     fs.writeFileSync(newPath, newCode);
@@ -65,7 +59,7 @@ async function main() {
   exec(cmd, (err, stdout) => {
     if (err) {
       console.error(err);
-      return;
+      return 1;
     }
     console.log(stdout);
 
