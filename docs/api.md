@@ -1,7 +1,5 @@
 # auro-flight-header
 
-The auro-flight-header element displays airline, duration, and day change information.
-
 ## Properties
 
 | Property        | Attribute       | Type     | Description                                      |
@@ -20,9 +18,6 @@ The auro-flight-header element displays airline, duration, and day change inform
 
 
 # auro-flight-main
-
-The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
-DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 
 ## Properties
 
@@ -55,10 +50,6 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 
 
 # auro-flight
-
-The auro-flight element renders a DoT compliant Flight listing.
-This design has been tested via the Alaska Legal team for legal compliance.
-Please DO NOT modify unit tests pertaining to DoT regulations.
 
 ## Properties
 
