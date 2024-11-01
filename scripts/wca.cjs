@@ -5,7 +5,7 @@ const util = require('util');
 const promisifiedGlob = util.promisify(glob);
 
 const { getTemplatedComponentCode }  = require('./auro-component-template.wca.cjs');
-const TEMP_DIR = path.resolve(__dirname, './wca-tmp');
+const WAC_DIR = path.resolve(process.cwd(), './docs/wca');
 
 async function globPath(sources) {
   try {
@@ -19,53 +19,28 @@ async function globPath(sources) {
   }
 }
 
-async function createTempFiles(filePaths) {
-  if (!fs.existsSync(TEMP_DIR)) {
-    await fs.promises.mkdir(TEMP_DIR);
+async function createExtendsFile(filePaths) {
+  if (!fs.existsSync(WAC_DIR)) {
+    await fs.promises.mkdir(WAC_DIR, { recursive: true });
   }
 
-  const tmpPaths = [];
   for (const filePath of filePaths) {
-    const resolvedPath = path.resolve(__dirname, filePath);
+    const resolvedPath = path.resolve(process.cwd(), filePath);
     const fileContent = await fs.promises.readFile(resolvedPath, 'utf-8',);
-    const newPath = path.resolve(TEMP_DIR, `${path.basename(filePath).replace('.js', '.tmp.js')}`);
-    const newCode = getTemplatedComponentCode(fileContent);
+    const newPath = path.resolve(WAC_DIR, `${path.basename(filePath)}`);
+    const newCode = getTemplatedComponentCode(fileContent, path.relative(WAC_DIR, filePath));
     fs.writeFileSync(newPath, newCode);
-
-    tmpPaths.push(newPath);
   }
-  return tmpPaths;
 }
 
 async function main() {
   const currentPath = path.resolve(__dirname, __filename);
   const scriptIndex = process.argv.indexOf(currentPath);
-  const sources = [];
-  let optionStart = scriptIndex + 1;
-  for (optionStart; optionStart < process.argv.length; optionStart++) {
-    const arg = process.argv[optionStart];
-    if (arg.includes('--')) {
-      break;
-    }
-    sources.push(path.resolve(process.cwd(), arg));
-  }
-  const filePaths = await globPath(sources);
-  const tmpFilePaths = (await createTempFiles(filePaths)).reduce((p, c) => `${p} '${c}'`, '');
 
-  const options = process.argv.slice(optionStart).reduce((p, c) => `${p} ${c}`, '');
-  const { exec } = require('child_process');
+  // files to analyze
+  const filePaths = await globPath(process.argv.slice(scriptIndex + 1));
 
-  const cmd = `wca analyze ${tmpFilePaths} ${options}`;
-  exec(cmd, (err, stdout) => {
-    if (err) {
-      console.error(err);
-      return 1;
-    }
-    console.log(stdout);
-
-    // removing tmp files after analyzation
-    fs.rmSync(TEMP_DIR, { recursive: true, force: true });
-  });
+  await createExtendsFile(filePaths);
 }
 
 main();
