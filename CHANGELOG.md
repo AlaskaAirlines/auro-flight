@@ -1,5 +1,22 @@
 # Semantic Release Automated Changelog
 
+# [3.1.0](https://github.com/AlaskaAirlines/auro-flight/compare/v3.0.1...v3.1.0) (2024-11-05)
+
+
+### Features
+
+* **api:** add register static method [#82](https://github.com/AlaskaAirlines/auro-flight/issues/82) ([00e0c0c](https://github.com/AlaskaAirlines/auro-flight/commit/00e0c0c85f72fc56e2c841415a74c81df3fec857))
+
+
+### Performance Improvements
+
+* add `noResolver` to rollup config ([0485ce6](https://github.com/AlaskaAirlines/auro-flight/commit/0485ce6d4cac7d16ecf1fe809634ff625182bc8a))
+* edge case handling in templated code generator ([7f8fa57](https://github.com/AlaskaAirlines/auro-flight/commit/7f8fa57b02f7bd7b8f6bd2fa522c5287c8dc3d0b))
+* reduce complexity in script ([4007c5d](https://github.com/AlaskaAirlines/auro-flight/commit/4007c5d2895b741f33114c796a83047aac35c9f7))
+* remove unused CDN import in `demo/api.html` ([9d787db](https://github.com/AlaskaAirlines/auro-flight/commit/9d787dbbd116ef6210368a626b1aa68b4490b44a))
+* remove unused CDN inport in `demo/index.html` ([a1a1459](https://github.com/AlaskaAirlines/auro-flight/commit/a1a14593f274744ac7f20392d8740a4cd3c73251))
+* update dependency ([9f44517](https://github.com/AlaskaAirlines/auro-flight/commit/9f44517aa27f167863abab876e62596ffaf5b658))
+
 ## [3.0.1](https://github.com/AlaskaAirlines/auro-flight/compare/v3.0.0...v3.0.1) (2024-10-08)
 
 
