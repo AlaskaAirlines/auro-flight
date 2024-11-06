@@ -23,7 +23,7 @@
     "@aurodesignsystem/auro-badge": "^3.1.0",
     "@aurodesignsystem/auro-datetime": "^2.3.0",
     "@aurodesignsystem/auro-flightline": "^3.1.0",
-    "@aurodesignsystem/auro-library": "^2.8.0",
+    "@aurodesignsystem/auro-library": "^3.0.1",
     "chalk": "^5.3.0",
     "lit": "^3.2.1"
   },
