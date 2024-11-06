@@ -3,7 +3,7 @@
 
 # Flight
 
-<!-- AURO-GENERATED-CONTENT:START (FILE:src=./description.md) -->
+<!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## Mainline Nonstop
@@ -11,14 +11,14 @@
 This example illustrates a mainline nonstop flight from SEA to LAX
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/basic.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/basic.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/basic.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/basic.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -28,14 +28,14 @@ This example illustrates a mainline nonstop flight from SEA to LAX
 This example illustrates a mainline nonstop with a next day arrival or departure from KOA to SEA
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/nextDay.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/nextDay.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/nextDay.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/nextDay.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -45,14 +45,14 @@ This example illustrates a mainline nonstop with a next day arrival or departure
 This example illustrates a mainline nonstop with a -1 day arrival or departure from KOA to SEA
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/arriveOneDayBefore.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/arriveOneDayBefore.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/arriveOneDayBefore.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/arriveOneDayBefore.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -62,14 +62,14 @@ This example illustrates a mainline nonstop with a -1 day arrival or departure f
 This example illustrates a one-stop `stopover` flight from ANC to ADK. Notice the additional information required for the `auro-flight-segment` element.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/oneStop.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/oneStop.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/oneStop.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/oneStop.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -79,14 +79,14 @@ This example illustrates a one-stop `stopover` flight from ANC to ADK. Notice th
 The following example illustrates a mainline multi-stop `stopover` flight from KTN to ANC.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/multiStop.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/multiStop.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/multiStop.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/multiStop.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -96,14 +96,14 @@ The following example illustrates a mainline multi-stop `stopover` flight from K
 The following example illustrates a change of gauge flight with a layover in SEA for 1h 35m.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/connection.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/connection.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/connection.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/connection.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -115,14 +115,14 @@ In this example for a flight that requires government approval or a flight that 
 This slot requires the consumer to manually manage what is read back via the screen reader through the use of `aria-hidden="true"`.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/footerSlot.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/footerSlot.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/footerSlot.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/footerSlot.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -130,14 +130,14 @@ This slot requires the consumer to manually manage what is read back via the scr
 In this example, the `footer` slot is used to alert the customer that a First Class option is available.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/footerSlot2.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/footerSlot2.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/footerSlot2.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/footerSlot2.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -147,14 +147,14 @@ In this example, the `footer` slot is used to alert the customer that a First Cl
 The following example illustrates additional data regarding departure reroute information.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/reroute1.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/reroute1.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/reroute1.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/reroute1.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -164,14 +164,14 @@ The following example illustrates additional data regarding departure reroute in
 The following example illustrates additional data regarding arrival reroute information.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/reroute2.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/reroute2.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/reroute2.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/reroute2.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -181,14 +181,14 @@ The following example illustrates additional data regarding arrival reroute info
 The following example illustrates additional data regarding departure and arrival information.
 
 <div class="exampleWrapper">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/headerSlot.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/headerSlot.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
 
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/headerSlot.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/headerSlot.html) -->
 <!-- AURO-GENERATED-CONTENT:END -->
 
 </auro-accordion>
@@ -210,12 +210,12 @@ AuroFlight.register('custom-flight');
 This will create a new custom element that you can use in your HTML that will function identically to the `<auro-flight>` element.
 
 <div class="exampleWrapper exampleWrapper--flex">
-  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../../apiExamples/custom.html) -->
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/custom.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
 </div>
 <auro-accordion alignRight>
   <span slot="trigger">See code</span>
-<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../../apiExamples/custom.html) -->
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/custom.html) --> 
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
