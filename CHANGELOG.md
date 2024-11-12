@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [3.1.1](https://github.com/AlaskaAirlines/auro-flight/compare/v3.1.0...v3.1.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* update markdown partial pathing to consume new auro lib [#135](https://github.com/AlaskaAirlines/auro-flight/issues/135) ([d3456a7](https://github.com/AlaskaAirlines/auro-flight/commit/d3456a7277b39f148616ea32a518417d5eb8e9cc))
+
 # [3.1.0](https://github.com/AlaskaAirlines/auro-flight/compare/v3.0.1...v3.1.0) (2024-11-05)
 
 
