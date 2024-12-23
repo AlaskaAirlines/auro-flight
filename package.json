@@ -20,15 +20,15 @@
     "node": "^20.x || ^22.x "
   },
   "dependencies": {
-    "@aurodesignsystem/auro-badge": "^3.1.0",
-    "@aurodesignsystem/auro-datetime": "^2.3.0",
-    "@aurodesignsystem/auro-flightline": "^3.1.0",
-    "@aurodesignsystem/auro-library": "^3.0.1",
+    "@aurodesignsystem/auro-badge": "^3.3.2",
+    "@aurodesignsystem/auro-datetime": "^2.3.2",
+    "@aurodesignsystem/auro-flightline": "^3.1.2",
+    "@aurodesignsystem/auro-library": "^3.0.3",
     "chalk": "^5.3.0",
     "lit": "^3.2.1"
   },
   "peerDependencies": {
-    "@aurodesignsystem/auro-datetime": "^2.3.0",
+    "@aurodesignsystem/auro-datetime": "^2.3.2",
     "@aurodesignsystem/design-tokens": "^4.9.2",
     "@aurodesignsystem/webcorestylesheets": "^5.1.2"
   },
