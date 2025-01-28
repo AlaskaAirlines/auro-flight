@@ -1,5 +1,17 @@
 # Semantic Release Automated Changelog
 
+## [3.2.1](https://github.com/AlaskaAirlines/auro-flight/compare/v3.2.0...v3.2.1) (2025-01-28)
+
+
+### Bug Fixes
+
+* correctly handle missing flights value or when value is empty array [#144](https://github.com/AlaskaAirlines/auro-flight/issues/144) ([a1eaaab](https://github.com/AlaskaAirlines/auro-flight/commit/a1eaaab8d6585a50b191edf017f20379772573a1))
+
+
+### Performance Improvements
+
+* update to latest dependencies ([5a4a52f](https://github.com/AlaskaAirlines/auro-flight/commit/5a4a52fd8d6e9ad576fa054ae03fce1c2c81376d))
+
 # [3.2.0](https://github.com/AlaskaAirlines/auro-flight/compare/v3.1.1...v3.2.0) (2024-12-23)
 
 
