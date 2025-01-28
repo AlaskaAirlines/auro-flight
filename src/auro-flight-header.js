@@ -27,7 +27,6 @@ import tokensCss from "./tokens-css.js";
 // build the component class
 
 export class AuroFlightHeader extends LitElement {
-
   // function to define props used within the scope of this component
   static get properties() {
     return {
@@ -54,7 +53,7 @@ export class AuroFlightHeader extends LitElement {
   flightType() {
     switch (this.flights.length) {
       case 0:
-        return null;
+        return '';
       case 1:
         return this.flights[0];
       default:

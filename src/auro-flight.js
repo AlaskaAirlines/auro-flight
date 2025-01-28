@@ -45,6 +45,8 @@ export class AuroFlight extends LitElement {
   constructor() {
     super();
 
+    this.flights = [];
+
     /**
      * @private
      */
