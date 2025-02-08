@@ -62,7 +62,7 @@
   text-decoration: line-through;
 }
 
-@include auro_breakpoint--sm {
+@include auro_grid-breakpoint--sm {
   .departureTime, .arrivalTime {
     font-size: var(--ds-text-heading-700-size-breakpoint-sm, $ds-text-heading-700-size-breakpoint-sm);
   }
