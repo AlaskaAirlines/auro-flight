@@ -27,10 +27,6 @@
     "chalk": "^5.4.1",
     "lit": "^3.2.1"
   },
-  "peerDependencies": {
-    "@aurodesignsystem/design-tokens": "^4.13.0",
-    "@aurodesignsystem/webcorestylesheets": "^6.0.2"
-  },
   "devDependencies": {
     "@alaskaairux/icons": "^4.44.1",
     "@aurodesignsystem/design-tokens": "^4.13.0",
