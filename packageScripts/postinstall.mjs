@@ -1,11 +1,10 @@
-'use strict';
-
-import chalk from 'chalk';
-import { createRequire } from 'node:module';
+import chalk from "chalk";
+import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
-const pjson = require('../package.json');
+const pjson = require("../package.json");
 
-console.log(chalk.hex('#f26135')(`
+console.log(
+  chalk.hex("#f26135")(`
 
  _______                   __           __ __
 |     __|.---.-.--.--.    |  |--.-----.|  |  |.-----.
@@ -21,8 +20,10 @@ console.log(chalk.hex('#f26135')(`
 ╭ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ──────────────────────────────╮
 
         Thanks for installing the latest version
-        of `) + chalk.hex('#ffd200').bold(`${pjson.name} v${pjson.version}.`) + chalk.hex('#f26135')(`
+        of `) +
+    chalk.hex("#ffd200").bold(`${pjson.name} v${pjson.version}.`) +
+    chalk.hex("#f26135")(`
 
 ╰─────────────────────────────── ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─╯
-`)
+`),
 );
