@@ -37,6 +37,10 @@ import { getDateDifference } from '../util/util.js';
  * @slot default - anticipates `<auro-flight-segment>` instances
  * @csspart arrivalContainer - Apply css to the elements within the arrival container
  * @csspart departureContainer - Apply css to the elements within the departure container
+ * @csspart arrivalTime - Apply css to the elements to the arrival time
+ * @csspart departureTime - Apply css to the elements to the departure time
+ * @csspart arrivalStation - Apply css to the elements to the arrival station
+ * @csspart departureStation - Apply css to the elements to the departure station
  */
 
 // build the component class
@@ -84,6 +88,14 @@ export class AuroFlightMain extends LitElement {
      * @private
      */
     this.datetimeTag = versioning.generateTag('auro-datetime', datetimeVersion, AuroDatetime);
+  }
+
+  /**
+   * Exposes CSS parts for styling from parent components.
+   * @returns {void}
+   */
+  exposeCssParts() {
+    this.setAttribute('exportparts', 'departureTime:departureTime, arrivalTime:arrivalTime, departureStation:departureStation, arrivalStation:arrivalStation');
   }
 
   /**
@@ -170,10 +182,10 @@ export class AuroFlightMain extends LitElement {
           ${this.composeScreenReaderSummary()}
         </div>
         <div class="departure" aria-hidden="true" part="departureContainer">
-          <time class="departureTime">
+          <time class="departureTime" part="departureTime">
             <${this.datetimeTag} type="tzTime" setDate="${this.departureTime}"></${this.datetimeTag}>
           </time>
-          <span class="departureStation">
+          <span class="departureStation" part="departureStation">
           ${hasDepartureReroute
             ? html`
               <span>
@@ -189,10 +201,10 @@ export class AuroFlightMain extends LitElement {
           <slot></slot>
         </div>
         <div class="arrival" aria-hidden="true" part="arrivalContainer">
-          <time class="arrivalTime">
+          <time class="arrivalTime" part="arrivalTime">
             <${this.datetimeTag} type="tzTime" setDate="${this.arrivalTime}"></${this.datetimeTag}>
           </time>
-          <span class="arrivalStation">
+          <span class="arrivalStation" part="arrivalStation">
             ${hasArrivalReroute
               ? html`
                 <span>

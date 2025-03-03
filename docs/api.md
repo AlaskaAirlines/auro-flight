@@ -76,6 +76,12 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | `template`                 |                            | `object` | {}                                    |                                                  |
 | `timeTemplate`             |                            | `object` | {"hour":"2-digit","minute":"2-digit"} | Time template object used by convertTime() method. |
 
+## Methods
+
+| Method           | Type       | Description                                      |
+|------------------|------------|--------------------------------------------------|
+| `exposeCssParts` | `(): void` | Exposes CSS parts for styling from parent components. |
+
 ## Slots
 
 | Name      | Description                                   |
@@ -87,4 +93,8 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | Part                 | Description                                      |
 |----------------------|--------------------------------------------------|
 | `arrivalContainer`   | Apply css to the elements within the arrival container |
+| `arrivalStation`     | Apply css to the elements to the arrival station |
+| `arrivalTime`        | Apply css to the elements to the arrival time    |
 | `departureContainer` | Apply css to the elements within the departure container |
+| `departureStation`   | Apply css to the elements to the departure station |
+| `departureTime`      | Apply css to the elements to the departure time  |

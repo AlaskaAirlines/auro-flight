@@ -97,10 +97,12 @@ export class AuroFlight extends LitElement {
     const slot = this.shadowRoot.querySelector("#footer"),
       slotWrapper = this.shadowRoot.querySelector("#flightFooter");
 
+    const main = this.shadowRoot.querySelector("auro-flight-main");
+    main.exposeCssParts();
+
     if (!this.unformatted && slot.assignedNodes().length === 0) {
       return slotWrapper.classList.remove("flightFooter");
     }
-
     return null;
   }
 
