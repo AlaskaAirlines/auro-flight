@@ -1,0 +1,26 @@
+<auro-flight
+  id="customizeFont"
+  flights='["AS 1436"]'
+  duration="161"
+  departureTime="2022-07-13T12:15:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-07-13T14:56:00-07:00"
+  arrivalStation="LAX">
+  <auro-flightline></auro-flightline>
+</auro-flight>
+
+<style>
+  #customizeFont::part(arrivalTime) {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  #customizeFont::part(departureTime) {
+    font-size: 1.8rem;
+  }
+  #customizeFont::part(arrivalStation) {
+    color: red;
+  }
+  #customizeFont::part(departureStation) {
+    color: blue;
+  }
+</style>

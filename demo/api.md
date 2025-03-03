@@ -77,6 +77,12 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | [template](#template)                 |                            | `object` | {}                                    |                                                  |
 | [timeTemplate](#timeTemplate)             |                            | `object` | {"hour":"2-digit","minute":"2-digit"} | Time template object used by convertTime() method. |
 
+## Methods
+
+| Method           | Type       | Description                                      |
+|------------------|------------|--------------------------------------------------|
+| [exposeCssParts](#exposeCssParts) | `(): void` | Exposes CSS parts for styling from parent components. |
+
 ## Slots
 
 | Name      | Description                                   |
@@ -88,7 +94,11 @@ DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
 | Part                 | Description                                      |
 |----------------------|--------------------------------------------------|
 | [arrivalContainer](#arrivalContainer)   | Apply css to the elements within the arrival container |
+| [arrivalStation](#arrivalStation)     | Apply css to the elements to the arrival station |
+| [arrivalTime](#arrivalTime)        | Apply css to the elements to the arrival time    |
 | [departureContainer](#departureContainer) | Apply css to the elements within the departure container |
+| [departureStation](#departureStation)   | Apply css to the elements to the departure station |
+| [departureTime](#departureTime)      | Apply css to the elements to the departure time  |
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## API Examples
@@ -314,6 +324,75 @@ Explanation and use description.
   arrivalStation="LAX">
   <auro-flightline></auro-flightline>
 </auro-flight>
+```
+<!-- AURO-GENERATED-CONTENT:END -->
+</auro-accordion>
+
+### CSS Shadow Parts Example
+
+Use css part of `arrivalTime`, `arrivalStation`, `departureTime`, `departureStation` to customize their fonts
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/customizeFont.html) -->
+  <!-- The below content is automatically added from ./../apiExamples/customizeFont.html -->
+  <auro-flight
+    id="customizeFont"
+    flights='["AS 1436"]'
+    duration="161"
+    departureTime="2022-07-13T12:15:00-07:00"
+    departureStation="SEA"
+    arrivalTime="2022-07-13T14:56:00-07:00"
+    arrivalStation="LAX">
+    <auro-flightline></auro-flightline>
+  </auro-flight>
+  <style>
+    #customizeFont::part(arrivalTime) {
+      font-size: 2rem;
+      font-weight: bolder;
+    }
+    #customizeFont::part(departureTime) {
+      font-size: 1.8rem;
+    }
+    #customizeFont::part(arrivalStation) {
+      color: red;
+    }
+    #customizeFont::part(departureStation) {
+      color: blue;
+    }
+  </style>
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/customizeFont.html) -->
+<!-- The below code snippet is automatically added from ./../apiExamples/customizeFont.html -->
+
+```html
+<auro-flight
+  id="customizeFont"
+  flights='["AS 1436"]'
+  duration="161"
+  departureTime="2022-07-13T12:15:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-07-13T14:56:00-07:00"
+  arrivalStation="LAX">
+  <auro-flightline></auro-flightline>
+</auro-flight>
+<style>
+  #customizeFont::part(arrivalTime) {
+    font-size: 2rem;
+    font-weight: bolder;
+  }
+  #customizeFont::part(departureTime) {
+    font-size: 1.8rem;
+  }
+  #customizeFont::part(arrivalStation) {
+    color: red;
+  }
+  #customizeFont::part(departureStation) {
+    color: blue;
+  }
+</style>
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
