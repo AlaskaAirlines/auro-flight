@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [4.1.0](https://github.com/AlaskaAirlines/auro-flight/compare/v4.0.0...v4.1.0) (2025-03-04)
+
+
+### Features
+
+* extract `flight-main`'s css parts ([7bd2d73](https://github.com/AlaskaAirlines/auro-flight/commit/7bd2d7317d690ff20ebb9f2a98130f0756d838d3))
+
 # [4.0.0](https://github.com/AlaskaAirlines/auro-flight/compare/v3.2.2...v4.0.0) (2025-02-28)
 
 
