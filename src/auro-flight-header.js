@@ -46,6 +46,14 @@ export class AuroFlightHeader extends LitElement {
   }
 
   /**
+   * Exposes CSS parts for styling from parent components.
+   * @returns {void}
+   */
+  exposeCssParts() {
+    this.setAttribute('exportparts', 'durationContainer:durationContainer, flightType:flightType');
+  }
+
+  /**
    * @private
    * @returns {String} Parsed airline code output.
    * Internal function to render either the flight number OR 'Multiple flights'.
