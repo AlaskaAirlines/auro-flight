@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [4.2.0](https://github.com/AlaskaAirlines/auro-flight/compare/v4.1.0...v4.2.0) (2025-04-08)
+
+
+### Features
+
+* add `exposeCssParts` method to `auro-flight-header` for CSS styling ([0666584](https://github.com/AlaskaAirlines/auro-flight/commit/066658463fd3d674a99b6b799cc1dbb61b136010))
+
 # [4.1.0](https://github.com/AlaskaAirlines/auro-flight/compare/v4.0.0...v4.1.0) (2025-03-04)
 
 
