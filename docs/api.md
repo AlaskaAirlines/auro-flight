@@ -47,6 +47,12 @@ The auro-flight-header element displays airline, duration, and day change inform
 | `duration`      | `duration`      | `String` | String for the duration. `505`                   |
 | `flights`       | `flights`       | `Array`  | Array of flight numbers `['AS 123', 'EK 432']`   |
 
+## Methods
+
+| Method           | Type       | Description                                      |
+|------------------|------------|--------------------------------------------------|
+| `exposeCssParts` | `(): void` | Exposes CSS parts for styling from parent components. |
+
 ## CSS Shadow Parts
 
 | Part                | Description                         |
