@@ -336,7 +336,7 @@ Explanation and use description.
 
 ### CSS Shadow Parts Example
 
-Use css part of `arrivalTime`, `arrivalStation`, `departureTime`, `departureStation` to customize their fonts
+Use css part of `arrivalTime`, `arrivalStation`, `departureTime`, `departureStation`, `durationContainer`, `flightType` to customize their fonts.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/customizeFont.html) -->
@@ -364,6 +364,12 @@ Use css part of `arrivalTime`, `arrivalStation`, `departureTime`, `departureStat
     }
     #customizeFont::part(departureStation) {
       color: blue;
+    }
+    #customizeFont::part(durationContainer) {
+      color: orange;
+    }
+    #customizeFont::part(flightType) {
+      color: green;
     }
   </style>
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -397,6 +403,12 @@ Use css part of `arrivalTime`, `arrivalStation`, `departureTime`, `departureStat
   }
   #customizeFont::part(departureStation) {
     color: blue;
+  }
+  #customizeFont::part(durationContainer) {
+    color: orange;
+  }
+  #customizeFont::part(flightType) {
+    color: green;
   }
 </style>
 ```
