@@ -110,7 +110,7 @@ Explanation and use description.
 
 ### CSS Shadow Parts Example
 
-Use css part of `arrivalTime`, `arrivalStation`, `departureTime`, `departureStation` to customize their fonts
+Use css part of `arrivalTime`, `arrivalStation`, `departureTime`, `departureStation`, `durationContainer`, `flightType` to customize their fonts.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/customizeFont.html) -->
