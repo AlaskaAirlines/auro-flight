@@ -20,11 +20,10 @@
     "node": "^20.x || ^22.x "
   },
   "dependencies": {
-    "@aurodesignsystem/auro-badge": "4.0.0",
     "@aurodesignsystem/auro-datetime": "^3.0.2",
-    "@aurodesignsystem/auro-flightline": "4.0.0",
+    "@aurodesignsystem/auro-flightline": "^5.0.0",
     "@aurodesignsystem/auro-library": "^4.3.0",
-    "@aurodesignsystem/design-tokens": "5.0.2",
+    "@aurodesignsystem/design-tokens": "^5.11.0",
     "@aurodesignsystem/webcorestylesheets": "6.1.0",
     "chalk": "^5.4.1",
     "lit": "^3.3.0"
