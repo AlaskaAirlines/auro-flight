@@ -18,7 +18,6 @@ The `<auro-flight>` element has dependencies on the following additional Auro cu
 ```
   └── @aurodesignsystem/auro-flightline
   |  ├── (internal dependency) @aurodesignsystem/auro-flight-segment
-  |  └── (external dependency) @aurodesignsystem/auro-badge
 
   └── @aurodesignsystem/auro-flight
   |  ├── (internal dependency) @aurodesignsystem/auro-flight-header

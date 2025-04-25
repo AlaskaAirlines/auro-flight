@@ -423,15 +423,16 @@ The component may be restyled using the following code sample and changing the v
 <!-- The below code snippet is automatically added from ./../src/tokens.scss -->
 
 ```scss
-@import './../node_modules/@aurodesignsystem/design-tokens/dist/tokens/SCSSVariables';
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/auro-classic/SCSSVariables";
+@import "./../node_modules/@aurodesignsystem/design-tokens/dist/alaska/SCSSVariables--alaska";
 
 :host {
-  --ds-auro-flight-footer-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
-  --ds-auro-flight-header-days-changed-text-color: var(--ds-color-utility-error-default, #{$ds-color-utility-error-default});
-  --ds-auro-flight-header-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
-  --ds-auro-flight-cancelled-station-text-color: var(--ds-color-utility-error-default, #{$ds-color-utility-error-default});
-  --ds-auro-flight-station-text-color: var(--ds-color-text-secondary-default, #{$ds-color-text-secondary-default});
-  --ds-auro-flight-time-text-color: var(--ds-color-text-primary-default, #{$ds-color-text-primary-default});
+  --ds-auro-flight-footer-text-color: var(--ds-basic-color-texticon-muted, #{$ds-basic-color-texticon-muted});
+  --ds-auro-flight-header-days-changed-text-color: var(--ds-basic-color-status-error, #{$ds-basic-color-status-error});
+  --ds-auro-flight-header-text-color: var(--ds-basic-color-texticon-muted, #{$ds-basic-color-texticon-muted});
+  --ds-auro-flight-cancelled-station-text-color: var(--ds-basic-color-status-error, #{$ds-basic-color-status-error});
+  --ds-auro-flight-station-text-color: var(--ds-basic-color-texticon-muted, #{$ds-basic-color-texticon-muted});
+  --ds-auro-flight-time-text-color: var(--ds-basic-color-texticon-default, #{$ds-basic-color-texticon-default});
 }
 ```
 <!-- AURO-GENERATED-CONTENT:END -->
