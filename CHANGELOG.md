@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+# [4.3.0](https://github.com/AlaskaAirlines/auro-flight/compare/v4.2.0...v4.3.0) (2025-04-30)
+
+
+### Features
+
+* update to use new color theme tokens [#154](https://github.com/AlaskaAirlines/auro-flight/issues/154) ([386fa15](https://github.com/AlaskaAirlines/auro-flight/commit/386fa15079e79230a51b1c9ff769c7804d8a97a0))
+
 # [4.2.0](https://github.com/AlaskaAirlines/auro-flight/compare/v4.1.0...v4.2.0) (2025-04-08)
 
 
