@@ -5,14 +5,6 @@
 
 /* stylelint-disable selector-class-pattern */
 
-// Import Auro tokens
-@import "./../node_modules/@aurodesignsystem/design-tokens/dist/auro-classic/SCSSVariables";
-@import "./../node_modules/@aurodesignsystem/design-tokens/dist/alaska/SCSSVariables--alaska";
-
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/breakpoints';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/core';
-@import './../node_modules/@aurodesignsystem/webcorestylesheets/src/utilityClasses/displayProperties';
-
 .departureTime {
   color: var(--ds-auro-flight-time-text-color);
 }

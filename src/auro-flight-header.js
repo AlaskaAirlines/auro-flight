@@ -7,9 +7,9 @@
 import { LitElement, html, css } from "lit";
 import { getDateDifference } from "../util/util.js";
 
-import styleFlightHeaderCss from "./style-flight-header-css.js";
-import colorFlightHeaderCss from "./color-flight-header-css.js";
-import tokensCss from "./tokens-css.js";
+import styleFlightHeaderCss from "./styles/style-flight-header-css.js";
+import colorFlightHeaderCss from "./styles/color-flight-header-css.js";
+import tokensCss from "./styles/tokens-css.js";
 
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
@@ -43,6 +43,15 @@ export class AuroFlightHeader extends LitElement {
       css`${colorFlightHeaderCss}`,
       css`${tokensCss}`
     ];
+  }
+
+  /**
+   * Lifecycle callback when the component is added to the DOM.
+   * @returns {void}
+   */
+  connectedCallback() {
+    super.connectedCallback();
+    this.classList.add('body-default');
   }
 
   /**
@@ -108,11 +117,11 @@ export class AuroFlightHeader extends LitElement {
       <p class="util_displayHiddenVisually">
         ${this.composeScreenReaderHeader()}
       </p>
-      <span class="flight" aria-hidden="true" part="flightType">
+      <span class="flight body-default" aria-hidden="true" part="flightType">
         ${this.flightType()}
       </span>
       <div aria-hidden="true" part="durationContainer">
-        <time class="duration">${this.duration}</time>
+        <time class="duration body-default">${this.duration}</time>
         ${this.flightDuration()}
       </div>
     `;

@@ -1,0 +1,12 @@
+// Copyright (c) 2024 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// See LICENSE in the project root for license information.
+
+// ---------------------------------------------------------------------
+
+:host {
+  color: var(--ds-auro-flight-header-text-color);
+}
+
+.daysChanged {
+  color: var(--ds-auro-flight-header-days-changed-text-color);
+}
