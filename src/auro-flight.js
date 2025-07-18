@@ -6,9 +6,9 @@
 // If use litElement base class
 import { LitElement, html, css } from "lit";
 
-import styleCss from "./style-flight-css.js";
-import colorFlightCss from "./color-flight-css.js";
-import tokensCss from "./tokens-css.js";
+import styleCss from "./styles/style-flight-css.js";
+import colorFlightCss from "./styles/color-flight-css.js";
+import tokensCss from "./styles/tokens-css.js";
 
 import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
@@ -151,7 +151,7 @@ export class AuroFlight extends LitElement {
         >
           <slot></slot>
         </auro-flight-main>
-        <footer class="flightFooter" id="flightFooter">
+        <footer class="flightFooter body-default" id="flightFooter">
           <slot name="footer" id="footer"></slot>
         </footer>
       </section>

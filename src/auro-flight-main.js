@@ -9,9 +9,9 @@
 import { LitElement, css } from "lit";
 import { html } from 'lit/static-html.js';
 
-import styleFlightMainCss from "./style-flight-main-css.js";
-import colorFlightMainCss from "./color-flight-main-css.js";
-import tokensCss from "./tokens-css.js";
+import styleFlightMainCss from "./styles/style-flight-main-css.js";
+import colorFlightMainCss from "./styles/color-flight-main-css.js";
+import tokensCss from "./styles/tokens-css.js";
 
 import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
 
@@ -182,29 +182,30 @@ export class AuroFlightMain extends LitElement {
           ${this.composeScreenReaderSummary()}
         </div>
         <div class="departure" aria-hidden="true" part="departureContainer">
-          <time class="departureTime" part="departureTime">
+          <time class="departureTime heading-md" part="departureTime">
             <${this.datetimeTag} type="tzTime" setDate="${this.departureTime}"></${this.datetimeTag}>
           </time>
           <span class="departureStation" part="departureStation">
-          ${hasDepartureReroute
-            ? html`
-              <span>
-                ${this.reroutedDepartureStation}
-              </span>`
-            : html``}
+            ${hasDepartureReroute
+              ? html`
+                <span class="body-default">
+                  ${this.reroutedDepartureStation}
+                </span>`
+              : html``}
 
-            <span class=${hasDepartureReroute ? "util_lineThrough" : ""}>
+            <span class=${hasDepartureReroute ? "util_lineThrough body-default" : "body-default"}>
               ${this.departureStation}
+            </span>
           </span>
         </div>
         <div class="slotContainer" aria-hidden="true">
           <slot></slot>
         </div>
         <div class="arrival" aria-hidden="true" part="arrivalContainer">
-          <time class="arrivalTime" part="arrivalTime">
+          <time class="arrivalTime heading-md" part="arrivalTime">
             <${this.datetimeTag} type="tzTime" setDate="${this.arrivalTime}"></${this.datetimeTag}>
           </time>
-          <span class="arrivalStation" part="arrivalStation">
+          <span class="arrivalStation body-default" part="arrivalStation">
             ${hasArrivalReroute
               ? html`
                 <span>
@@ -212,7 +213,7 @@ export class AuroFlightMain extends LitElement {
                 </span>`
               : html``}
 
-            <span class=${hasArrivalReroute ? "util_lineThrough" : ""}>
+            <span class=${hasArrivalReroute ? "util_lineThrough body-default" : "body-default"}>
               ${this.arrivalStation}
             </span>
           </span>

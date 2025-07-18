@@ -28,7 +28,7 @@
       import 'https://cdn.jsdelivr.net/npm/prismjs@latest/prism.js';
       import 'https://cdn.jsdelivr.net/npm/marked@latest/marked.min.js';
 
-      fetch('/demo/api.md')
+      fetch('./api.md')
         .then((response) => response.text())
         .then((text) => {
           const rawHtml = marked.parse(text);

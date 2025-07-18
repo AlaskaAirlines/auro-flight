@@ -1,0 +1,10 @@
+@use "@aurodesignsystem/design-tokens/dist/themes/alaska/SCSSVariables--alaska" as v;
+
+:host {
+  --ds-auro-flight-footer-text-color: var(--ds-basic-color-texticon-muted, #{v.$ds-basic-color-texticon-muted});
+  --ds-auro-flight-header-days-changed-text-color: var(--ds-basic-color-status-error, #{v.$ds-basic-color-status-error});
+  --ds-auro-flight-header-text-color: var(--ds-basic-color-texticon-muted, #{v.$ds-basic-color-texticon-muted});
+  --ds-auro-flight-cancelled-station-text-color: var(--ds-basic-color-status-error, #{v.$ds-basic-color-status-error});
+  --ds-auro-flight-station-text-color: var(--ds-basic-color-texticon-muted, #{v.$ds-basic-color-texticon-muted});
+  --ds-auro-flight-time-text-color: var(--ds-basic-color-texticon-default, #{v.$ds-basic-color-texticon-default});
+}
