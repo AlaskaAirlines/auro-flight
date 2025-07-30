@@ -1,5 +1,20 @@
 # Semantic Release Automated Changelog
 
+## [4.3.1](https://github.com/AlaskaAirlines/auro-flight/compare/v4.3.0...v4.3.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* add auro-icon package to demo pages ([be03450](https://github.com/AlaskaAirlines/auro-flight/commit/be034506b3a001fd386e46993a3fd18028ff91db))
+* dotCompliance typos ([ae29824](https://github.com/AlaskaAirlines/auro-flight/commit/ae298240ac612f4fe98fdb583631b23bb409aa39))
+* rollback dotCompliance.md ([f79d7a2](https://github.com/AlaskaAirlines/auro-flight/commit/f79d7a2e7bfdbae75bef72a4fb955c90f0483b27))
+* update docs head content ([4eccf93](https://github.com/AlaskaAirlines/auro-flight/commit/4eccf938cd8bffc895c0e8135923c0ee6af88c3c))
+
+
+### Performance Improvements
+
+* add themeable type styles ([4ed4472](https://github.com/AlaskaAirlines/auro-flight/commit/4ed4472a5c2a2b20a48a6fed499a395538748c1f))
+
 # [4.3.0](https://github.com/AlaskaAirlines/auro-flight/compare/v4.2.0...v4.3.0) (2025-04-30)
 
 
