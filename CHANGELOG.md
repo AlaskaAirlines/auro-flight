@@ -1,5 +1,12 @@
 # Semantic Release Automated Changelog
 
+## [4.3.2](https://github.com/AlaskaAirlines/auro-flight/compare/v4.3.1...v4.3.2) (2025-08-14)
+
+
+### Bug Fixes
+
+* update auro-library to latest version ([b523941](https://github.com/AlaskaAirlines/auro-flight/commit/b5239411f183a1e9b82cbfd991fb5eaa5c1fa7c5))
+
 ## [4.3.1](https://github.com/AlaskaAirlines/auro-flight/compare/v4.3.0...v4.3.1) (2025-07-30)
 
 
