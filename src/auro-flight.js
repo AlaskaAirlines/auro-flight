@@ -3,14 +3,12 @@
 
 // ---------------------------------------------------------------------
 
+import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 // If use litElement base class
-import { LitElement, html, css } from "lit";
-
-import styleCss from "./styles/style-flight-css.js";
+import { css, html, LitElement } from "lit";
 import colorFlightCss from "./styles/color-flight-css.js";
+import styleCss from "./styles/style-flight-css.js";
 import tokensCss from "./styles/tokens-css.js";
-
-import AuroLibraryRuntimeUtils from '@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs';
 
 import "@aurodesignsystem/auro-flightline";
 import "@aurodesignsystem/auro-flightline/src/auro-flight-segment.js";
@@ -56,24 +54,20 @@ export class AuroFlight extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      stops:                    { type: Array },
-      flights:                  { type: Array },
-      duration:                 { type: Number },
-      departureTime:            { type: String },
-      arrivalTime:              { type: String },
-      arrivalStation:           { type: String },
-      departureStation:         { type: String },
-      reroutedArrivalStation:   { type: String },
-      reroutedDepartureStation: { type: String }
+      stops: { type: Array },
+      flights: { type: Array },
+      duration: { type: Number },
+      departureTime: { type: String },
+      arrivalTime: { type: String },
+      arrivalStation: { type: String },
+      departureStation: { type: String },
+      reroutedArrivalStation: { type: String },
+      reroutedDepartureStation: { type: String },
     };
   }
 
   static get styles() {
-    return [
-      css`${styleCss}`,
-      css`${colorFlightCss}`,
-      css`${tokensCss}`
-    ];
+    return [css`${styleCss}`, css`${colorFlightCss}`, css`${tokensCss}`];
   }
 
   /**
@@ -88,14 +82,13 @@ export class AuroFlight extends LitElement {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroFlight);
   }
 
-
   // This function removes a CSS selector if the footer slot is empty
   firstUpdated() {
     // Add the tag name as an attribute if it is different than the component name
-    this.runtimeUtils.handleComponentTagRename(this, 'auro-flight');
+    this.runtimeUtils.handleComponentTagRename(this, "auro-flight");
 
-    const slot = this.shadowRoot.querySelector("#footer"),
-      slotWrapper = this.shadowRoot.querySelector("#flightFooter");
+    const slot = this.shadowRoot.querySelector("#footer");
+    const slotWrapper = this.shadowRoot.querySelector("#flightFooter");
 
     const main = this.shadowRoot.querySelector("auro-flight-main");
     main.exposeCssParts();
@@ -116,9 +109,9 @@ export class AuroFlight extends LitElement {
    */
   convertDuration(duration) {
     const hour = 60;
-    const hours = `${parseInt(duration / hour, 10)}h`;
-    const calcMins = parseInt(duration % hour, 10);
-    const minsString = calcMins === 0 ? '' : `${calcMins}m`;
+    const hours = `${Number.parseInt(duration / hour, 10)}h`;
+    const calcMins = Number.parseInt(duration % hour, 10);
+    const minsString = calcMins === 0 ? "" : `${calcMins}m`;
 
     return `${hours} ${minsString}`;
   }

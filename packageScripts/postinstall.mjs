@@ -1,5 +1,6 @@
-import chalk from "chalk";
 import { createRequire } from "node:module";
+import chalk from "chalk";
+
 const require = createRequire(import.meta.url);
 const pjson = require("../package.json");
 

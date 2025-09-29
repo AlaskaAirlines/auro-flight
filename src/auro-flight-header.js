@@ -4,13 +4,11 @@
 // ---------------------------------------------------------------------
 
 // If use litElement base class
-import { LitElement, html, css } from "lit";
+import { css, html, LitElement } from "lit";
 import { getDateDifference } from "../util/util.js";
-
-import styleFlightHeaderCss from "./styles/style-flight-header-css.js";
 import colorFlightHeaderCss from "./styles/color-flight-header-css.js";
+import styleFlightHeaderCss from "./styles/style-flight-header-css.js";
 import tokensCss from "./styles/tokens-css.js";
-
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -30,10 +28,10 @@ export class AuroFlightHeader extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      flights:      { type: Array },
-      duration:     { type: String },
-      departureTime:{ type: String },
-      arrivalTime:  { type: String }
+      flights: { type: Array },
+      duration: { type: String },
+      departureTime: { type: String },
+      arrivalTime: { type: String },
     };
   }
 
@@ -41,7 +39,7 @@ export class AuroFlightHeader extends LitElement {
     return [
       css`${styleFlightHeaderCss}`,
       css`${colorFlightHeaderCss}`,
-      css`${tokensCss}`
+      css`${tokensCss}`,
     ];
   }
 
@@ -51,7 +49,7 @@ export class AuroFlightHeader extends LitElement {
    */
   connectedCallback() {
     super.connectedCallback();
-    this.classList.add('body-default');
+    this.classList.add("body-default");
   }
 
   /**
@@ -59,7 +57,10 @@ export class AuroFlightHeader extends LitElement {
    * @returns {void}
    */
   exposeCssParts() {
-    this.setAttribute('exportparts', 'durationContainer:durationContainer, flightType:flightType');
+    this.setAttribute(
+      "exportparts",
+      "durationContainer:durationContainer, flightType:flightType",
+    );
   }
 
   /**
@@ -70,11 +71,11 @@ export class AuroFlightHeader extends LitElement {
   flightType() {
     switch (this.flights.length) {
       case 0:
-        return '';
+        return "";
       case 1:
         return this.flights[0];
       default:
-        return 'Multiple flights';
+        return "Multiple flights";
     }
   }
 
@@ -89,7 +90,7 @@ export class AuroFlightHeader extends LitElement {
     let daysChanged = html``;
 
     if (dayDiff > 0) {
-      daysChanged = html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? 's' : ''}</span>`;
+      daysChanged = html`<span class="daysChanged">+${dayDiff} day${dayDiff > 1 ? "s" : ""}</span>`;
     } else if (dayDiff === arriveOneDayBefore) {
       daysChanged = html`<span class="daysChanged">${dayDiff} day</span>`;
     }
@@ -103,9 +104,10 @@ export class AuroFlightHeader extends LitElement {
    */
   composeScreenReaderHeader() {
     return html`
-      ${this.flightType().includes('flights')
-        ? this.flightType()
-        : `Flight ${Array.from(this.flightType()).join(' ')}`
+      ${
+        this.flightType().includes("flights")
+          ? this.flightType()
+          : `Flight ${Array.from(this.flightType()).join(" ")}`
       },
       Duration: ${this.duration}
     `;

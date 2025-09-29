@@ -1,4 +1,4 @@
-export function getDateDifference(departureTime, arrivalTime){
+export function getDateDifference(departureTime, arrivalTime) {
   const departure = departureTime.slice(0, -15);
   const arrival = arrivalTime.slice(0, -15);
   const timeDiff = new Date(arrival).getTime() - new Date(departure).getTime();
