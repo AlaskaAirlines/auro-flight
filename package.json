@@ -30,17 +30,12 @@
   },
   "devDependencies": {
     "@alaskaairux/icons": "^5.6.0",
-    "@aurodesignsystem/eslint-config": "1.3.5",
-    "@commitlint/cli": "^19.8.1",
-    "@commitlint/config-conventional": "^19.8.1",
+    "@aurodesignsystem/auro-config": "^1.3.0",
     "@open-wc/testing": "^4.0.0",
     "@rollup/plugin-node-resolve": "^16.0.1",
-    "@semantic-release/changelog": "^6.0.3",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/npm": "^12.0.2",
     "@types/estree": "^1.0.8",
-    "@web/dev-server": "^0.4.6",
     "@types/mocha": "^10.0.10",
+    "@web/dev-server": "^0.4.6",
     "@web/test-runner": "^0.20.2",
     "autoprefixer": "^10.4.21",
     "compression": "^1.8.1",
@@ -48,8 +43,6 @@
     "concurrently": "^9.2.0",
     "copyfiles": "^2.4.1",
     "core-js": "^3.44.0",
-    "eslint": "^9.31.0",
-    "eslint-plugin-jsdoc": "^51.4.1",
     "husky": "^9.1.7",
     "lodash": "^4.17.21",
     "markdown-magic": "^3.7.0",
@@ -59,19 +52,11 @@
     "rollup": "^4.45.1",
     "rollup-plugin-serve": "^3.0.0",
     "sass": "^1.89.2",
-    "semantic-release": "^24.2.7",
     "sinon": "^21.0.0",
-    "stylelint": "^16.22.0",
-    "stylelint-config-idiomatic-order": "^10.0.0",
-    "stylelint-config-standard": "^38.0.0",
-    "stylelint-config-standard-scss": "^15.0.1",
-    "stylelint-order": "^7.0.0",
-    "stylelint-scss": "^6.12.1",
     "typescript": "^5.8.3",
     "wc-sass-render": "^1.4.0",
     "web-component-analyzer": "^2.0.0",
-    "whatwg-fetch": "^3.6.20",
-    "yaml-lint": "^1.7.0"
+    "whatwg-fetch": "^3.6.20"
   },
   "overrides": {
     "wc-sass-render": {
@@ -91,44 +76,6 @@
       "*.css"
     ]
   },
-  "release": {
-    "branches": [
-      {
-        "name": "main"
-      },
-      {
-        "name": "beta",
-        "prerelease": true
-      }
-    ],
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      [
-        "@semantic-release/changelog",
-        {
-          "changelogFile": "./CHANGELOG.md",
-          "changelogTitle": "# Semantic Release Automated Changelog"
-        }
-      ],
-      "@semantic-release/npm",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "./package.json",
-            "./CHANGELOG.md",
-            "./README.md",
-            "./docs/api.md",
-            "./demo/index.md",
-            "./demo/api.md",
-            "./src/datetimeVersion.js"
-          ]
-        }
-      ],
-      "@semantic-release/github"
-    ]
-  },
   "publishConfig": {
     "access": "public"
   },
@@ -140,7 +87,7 @@
   ],
   "scripts": {
     "build": "npm-run-all build:version build:sass sass:render types build:api build:docs bundler postinstall",
-    "build:test": "npm-run-all test linters",
+    "build:test": "npm-run-all test lint",
     "build:release": "npm-run-all build build:test",
     "build:ci": "npm-run-all sweep build:release",
     "build:api": "wca 'scripts/wca/*' 'src/auro-flight-*.js' --outFiles docs/api.md",
@@ -152,10 +99,7 @@
     "build:watch": "nodemon -e scss,js --watch src --exec npm run build:dev:assets",
     "bundler": "rollup -c",
     "bundler:test": "rollup -c -w",
-    "scssLint": "stylelint \"./src/**/*.scss\"",
     "dev": "concurrently --kill-others 'npm run build:watch' 'npm run serve'",
-    "esLint": "./node_modules/.bin/eslint src/**/*.js --ignore-pattern 'src/**/*Version.js'",
-    "linters": "npm-run-all scssLint esLint",
     "preCommit": "node ./node_modules/@aurodesignsystem/auro-library/scripts/build/pre-commit.mjs",
     "postCss:component": "node ./node_modules/@aurodesignsystem/auro-library/scripts/build/postCss.mjs",
     "postinstall": "node packageScripts/postinstall.mjs",
@@ -166,6 +110,8 @@
     "test:watch": "wtr --watch",
     "prepare": "husky",
     "types": "tsc",
-    "postversion": "npm-run-all build:api build:docs"
+    "postversion": "npm-run-all build:api build:docs",
+    "lint": "biome check --no-errors-on-unmatched && stylelint \"./src/**/*.scss\"",
+    "lint:fix": "biome check --fix --no-errors-on-unmatched && stylelint \"./src/**/*.scss\" --fix"
   }
 }
