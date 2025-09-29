@@ -1,3 +1,3 @@
-import versionWriter from '@aurodesignsystem/auro-library/scripts/build/versionWriter.js';
+import versionWriter from "@aurodesignsystem/auro-library/scripts/build/versionWriter.js";
 
-versionWriter.writeDepVersionFile('@aurodesignsystem/auro-datetime');
+versionWriter.writeDepVersionFile("@aurodesignsystem/auro-datetime");

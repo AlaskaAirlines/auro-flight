@@ -1,5 +1,4 @@
-
-import { AuroFlight } from '../../src/auro-flight.js';
+import { AuroFlight } from "../../src/auro-flight.js";
 
 /**
  * The auro-flight element renders a DoT compliant Flight listing.
