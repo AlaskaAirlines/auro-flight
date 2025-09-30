@@ -4,11 +4,11 @@
 // ---------------------------------------------------------------------
 
 // If use litElement base class
-import { css, html, LitElement } from "lit";
+import { html, LitElement } from "lit";
 import { getDateDifference } from "../util/util.js";
-import colorFlightHeaderCss from "./styles/color-flight-header-css.js";
-import styleFlightHeaderCss from "./styles/style-flight-header-css.js";
-import tokensCss from "./styles/tokens-css.js";
+import colorFlightHeaderCss from "./styles/color-flight-header.scss";
+import styleFlightHeaderCss from "./styles/style-flight-header.scss";
+import tokensCss from "./styles/tokens.scss";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -37,9 +37,9 @@ export class AuroFlightHeader extends LitElement {
 
   static get styles() {
     return [
-      css`${styleFlightHeaderCss}`,
-      css`${colorFlightHeaderCss}`,
-      css`${tokensCss}`,
+     styleFlightHeaderCss,
+     colorFlightHeaderCss,
+     tokensCss,
     ];
   }
 

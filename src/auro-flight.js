@@ -5,13 +5,12 @@
 
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 // If use litElement base class
-import { css, html, LitElement } from "lit";
-import colorFlightCss from "./styles/color-flight-css.js";
-import styleCss from "./styles/style-flight-css.js";
-import tokensCss from "./styles/tokens-css.js";
+import { html, LitElement } from "lit";
+import colorFlightCss from "./styles/color-flight.scss";
+import styleCss from "./styles/style-flight.scss";
+import tokensCss from "./styles/tokens.scss";
 
 import "@aurodesignsystem/auro-flightline";
-import "@aurodesignsystem/auro-flightline/src/auro-flight-segment.js";
 
 import "./auro-flight-header.js";
 import "./auro-flight-main.js";
@@ -67,7 +66,7 @@ export class AuroFlight extends LitElement {
   }
 
   static get styles() {
-    return [css`${styleCss}`, css`${colorFlightCss}`, css`${tokensCss}`];
+    return [styleCss, colorFlightCss, tokensCss];
   }
 
   /**

@@ -5,16 +5,16 @@
 
 /* eslint-disable lit/binding-positions, lit/no-invalid-html */
 
-import { AuroDatetime } from "@aurodesignsystem/auro-datetime/src/auro-datetime.js";
+import { AuroDatetime } from "@aurodesignsystem/auro-datetime/class";
 import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
 // If use litElement base class
-import { css, LitElement } from "lit";
+import { LitElement } from "lit";
 import { html } from "lit/static-html.js";
 import { getDateDifference } from "../util/util.js";
 import datetimeVersion from "./datetimeVersion.js";
-import colorFlightMainCss from "./styles/color-flight-main-css.js";
-import styleFlightMainCss from "./styles/style-flight-main-css.js";
-import tokensCss from "./styles/tokens-css.js";
+import colorFlightMainCss from "./styles/color-flight-main.scss";
+import styleFlightMainCss from "./styles/style-flight-main.scss";
+import tokensCss from "./styles/tokens.scss";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -58,9 +58,9 @@ export class AuroFlightMain extends LitElement {
 
   static get styles() {
     return [
-      css`${styleFlightMainCss}`,
-      css`${colorFlightMainCss}`,
-      css`${tokensCss}`,
+      styleFlightMainCss,
+      colorFlightMainCss,
+      tokensCss,
     ];
   }
 
