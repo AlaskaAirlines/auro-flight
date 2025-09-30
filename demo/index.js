@@ -1,4 +1,4 @@
-import { AuroFlight } from "../src/auro-flight.js";
+import { AuroFlight } from "../src/index";
 
 AuroFlight.register();
 AuroFlight.register("custom-flight");
