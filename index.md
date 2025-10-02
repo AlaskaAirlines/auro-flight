@@ -516,7 +516,7 @@ There are two important parts of every Auro component. The <a href="https://deve
 To protect from versioning conflicts with other instances of the component being loaded, it is recommended to use our `AuroFlight.register(name)` method and pass in a unique name.
 
 ```js
-import { AuroFlight } from '@aurodesignsystem/auro-flight/src/auro-flight.js';
+import { AuroFlight } from '@aurodesignsystem/auro-flight/class';
 
 AuroFlight.register('custom-flight');
 ```
