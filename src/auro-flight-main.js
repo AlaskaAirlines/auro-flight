@@ -5,20 +5,16 @@
 
 /* eslint-disable lit/binding-positions, lit/no-invalid-html */
 
+import { AuroDatetime } from "@aurodesignsystem/auro-datetime/class";
+import { AuroDependencyVersioning } from "@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs";
 // If use litElement base class
-import { LitElement, css } from "lit";
-import { html } from 'lit/static-html.js';
-
-import styleFlightMainCss from "./styles/style-flight-main-css.js";
-import colorFlightMainCss from "./styles/color-flight-main-css.js";
-import tokensCss from "./styles/tokens-css.js";
-
-import { AuroDependencyVersioning } from '@aurodesignsystem/auro-library/scripts/runtime/dependencyTagVersioning.mjs';
-
-import { AuroDatetime } from '@aurodesignsystem/auro-datetime/src/auro-datetime.js';
-import datetimeVersion from './datetimeVersion.js';
-
-import { getDateDifference } from '../util/util.js';
+import { LitElement } from "lit";
+import { html } from "lit/static-html.js";
+import { getDateDifference } from "../util/util.js";
+import datetimeVersion from "./datetimeVersion.js";
+import colorFlightMainCss from "./styles/color-flight-main.scss";
+import styleFlightMainCss from "./styles/style-flight-main.scss";
+import tokensCss from "./styles/tokens.scss";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
@@ -45,27 +41,26 @@ import { getDateDifference } from '../util/util.js';
 
 // build the component class
 export class AuroFlightMain extends LitElement {
-
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      stops:                    { type: Array },
-      flights:                  { type: Array },
-      duration:                 { type: Number },
-      arrivalTime:              { type: String },
-      arrivalStation:           { type: String },
-      departureTime:            { type: String },
-      departureStation:         { type: String },
-      reroutedArrivalStation:   { type: String },
+      stops: { type: Array },
+      flights: { type: Array },
+      duration: { type: Number },
+      arrivalTime: { type: String },
+      arrivalStation: { type: String },
+      departureTime: { type: String },
+      departureStation: { type: String },
+      reroutedArrivalStation: { type: String },
       reroutedDepartureStation: { type: String },
     };
   }
 
   static get styles() {
     return [
-      css`${styleFlightMainCss}`,
-      css`${colorFlightMainCss}`,
-      css`${tokensCss}`,
+      styleFlightMainCss,
+      colorFlightMainCss,
+      tokensCss,
     ];
   }
 
@@ -87,7 +82,11 @@ export class AuroFlightMain extends LitElement {
     /**
      * @private
      */
-    this.datetimeTag = versioning.generateTag('auro-datetime', datetimeVersion, AuroDatetime);
+    this.datetimeTag = versioning.generateTag(
+      "auro-datetime",
+      datetimeVersion,
+      AuroDatetime,
+    );
   }
 
   /**
@@ -95,7 +94,10 @@ export class AuroFlightMain extends LitElement {
    * @returns {void}
    */
   exposeCssParts() {
-    this.setAttribute('exportparts', 'departureTime:departureTime, arrivalTime:arrivalTime, departureStation:departureStation, arrivalStation:arrivalStation');
+    this.setAttribute(
+      "exportparts",
+      "departureTime:departureTime, arrivalTime:arrivalTime, departureStation:departureStation, arrivalStation:arrivalStation",
+    );
   }
 
   /**
@@ -106,7 +108,9 @@ export class AuroFlightMain extends LitElement {
   convertTime(time) {
     const slicedTime = time.slice(0, -6); // eslint-disable-line no-magic-numbers
     const newTime = new Date(slicedTime);
-    const localizedTime = newTime.toLocaleString('en-US', this.timeTemplate).replace(/^0+/u, '');
+    const localizedTime = newTime
+      .toLocaleString("en-US", this.timeTemplate)
+      .replace(/^0+/u, "");
 
     return localizedTime;
   }
@@ -117,7 +121,7 @@ export class AuroFlightMain extends LitElement {
    * @returns Mutated string.
    */
   readStation(station) {
-    return Array.from(station).join(' ');
+    return Array.from(station).join(" ");
   }
 
   /**
@@ -126,7 +130,7 @@ export class AuroFlightMain extends LitElement {
    * @returns A comma string or an empty string.
    */
   addComma(idx) {
-    return idx === this.stops.length - 1 ? '' : ', ';
+    return idx === this.stops.length - 1 ? "" : ", ";
   }
 
   /**
@@ -134,28 +138,37 @@ export class AuroFlightMain extends LitElement {
    * @returns Composed screen reader summary.
    */
   composeScreenReaderSummary() {
-    const hasDepartureReroute = this.reroutedDepartureStation && this.reroutedDepartureStation !== 'undefined';
-    const hasArrivalReroute = this.reroutedArrivalStation && this.reroutedArrivalStation !== 'undefined';
+    const hasDepartureReroute =
+      this.reroutedDepartureStation &&
+      this.reroutedDepartureStation !== "undefined";
+    const hasArrivalReroute =
+      this.reroutedArrivalStation &&
+      this.reroutedArrivalStation !== "undefined";
     const hasReroute = hasDepartureReroute || hasArrivalReroute;
     const dayDiff = getDateDifference(this.departureTime, this.arrivalTime);
-    const daysFromDeparture = dayDiff === 1 ? 'next day' : `${dayDiff} days later`;
+    const daysFromDeparture =
+      dayDiff === 1 ? "next day" : `${dayDiff} days later`;
     const secondToLastIndex = 2;
     const layoverStopoverStringArray = this.stops
-      ? this.stops.map((segment, idx) => html`
-      with a ${segment.isStopover ? 'stop' : 'layover'} in ${this.readStation(segment.arrivalStation)}
-      ${segment.duration ? `, for ${segment.duration}` : ''}${this.addComma(idx)}
-      ${idx === this.stops.length - secondToLastIndex ? ' and ' : ''}`)
-      : ', nonstop';
+      ? this.stops.map(
+          (segment, idx) => html`
+      with a ${segment.isStopover ? "stop" : "layover"} in ${this.readStation(segment.arrivalStation)}
+      ${segment.duration ? `, for ${segment.duration}` : ""}${this.addComma(idx)}
+      ${idx === this.stops.length - secondToLastIndex ? " and " : ""}`,
+        )
+      : ", nonstop";
 
     const departureStation = this.readStation(this.departureStation);
     const departureTime = this.convertTime(this.departureTime);
     const arrivalStation = this.readStation(this.arrivalStation);
     const arrivalTime = this.convertTime(this.arrivalTime);
-    let reroutedDepartureStation = '';
-    let reroutedArrivalStation = '';
+    let reroutedDepartureStation = "";
+    let reroutedArrivalStation = "";
 
     if (hasDepartureReroute) {
-      reroutedDepartureStation = this.readStation(this.reroutedDepartureStation);
+      reroutedDepartureStation = this.readStation(
+        this.reroutedDepartureStation,
+      );
     }
 
     if (hasArrivalReroute) {
@@ -163,20 +176,26 @@ export class AuroFlightMain extends LitElement {
     }
 
     return html`
-      ${!hasReroute
-        ? `Departs from ${departureStation} at ${departureTime}, arrives ${arrivalStation} at ${arrivalTime}`
-        : `Flight ${departureStation} to ${arrivalStation} has been re-routed.
+      ${
+        !hasReroute
+          ? `Departs from ${departureStation} at ${departureTime}, arrives ${arrivalStation} at ${arrivalTime}`
+          : `Flight ${departureStation} to ${arrivalStation} has been re-routed.
         The flight now departs from ${hasDepartureReroute ? reroutedDepartureStation : departureStation} at
         ${departureTime},
-        and arrives  ${hasArrivalReroute ? reroutedArrivalStation : arrivalStation} at ${arrivalTime}`} ${dayDiff > 0 ? `, ${daysFromDeparture}` : ''}
-        ${this.stops ? ', ' : ''} ${layoverStopoverStringArray}.
+        and arrives  ${hasArrivalReroute ? reroutedArrivalStation : arrivalStation} at ${arrivalTime}`
+      } ${dayDiff > 0 ? `, ${daysFromDeparture}` : ""}
+        ${this.stops ? ", " : ""} ${layoverStopoverStringArray}.
     `;
   }
 
   // function that renders the HTML and CSS into  the scope of the component
   render() {
-    const hasDepartureReroute = this.reroutedDepartureStation && this.reroutedDepartureStation !== 'undefined';
-    const hasArrivalReroute = this.reroutedArrivalStation && this.reroutedArrivalStation !== 'undefined';
+    const hasDepartureReroute =
+      this.reroutedDepartureStation &&
+      this.reroutedDepartureStation !== "undefined";
+    const hasArrivalReroute =
+      this.reroutedArrivalStation &&
+      this.reroutedArrivalStation !== "undefined";
     return html`
         <div class="util_displayHiddenVisually">
           ${this.composeScreenReaderSummary()}
@@ -186,12 +205,14 @@ export class AuroFlightMain extends LitElement {
             <${this.datetimeTag} type="tzTime" setDate="${this.departureTime}"></${this.datetimeTag}>
           </time>
           <span class="departureStation" part="departureStation">
-            ${hasDepartureReroute
-              ? html`
+            ${
+              hasDepartureReroute
+                ? html`
                 <span class="body-default">
                   ${this.reroutedDepartureStation}
                 </span>`
-              : html``}
+                : html``
+            }
 
             <span class=${hasDepartureReroute ? "util_lineThrough body-default" : "body-default"}>
               ${this.departureStation}
@@ -206,12 +227,14 @@ export class AuroFlightMain extends LitElement {
             <${this.datetimeTag} type="tzTime" setDate="${this.arrivalTime}"></${this.datetimeTag}>
           </time>
           <span class="arrivalStation body-default" part="arrivalStation">
-            ${hasArrivalReroute
-              ? html`
+            ${
+              hasArrivalReroute
+                ? html`
                 <span>
                   ${this.reroutedArrivalStation}
                 </span>`
-              : html``}
+                : html``
+            }
 
             <span class=${hasArrivalReroute ? "util_lineThrough body-default" : "body-default"}>
               ${this.arrivalStation}
