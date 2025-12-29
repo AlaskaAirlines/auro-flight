@@ -25,3 +25,5 @@ coverage/
 demo/*.md
 demo/*.min.js
 !demo/dotCompliance.md
+
+custom-elements.json

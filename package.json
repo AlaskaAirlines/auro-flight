@@ -21,16 +21,16 @@
     "node": ">=20"
   },
   "dependencies": {
-    "lit": "^3.3.1"
+    "lit": "^3.3.2"
   },
   "devDependencies": {
+    "@aurodesignsystem/auro-cli": "^3.5.0",
+    "@aurodesignsystem/auro-config": "^1.3.1",
     "@aurodesignsystem/auro-datetime": "^4.0.0",
     "@aurodesignsystem/auro-flightline": "^6.0.0",
-    "@aurodesignsystem/auro-library": "^5.5.3",
-    "@aurodesignsystem/design-tokens": "^8.5.0",
-    "@aurodesignsystem/webcorestylesheets": "10.1.0",
-    "@aurodesignsystem/auro-cli": "^3.0.3",
-    "@aurodesignsystem/auro-config": "^1.3.1",
+    "@aurodesignsystem/auro-library": "^5.5.4",
+    "@aurodesignsystem/design-tokens": "^8.7.0",
+    "@aurodesignsystem/webcorestylesheets": "^10.1.4",
     "husky": "^9.1.7"
   },
   "browserslist": [
@@ -65,7 +65,12 @@
   "exports": {
     "./package.json": "./package.json",
     "./readme.md": "./README.md",
-    ".": "./dist/registered.js",
+    "./custom-elements.json": "./custom-elements.json",
+    ".": {
+      "module": "./dist/registered.js",
+      "types": "./dist/index.d.ts",
+      "default": "./dist/registered.js"
+    },
     "./demo/*.md": "./demo/*.md",
     "./demo/*.js": "./demo/*.min.js",
     "./class": {
@@ -81,5 +86,6 @@
     "README.md",
     "LICENSE",
     "NOTICE"
-  ]
+  ],
+  "customElements": "custom-elements.json"
 }
