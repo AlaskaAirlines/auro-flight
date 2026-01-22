@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// Copyright (c) 2025 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
@@ -20,16 +20,9 @@ import tokensCss from "./styles/tokens.scss";
 /**
  * The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
  * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
+ * @customElement auro-flight-main
+ * @internal
  *
- * @attr {Array} stops - Array of objects representing stopovers or layovers: "isStopover": bool, "arrivalStation": string, "duration": string ["123hr 123m"] (layover only). This content will not be used in the UI, but only constructs the a11y conversational phrase for screen readers and has no effect on the `auro-flight-segment` content.
- * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
- * @attr {Number} duration - String for the duration. `505`
- * @attr {String} arrivalTime - ISO 8601 time of arrival, e.g. `2022-04-13T12:30:00-04:00`
- * @attr {String} arrivalStation - Station of arrival, e.g. `SEA`
- * @attr {String} departureTime - ISO 8601 time of departure, e.g. `2022-04-13T12:30:00-04:00`
- * @attr {String} departureStation - Station of departure, e.g. `PVD`
- * @attr {String} reroutedDepartureStation - Station of rerouted departure, e.g. `PDX`
- * @attr {String} reroutedArrivalStation - Station of rerouted arrival, e.g. `AVP`
  * @slot default - anticipates `<auro-flight-segment>` instances
  * @csspart arrivalContainer - Apply css to the elements within the arrival container
  * @csspart departureContainer - Apply css to the elements within the departure container
@@ -38,21 +31,58 @@ import tokensCss from "./styles/tokens.scss";
  * @csspart arrivalStation - Apply css to the elements to the arrival station
  * @csspart departureStation - Apply css to the elements to the departure station
  */
-
-// build the component class
 export class AuroFlightMain extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      stops: { type: Array },
-      flights: { type: Array },
-      duration: { type: Number },
-      arrivalTime: { type: String },
+      /**
+       * String for the arrival station.
+       */
       arrivalStation: { type: String },
-      departureTime: { type: String },
+
+      /**
+       * String for the arrival ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       */
+      arrivalTime: { type: String },
+
+      /**
+       * String for the departure station.
+       */
       departureStation: { type: String },
+
+      /**
+       * String for the departure ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       */
+      departureTime: { type: String },
+
+      /**
+       * Number that defines duration of flight in minutes.
+       */
+      duration: { type: Number },
+
+      /**
+       * Array of flight numbers.
+       */
+      flights: { type: Array },
+
+      /**
+       * String for the new arrival station for rerouted flights.
+       */
       reroutedArrivalStation: { type: String },
+
+      /**
+       * String for the new departure station for rerouted flights.
+       */
       reroutedDepartureStation: { type: String },
+
+      /**
+       * Array of objects representing stopovers or layovers.
+       * Each object contains:
+       * - isStopover: boolean
+       * - arrivalStation: string
+       * - duration: string (e.g. "123hr 123m")
+       */
+      stops: { type: Array }
     };
   }
 

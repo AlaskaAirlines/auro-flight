@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// Copyright (c) 2025 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
@@ -13,25 +13,35 @@ import tokensCss from "./styles/tokens.scss";
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
  * The auro-flight-header element displays airline, duration, and day change information.
+ * @customElement auro-flight-header
+ * @internal
  *
- * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
- * @attr {String} duration - String for the duration. `505`
- * @attr {String} departureTime - String for the departure ISO 8601 time. `2022-04-13T12:30:00-04:00`
- * @attr {String} arrivalTime - String for the arrival ISO 8601 time. `2022-04-13T12:30:00-04:00`
  * @csspart durationContainer - Apply css to the duration container
  * @csspart flightType - Apply css to the flight type
  */
-
-// build the component class
-
 export class AuroFlightHeader extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
+      /**
+       * Array of flight numbers.
+       */
       flights: { type: Array },
+
+      /**
+       * String that defines duration of flight in minutes.
+       */
       duration: { type: String },
+
+      /**
+       * String for the departure ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       */
       departureTime: { type: String },
-      arrivalTime: { type: String },
+
+      /**
+       * String for the arrival ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       */
+      arrivalTime: { type: String }
     };
   }
 

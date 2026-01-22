@@ -1,4 +1,4 @@
-// Copyright (c) 2021 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
+// Copyright (c) 2025 Alaska Airlines. All right reserved. Licensed under the Apache-2.0 license
 // See LICENSE in the project root for license information.
 
 // ---------------------------------------------------------------------
@@ -17,17 +17,12 @@ import "./auro-flight-main.js";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * The auro-flight element renders a DoT compliant Flight listing.
+ * The `auro-flight` element renders a DoT compliant Flight listing.
+ * @customElement auro-flight
+ * 
  * This design has been tested via the Alaska Legal team for legal compliance.
  * Please DO NOT modify unit tests pertaining to DoT regulations.
  *
- * @attr {Array} stops - Array of objects representing stopovers or layovers: "isStopover": bool, "arrivalStation": string, "duration": string ["123hr 123m"] (layover only). This content will not be used in the UI, but only constructs the a11y conversational phrase for screen readers and has no effect on the `auro-flight-segment` content.
- * @attr {Array} flights - Array of flight numbers `['AS 123', 'EK 432']`
- * @attr {Number} duration - String for the duration. `505`
- * @attr {String} departureTime - String for the departure ISO 8601 time. `2022-04-13T12:30:00-04:00`
- * @attr {String} departureStation - String for the departure station. `SEA`
- * @attr {String} arrivalTime - String for the arrival ISO 8601 time. `2022-04-13T12:30:00-04:00`
- * @attr {String} arrivalStation - String for the arrival station. `PVD`
  * @attr {String} reroutedDepartureStation - String for the new departure station for rerouted flights. `PDX`
  * @attr {String} reroutedArrivalStation - String for the new arrival station for rerouted flights. `AVP`
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
@@ -42,6 +37,10 @@ export class AuroFlight extends LitElement {
   constructor() {
     super();
 
+    this._initializeDefaults();
+  }
+
+  _initializeDefaults() {
     this.flights = [];
 
     /**
@@ -53,15 +52,54 @@ export class AuroFlight extends LitElement {
   // function to define props used within the scope of this component
   static get properties() {
     return {
-      stops: { type: Array },
-      flights: { type: Array },
-      duration: { type: Number },
-      departureTime: { type: String },
-      arrivalTime: { type: String },
+      /**
+       * String for the arrival station.
+       */
       arrivalStation: { type: String },
+
+      /**
+       * String for the arrival ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       */
+      arrivalTime: { type: String },
+
+      /**
+       * String for the departure station.
+       */
       departureStation: { type: String },
+
+      /**
+       * String for the departure ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       */
+      departureTime: { type: String },
+
+      /**
+       * Number that defines duration of flight in minutes.
+       */
+      duration: { type: Number },
+
+      /**
+       * Array of flight numbers.
+       */
+      flights: { type: Array },
+
+      /**
+       * String for the new arrival station for rerouted flights.
+       */
       reroutedArrivalStation: { type: String },
+
+      /**
+       * String for the new departure station for rerouted flights.
+       */
       reroutedDepartureStation: { type: String },
+
+      /**
+       * Array of objects representing stopovers or layovers.
+       * Each object contains:
+       * - `isStopover`: boolean
+       * - `arrivalStation`: string
+       * - `duration`: string (e.g. "123hr 123m")
+       */
+      stops: { type: Array }
     };
   }
 
@@ -71,7 +109,7 @@ export class AuroFlight extends LitElement {
 
   /**
    * This will register this element with the browser.
-   * @param {string} [name="auro-flight"] - The name of element that you want to register to.
+   * @param {string} [name="auro-flight"] - The name of the element that you want to register.
    *
    * @example
    * AuroFlight.register("custom-flight") // this will register this element to <custom-flight/>
