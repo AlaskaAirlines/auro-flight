@@ -1,0 +1,19 @@
+<!--
+  i18n-* attributes localize the screen reader summary text.
+  Values are sentence templates — use {station}, {time}, {duration}, {count} as placeholders.
+  Only set the keys that differ from English; unset attributes fall back to the English default.
+  The card entry aria-label is automatically composed from your i18n-departure / i18n-arrival /
+  i18n-nonstop values — no separate card summary attribute needed.
+-->
+<auro-flight
+  flights='["AS 1436"]'
+  duration="161"
+  departureTime="2022-07-13T12:15:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-07-13T14:56:00-07:00"
+  arrivalStation="LAX"
+  i18n-departure="Sale de {station} a las {time}"
+  i18n-arrival="llega a {station} a las {time}"
+  i18n-nonstop="sin escalas">
+  <auro-flightline></auro-flightline>
+</auro-flight>
