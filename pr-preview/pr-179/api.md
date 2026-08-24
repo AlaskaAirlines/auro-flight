@@ -9,7 +9,6 @@ The `auro-flight` element renders a DoT compliant Flight listing.
 
 | Properties                | Attributes                    | Modifiers | Type   | Default                                                | Description                                                                                                                 |
 | ------------------------- | ----------------------------- | --------- | ------ | ------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
-| ariaLabel                 | ariaLabel                     |           | string |                                                        | Overrides the computed `aria-label` on the card entry announcement — bypasses all `i18n-*` attributes.                      |
 | arrivalStation            | arrivalStation                |           | string |                                                        | String for the arrival station.                                                                                             |
 | arrivalTime               | arrivalTime                   |           | string |                                                        | String for the arrival ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).                                                    |
 | departureStation          | departureStation              |           | string |                                                        | String for the departure station.                                                                                           |
@@ -598,7 +597,7 @@ The card entry `aria-label` is automatically composed from the `i18n-departure`,
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/aria-label.html) -->
 <!-- The below content is automatically added from ./../apiExamples/aria-label.html -->
 <!--
-    ariaLabel overrides the entire computed aria-label on the card.
+    aria-label overrides the entire computed screen reader announcement.
     Use this when you need full control over the card entry announcement,
     for example when i18n-* attributes are insufficient for your language's grammar.
   -->
@@ -609,7 +608,7 @@ The card entry `aria-label` is automatically composed from the `i18n-departure`,
     departureStation="SEA"
     arrivalTime="2022-07-13T14:56:00-07:00"
     arrivalStation="LAX"
-    ariaLabel="Flight AS 1436, Seattle to Los Angeles, departs 12:15 PM, arrives 2:56 PM, 2 hours 41 minutes, nonstop">
+    aria-label="Flight AS 1436, Seattle to Los Angeles, departs 12:15 PM, arrives 2:56 PM, 2 hours 41 minutes, nonstop">
 <auro-flightline></auro-flightline>
 </auro-flight>
 <!-- AURO-GENERATED-CONTENT:END -->
@@ -620,7 +619,7 @@ The card entry `aria-label` is automatically composed from the `i18n-departure`,
 <!-- The below code snippet is automatically added from ./../apiExamples/aria-label.html -->
 
 <pre class="language-html"><code class="language-html">&lt;!--
-  ariaLabel overrides the entire computed aria-label on the card.
+  aria-label overrides the entire computed screen reader announcement.
   Use this when you need full control over the card entry announcement,
   for example when i18n-* attributes are insufficient for your language's grammar.
 --&gt;
@@ -631,7 +630,7 @@ The card entry `aria-label` is automatically composed from the `i18n-departure`,
   departureStation="SEA"
   arrivalTime="2022-07-13T14:56:00-07:00"
   arrivalStation="LAX"
-  ariaLabel="Flight AS 1436, Seattle to Los Angeles, departs 12:15 PM, arrives 2:56 PM, 2 hours 41 minutes, nonstop"&gt;
+  aria-label="Flight AS 1436, Seattle to Los Angeles, departs 12:15 PM, arrives 2:56 PM, 2 hours 41 minutes, nonstop"&gt;
   &lt;auro-flightline&gt;&lt;/auro-flightline&gt;
 &lt;/auro-flight&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
