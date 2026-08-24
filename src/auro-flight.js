@@ -4,8 +4,11 @@
 // ---------------------------------------------------------------------
 
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
+import { transportAttributes } from "@aurodesignsystem/auro-library/scripts/runtime/a11yTransporter/index.mjs";
 // If use litElement base class
-import { html, LitElement } from "lit";
+import { css, html, LitElement } from "lit";
+import { interpolate } from "../util/i18n.js";
+import { convertTime, getDateDifference, readStation } from "../util/util.js";
 import colorFlightCss from "./styles/color-flight.scss";
 import styleCss from "./styles/style-flight.scss";
 import tokensCss from "./styles/tokens.scss";
@@ -19,37 +22,47 @@ import "./auro-flight-main.js";
 /**
  * The `auro-flight` element renders a DoT compliant Flight listing.
  * @customElement auro-flight
- * 
+ *
  * This design has been tested via the Alaska Legal team for legal compliance.
  * Please DO NOT modify unit tests pertaining to DoT regulations.
  *
- * @attr {String} reroutedDepartureStation - String for the new departure station for rerouted flights. `PDX`
- * @attr {String} reroutedArrivalStation - String for the new arrival station for rerouted flights. `AVP`
  * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
  * @slot departureHeader - Text on top of the departure station's time
  * @slot arrivalHeader - Text on top of the arrival station's time
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot
  * @csspart flightContainer - Apply css to the elements within the flight component container
  */
-
-// build the component class
 export class AuroFlight extends LitElement {
   constructor() {
     super();
 
-    this._initializeDefaults();
-  }
 
-  _initializeDefaults() {
     this.flights = [];
 
-    /**
-     * @private
-     */
+    /** @private */
     this.runtimeUtils = new AuroLibraryRuntimeUtils();
+
+    // Default English values for all i18n-* attributes.
+    // Consumers override only the keys that differ from English.
+    this.i18nDeparture = "Departs from {station} at {time}";
+    this.i18nArrival = "arrives {station} at {time}";
+    this.i18nNextDay = "next day";
+    this.i18nDaysLater = "{count} days later";
+    this.i18nNonstop = "nonstop";
+    this.i18nStopover = "with a stop in {station}";
+    this.i18nLastStopover = "and with a stop in {station}";
+    this.i18nLayover = "with a layover in {station} for {duration}";
+    this.i18nLayoverNoDuration = "with a layover in {station}";
+    this.i18nLastLayover = "and with a layover in {station} for {duration}";
+    this.i18nLastLayoverNoDuration = "and with a layover in {station}";
+    this.i18nRerouteAnnouncement =
+      "Flight {origin} to {destination} has been re-routed.";
+    this.i18nReroutedDeparture =
+      "The flight now departs from {station} at {time}";
+    this.i18nReroutedArrival = "and arrives {station} at {time}";
+    this.i18nCanceled = "canceled";
   }
 
-  // function to define props used within the scope of this component
   static get properties() {
     return {
       /**
@@ -94,34 +107,255 @@ export class AuroFlight extends LitElement {
 
       /**
        * Array of objects representing stopovers or layovers.
-       * Each object contains:
-       * - `isStopover`: boolean
-       * - `arrivalStation`: string
-       * - `duration`: string (e.g. "123hr 123m")
+       * Each object: `{ isStopover, arrivalStation, duration?, canceled? }`
        */
-      stops: { type: Array }
+      stops: { type: Array },
+
+      /**
+       * Localize departure sentence. Template: `Departs from {station} at {time}`
+       * @attr {String} i18n-departure
+       */
+      i18nDeparture: { type: String, attribute: "i18n-departure" },
+
+      /**
+       * Localize arrival sentence. Template: `arrives {station} at {time}`
+       * @attr {String} i18n-arrival
+       */
+      i18nArrival: { type: String, attribute: "i18n-arrival" },
+
+      /**
+       * Localize next-day label. Default: `next day`
+       * @attr {String} i18n-next-day
+       */
+      i18nNextDay: { type: String, attribute: "i18n-next-day" },
+
+      /**
+       * Localize multi-day label. Template: `{count} days later`
+       * @attr {String} i18n-days-later
+       */
+      i18nDaysLater: { type: String, attribute: "i18n-days-later" },
+
+      /**
+       * Localize nonstop label. Default: `nonstop`
+       * @attr {String} i18n-nonstop
+       */
+      i18nNonstop: { type: String, attribute: "i18n-nonstop" },
+
+      /**
+       * Localize stop label for non-last stop. Template: `with a stop in {station}`
+       * @attr {String} i18n-stopover
+       */
+      i18nStopover: { type: String, attribute: "i18n-stopover" },
+
+      /**
+       * Localize stop label for last stop in list. Template: `and with a stop in {station}`
+       * @attr {String} i18n-last-stopover
+       */
+      i18nLastStopover: { type: String, attribute: "i18n-last-stopover" },
+
+      /**
+       * Localize layover with duration (non-last). Template: `with a layover in {station} for {duration}`
+       * @attr {String} i18n-layover
+       */
+      i18nLayover: { type: String, attribute: "i18n-layover" },
+
+      /**
+       * Localize layover without duration (non-last). Template: `with a layover in {station}`
+       * @attr {String} i18n-layover-no-duration
+       */
+      i18nLayoverNoDuration: {
+        type: String,
+        attribute: "i18n-layover-no-duration",
+      },
+
+      /**
+       * Localize layover with duration (last). Template: `and with a layover in {station} for {duration}`
+       * @attr {String} i18n-last-layover
+       */
+      i18nLastLayover: { type: String, attribute: "i18n-last-layover" },
+
+      /**
+       * Localize layover without duration (last). Template: `and with a layover in {station}`
+       * @attr {String} i18n-last-layover-no-duration
+       */
+      i18nLastLayoverNoDuration: {
+        type: String,
+        attribute: "i18n-last-layover-no-duration",
+      },
+
+      /**
+       * Localize reroute opener. Template: `Flight {origin} to {destination} has been re-routed.`
+       * @attr {String} i18n-reroute-announcement
+       */
+      i18nRerouteAnnouncement: {
+        type: String,
+        attribute: "i18n-reroute-announcement",
+      },
+
+      /**
+       * Localize rerouted departure. Template: `The flight now departs from {station} at {time}`
+       * @attr {String} i18n-rerouted-departure
+       */
+      i18nReroutedDeparture: {
+        type: String,
+        attribute: "i18n-rerouted-departure",
+      },
+
+      /**
+       * Localize rerouted arrival. Template: `and arrives {station} at {time}`
+       * @attr {String} i18n-rerouted-arrival
+       */
+      i18nReroutedArrival: { type: String, attribute: "i18n-rerouted-arrival" },
+
+      /**
+       * Localize canceled label. Default: `canceled`
+       * @attr {String} i18n-canceled
+       */
+      i18nCanceled: { type: String, attribute: "i18n-canceled" },
     };
   }
 
   static get styles() {
-    return [styleCss, colorFlightCss, tokensCss];
+    return [
+      styleCss,
+      colorFlightCss,
+      tokensCss,
+      css`
+        .sr-label {
+          position: absolute;
+          /* 100% x 100% so VoiceOver's focus rectangle covers the entire card,
+             not a 1px dot in the corner. pointer-events: none prevents the
+             invisible span from intercepting clicks across the card. */
+          width: 100%;
+          height: 100%;
+          padding: 0;
+          overflow: hidden;
+          clip: rect(0, 0, 0, 0);
+          white-space: nowrap;
+          border: 0;
+          pointer-events: none;
+        }
+      `,
+    ];
   }
 
   /**
    * This will register this element with the browser.
    * @param {string} [name="auro-flight"] - The name of the element that you want to register.
-   *
    * @example
-   * AuroFlight.register("custom-flight") // this will register this element to <custom-flight/>
-   *
+   * AuroFlight.register("custom-flight") // registers as <custom-flight/>
    */
   static register(name = "auro-flight") {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroFlight);
   }
 
-  // This function removes a CSS selector if the footer slot is empty
+  /**
+   * Builds the full aria-label — the single complete announcement read by screen readers on card entry.
+   * @private
+   */
+  _buildAriaLabel() {
+    // Lit passes the string "undefined" when a property binding has no value —
+    // guard against it so an unset reroute station isn't treated as a reroute.
+    const hasDepartureReroute =
+      this.reroutedDepartureStation &&
+      this.reroutedDepartureStation !== "undefined";
+    const hasArrivalReroute =
+      this.reroutedArrivalStation &&
+      this.reroutedArrivalStation !== "undefined";
+    const hasReroute = hasDepartureReroute || hasArrivalReroute;
+
+    const depStation = readStation(this.departureStation);
+    const depTime = convertTime(this.departureTime);
+    const arrStation = readStation(this.arrivalStation);
+    const arrTime = convertTime(this.arrivalTime);
+
+    const flightId =
+      this.flights.length === 1
+        ? `Flight ${Array.from(this.flights[0]).join(" ")}`
+        : this.flights.length === 0
+          ? ""
+          : "Multiple flights";
+
+    let summary;
+
+    if (!hasReroute) {
+      summary = interpolate(this.i18nDeparture, {
+        station: depStation,
+        time: depTime,
+      });
+      summary += ", ";
+      summary += interpolate(this.i18nArrival, {
+        station: arrStation,
+        time: arrTime,
+      });
+    } else {
+      const reroutedDep = hasDepartureReroute
+        ? readStation(this.reroutedDepartureStation)
+        : depStation;
+      const reroutedArr = hasArrivalReroute
+        ? readStation(this.reroutedArrivalStation)
+        : arrStation;
+      summary = interpolate(this.i18nRerouteAnnouncement, {
+        origin: depStation,
+        destination: arrStation,
+      });
+      summary += " ";
+      summary += interpolate(this.i18nReroutedDeparture, {
+        station: reroutedDep,
+        time: depTime,
+      });
+      summary += ", ";
+      summary += interpolate(this.i18nReroutedArrival, {
+        station: reroutedArr,
+        time: arrTime,
+      });
+    }
+
+    const dayDiff = getDateDifference(this.departureTime, this.arrivalTime);
+    if (dayDiff === 1) {
+      summary += `, ${this.i18nNextDay}`;
+    } else if (dayDiff > 1) {
+      summary += `, ${interpolate(this.i18nDaysLater, { count: dayDiff })}`;
+    }
+
+    if (this.stops?.length > 0) {
+      const stopStrings = this.stops.map((segment, idx) => {
+        const isLast = idx === this.stops.length - 1;
+        const station = readStation(segment.arrivalStation);
+        let key;
+        if (segment.isStopover) {
+          key = isLast ? this.i18nLastStopover : this.i18nStopover;
+        } else if (segment.duration) {
+          key = isLast ? this.i18nLastLayover : this.i18nLayover;
+        } else {
+          key = isLast
+            ? this.i18nLastLayoverNoDuration
+            : this.i18nLayoverNoDuration;
+        }
+        let stopText = interpolate(key, {
+          station,
+          duration: segment.duration ?? "",
+        });
+        if (segment.canceled) stopText += ` ${this.i18nCanceled}`;
+        return stopText;
+      });
+      summary += ", ";
+      summary += stopStrings.join(", ");
+    } else {
+      const flightline = this.querySelector(
+        "auro-flightline, [auro-flightline]",
+      );
+      summary += flightline?.hasAttribute("canceled")
+        ? `, ${this.i18nNonstop} ${this.i18nCanceled}`
+        : `, ${this.i18nNonstop}`;
+    }
+
+    summary += `, ${this.convertDuration(this.duration)}`;
+
+    return flightId ? `${flightId}, ${summary}` : summary;
+  }
+
   firstUpdated() {
-    // Add the tag name as an attribute if it is different than the component name
     this.runtimeUtils.handleComponentTagRename(this, "auro-flight");
 
     const slot = this.shadowRoot.querySelector("#footer");
@@ -134,9 +368,41 @@ export class AuroFlight extends LitElement {
     header.exposeCssParts();
 
     if (!this.unformatted && slot.assignedNodes().length === 0) {
-      return slotWrapper.classList.remove("flightFooter");
+      slotWrapper.classList.remove("flightFooter");
     }
-    return null;
+
+    // Hide slotted auro-flightline from AT — all flight info is in the aria-label.
+    // Setting on the host element (light DOM) is reliable across all browsers/AT.
+    this._applyFlightlineAriaHidden();
+    this._flightlineObserver = new MutationObserver(() =>
+      this._applyFlightlineAriaHidden(),
+    );
+    this._flightlineObserver.observe(this, { childList: true });
+
+    // Transport aria-label from host to sr-label span, removing it from the host.
+    // getObservedAttribute('aria-label') lets render() use the transported value
+    // on subsequent re-renders instead of overwriting it with the computed label.
+    const srLabel = this.shadowRoot.querySelector(".sr-label");
+    this._a11yTransport = transportAttributes({
+      host: this,
+      target: srLabel,
+      match: attr => attr === "aria-label",
+      removeOriginal: true,
+    });
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._flightlineObserver?.disconnect();
+    this._a11yTransport?.cleanup();
+  }
+
+  /** @private */
+  _applyFlightlineAriaHidden() {
+    const flightline = this.querySelector("auro-flightline, [auro-flightline]");
+    if (flightline && !flightline.hasAttribute("aria-hidden")) {
+      flightline.setAttribute("aria-hidden", "true");
+    }
   }
 
   /**
@@ -153,10 +419,13 @@ export class AuroFlight extends LitElement {
     return `${hours} ${minsString}`;
   }
 
-  // function that renders the HTML and CSS into  the scope of the component
   render() {
+    const label = this._a11yTransport?.getObservedAttribute("aria-label") ?? this._buildAriaLabel();
     return html`
       <section part="flightContainer">
+        <!-- Zero-width space keeps the element non-empty so Safari VoiceOver doesn't skip it;
+             aria-label provides the announcement without VoiceOver pronouncing punctuation as "full stop". -->
+        <span role="text" class="sr-label" aria-label="${label}">&#8203;</span>
         <auro-flight-header
           flights=${JSON.stringify(this.flights)}
           duration=${this.convertDuration(this.duration)}
@@ -169,15 +438,12 @@ export class AuroFlight extends LitElement {
           <slot name="arrivalHeader"></slot>
         </div>
         <auro-flight-main
-          flights=${JSON.stringify(this.flights)}
-          duration=${this.convertDuration(this.duration)}
           arrivalTime=${this.arrivalTime}
           arrivalStation=${this.arrivalStation}
           departureTime=${this.departureTime}
           departureStation=${this.departureStation}
           reroutedArrivalStation=${this.reroutedArrivalStation}
           reroutedDepartureStation=${this.reroutedDepartureStation}
-          stops=${this.stops ? JSON.stringify(this.stops) : null}
         >
           <slot></slot>
         </auro-flight-main>
