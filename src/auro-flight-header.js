@@ -20,52 +20,24 @@ import tokensCss from "./styles/tokens.scss";
  * @csspart flightType - Apply css to the flight type
  */
 export class AuroFlightHeader extends LitElement {
-  // function to define props used within the scope of this component
   static get properties() {
     return {
-      /**
-       * Array of flight numbers.
-       */
       flights: { type: Array },
-
-      /**
-       * String that defines duration of flight in minutes.
-       */
       duration: { type: String },
-
-      /**
-       * String for the departure ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
-       */
       departureTime: { type: String },
-
-      /**
-       * String for the arrival ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
-       */
-      arrivalTime: { type: String }
+      arrivalTime: { type: String },
     };
   }
 
   static get styles() {
-    return [
-     styleFlightHeaderCss,
-     colorFlightHeaderCss,
-     tokensCss,
-    ];
+    return [styleFlightHeaderCss, colorFlightHeaderCss, tokensCss];
   }
 
-  /**
-   * Lifecycle callback when the component is added to the DOM.
-   * @returns {void}
-   */
   connectedCallback() {
     super.connectedCallback();
     this.classList.add("body-default");
   }
 
-  /**
-   * Exposes CSS parts for styling from parent components.
-   * @returns {void}
-   */
   exposeCssParts() {
     this.setAttribute(
       "exportparts",
@@ -73,11 +45,7 @@ export class AuroFlightHeader extends LitElement {
     );
   }
 
-  /**
-   * @private
-   * @returns {String} Parsed airline code output.
-   * Internal function to render either the flight number OR 'Multiple flights'.
-   */
+  /** @private */
   flightType() {
     switch (this.flights.length) {
       case 0:
@@ -89,11 +57,7 @@ export class AuroFlightHeader extends LitElement {
     }
   }
 
-  /**
-   * Internal function to render the day change notification.
-   * @private
-   * @returns {String} Item to display.
-   */
+  /** @private */
   flightDuration() {
     const dayDiff = getDateDifference(this.departureTime, this.arrivalTime);
     const arriveOneDayBefore = -1;
@@ -108,27 +72,8 @@ export class AuroFlightHeader extends LitElement {
     return daysChanged;
   }
 
-  /**
-   * @private
-   * @returns Composed screen reader header.
-   */
-  composeScreenReaderHeader() {
-    return html`
-      ${
-        this.flightType().includes("flights")
-          ? this.flightType()
-          : `Flight ${Array.from(this.flightType()).join(" ")}`
-      },
-      Duration: ${this.duration}
-    `;
-  }
-
-  // function that renders the HTML and CSS into  the scope of the component
   render() {
     return html`
-      <p class="util_displayHiddenVisually">
-        ${this.composeScreenReaderHeader()}
-      </p>
       <span class="flight body-default" aria-hidden="true" part="flightType">
         ${this.flightType()}
       </span>
