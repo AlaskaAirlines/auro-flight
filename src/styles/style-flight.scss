@@ -8,6 +8,9 @@
 
 @use '@aurodesignsystem/webcorestylesheets/dist/bundled/type/classes.alaska.min.css';
 
+section {
+  position: relative;
+}
 .flightFooter {
   padding-top: var(--ds-size-200, vac.$ds-size-200);
 }

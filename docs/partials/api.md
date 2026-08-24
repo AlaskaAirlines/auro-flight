@@ -193,6 +193,64 @@ The following example illustrates the use of the optional departure and arrival 
 
 </auro-accordion>
 
+## Accessibility & Localization
+
+### Localized Screen Reader Text (`i18n-*` attributes)
+
+The `i18n-*` attributes let you localize the text announced by screen readers without affecting the visual display. Values are sentence templates — use `{station}`, `{time}`, `{duration}`, `{count}`, `{flightNumber}`, `{origin}`, `{destination}`, `{departureTime}`, and `{arrivalTime}` as placeholders. Only set the attributes that differ from English; omitted attributes fall back to the English default.
+
+> **Note:** Placeholders are pre-processed before substitution: `{station}`, `{origin}`, `{destination}`, and `{flightNumber}` are letter-spaced for correct screen reader pronunciation (e.g. `SEA` → `S E A`); `{time}`, `{departureTime}`, and `{arrivalTime}` are locale-formatted (e.g. `12:15 PM`).
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/i18n.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/i18n.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
+Full list of `i18n-*` attributes:
+
+| Attribute | Default (English) | Notes |
+|-----------|-------------------|-------|
+| `i18n-departure` | `"Departs from {station} at {time}"` | |
+| `i18n-arrival` | `"arrives {station} at {time}"` | |
+| `i18n-next-day` | `"next day"` | When arrival is +1 day |
+| `i18n-days-later` | `"{count} days later"` | When arrival is +2 or more days |
+| `i18n-nonstop` | `"nonstop"` | |
+| `i18n-stopover` | `"with a stop in {station}"` | Non-last stop in a multi-stop list |
+| `i18n-last-stopover` | `"and with a stop in {station}"` | Last stop in a multi-stop list |
+| `i18n-layover` | `"with a layover in {station} for {duration}"` | Non-last layover with duration |
+| `i18n-layover-no-duration` | `"with a layover in {station}"` | Non-last layover without duration |
+| `i18n-last-layover` | `"and with a layover in {station} for {duration}"` | Last layover with duration |
+| `i18n-last-layover-no-duration` | `"and with a layover in {station}"` | Last layover without duration |
+| `i18n-reroute-announcement` | `"Flight {origin} to {destination} has been re-routed."` | |
+| `i18n-rerouted-departure` | `"The flight now departs from {station} at {time}"` | |
+| `i18n-rerouted-arrival` | `"and arrives {station} at {time}"` | |
+| `i18n-canceled` | `"canceled"` | Appended to any canceled segment or nonstop canceled flight |
+
+### Custom `ariaLabel`
+
+The card entry `aria-label` is automatically composed from the `i18n-departure`, `i18n-arrival`, `i18n-nonstop`, and `i18n-canceled` values you already set — no separate card summary template needed. For cases where you need full control over the wording, use the `ariaLabel` attribute to override the entire computed label.
+
+<div class="exampleWrapper">
+  <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/aria-label.html) -->
+  <!-- AURO-GENERATED-CONTENT:END -->
+</div>
+
+<auro-accordion alignRight>
+  <span slot="trigger">See code</span>
+
+<!-- AURO-GENERATED-CONTENT:START (CODE:src=./../apiExamples/aria-label.html) -->
+<!-- AURO-GENERATED-CONTENT:END -->
+
+</auro-accordion>
+
 ## Restyle Component with CSS Variables
 
 The component may be restyled by changing the values of the following token(s).
