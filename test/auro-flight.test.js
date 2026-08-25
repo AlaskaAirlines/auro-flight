@@ -42,6 +42,21 @@ describe("auro-flight", () => {
     ).to.equal("8h 20m");
   });
 
+  it("passes empty string to header when duration is not set (no NaNh in visual)", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]'
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD">
+      </auro-flight>
+    `);
+    const headerDuration = el.shadowRoot
+      .querySelector("auro-flight-header")
+      .getAttribute("duration");
+    await expect(headerDuration).to.not.include("NaN");
+    await expect(headerDuration).to.equal("");
+  });
+
   it("omits duration from aria-label when duration is not set", async () => {
     const el = await fixture(html`
       <auro-flight
@@ -54,6 +69,20 @@ describe("auro-flight", () => {
     const label = getAriaLabel(el);
     await expect(label).to.not.include("NaN");
     await expect(label).to.include("S E A");
+  });
+
+  it("flight number spaces do not produce triple-spaces in aria-label", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    const label = getAriaLabel(el);
+    await expect(label).to.include("A S 1 4 3 6");
+    await expect(label).to.not.include("   ");
   });
 
   it("section has a non-empty aria-label", async () => {
@@ -216,6 +245,37 @@ describe("auro-flight", () => {
     await expect(getAriaLabel(el)).to.equal("custom label");
   });
 
+  it("dynamically setting aria-label updates sr-label span immediately", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    await expect(getAriaLabel(el)).to.include("Departs from");
+
+    el.setAttribute("aria-label", "updated label");
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await el.updateComplete;
+    await expect(getAriaLabel(el)).to.equal("updated label");
+  });
+
+  it("exact-hour duration has no trailing space in aria-label", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="120"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T02:30:00-07:00" arrivalStation="PVD">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    const label = getAriaLabel(el);
+    await expect(label).to.include("2h");
+    await expect(label).to.not.match(/2h\s,/);
+  });
+
   it("nonstop flight with canceled flightline announces 'canceled'", async () => {
     const el = await fixture(html`
       <auro-flight
@@ -315,6 +375,57 @@ describe("auro-flight", () => {
     await expect(getAriaLabel(el)).to.include("Departs from");
     await expect(getAriaLabel(el)).to.not.include("NaN");
     await expect(getAriaLabel(el)).to.not.include("undefined");
+  });
+
+  it("observers reconnect after element is moved in the DOM", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+
+    // Simulate moving the element — remove from DOM then reattach
+    const parent = el.parentNode;
+    parent.removeChild(el);
+    parent.appendChild(el);
+    await el.updateComplete;
+
+    // aria-label observer should be live again after reconnect
+    el.setAttribute("aria-label", "reconnected label");
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await el.updateComplete;
+    await expect(getAriaLabel(el)).to.equal("reconnected label");
+  });
+
+  it("consuming aria-label removes the attribute from the host element", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD"
+        aria-label="custom label">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    await expect(el.hasAttribute("aria-label")).to.be.false;
+    await expect(getAriaLabel(el)).to.equal("custom label");
+  });
+
+  it("i18n-nonstop attribute changes nonstop text in aria-label", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD"
+        i18n-nonstop="sin escalas">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    await expect(getAriaLabel(el)).to.include("sin escalas");
+    await expect(getAriaLabel(el)).to.not.include("nonstop");
   });
 
   it("dynamically added flightline gets aria-hidden", async () => {
