@@ -47,7 +47,7 @@ export class AuroFlightHeader extends LitElement {
 
   /** @private */
   flightType() {
-    switch (this.flights.length) {
+    switch ((this.flights ?? []).length) {
       case 0:
         return "";
       case 1:
