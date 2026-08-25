@@ -1,5 +1,29 @@
 import { expect } from "@open-wc/testing";
+import { interpolate } from "../util/i18n.js";
 import { convertTime, getDateDifference, readStation } from "../util/util.js";
+
+describe("util/interpolate", () => {
+  it("substitutes placeholders", () => {
+    expect(
+      interpolate("Departs from {station} at {time}", {
+        station: "S E A",
+        time: "12:30 AM",
+      }),
+    ).to.equal("Departs from S E A at 12:30 AM");
+  });
+
+  it("returns empty string for null template", () => {
+    expect(interpolate(null, {})).to.equal("");
+  });
+
+  it("returns empty string for undefined template", () => {
+    expect(interpolate(undefined, {})).to.equal("");
+  });
+
+  it("returns empty string for empty string template", () => {
+    expect(interpolate("", {})).to.equal("");
+  });
+});
 
 describe("util/readStation", () => {
   it("letter-spaces a normal station code", () => {
@@ -22,16 +46,23 @@ describe("util/readStation", () => {
 describe("util/getDateDifference", () => {
   it("returns 0 for same-day flights", () => {
     expect(
-      getDateDifference("2022-05-04T00:30:00-07:00", "2022-05-04T11:55:00-04:00"),
+      getDateDifference(
+        "2022-05-04T00:30:00-07:00",
+        "2022-05-04T11:55:00-04:00",
+      ),
     ).to.equal(0);
   });
 
   it("returns 0 for undefined departureTime", () => {
-    expect(getDateDifference(undefined, "2022-05-04T11:55:00-04:00")).to.equal(0);
+    expect(getDateDifference(undefined, "2022-05-04T11:55:00-04:00")).to.equal(
+      0,
+    );
   });
 
   it("returns 0 for undefined arrivalTime", () => {
-    expect(getDateDifference("2022-05-04T00:30:00-07:00", undefined)).to.equal(0);
+    expect(getDateDifference("2022-05-04T00:30:00-07:00", undefined)).to.equal(
+      0,
+    );
   });
 
   it("returns 0 for both undefined", () => {
