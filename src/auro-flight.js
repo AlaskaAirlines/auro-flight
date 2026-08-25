@@ -3,7 +3,6 @@
 
 // ---------------------------------------------------------------------
 
-import { transportAttributes } from "@aurodesignsystem/auro-library/scripts/runtime/a11yTransporter/index.mjs";
 import AuroLibraryRuntimeUtils from "@aurodesignsystem/auro-library/scripts/utils/runtimeUtils.mjs";
 // If use litElement base class
 import { css, html, LitElement } from "lit";
@@ -65,6 +64,8 @@ export class AuroFlight extends LitElement {
     super();
 
     this.flights = [];
+    this._ariaLabelOverride = null;
+    this._flightlineAttrObserver = null;
 
     /** @private */
     this.runtimeUtils = new AuroLibraryRuntimeUtils();
@@ -76,6 +77,9 @@ export class AuroFlight extends LitElement {
 
   static get properties() {
     return {
+      /** @private — stores the consumer-supplied aria-label override */
+      _ariaLabelOverride: { state: true },
+
       /**
        * String for the arrival station.
        */
@@ -331,7 +335,9 @@ export class AuroFlight extends LitElement {
 
     const flightId =
       this.flights.length === 1
-        ? `Flight ${Array.from(this.flights[0]).join(" ")}`
+        ? `Flight ${Array.from(this.flights[0])
+            .filter((c) => c !== " ")
+            .join(" ")}`
         : this.flights.length === 0
           ? ""
           : "Multiple flights";
@@ -417,6 +423,30 @@ export class AuroFlight extends LitElement {
     return flightId ? `${flightId}, ${summary}` : summary;
   }
 
+  connectedCallback() {
+    super.connectedCallback();
+    // All three observers watch light DOM or the host element — no shadow DOM needed,
+    // so they can be (re)started here on every connect, not just the first render.
+    this._applyFlightlineAriaHidden();
+    if (!this._flightlineObserver) {
+      this._flightlineObserver = new MutationObserver(() =>
+        this._applyFlightlineAriaHidden(),
+      );
+    }
+    this._flightlineObserver.observe(this, { childList: true });
+
+    if (!this._ariaLabelObserver) {
+      this._ariaLabelObserver = new MutationObserver(() =>
+        this._consumeAriaLabel(),
+      );
+    }
+    this._ariaLabelObserver.observe(this, {
+      attributes: true,
+      attributeFilter: ["aria-label"],
+    });
+    this._consumeAriaLabel();
+  }
+
   firstUpdated() {
     this.runtimeUtils.handleComponentTagRename(this, "auro-flight");
 
@@ -432,32 +462,21 @@ export class AuroFlight extends LitElement {
     if (!this.unformatted && slot.assignedNodes().length === 0) {
       slotWrapper.classList.remove("flightFooter");
     }
-
-    // Hide slotted auro-flightline from AT — all flight info is in the aria-label.
-    // Setting on the host element (light DOM) is reliable across all browsers/AT.
-    this._applyFlightlineAriaHidden();
-    this._flightlineObserver = new MutationObserver(() =>
-      this._applyFlightlineAriaHidden(),
-    );
-    this._flightlineObserver.observe(this, { childList: true });
-
-    // Transport aria-label from host to sr-label span, removing it from the host.
-    // getObservedAttribute('aria-label') lets render() use the transported value
-    // on subsequent re-renders instead of overwriting it with the computed label.
-    const srLabel = this.shadowRoot.querySelector(".sr-label");
-    this._a11yTransport = transportAttributes({
-      host: this,
-      target: srLabel,
-      match: (attr) => attr === "aria-label",
-      removeOriginal: true,
-    });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
     this._flightlineObserver?.disconnect();
     this._flightlineAttrObserver?.disconnect();
-    this._a11yTransport?.cleanup();
+    this._ariaLabelObserver?.disconnect();
+  }
+
+  /** @private */
+  _consumeAriaLabel() {
+    if (this.hasAttribute("aria-label")) {
+      this._ariaLabelOverride = this.getAttribute("aria-label");
+      this.removeAttribute("aria-label");
+    }
   }
 
   /** @private */
@@ -493,13 +512,11 @@ export class AuroFlight extends LitElement {
     const calcMins = Number.parseInt(duration % hour, 10);
     const minsString = calcMins === 0 ? "" : `${calcMins}m`;
 
-    return `${hours} ${minsString}`;
+    return minsString ? `${hours} ${minsString}` : hours;
   }
 
   render() {
-    const label =
-      this._a11yTransport?.getObservedAttribute("aria-label") ??
-      this._buildAriaLabel();
+    const label = this._ariaLabelOverride ?? this._buildAriaLabel();
     return html`
       <section part="flightContainer">
         <!-- Zero-width space keeps the element non-empty so Safari VoiceOver doesn't skip it;
@@ -507,7 +524,7 @@ export class AuroFlight extends LitElement {
         <span role="text" class="sr-label" aria-label="${label}">&#8203;</span>
         <auro-flight-header
           flights=${JSON.stringify(this.flights)}
-          duration=${this.convertDuration(this.duration)}
+          duration=${this.duration != null && !Number.isNaN(Number(this.duration)) ? this.convertDuration(this.duration) : ""}
           departureTime=${this.departureTime}
           arrivalTime=${this.arrivalTime}
         >

@@ -197,9 +197,9 @@ The following example illustrates the use of the optional departure and arrival 
 
 ### Localized Screen Reader Text (`i18n-*` attributes)
 
-The `i18n-*` attributes let you localize the text announced by screen readers without affecting the visual display. Values are sentence templates — use `{station}`, `{time}`, `{duration}`, `{count}`, `{flightNumber}`, `{origin}`, `{destination}`, `{departureTime}`, and `{arrivalTime}` as placeholders. Only set the attributes that differ from English; omitted attributes fall back to the English default.
+The `i18n-*` attributes let you localize the text announced by screen readers without affecting the visual display. Values are sentence templates — use `{station}`, `{time}`, `{duration}`, `{count}`, `{origin}`, and `{destination}` as placeholders. Only set the attributes that differ from English; omitted attributes fall back to the English default.
 
-> **Note:** Placeholders are pre-processed before substitution: `{station}`, `{origin}`, `{destination}`, and `{flightNumber}` are letter-spaced for correct screen reader pronunciation (e.g. `SEA` → `S E A`); `{time}`, `{departureTime}`, and `{arrivalTime}` are locale-formatted (e.g. `12:15 PM`).
+> **Note:** Placeholders are pre-processed before substitution: `{station}`, `{origin}`, and `{destination}` are letter-spaced for correct screen reader pronunciation (e.g. `SEA` → `S E A`); `{time}` is locale-formatted (e.g. `12:15 PM`).
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/i18n.html) -->

@@ -68,6 +68,18 @@ describe("util/getDateDifference", () => {
   it("returns 0 for both undefined", () => {
     expect(getDateDifference(undefined, undefined)).to.equal(0);
   });
+
+  it("handles UTC Z-suffix timestamps for same-day flight", () => {
+    expect(
+      getDateDifference("2022-05-04T00:30:00Z", "2022-05-04T11:55:00Z"),
+    ).to.equal(0);
+  });
+
+  it("handles UTC Z-suffix timestamps for next-day flight", () => {
+    expect(
+      getDateDifference("2022-05-04T22:00:00Z", "2022-05-05T06:00:00Z"),
+    ).to.equal(1);
+  });
 });
 
 describe("util/convertTime", () => {
@@ -85,5 +97,13 @@ describe("util/convertTime", () => {
 
   it("returns empty string for empty string", () => {
     expect(convertTime("")).to.equal("");
+  });
+
+  it("handles UTC Z-suffix timestamps", () => {
+    expect(convertTime("2022-05-04T12:30:00Z")).to.equal("12:30 PM");
+  });
+
+  it("returns empty string for an invalid date string", () => {
+    expect(convertTime("not-a-date")).to.equal("");
   });
 });
