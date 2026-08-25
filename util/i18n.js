@@ -9,5 +9,6 @@
  * @returns {string}
  */
 export function interpolate(template, values) {
+  if (!template) return "";
   return template.replace(/\{(\w+)\}/g, (_, key) => values[key] ?? "");
 }
