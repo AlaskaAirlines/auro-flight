@@ -236,7 +236,7 @@ Full list of `i18n-*` attributes:
 
 ### Custom `aria-label`
 
-The card entry `aria-label` is automatically composed from the `i18n-departure`, `i18n-arrival`, `i18n-nonstop`, and `i18n-canceled` values you already set — no separate card summary template needed. For cases where you need full control over the wording, use the `aria-label` attribute to override the entire computed label.
+The card entry `aria-label` is automatically composed from the `i18n-departure`, `i18n-arrival`, `i18n-nonstop`, and `i18n-canceled` values you already set — no separate card summary template needed. For cases where you need full control over the wording, use the `aria-label` attribute to override the entire computed label. Note: after setting `aria-label`, the attribute is removed from the host element (the value is stored internally) — `el.hasAttribute("aria-label")` will return `false` after the element processes it. This is expected behavior.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/aria-label.html) -->
