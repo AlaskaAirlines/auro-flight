@@ -330,6 +330,22 @@ describe("auro-flight", () => {
     await expect(label).to.include("canceled");
   });
 
+  it("flights=null does not throw and produces no flight prefix", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    el.flights = null;
+    await el.updateComplete;
+    const label = getAriaLabel(el);
+    await expect(label).to.not.include("Flight");
+    await expect(label).to.include("S E A");
+  });
+
   it("empty stops array is treated as nonstop", async () => {
     const el = await fixture(html`
       <auro-flight

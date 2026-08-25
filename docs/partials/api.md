@@ -234,9 +234,9 @@ Full list of `i18n-*` attributes:
 | `i18n-rerouted-arrival` | `"and arrives {station} at {time}"` | |
 | `i18n-canceled` | `"canceled"` | Appended to any canceled segment or nonstop canceled flight |
 
-### Custom `ariaLabel`
+### Custom `aria-label`
 
-The card entry `aria-label` is automatically composed from the `i18n-departure`, `i18n-arrival`, `i18n-nonstop`, and `i18n-canceled` values you already set — no separate card summary template needed. For cases where you need full control over the wording, use the `ariaLabel` attribute to override the entire computed label.
+The card entry `aria-label` is automatically composed from the `i18n-departure`, `i18n-arrival`, `i18n-nonstop`, and `i18n-canceled` values you already set — no separate card summary template needed. For cases where you need full control over the wording, use the `aria-label` attribute to override the entire computed label.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/aria-label.html) -->
