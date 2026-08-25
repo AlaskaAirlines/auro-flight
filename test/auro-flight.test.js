@@ -42,6 +42,20 @@ describe("auro-flight", () => {
     ).to.equal("8h 20m");
   });
 
+  it("omits duration from aria-label when duration is not set", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]'
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    const label = getAriaLabel(el);
+    await expect(label).to.not.include("NaN");
+    await expect(label).to.include("S E A");
+  });
+
   it("section has a non-empty aria-label", async () => {
     const el = await fixture(html`
       <auro-flight
@@ -216,6 +230,29 @@ describe("auro-flight", () => {
     await expect(label).to.include("canceled");
   });
 
+  it("dynamically toggling canceled on flightline updates aria-label", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    const flightline = el.querySelector("auro-flightline");
+    await expect(getAriaLabel(el)).to.not.include("canceled");
+
+    flightline.setAttribute("canceled", "");
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await el.updateComplete;
+    await expect(getAriaLabel(el)).to.include("canceled");
+
+    flightline.removeAttribute("canceled");
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await el.updateComplete;
+    await expect(getAriaLabel(el)).to.not.include("canceled");
+  });
+
   it("canceled stop segment announces 'canceled' for that stop", async () => {
     const el = await fixture(html`
       <auro-flight
@@ -259,6 +296,25 @@ describe("auro-flight", () => {
     await expect(label).to.not.include("Flight");
     await expect(label).to.not.include("Multiple");
     await expect(label).to.include("S E A");
+  });
+
+  it("removing an i18n-* attribute restores the English default", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD"
+        i18n-departure="Sale de {station} a las {time}">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    await expect(getAriaLabel(el)).to.include("Sale de");
+
+    el.removeAttribute("i18n-departure");
+    await el.updateComplete;
+    await expect(getAriaLabel(el)).to.include("Departs from");
+    await expect(getAriaLabel(el)).to.not.include("NaN");
+    await expect(getAriaLabel(el)).to.not.include("undefined");
   });
 
   it("dynamically added flightline gets aria-hidden", async () => {
