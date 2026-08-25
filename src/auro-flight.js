@@ -333,12 +333,13 @@ export class AuroFlight extends LitElement {
     const arrStation = readStation(this.arrivalStation);
     const arrTime = convertTime(this.arrivalTime);
 
+    const flights = this.flights ?? [];
     const flightId =
-      this.flights.length === 1
-        ? `Flight ${Array.from(this.flights[0])
+      flights.length === 1
+        ? `Flight ${Array.from(flights[0])
             .filter((c) => c !== " ")
             .join(" ")}`
-        : this.flights.length === 0
+        : flights.length === 0
           ? ""
           : "Multiple flights";
 
@@ -523,7 +524,7 @@ export class AuroFlight extends LitElement {
              aria-label provides the announcement without VoiceOver pronouncing punctuation as "full stop". -->
         <span role="text" class="sr-label" aria-label="${label}">&#8203;</span>
         <auro-flight-header
-          flights=${JSON.stringify(this.flights)}
+          flights=${JSON.stringify(this.flights ?? [])}
           duration=${this.duration != null && !Number.isNaN(Number(this.duration)) ? this.convertDuration(this.duration) : ""}
           departureTime=${this.departureTime}
           arrivalTime=${this.arrivalTime}
