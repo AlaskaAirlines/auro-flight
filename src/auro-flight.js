@@ -65,6 +65,8 @@ export class AuroFlight extends LitElement {
 
     this.flights = [];
     this._ariaLabelOverride = null;
+    this._flightlineObserver = null;
+    this._ariaLabelObserver = null;
     this._flightlineAttrObserver = null;
 
     /** @private */
@@ -295,6 +297,7 @@ export class AuroFlight extends LitElement {
           padding: 0;
           overflow: hidden;
           clip: rect(0, 0, 0, 0);
+          clip-path: inset(50%);
           white-space: nowrap;
           border: 0;
           pointer-events: none;
