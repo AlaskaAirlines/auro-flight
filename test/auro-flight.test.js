@@ -245,6 +245,41 @@ describe("auro-flight", () => {
     await expect(getAriaLabel(el)).to.equal("custom label");
   });
 
+  it("aria-label='\"\"' falls back to computed label, not silent empty string", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD"
+        aria-label="">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    const label = getAriaLabel(el);
+    await expect(label).to.be.a("string").with.length.above(0);
+    await expect(label).to.include("S E A");
+  });
+
+  it("dynamically setting aria-label to empty string falls back to computed label", async () => {
+    const el = await fixture(html`
+      <auro-flight
+        flights='["AS 1436"]' duration="161"
+        departureTime="2022-05-04T00:30:00-07:00" departureStation="SEA"
+        arrivalTime="2022-05-04T11:55:00-04:00" arrivalStation="PVD"
+        aria-label="custom label">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    `);
+    await expect(getAriaLabel(el)).to.equal("custom label");
+
+    el.setAttribute("aria-label", "");
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    await el.updateComplete;
+    const label = getAriaLabel(el);
+    await expect(label).to.be.a("string").with.length.above(0);
+    await expect(label).to.include("S E A");
+  });
+
   it("dynamically setting aria-label updates sr-label span immediately", async () => {
     const el = await fixture(html`
       <auro-flight
