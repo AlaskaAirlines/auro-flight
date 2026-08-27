@@ -88,7 +88,7 @@ export class AuroFlightMain extends LitElement {
             </span>
           </span>
         </div>
-        <div class="slotContainer" aria-hidden="true">
+        <div class="slotContainer" aria-hidden="true"><!-- belt-and-suspenders; primary AT hide is via light DOM in auro-flight._applyFlightlineAriaHidden() -->
           <slot></slot>
         </div>
         <div class="arrival" aria-hidden="true" part="arrivalContainer">
