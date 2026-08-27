@@ -475,7 +475,9 @@ export class AuroFlight extends LitElement {
   /** @private */
   _consumeAriaLabel() {
     if (this.hasAttribute("aria-label")) {
-      this._ariaLabelOverride = this.getAttribute("aria-label");
+      const value = this.getAttribute("aria-label");
+      // Treat "" the same as absent — empty string would produce aria-label="" which silences AT without warning.
+      this._ariaLabelOverride = value || null;
       this.removeAttribute("aria-label");
     }
   }
