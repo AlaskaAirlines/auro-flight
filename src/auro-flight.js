@@ -80,27 +80,27 @@ export class AuroFlight extends LitElement {
   static get properties() {
     return {
       /** @private — stores the consumer-supplied aria-label override */
-      _ariaLabelOverride: { state: true },
+      _ariaLabelOverride: { state: true, attribute: false },
 
       /**
        * String for the arrival station.
        */
-      arrivalStation: { type: String },
+      arrivalStation: { type: String, attribute: "arrivalstation" },
 
       /**
        * String for the arrival ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
        */
-      arrivalTime: { type: String },
+      arrivalTime: { type: String, attribute: "arrivaltime" },
 
       /**
        * String for the departure station.
        */
-      departureStation: { type: String },
+      departureStation: { type: String, attribute: "departurestation" },
 
       /**
        * String for the departure ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
        */
-      departureTime: { type: String },
+      departureTime: { type: String, attribute: "departuretime" },
 
       /**
        * Number that defines duration of flight in minutes.
@@ -109,22 +109,24 @@ export class AuroFlight extends LitElement {
 
       /**
        * Array of flight numbers.
+       * @type {string[]}
        */
       flights: { type: Array },
 
       /**
        * String for the new arrival station for rerouted flights.
        */
-      reroutedArrivalStation: { type: String },
+      reroutedArrivalStation: { type: String, attribute: "reroutedarrivalstation" },
 
       /**
        * String for the new departure station for rerouted flights.
        */
-      reroutedDepartureStation: { type: String },
+      reroutedDepartureStation: { type: String, attribute: "rerouteddeparturestation" },
 
       /**
        * Array of objects representing stopovers or layovers.
        * Each object: `{ isStopover, arrivalStation, duration?, canceled? }`
+       * @type {Object[]}
        */
       stops: { type: Array },
 
