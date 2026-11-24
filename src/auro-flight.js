@@ -58,11 +58,18 @@ const _i18nConverter = (key) => ({
  * @slot arrivalHeader - Text on top of the arrival station's time
  * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot
  * @csspart flightContainer - Apply css to the elements within the flight component container
+ * @cssprop --ds-auro-flight-footer-text-color - Color of the text in the `footer` slot.
+ * @cssprop --ds-auro-flight-header-days-changed-text-color - Color of the day change label, such as +1 day.
+ * @cssprop --ds-auro-flight-header-text-color - Color of the flight numbers and duration shown above the stations.
+ * @cssprop --ds-auro-flight-cancelled-station-text-color - Color of the original station code that is struck through after a reroute.
+ * @cssprop --ds-auro-flight-station-text-color - Color of the departure and arrival station codes.
+ * @cssprop --ds-auro-flight-time-text-color - Color of the departure and arrival times.
  */
 export class AuroFlight extends LitElement {
   constructor() {
     super();
 
+    /** @type {string[]} */
     this.flights = [];
     this._ariaLabelOverride = null;
     this._flightlineObserver = null;
@@ -88,7 +95,7 @@ export class AuroFlight extends LitElement {
       arrivalStation: { type: String, attribute: "arrivalstation" },
 
       /**
-       * String for the arrival ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       * Sets the arrival date and time in ISO 8601 format, such as `2022-04-13T12:30:00-04:00`. The day change label and the time read to screen readers use the date and time as written, without converting time zones.
        */
       arrivalTime: { type: String, attribute: "arrivaltime" },
 
@@ -98,7 +105,7 @@ export class AuroFlight extends LitElement {
       departureStation: { type: String, attribute: "departurestation" },
 
       /**
-       * String for the departure ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       * Sets the departure date and time in ISO 8601 format, such as `2022-04-13T12:30:00-04:00`. The day change label and the time read to screen readers use the date and time as written, without converting time zones.
        */
       departureTime: { type: String, attribute: "departuretime" },
 
@@ -319,7 +326,7 @@ export class AuroFlight extends LitElement {
   }
 
   /**
-   * Builds the full aria-label — the single complete announcement read by screen readers on card entry.
+   * Builds the full aria-label, the single complete announcement read by screen readers on card entry.
    * @private
    */
   _buildAriaLabel() {

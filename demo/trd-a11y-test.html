@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TRD A11y Investigation — auro-flight</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@latest/dist/legacy/auro-classic/CSSCustomProperties.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/design-tokens@latest/dist/themes/alaska/CSSCustomProperties--alaska.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@aurodesignsystem/webcorestylesheets@latest/dist/bundled/themes/alaska.global.min.css" />
+
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 0 auto; padding: 24px; }
+    h1 { font-size: 1.4rem; margin-bottom: 4px; }
+    .subtitle { color: #555; margin-bottom: 32px; font-size: 0.9rem; }
+    .question { border: 2px solid #0074c8; border-radius: 8px; padding: 20px 24px; margin-bottom: 32px; }
+    .question h2 { margin: 0 0 4px; font-size: 1rem; color: #0074c8; }
+    .question .q-label { font-size: 0.8rem; font-weight: 600; color: #0074c8; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+    .question p { margin: 0 0 12px; font-size: 0.9rem; color: #333; }
+    .steps { background: #f5f5f5; border-radius: 6px; padding: 12px 16px; margin-bottom: 16px; font-size: 0.85rem; }
+    .steps ol { margin: 6px 0 0; padding-left: 20px; }
+    .steps li { margin-bottom: 4px; }
+    .expected { font-size: 0.85rem; color: #2e7d32; background: #f1f8e9; border-left: 3px solid #66bb6a; padding: 8px 12px; border-radius: 0 4px 4px 0; margin-bottom: 16px; }
+    .card-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: #666; margin: 16px 0 6px; }
+    .card-row { display: flex; gap: 24px; flex-wrap: wrap; }
+    .card-col { flex: 1; min-width: 280px; }
+    .badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 10px; margin-left: 8px; vertical-align: middle; }
+    .badge-before { background: #ffecb3; color: #7c4d00; }
+    .badge-after { background: #c8e6c9; color: #1b5e20; }
+    .devtools-note { background: #e3f2fd; border-left: 3px solid #1976d2; padding: 8px 12px; border-radius: 0 4px 4px 0; font-size: 0.85rem; margin-bottom: 16px; }
+    .finding { margin-top: 16px; }
+    .finding label { font-size: 0.85rem; font-weight: 600; }
+    .finding textarea { width: 100%; box-sizing: border-box; margin-top: 4px; font-size: 0.85rem; padding: 8px; border: 1px solid #ccc; border-radius: 4px; resize: vertical; }
+    hr { border: none; border-top: 1px solid #eee; margin: 8px 0 16px; }
+  </style>
+</head>
+<body>
+  <h1>TRD A11y Investigation — auro-flight &amp; auro-flightline</h1>
+  <p class="subtitle">
+    Test each scenario below with browser DevTools and a screen reader (VoiceOver / TalkBack / NVDA).
+    Record findings in the text areas — copy into the TRD when done.
+  </p>
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <!-- Q1: Does role="article" + aria-label make card reachable?  -->
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <div class="question">
+    <div class="q-label">Q1 / Q2 — Updated</div>
+    <h2>Full sentence announced on both cards — investigate double-reading and other AT</h2>
+    <hr>
+    <p>
+      <strong>Findings so far (iOS VoiceOver)</strong>:
+      both cards are reachable, and the full flight sentence is announced for both baseline and patched.
+      This means <code>util_displayHiddenVisually</code> is working on iOS VoiceOver today.
+    </p>
+    <p>
+      Next questions: (1) Does the <strong>patched</strong> card read the sentence <em>twice</em> — once from <code>aria-label</code> and once from the hidden div?
+      (2) Is the issue real on <strong>other AT</strong> — TalkBack (Android), NVDA, JAWS?
+    </p>
+
+    <div class="steps">
+      <strong>iOS VoiceOver — check for double-reading on patched card</strong>
+      <ol>
+        <li>Swipe to the <strong>Patched</strong> card</li>
+        <li>Does VoiceOver read the sentence <em>once</em> or <em>twice</em>?</li>
+        <li>If twice: <code>aria-label</code> causes double-reading → do NOT add aria-label to the section</li>
+        <li>If once: VoiceOver merges them — note which version is spoken (aria-label text vs. the long sentence)</li>
+      </ol>
+    </div>
+    <div class="steps">
+      <strong>Android TalkBack — does baseline card announce flight info?</strong>
+      <ol>
+        <li>Swipe to the <strong>Baseline</strong> card — does TalkBack read the full flight sentence?</li>
+        <li>If NOT announced → the bug is real on Android; root cause is TalkBack-specific</li>
+        <li>If announced → the bug may already be fixed or was misreported</li>
+      </ol>
+    </div>
+    <div class="steps">
+      <strong>NVDA or JAWS (Windows) — does baseline card announce flight info?</strong>
+      <ol>
+        <li>Tab or arrow to the <strong>Baseline</strong> card in browse/reading mode</li>
+        <li>Does NVDA/JAWS read the <code>util_displayHiddenVisually</code> content?</li>
+        <li>Note: NVDA reads shadow DOM differently from VoiceOver — content may or may not surface</li>
+      </ol>
+    </div>
+
+    <div class="expected">
+      If patched card causes double-reading → drop <code>aria-label</code> from the plan; existing approach works on iOS.<br>
+      If TalkBack/NVDA does NOT read the sentence → the bug is AT-specific; root cause and fix need to be re-scoped.
+    </div>
+
+    <div class="card-row">
+      <div class="card-col">
+        <div class="card-label">Baseline <span class="badge badge-before">current state</span></div>
+        <div id="q1-baseline">
+          <auro-flight
+            id="q1-baseline-flight"
+            flights='["AS 1436"]'
+            duration="161"
+            departureTime="2022-07-13T12:15:00-07:00"
+            departureStation="SEA"
+            arrivalTime="2022-07-13T14:56:00-07:00"
+            arrivalStation="LAX">
+            <auro-flightline></auro-flightline>
+          </auro-flight>
+        </div>
+      </div>
+      <div class="card-col">
+        <div class="card-label">Patched <span class="badge badge-after">role + aria-label added</span></div>
+        <div id="q1-patched">
+          <auro-flight
+            id="q1-patched-flight"
+            flights='["AS 1436"]'
+            duration="161"
+            departureTime="2022-07-13T12:15:00-07:00"
+            departureStation="SEA"
+            arrivalTime="2022-07-13T14:56:00-07:00"
+            arrivalStation="LAX">
+            <auro-flightline></auro-flightline>
+          </auro-flight>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding">
+      <label>iOS VoiceOver — does patched card read the sentence twice (double-read)?</label>
+      <textarea rows="2" placeholder="e.g. Yes, reads twice — aria-label then the hidden div. Drop aria-label from plan. / No, reads once."></textarea>
+    </div>
+    <div class="finding">
+      <label>Android TalkBack — does baseline card announce the full flight sentence?</label>
+      <textarea rows="2" placeholder="e.g. No — TalkBack does not announce the sentence. Bug confirmed on Android."></textarea>
+    </div>
+    <div class="finding">
+      <label>NVDA/JAWS — does baseline card announce the full flight sentence?</label>
+      <textarea rows="2" placeholder="e.g. No — NVDA skips the hidden div content entirely."></textarea>
+    </div>
+    <div class="finding">
+      <label>Revised root cause based on findings</label>
+      <textarea rows="3" placeholder="e.g. util_displayHiddenVisually works on iOS VoiceOver but not TalkBack/NVDA. Fix must target those AT specifically without breaking VoiceOver."></textarea>
+    </div>
+  </div>
+
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <!-- Q2: Does util_displayHiddenVisually get announced?         -->
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <div class="question">
+    <div class="q-label">Q2</div>
+    <h2>Does the <code>util_displayHiddenVisually</code> summary get announced when a screen reader enters the section?</h2>
+    <hr>
+    <p>Using the same Patched card from Q1, navigate INTO the card and check whether the detailed summary (departure, arrival, time, stops) is read aloud beyond the short <code>aria-label</code>.</p>
+
+    <div class="steps">
+      <strong>VoiceOver (Mac/iOS)</strong>
+      <ol>
+        <li>Navigate to the Patched card — VoiceOver should announce the <code>aria-label</code> on entry</li>
+        <li>Press VO+Right (Mac) or swipe right (iOS) to move inside the card</li>
+        <li>Check: is the full sentence "Departs from S E A at 12:15 PM, arrives L A X at 2:56 PM, nonstop" announced?</li>
+      </ol>
+    </div>
+    <div class="steps">
+      <strong>NVDA (Windows + Chrome/Firefox)</strong>
+      <ol>
+        <li>Navigate to the Patched card in Browse mode</li>
+        <li>Press Down arrow to move inside — check whether the hidden summary text is read</li>
+      </ol>
+    </div>
+
+    <div class="expected">Expected: Short <code>aria-label</code> is announced on card entry. Detailed summary is read when navigating inside. Both complement each other.</div>
+
+    <div class="card-label">Patched card (same as Q1) <span class="badge badge-after">role + aria-label</span></div>
+    <div id="q2-card">
+      <auro-flight
+        id="q2-flight"
+        flights='["AS 1436"]'
+        duration="161"
+        departureTime="2022-07-13T12:15:00-07:00"
+        departureStation="SEA"
+        arrivalTime="2022-07-13T14:56:00-07:00"
+        arrivalStation="LAX">
+        <auro-flightline></auro-flightline>
+      </auro-flight>
+    </div>
+
+    <div class="finding">
+      <label>Finding (paste into TRD):</label>
+      <textarea rows="3" placeholder="e.g. aria-label announced on entry. Detailed summary NOT read separately — content merged into label announcement..."></textarea>
+    </div>
+  </div>
+
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <!-- Q3: Does shadow DOM aria-hidden hide slotted flightline?   -->
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <div class="question">
+    <div class="q-label">Q3</div>
+    <h2>Does <code>aria-hidden="true"</code> on the shadow DOM <code>slotContainer</code> hide the slotted <code>&lt;auro-flightline&gt;</code> from AT?</h2>
+    <hr>
+    <p>
+      <code>auro-flight-main</code> already sets <code>aria-hidden="true"</code> on its <code>.slotContainer</code> shadow div.
+      Inspect the accessibility tree to check whether slotted <code>&lt;auro-flight-segment&gt;</code> elements are hidden or still exposed.
+    </p>
+
+    <div class="devtools-note">
+      <strong>DevTools only — no AT needed for this question.</strong>
+    </div>
+    <div class="steps">
+      <ol>
+        <li>Open DevTools → Accessibility panel → enable "Show accessibility tree"</li>
+        <li>Click on the flight card below to select it in the Elements panel</li>
+        <li>Expand the accessibility tree — look for <code>auro-flightline</code> or <code>auro-flight-segment</code> nodes</li>
+        <li>If they appear → shadow DOM <code>aria-hidden</code> does NOT hide slotted light DOM (fix needed in Step 4)</li>
+        <li>If they are absent → shadow DOM <code>aria-hidden</code> works correctly (Q4 fix may be skipped)</li>
+      </ol>
+    </div>
+
+    <div class="expected">Expected (likely): auro-flight-segment elements appear in the tree — shadow DOM aria-hidden does not propagate to slotted light DOM.</div>
+
+    <div class="card-label">Baseline card with stops <span class="badge badge-before">current state — inspect accessibility tree</span></div>
+    <auro-flight
+      id="q3-flight"
+      flights='["AS 374"]'
+      duration="320"
+      departureTime="2022-05-04T01:55:00-09:00"
+      departureStation="ANC"
+      arrivalTime="2022-05-04T07:15:00-07:00"
+      arrivalStation="LAX"
+      stops='[{ "isStopover": false, "arrivalStation": "SEA", "duration": "1h 20m" }]'>
+      <auro-flightline>
+        <auro-flight-segment iata="SEA" duration="1h 20m"></auro-flight-segment>
+      </auro-flightline>
+    </auro-flight>
+
+    <div class="finding">
+      <label>Finding (paste into TRD):</label>
+      <textarea rows="3" placeholder="e.g. auro-flight-segment DOES appear in accessibility tree → shadow DOM aria-hidden does not hide slotted content. Fix required."></textarea>
+    </div>
+  </div>
+
+
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <!-- Q4: Does aria-hidden on host element hide all children?    -->
+  <!-- ─────────────────────────────────────────────────────────── -->
+  <div class="question">
+    <div class="q-label">Q4</div>
+    <h2>Does setting <code>aria-hidden="true"</code> on the <code>&lt;auro-flightline&gt;</code> host element reliably hide its children from AT?</h2>
+    <hr>
+    <p>
+      Compare the baseline card (Q3, segments visible in tree) against the patched card where
+      <code>aria-hidden="true"</code> is set on the <code>&lt;auro-flightline&gt;</code> element itself (light DOM).
+      Confirm the segments disappear from the accessibility tree.
+    </p>
+
+    <div class="devtools-note">
+      <strong>DevTools only — no AT needed for this question.</strong>
+    </div>
+    <div class="steps">
+      <ol>
+        <li>Open DevTools → Accessibility panel</li>
+        <li>Inspect the <strong>Baseline</strong> card — confirm <code>auro-flight-segment</code> nodes appear in the tree</li>
+        <li>Inspect the <strong>Patched</strong> card — confirm <code>auro-flightline</code> and its children are absent from the tree</li>
+        <li>Also confirm the visually-hidden SR summary in <code>auro-flight-main</code> IS still present</li>
+      </ol>
+    </div>
+
+    <div class="expected">Expected: Patched card shows no auro-flightline or auro-flight-segment in the accessibility tree. SR summary div remains visible to AT.</div>
+
+    <div class="card-row">
+      <div class="card-col">
+        <div class="card-label">Baseline <span class="badge badge-before">segments exposed in tree</span></div>
+        <auro-flight
+          id="q4-baseline-flight"
+          flights='["AS 374"]'
+          duration="320"
+          departureTime="2022-05-04T01:55:00-09:00"
+          departureStation="ANC"
+          arrivalTime="2022-05-04T07:15:00-07:00"
+          arrivalStation="LAX"
+          stops='[{ "isStopover": false, "arrivalStation": "SEA", "duration": "1h 20m" }]'>
+          <auro-flightline id="q4-baseline-flightline">
+            <auro-flight-segment iata="SEA" duration="1h 20m"></auro-flight-segment>
+          </auro-flightline>
+        </auro-flight>
+      </div>
+      <div class="card-col">
+        <div class="card-label">Patched <span class="badge badge-after">aria-hidden on host</span></div>
+        <auro-flight
+          id="q4-patched-flight"
+          flights='["AS 374"]'
+          duration="320"
+          departureTime="2022-05-04T01:55:00-09:00"
+          departureStation="ANC"
+          arrivalTime="2022-05-04T07:15:00-07:00"
+          arrivalStation="LAX"
+          stops='[{ "isStopover": false, "arrivalStation": "SEA", "duration": "1h 20m" }]'>
+          <auro-flightline id="q4-patched-flightline">
+            <auro-flight-segment iata="SEA" duration="1h 20m"></auro-flight-segment>
+          </auro-flightline>
+        </auro-flight>
+      </div>
+    </div>
+
+    <div class="finding">
+      <label>Finding (paste into TRD):</label>
+      <textarea rows="3" placeholder="e.g. Confirmed — aria-hidden on host hides auro-flightline and all children (shadow + light DOM) from accessibility tree."></textarea>
+    </div>
+  </div>
+
+
+  <!-- Component registration — same approach as demo/index.html -->
+  <script type="module" src="./index.min.js"></script>
+
+  <script type="module">
+    // No imports here — component is registered by index.min.js above.
+    // Wait for each element instance to finish its first Lit render using
+    // updateComplete, which resolves after the shadow DOM is fully rendered.
+    async function whenRendered(el) {
+      await customElements.whenDefined(el.localName);
+      // After whenDefined the element is upgraded — updateComplete is now available
+      await el.updateComplete;
+    }
+
+    function patchSection(flightEl, ariaLabel) {
+      const section = flightEl.shadowRoot?.querySelector('section');
+      if (section) {
+        section.setAttribute('role', 'article');
+        section.setAttribute('aria-label', ariaLabel);
+      }
+    }
+
+    (async () => {
+      // ── Q1 + Q2: Patch "Patched" cards with role + aria-label ──
+      const q1Patched = document.getElementById('q1-patched-flight');
+      const q2Flight  = document.getElementById('q2-flight');
+
+      await whenRendered(q1Patched);
+      patchSection(q1Patched, 'Flight AS 1436 from SEA to LAX, departs 12:15 PM, arrives 2:56 PM, 2h 41m, nonstop');
+
+      await whenRendered(q2Flight);
+      patchSection(q2Flight, 'Flight AS 1436 from SEA to LAX, departs 12:15 PM, arrives 2:56 PM, 2h 41m, nonstop');
+
+      // ── Q4: Set aria-hidden on the <auro-flightline> host element ──
+      const q4PatchedFlightline = document.getElementById('q4-patched-flightline');
+      await whenRendered(q4PatchedFlightline);
+      q4PatchedFlightline.setAttribute('aria-hidden', 'true');
+    })();
+  </script>
+</body>
+</html>

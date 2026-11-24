@@ -18,7 +18,7 @@ The following example illustrates a basic flight component. It includes the use 
 
 </auro-accordion>
 
-## Property & Attribute Examples
+## Property and attribute examples
 
 ### Departure Reroute Information
 
@@ -54,7 +54,7 @@ The following example illustrates additional data regarding arrival reroute info
 
 </auro-accordion>
 
-## Common Usage Patterns & Functional Examples
+## Common usage patterns
 
 ### Next Day Arrival/Departure (+1 day)
 
@@ -140,7 +140,7 @@ The following example illustrates a change of gauge flight with a layover in ORD
 
 </auro-accordion>
 
-## Slot Examples
+## Slot examples
 
 ### Using the footer slot
 
@@ -251,9 +251,9 @@ The card entry `aria-label` is automatically composed from the `i18n-departure`,
 
 </auro-accordion>
 
-## Restyle Component with CSS Variables
+## Restyle with CSS custom properties
 
-The component may be restyled by changing the values of the following token(s).
+Restyle the component by changing the values of the following tokens.
 
 <!-- Remove section if component does not have any component specific tokens -->
 
