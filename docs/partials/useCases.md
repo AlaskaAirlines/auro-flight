@@ -1,4 +1,4 @@
-The `<auro-flight>` element should be used in situations where users may:
+Use `<auro-flight>` when users need to:
 
 * list all the available data for a flight
 * list all stopovers or layovers for a flight

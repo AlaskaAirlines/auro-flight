@@ -1,4 +1,4 @@
-The `<auro-flight>` element encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
+Shows one flight in a list of results, with the departure and arrival stations and times, and the flight's stops on a timeline drawn by an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
 
 ## Dependencies
 

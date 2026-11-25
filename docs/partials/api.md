@@ -20,7 +20,7 @@ The following example illustrates a basic flight component. It includes the use 
 
 ## Property and attribute examples
 
-### Departure Reroute Information
+### Departure reroute information
 
 The following example illustrates additional data regarding departure reroute information, using the `reroutedDepartureStation` attribute.
 
@@ -37,7 +37,7 @@ The following example illustrates additional data regarding departure reroute in
 
 </auro-accordion>
 
-### Arrival Reroute Information
+### Arrival reroute information
 
 The following example illustrates additional data regarding arrival reroute information, using the `reroutedArrivalStation` attribute.
 
@@ -56,7 +56,7 @@ The following example illustrates additional data regarding arrival reroute info
 
 ## Common usage patterns
 
-### Next Day Arrival/Departure (+1 day)
+### Next day arrival or departure (+1 day)
 
 This example illustrates a mainline nonstop with a next day arrival or departure.
 
@@ -73,9 +73,10 @@ This example illustrates a mainline nonstop with a next day arrival or departure
 
 </auro-accordion>
 
-### Previous Day Arrival/Departure (-1 day)
+### Previous day arrival or departure (-1 day)
 
-This example illustrates a mainline nonstop with a -1 day arrival or departure.
+This example illustrates a mainline nonstop that arrives on the previous calendar day, as when a flight crosses the international date line. The header shows `-1 day`, but screen readers don't currently announce a previous-day arrival.
+
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/arrive-one-day-before.html) -->
   <!-- AURO-GENERATED-CONTENT:END -->
@@ -89,7 +90,7 @@ This example illustrates a mainline nonstop with a -1 day arrival or departure.
 
 </auro-accordion>
 
-### One-Stop Flight
+### One-stop flight
 
 This example illustrates a one-stop `stopover` flight. Notice the additional information required for the `auro-flight-segment` element.
 
@@ -106,7 +107,7 @@ This example illustrates a one-stop `stopover` flight. Notice the additional inf
 
 </auro-accordion>
 
-### Mainline Multi-Stop Flight
+### Mainline multi-stop flight
 
 The following example illustrates a mainline multi-stop `stopover` flight.
 
@@ -123,9 +124,9 @@ The following example illustrates a mainline multi-stop `stopover` flight.
 
 </auro-accordion>
 
-### Flight with Layover/Connection
+### Flight with a layover or connection
 
-The following example illustrates a change of gauge flight with a layover in ORD for 3h 11m.
+The following example illustrates a connection between two flights, with a layover in ORD for 3h 10m.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/connection.html) -->
@@ -144,9 +145,9 @@ The following example illustrates a change of gauge flight with a layover in ORD
 
 ### Using the footer slot
 
-For a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. Notice the use of `<auro-icon>` and text within the named slot element.
+Use the `footer` slot to add information to the component for a flight that requires government approval or is operated by another subsidiary or partner carrier. Notice the use of `<auro-icon>` and text within the named slot element.
 
-This slot requires the consumer to manually manage what is read back via the screen reader through the use of `aria-hidden="true"`.
+This slot doesn't hide its content from screen readers, so use `aria-hidden="true"` to hide any part that repeats the flight summary.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/footer-slot.html) -->
@@ -193,13 +194,15 @@ The following example illustrates the use of the optional departure and arrival 
 
 </auro-accordion>
 
-## Accessibility & Localization
+## Accessibility and localization
 
-### Localized Screen Reader Text (`i18n-*` attributes)
+### Localized screen reader text (`i18n-*` attributes)
 
-The `i18n-*` attributes let you localize the text announced by screen readers without affecting the visual display. Values are sentence templates — use `{station}`, `{time}`, `{duration}`, `{count}`, `{origin}`, and `{destination}` as placeholders. Only set the attributes that differ from English; omitted attributes fall back to the English default.
+The `i18n-*` attributes let you localize most of the text that screen readers announce, without changing what appears on screen. Each value is a sentence template with placeholders such as `{station}`, `{time}`, `{duration}`, `{count}`, `{origin}`, and `{destination}`. Set only the attributes that differ from English, and the rest use the English default.
 
-> **Note:** Placeholders are pre-processed before substitution: `{station}`, `{origin}`, and `{destination}` are letter-spaced for correct screen reader pronunciation (e.g. `SEA` → `S E A`); `{time}` is locale-formatted (e.g. `12:15 PM`).
+The flight number prefix ("Flight", "Multiple flights") and the duration (such as `2h 41m`) are always in English. To change them, set `aria-label`.
+
+> **Note:** `{station}`, `{origin}`, and `{destination}` are letter-spaced before substitution so screen readers say each letter, for example `SEA` becomes `S E A`. `{time}` is always formatted in US English, such as `12:15 PM`.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/i18n.html) -->
@@ -236,7 +239,7 @@ Full list of `i18n-*` attributes:
 
 ### Custom `aria-label`
 
-The card entry `aria-label` is automatically composed from the `i18n-departure`, `i18n-arrival`, `i18n-nonstop`, and `i18n-canceled` values you already set — no separate card summary template needed. For cases where you need full control over the wording, use the `aria-label` attribute to override the entire computed label. Note: after setting `aria-label`, the attribute is removed from the host element (the value is stored internally) — `el.hasAttribute("aria-label")` will return `false` after the element processes it. This is expected behavior.
+The screen reader label for the listing is built from the `i18n-*` values you set, so you don't need a separate summary attribute. To control the wording completely, set `aria-label` to replace the built label. The element removes `aria-label` from the host after it reads the value, so `el.hasAttribute("aria-label")` returns `false`. This is expected.
 
 <div class="exampleWrapper">
   <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/aria-label.html) -->

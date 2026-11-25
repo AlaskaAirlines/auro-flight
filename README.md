@@ -21,7 +21,7 @@ The following sections are editable by making changes to the following files:
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/description.md) -->
 <!-- The below content is automatically added from ./docs/partials/description.md -->
-The `<auro-flight>` element encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
+Shows one flight in a list of results, with the departure and arrival stations and times, and the flight's stops on a timeline drawn by an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
 
 ## Dependencies
 
@@ -38,26 +38,13 @@ See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) f
 <!-- AURO-GENERATED-CONTENT:END -->
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/readmeAddlInfo.md) -->
 <!-- The below content is automatically added from ./docs/partials/readmeAddlInfo.md -->
-
-## Dependencies
-
-The `<auro-flight>` element has dependencies on the following additional Auro custom elements.
-
-<pre class="language-html"><code class="language-html">└── @aurodesignsystem/auro-flightline
-|  ├── (internal dependency) @aurodesignsystem/auro-flight-segment
-&#10;└── @aurodesignsystem/auro-flight
-|  ├── (internal dependency) @aurodesignsystem/auro-flight-header
-|  ├── (internal dependency) @aurodesignsystem/auro-flight-main
-|  └── (external dependency) @aurodesignsystem/auro-datetime</code></pre>
-
-See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) for additional information regarding the `<auro-flight-segment>` API.
 <!-- AURO-GENERATED-CONTENT:END -->
 
 ## Use cases
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./docs/partials/useCases.md) -->
 <!-- The below content is automatically added from ./docs/partials/useCases.md -->
-The `<auro-flight>` element should be used in situations where users may:
+Use `<auro-flight>` when users need to:
 
 * list all the available data for a flight
 * list all stopovers or layovers for a flight
@@ -132,7 +119,7 @@ import { AuroFlight } from '@aurodesignsystem/auro-flight/class';
 &#10;// Register with a custom name if desired
 AuroFlight.register('custom-flight');</code></pre>
 
-This will create a new custom element `<custom-flight>` that behaves exactly like `<auro-flight>`, allowing both to coexist on the same page without interfering with each other.
+This creates a custom element `<custom-flight>` that behaves like `<auro-flight>`, so both can be on the same page without interfering with each other.
 <!-- AURO-GENERATED-CONTENT:END -->
 <div class="exampleWrapper exampleWrapper--flex">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./apiExamples/custom.html) -->
