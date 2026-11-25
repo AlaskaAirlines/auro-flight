@@ -12,12 +12,12 @@ import tokensCss from "./styles/tokens.scss";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * The auro-flight-header element displays airline, duration, and day change information.
+ * Shows the flight numbers, duration, and day change for a flight.
  * @customElement auro-flight-header
  * @internal
  *
- * @csspart durationContainer - Apply css to the duration container
- * @csspart flightType - Apply css to the flight type
+ * @csspart durationContainer - The element that holds the duration and the day change label.
+ * @csspart flightType - The element that shows the flight number, or "Multiple flights" for more than one.
  */
 export class AuroFlightHeader extends LitElement {
   static get properties() {

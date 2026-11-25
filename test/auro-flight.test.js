@@ -523,3 +523,61 @@ describe("auro-flight", () => {
     await expect(getAriaLabel(el)).to.include("Sale de S E A a las 12:30 AM");
   });
 });
+
+describe("auro-flight CSS parts", () => {
+  const parts = {
+    departureTime: ".departureTime",
+    arrivalTime: ".arrivalTime",
+    departureStation: ".departureStation",
+    arrivalStation: ".arrivalStation",
+  };
+
+  // A style rule in the page can only reach a part that auro-flight forwards.
+  for (const [part, selector] of Object.entries(parts)) {
+    it(`page styles reach the ${part} part`, async () => {
+      const style = document.createElement("style");
+      style.textContent = `auro-flight::part(${part}) { color: rgb(255, 0, 0); }`;
+      document.head.appendChild(style);
+      try {
+        const el = await fixture(html`
+          <auro-flight
+            flights='["AS 1436"]' duration="161"
+            departureTime="2022-07-13T12:15:00-07:00" departureStation="SEA"
+            arrivalTime="2022-07-13T14:56:00-07:00" arrivalStation="LAX">
+            <auro-flightline></auro-flightline>
+          </auro-flight>
+        `);
+        const main = el.shadowRoot.querySelector("auro-flight-main");
+        await main.updateComplete;
+        const target = main.shadowRoot.querySelector(selector);
+        await expect(getComputedStyle(target).color).to.equal("rgb(255, 0, 0)");
+      } finally {
+        style.remove();
+      }
+    });
+  }
+
+  for (const part of ["flightType", "durationContainer"]) {
+    it(`page styles reach the ${part} part`, async () => {
+      const style = document.createElement("style");
+      style.textContent = `auro-flight::part(${part}) { color: rgb(255, 0, 0); }`;
+      document.head.appendChild(style);
+      try {
+        const el = await fixture(html`
+          <auro-flight
+            flights='["AS 1436"]' duration="161"
+            departureTime="2022-07-13T12:15:00-07:00" departureStation="SEA"
+            arrivalTime="2022-07-13T14:56:00-07:00" arrivalStation="LAX">
+            <auro-flightline></auro-flightline>
+          </auro-flight>
+        `);
+        const header = el.shadowRoot.querySelector("auro-flight-header");
+        await header.updateComplete;
+        const target = header.shadowRoot.querySelector(`[part="${part}"]`);
+        await expect(getComputedStyle(target).color).to.equal("rgb(255, 0, 0)");
+      } finally {
+        style.remove();
+      }
+    });
+  }
+});

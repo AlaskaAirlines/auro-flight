@@ -47,22 +47,55 @@ const _i18nConverter = (key) => ({
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * The `auro-flight` element renders a DoT compliant Flight listing.
+ * Shows one flight in a list of results, with its times, stations, stops, and duration, in a layout built to meet U.S. Department of Transportation (DoT) disclosure rules.
+ *
+ * **Key capabilities**
+ * - **Screen reader summary**: Always on. The element builds one announcement from the flight data, and `aria-label` replaces it.
+ * - **Localized announcements**: Set the `i18n-*` attributes to change the announced text.
+ * - **Reroutes**: Set `reroutedDepartureStation` or `reroutedArrivalStation` to show the new station next to the struck-through original.
+ * - **Disclosures**: Add required legal text to the `footer` slot.
+ *
+ * **Example**
+ * ```html
+ * <auro-flight
+ *   flights='["AS 1436"]'
+ *   duration="161"
+ *   departureTime="2022-07-13T12:15:00-07:00"
+ *   departureStation="SEA"
+ *   arrivalTime="2022-07-13T14:56:00-07:00"
+ *   arrivalStation="LAX">
+ *   <auro-flightline></auro-flightline>
+ * </auro-flight>
+ * ```
+ * @summary A flight result with times, stations, stops, duration, and localizable screen reader text.
  * @customElement auro-flight
  *
  * This design has been tested via the Alaska Legal team for legal compliance.
  * Please DO NOT modify unit tests pertaining to DoT regulations.
  *
- * @slot default - anticipates `<auro-flightline>` instance to fill out the flight timeline
- * @slot departureHeader - Text on top of the departure station's time
- * @slot arrivalHeader - Text on top of the arrival station's time
- * @slot footer - Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot
- * @csspart flightContainer - Apply css to the elements within the flight component container
+ * @slot default - The `<auro-flightline>` element that draws the timeline between the two stations. Add an `<auro-flight-segment>` inside it for each stop.
+ * @slot departureHeader - Text shown above the departure time, such as a scheduled time.
+ * @slot arrivalHeader - Text shown above the arrival time, such as a scheduled time.
+ * @slot footer - Content shown below the flight, such as a government approval or operating carrier disclosure. Don't change the styles of this content, because DoT regulations set them. Screen readers read it after the flight summary, so hide any part that repeats the summary with `aria-hidden="true"`.
+ * @csspart flightContainer - The `<section>` element that wraps the whole flight listing.
+ * @csspart flightType - The element that shows the flight number, or "Multiple flights" for more than one.
+ * @csspart durationContainer - The element that holds the duration and the day change label.
+ * @csspart departureTime - The element that shows the departure time.
+ * @csspart arrivalTime - The element that shows the arrival time.
+ * @csspart departureStation - The element that shows the departure station, and the new station after a reroute.
+ * @csspart arrivalStation - The element that shows the arrival station, and the new station after a reroute.
+ * @cssprop --ds-auro-flight-footer-text-color - Color of the text in the `footer` slot.
+ * @cssprop --ds-auro-flight-header-days-changed-text-color - Color of the day change label, such as +1 day.
+ * @cssprop --ds-auro-flight-header-text-color - Color of the flight numbers and duration shown above the stations.
+ * @cssprop --ds-auro-flight-cancelled-station-text-color - Color of the original station code that is struck through after a reroute.
+ * @cssprop --ds-auro-flight-station-text-color - Color of the departure and arrival station codes.
+ * @cssprop --ds-auro-flight-time-text-color - Color of the departure and arrival times.
  */
 export class AuroFlight extends LitElement {
   constructor() {
     super();
 
+    /** @type {string[]} */
     this.flights = [];
     this._ariaLabelOverride = null;
     this._flightlineObserver = null;
@@ -79,59 +112,58 @@ export class AuroFlight extends LitElement {
 
   static get properties() {
     return {
-      /** @private — stores the consumer-supplied aria-label override */
+      /** @private Stores the consumer-supplied `aria-label` override. */
       _ariaLabelOverride: { state: true, attribute: false },
 
       /**
-       * String for the arrival station.
+       * Sets the airport code of the arrival station, such as `LAX`. Screen readers read each letter separately.
        */
       arrivalStation: { type: String, attribute: "arrivalstation" },
 
       /**
-       * String for the arrival ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       * Sets the arrival date and time in ISO 8601 format, such as `2022-04-13T12:30:00-04:00`. The day change label and the time read to screen readers use the date and time as written, without converting time zones.
        */
       arrivalTime: { type: String, attribute: "arrivaltime" },
 
       /**
-       * String for the departure station.
+       * Sets the airport code of the departure station, such as `SEA`. Screen readers read each letter separately.
        */
       departureStation: { type: String, attribute: "departurestation" },
 
       /**
-       * String for the departure ISO 8601 time (e.g. `2022-04-13T12:30:00-04:00`).
+       * Sets the departure date and time in ISO 8601 format, such as `2022-04-13T12:30:00-04:00`. The day change label and the time read to screen readers use the date and time as written, without converting time zones.
        */
       departureTime: { type: String, attribute: "departuretime" },
 
       /**
-       * Number that defines duration of flight in minutes.
+       * Sets the total travel time in minutes. A value of `161` shows as `2h 41m`.
        */
       duration: { type: Number },
 
       /**
-       * Array of flight numbers.
+       * Sets the flight numbers to show, such as `["AS 1436"]`. Shows the number for one flight, or "Multiple flights" for more than one.
        * @type {string[]}
        */
       flights: { type: Array },
 
       /**
-       * String for the new arrival station for rerouted flights.
+       * Sets the airport code the flight now arrives at after a reroute, such as `AVP`. Shows the new code next to the original, which is struck through.
        */
       reroutedArrivalStation: { type: String, attribute: "reroutedarrivalstation" },
 
       /**
-       * String for the new departure station for rerouted flights.
+       * Sets the airport code the flight now departs from after a reroute, such as `PDX`. Shows the new code next to the original, which is struck through.
        */
       reroutedDepartureStation: { type: String, attribute: "rerouteddeparturestation" },
 
       /**
-       * Array of objects representing stopovers or layovers.
-       * Each object: `{ isStopover, arrivalStation, duration?, canceled? }`
+       * Sets the stops that screen readers announce, as an array of objects with `isStopover`, `arrivalStation`, and optional `duration` and `canceled`. Stops appear on screen only when you also add an `<auro-flight-segment>` for each one. Set `isStopover` to `true` for a stop and `false` for a layover.
        * @type {Object[]}
        */
       stops: { type: Array },
 
       /**
-       * Localize departure sentence. Template: `Departs from {station} at {time}`
+       * Sets the sentence read for the departure station and time when the flight isn't rerouted. Use `{station}` and `{time}` as placeholders.
        * @attr {String} i18n-departure
        * @default "Departs from {station} at {time}"
        */
@@ -141,7 +173,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nDeparture"),
       },
       /**
-       * Localize arrival sentence. Template: `arrives {station} at {time}`
+       * Sets the sentence read after the departure sentence, for the arrival station and time, when the flight isn't rerouted. Use `{station}` and `{time}` as placeholders.
        * @attr {String} i18n-arrival
        * @default "arrives {station} at {time}"
        */
@@ -151,7 +183,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nArrival"),
       },
       /**
-       * Localize next-day label. Default: `next day`
+       * Sets the text read when the flight arrives one day after it departs.
        * @attr {String} i18n-next-day
        * @default "next day"
        */
@@ -161,7 +193,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nNextDay"),
       },
       /**
-       * Localize multi-day label. Template: `{count} days later`
+       * Sets the text read when the flight arrives two or more days after it departs. Use `{count}` as the placeholder for the number of days.
        * @attr {String} i18n-days-later
        * @default "{count} days later"
        */
@@ -171,7 +203,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nDaysLater"),
       },
       /**
-       * Localize nonstop label. Default: `nonstop`
+       * Sets the text read when the flight has no `stops`.
        * @attr {String} i18n-nonstop
        * @default "nonstop"
        */
@@ -181,7 +213,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nNonstop"),
       },
       /**
-       * Localize stop label for non-last stop. Template: `with a stop in {station}`
+       * Sets the text read for each stopover except the last. Use `{station}` as the placeholder for the stop's airport code.
        * @attr {String} i18n-stopover
        * @default "with a stop in {station}"
        */
@@ -191,7 +223,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nStopover"),
       },
       /**
-       * Localize stop label for last stop. Template: `and with a stop in {station}`
+       * Sets the text read for the last stopover. Use `{station}` as the placeholder for the stop's airport code.
        * @attr {String} i18n-last-stopover
        * @default "and with a stop in {station}"
        */
@@ -201,7 +233,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nLastStopover"),
       },
       /**
-       * Localize layover with duration (non-last). Template: `with a layover in {station} for {duration}`
+       * Sets the text read for each layover that has a `duration`, except the last. Use `{station}` and `{duration}` as placeholders.
        * @attr {String} i18n-layover
        * @default "with a layover in {station} for {duration}"
        */
@@ -211,7 +243,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nLayover"),
       },
       /**
-       * Localize layover without duration (non-last). Template: `with a layover in {station}`
+       * Sets the text read for each layover without a `duration`, except the last. Use `{station}` as the placeholder for the airport code.
        * @attr {String} i18n-layover-no-duration
        * @default "with a layover in {station}"
        */
@@ -221,7 +253,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nLayoverNoDuration"),
       },
       /**
-       * Localize layover with duration (last). Template: `and with a layover in {station} for {duration}`
+       * Sets the text read for the last layover when it has a `duration`. Use `{station}` and `{duration}` as placeholders.
        * @attr {String} i18n-last-layover
        * @default "and with a layover in {station} for {duration}"
        */
@@ -231,7 +263,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nLastLayover"),
       },
       /**
-       * Localize layover without duration (last). Template: `and with a layover in {station}`
+       * Sets the text read for the last layover when it has no `duration`. Use `{station}` as the placeholder for the airport code.
        * @attr {String} i18n-last-layover-no-duration
        * @default "and with a layover in {station}"
        */
@@ -241,7 +273,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nLastLayoverNoDuration"),
       },
       /**
-       * Localize reroute opener. Template: `Flight {origin} to {destination} has been re-routed.`
+       * Sets the opening sentence read when a flight is rerouted. Use `{origin}` and `{destination}` as placeholders for the original stations.
        * @attr {String} i18n-reroute-announcement
        * @default "Flight {origin} to {destination} has been re-routed."
        */
@@ -251,7 +283,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nRerouteAnnouncement"),
       },
       /**
-       * Localize rerouted departure. Template: `The flight now departs from {station} at {time}`
+       * Sets the sentence read for the departure of a rerouted flight. Use `{station}` and `{time}` as placeholders.
        * @attr {String} i18n-rerouted-departure
        * @default "The flight now departs from {station} at {time}"
        */
@@ -261,7 +293,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nReroutedDeparture"),
       },
       /**
-       * Localize rerouted arrival. Template: `and arrives {station} at {time}`
+       * Sets the sentence read for the arrival of a rerouted flight. Use `{station}` and `{time}` as placeholders.
        * @attr {String} i18n-rerouted-arrival
        * @default "and arrives {station} at {time}"
        */
@@ -271,7 +303,7 @@ export class AuroFlight extends LitElement {
         converter: _i18nConverter("i18nReroutedArrival"),
       },
       /**
-       * Localize canceled label. Default: `canceled`
+       * Sets the text added after a canceled stop, or after the nonstop text when the `<auro-flightline>` has the `canceled` attribute.
        * @attr {String} i18n-canceled
        * @default "canceled"
        */
@@ -309,17 +341,17 @@ export class AuroFlight extends LitElement {
   }
 
   /**
-   * This will register this element with the browser.
-   * @param {string} [name="auro-flight"] - The name of the element that you want to register.
+   * Registers the element with the browser under a tag name.
+   * @param {string} [name="auro-flight"] - The tag name to register the element under.
    * @example
-   * AuroFlight.register("custom-flight") // registers as <custom-flight/>
+   * AuroFlight.register("custom-flight") // registers as <custom-flight>
    */
   static register(name = "auro-flight") {
     AuroLibraryRuntimeUtils.prototype.registerComponent(name, AuroFlight);
   }
 
   /**
-   * Builds the full aria-label — the single complete announcement read by screen readers on card entry.
+   * Builds the full `aria-label`, the single announcement that screen readers read when they reach the listing.
    * @private
    */
   _buildAriaLabel() {
@@ -511,8 +543,8 @@ export class AuroFlight extends LitElement {
 
   /**
    * @private
-   * @param {number} duration - Number that defines duration of flight in minutes.
-   * @returns {string} Number converted to hours and min string for UI.
+   * @param {number} duration - The flight duration in minutes.
+   * @returns {string} The duration as hours and minutes, such as "2h 41m".
    */
   convertDuration(duration) {
     const hour = 60;

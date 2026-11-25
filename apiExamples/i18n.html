@@ -1,9 +1,8 @@
 <!--
-  i18n-* attributes localize the screen reader summary text.
-  Values are sentence templates — use {station}, {time}, {duration}, {count} as placeholders.
-  Only set the keys that differ from English; unset attributes fall back to the English default.
-  The card entry aria-label is automatically composed from your i18n-departure / i18n-arrival /
-  i18n-nonstop values — no separate card summary attribute needed.
+  The i18n-* attributes localize the screen reader summary text.
+  Values are sentence templates. Use {station}, {time}, {duration}, {count}, {origin}, and {destination} as placeholders.
+  Only set the attributes that differ from English; unset attributes use the English default.
+  The screen reader label is built from your i18n-* values, so you don't need a separate summary attribute.
 -->
 <auro-flight
   flights='["AS 1436"]'

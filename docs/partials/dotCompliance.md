@@ -1,12 +1,12 @@
 # DoT compliance
 
-## Change of Gauge
+## Change of gauge
 
-[Change of Gauge flights](https://www.travelweekly.com/Mark-Pestronk/Agents-must-identify-change-of-gauge-services) are flights with the same flight number, but with an equipment swap at a intermediate stop.
+[Change of gauge flights](https://www.travelweekly.com/Mark-Pestronk/Agents-must-identify-change-of-gauge-services) are flights with the same flight number, but with an equipment swap at an intermediate stop.
 
-<auro-alerts information>Change of Gauge flights are a pain point for guests with physical disabilities whom may not expect to need to depart the aircraft. Even with the physical change of planes, these flights are still considered Direct. Qantas runs a COG JFK-SYD.</auro-alerts>
+<auro-alerts information>Change of gauge flights can be hard for guests with physical disabilities, who may not expect to leave the aircraft. Even with the physical change of planes, these flights are still considered direct. Qantas runs a COG JFK-SYD.</auro-alerts>
 
-The following illustrates change of gauge flight, from SEA to SJD.
+The following example illustrates a change of gauge flight from SEA to EWR, with a plane change in LAX.
 
 See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) for additional information regarding the `<auro-flight-segment>` API.
 
@@ -23,7 +23,7 @@ See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) f
 
 </auro-accordion>
 
-## Regional Nonstop
+## Regional nonstop
 
 AlaskaHorizon, AlaskaSkyWest, American Eagle, Delta Connection, QantasLink, and United Express fares are sold as mainline tickets operated by Part 131 air carriers doing business as the mainline.
 

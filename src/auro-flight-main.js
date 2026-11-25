@@ -17,18 +17,18 @@ import tokensCss from "./styles/tokens.scss";
 
 // See https://git.io/JJ6SJ for "How to document your components using JSDoc"
 /**
- * The auro-flight-main element renders the middle 'frame' of the auro-flight component with the auro-flightline.
- * DoT: STATION SIZE AND COLOR MUST BE IDENTICAL TO DISCLOSURE SIZE AND COLOR!
+ * Shows the departure and arrival times and stations on either side of the `<auro-flightline>`.
+ * DoT: The station size and color must match the disclosure size and color.
  * @customElement auro-flight-main
  * @internal
  *
- * @slot default - anticipates `<auro-flight-segment>` instances
- * @csspart arrivalContainer - Apply css to the elements within the arrival container
- * @csspart departureContainer - Apply css to the elements within the departure container
- * @csspart arrivalTime - Apply css to the elements to the arrival time
- * @csspart departureTime - Apply css to the elements to the departure time
- * @csspart arrivalStation - Apply css to the elements to the arrival station
- * @csspart departureStation - Apply css to the elements to the departure station
+ * @slot default - The `<auro-flightline>` element that draws the timeline between the two stations.
+ * @csspart arrivalContainer - The element that holds the arrival time and station.
+ * @csspart departureContainer - The element that holds the departure time and station.
+ * @csspart arrivalTime - The element that shows the arrival time.
+ * @csspart departureTime - The element that shows the departure time.
+ * @csspart arrivalStation - The element that shows the arrival station.
+ * @csspart departureStation - The element that shows the departure station.
  */
 export class AuroFlightMain extends LitElement {
   static get properties() {
