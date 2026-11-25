@@ -8,7 +8,7 @@
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/description.md) -->
 <!-- The below content is automatically added from ./../docs/partials/description.md -->
-The `<auro-flight>` element encapsulates Alaska's flight result logic. A departure station and an arrival station are displayed in tandem with all sectors of the flight in an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
+Shows one flight in a list of results, with the departure and arrival stations and times, and the flight's stops on a timeline drawn by an [auro-flightline](https://auro.alaskaair.com/components/auro/flightline) element.
 
 ## Dependencies
 
@@ -28,7 +28,7 @@ See [documentation](https://auro.alaskaair.com/components/auro/flightline/api) f
 
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../docs/partials/useCases.md) -->
 <!-- The below content is automatically added from ./../docs/partials/useCases.md -->
-The `<auro-flight>` element should be used in situations where users may:
+Use `<auro-flight>` when users need to:
 
 * list all the available data for a flight
 * list all stopovers or layovers for a flight

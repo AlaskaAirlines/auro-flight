@@ -3,57 +3,80 @@
 
 # auro-flight
 
-The `auro-flight` element renders a DoT compliant Flight listing.
+Shows one flight in a list of results, with its times, stations, stops, and duration, in a layout built to meet U.S. Department of Transportation (DoT) disclosure rules.
+
+**Key capabilities**
+- **Screen reader summary**: Always on. The element builds one announcement from the flight data, and `aria-label` replaces it.
+- **Localized announcements**: Set the `i18n-*` attributes to change the announced text.
+- **Reroutes**: Set `reroutedDepartureStation` or `reroutedArrivalStation` to show the new station next to the struck-through original.
+- **Disclosures**: Add required legal text to the `footer` slot.
+
+**Example**
+<pre class="language-html"><code class="language-html">&lt;auro-flight
+  flights='["AS 1436"]'
+  duration="161"
+  departureTime="2022-07-13T12:15:00-07:00"
+  departureStation="SEA"
+  arrivalTime="2022-07-13T14:56:00-07:00"
+  arrivalStation="LAX"&gt;
+  &lt;auro-flightline&gt;&lt;/auro-flightline&gt;
+&lt;/auro-flight&gt;</code></pre>
 
 ### Properties and attributes
 
-| Properties                | Attributes                    | Modifiers | Type     | Default                                                | Description                                                                                                                                                                                                         |
-| ------------------------- | ----------------------------- | --------- | -------- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| arrivalStation            | arrivalstation                |           | string   |                                                        | String for the arrival station.                                                                                                                                                                                     |
-| arrivalTime               | arrivaltime                   |           | string   |                                                        | Sets the arrival date and time in ISO 8601 format, such as `2022-04-13T12:30:00-04:00`. The day change label and the time read to screen readers use the date and time as written, without converting time zones.   |
-| departureStation          | departurestation              |           | string   |                                                        | String for the departure station.                                                                                                                                                                                   |
-| departureTime             | departuretime                 |           | string   |                                                        | Sets the departure date and time in ISO 8601 format, such as `2022-04-13T12:30:00-04:00`. The day change label and the time read to screen readers use the date and time as written, without converting time zones. |
-| duration                  | duration                      |           | number   |                                                        | Number that defines duration of flight in minutes.                                                                                                                                                                  |
-| flights                   | flights                       |           | string[] | `[]`                                                   | Array of flight numbers.                                                                                                                                                                                            |
-| i18nArrival               | i18n-arrival                  |           | string   | `arrives {station} at {time}`                          | Localize arrival sentence. Template: `arrives {station} at {time}`                                                                                                                                                  |
-| i18nCanceled              | i18n-canceled                 |           | string   | `canceled`                                             | Localize canceled label. Default: `canceled`                                                                                                                                                                        |
-| i18nDaysLater             | i18n-days-later               |           | string   | `{count} days later`                                   | Localize multi-day label. Template: `{count} days later`                                                                                                                                                            |
-| i18nDeparture             | i18n-departure                |           | string   | `Departs from {station} at {time}`                     | Localize departure sentence. Template: `Departs from {station} at {time}`                                                                                                                                           |
-| i18nLastLayover           | i18n-last-layover             |           | string   | `and with a layover in {station} for {duration}`       | Localize layover with duration (last). Template: `and with a layover in {station} for {duration}`                                                                                                                   |
-| i18nLastLayoverNoDuration | i18n-last-layover-no-duration |           | string   | `and with a layover in {station}`                      | Localize layover without duration (last). Template: `and with a layover in {station}`                                                                                                                               |
-| i18nLastStopover          | i18n-last-stopover            |           | string   | `and with a stop in {station}`                         | Localize stop label for last stop. Template: `and with a stop in {station}`                                                                                                                                         |
-| i18nLayover               | i18n-layover                  |           | string   | `with a layover in {station} for {duration}`           | Localize layover with duration (non-last). Template: `with a layover in {station} for {duration}`                                                                                                                   |
-| i18nLayoverNoDuration     | i18n-layover-no-duration      |           | string   | `with a layover in {station}`                          | Localize layover without duration (non-last). Template: `with a layover in {station}`                                                                                                                               |
-| i18nNextDay               | i18n-next-day                 |           | string   | `next day`                                             | Localize next-day label. Default: `next day`                                                                                                                                                                        |
-| i18nNonstop               | i18n-nonstop                  |           | string   | `nonstop`                                              | Localize nonstop label. Default: `nonstop`                                                                                                                                                                          |
-| i18nRerouteAnnouncement   | i18n-reroute-announcement     |           | string   | `Flight {origin} to {destination} has been re-routed.` | Localize reroute opener. Template: `Flight {origin} to {destination} has been re-routed.`                                                                                                                           |
-| i18nReroutedArrival       | i18n-rerouted-arrival         |           | string   | `and arrives {station} at {time}`                      | Localize rerouted arrival. Template: `and arrives {station} at {time}`                                                                                                                                              |
-| i18nReroutedDeparture     | i18n-rerouted-departure       |           | string   | `The flight now departs from {station} at {time}`      | Localize rerouted departure. Template: `The flight now departs from {station} at {time}`                                                                                                                            |
-| i18nStopover              | i18n-stopover                 |           | string   | `with a stop in {station}`                             | Localize stop label for non-last stop. Template: `with a stop in {station}`                                                                                                                                         |
-| reroutedArrivalStation    | reroutedarrivalstation        |           | string   |                                                        | String for the new arrival station for rerouted flights.                                                                                                                                                            |
-| reroutedDepartureStation  | rerouteddeparturestation      |           | string   |                                                        | String for the new departure station for rerouted flights.                                                                                                                                                          |
-| stops                     | stops                         |           | Object[] |                                                        | Array of objects representing stopovers or layovers.<br>Each object: `{ isStopover, arrivalStation, duration?, canceled? }`                                                                                         |
+| Properties                | Attributes                    | Modifiers | Type     | Default                                                | Description                                                                                                                                                                                                                                                                                              |
+| ------------------------- | ----------------------------- | --------- | -------- | ------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| arrivalStation            | arrivalstation                |           | string   |                                                        | Sets the airport code of the arrival station, such as `LAX`. Screen readers read each letter separately.                                                                                                                                                                                                 |
+| arrivalTime               | arrivaltime                   |           | string   |                                                        | Sets the arrival date and time in ISO 8601 format, such as `2022-04-13T12:30:00-04:00`. The day change label and the time read to screen readers use the date and time as written, without converting time zones.                                                                                        |
+| departureStation          | departurestation              |           | string   |                                                        | Sets the airport code of the departure station, such as `SEA`. Screen readers read each letter separately.                                                                                                                                                                                               |
+| departureTime             | departuretime                 |           | string   |                                                        | Sets the departure date and time in ISO 8601 format, such as `2022-04-13T12:30:00-04:00`. The day change label and the time read to screen readers use the date and time as written, without converting time zones.                                                                                      |
+| duration                  | duration                      |           | number   |                                                        | Sets the total travel time in minutes. A value of `161` shows as `2h 41m`.                                                                                                                                                                                                                               |
+| flights                   | flights                       |           | string[] | `[]`                                                   | Sets the flight numbers to show, such as `["AS 1436"]`. Shows the number for one flight, or "Multiple flights" for more than one.                                                                                                                                                                        |
+| i18nArrival               | i18n-arrival                  |           | string   | `arrives {station} at {time}`                          | Sets the sentence read after the departure sentence, for the arrival station and time, when the flight isn't rerouted. Use `{station}` and `{time}` as placeholders.                                                                                                                                     |
+| i18nCanceled              | i18n-canceled                 |           | string   | `canceled`                                             | Sets the text added after a canceled stop, or after the nonstop text when the `<auro-flightline>` has the `canceled` attribute.                                                                                                                                                                          |
+| i18nDaysLater             | i18n-days-later               |           | string   | `{count} days later`                                   | Sets the text read when the flight arrives two or more days after it departs. Use `{count}` as the placeholder for the number of days.                                                                                                                                                                   |
+| i18nDeparture             | i18n-departure                |           | string   | `Departs from {station} at {time}`                     | Sets the sentence read for the departure station and time when the flight isn't rerouted. Use `{station}` and `{time}` as placeholders.                                                                                                                                                                  |
+| i18nLastLayover           | i18n-last-layover             |           | string   | `and with a layover in {station} for {duration}`       | Sets the text read for the last layover when it has a `duration`. Use `{station}` and `{duration}` as placeholders.                                                                                                                                                                                      |
+| i18nLastLayoverNoDuration | i18n-last-layover-no-duration |           | string   | `and with a layover in {station}`                      | Sets the text read for the last layover when it has no `duration`. Use `{station}` as the placeholder for the airport code.                                                                                                                                                                              |
+| i18nLastStopover          | i18n-last-stopover            |           | string   | `and with a stop in {station}`                         | Sets the text read for the last stopover. Use `{station}` as the placeholder for the stop's airport code.                                                                                                                                                                                                |
+| i18nLayover               | i18n-layover                  |           | string   | `with a layover in {station} for {duration}`           | Sets the text read for each layover that has a `duration`, except the last. Use `{station}` and `{duration}` as placeholders.                                                                                                                                                                            |
+| i18nLayoverNoDuration     | i18n-layover-no-duration      |           | string   | `with a layover in {station}`                          | Sets the text read for each layover without a `duration`, except the last. Use `{station}` as the placeholder for the airport code.                                                                                                                                                                      |
+| i18nNextDay               | i18n-next-day                 |           | string   | `next day`                                             | Sets the text read when the flight arrives one day after it departs.                                                                                                                                                                                                                                     |
+| i18nNonstop               | i18n-nonstop                  |           | string   | `nonstop`                                              | Sets the text read when the flight has no `stops`.                                                                                                                                                                                                                                                       |
+| i18nRerouteAnnouncement   | i18n-reroute-announcement     |           | string   | `Flight {origin} to {destination} has been re-routed.` | Sets the opening sentence read when a flight is rerouted. Use `{origin}` and `{destination}` as placeholders for the original stations.                                                                                                                                                                  |
+| i18nReroutedArrival       | i18n-rerouted-arrival         |           | string   | `and arrives {station} at {time}`                      | Sets the sentence read for the arrival of a rerouted flight. Use `{station}` and `{time}` as placeholders.                                                                                                                                                                                               |
+| i18nReroutedDeparture     | i18n-rerouted-departure       |           | string   | `The flight now departs from {station} at {time}`      | Sets the sentence read for the departure of a rerouted flight. Use `{station}` and `{time}` as placeholders.                                                                                                                                                                                             |
+| i18nStopover              | i18n-stopover                 |           | string   | `with a stop in {station}`                             | Sets the text read for each stopover except the last. Use `{station}` as the placeholder for the stop's airport code.                                                                                                                                                                                    |
+| reroutedArrivalStation    | reroutedarrivalstation        |           | string   |                                                        | Sets the airport code the flight now arrives at after a reroute, such as `AVP`. Shows the new code next to the original, which is struck through.                                                                                                                                                        |
+| reroutedDepartureStation  | rerouteddeparturestation      |           | string   |                                                        | Sets the airport code the flight now departs from after a reroute, such as `PDX`. Shows the new code next to the original, which is struck through.                                                                                                                                                      |
+| stops                     | stops                         |           | Object[] |                                                        | Sets the stops that screen readers announce, as an array of objects with `isStopover`, `arrivalStation`, and optional `duration` and `canceled`. Stops appear on screen only when you also add an `<auro-flight-segment>` for each one. Set `isStopover` to `true` for a stop and `false` for a layover. |
 
 ### Methods
 
-| Name     | Parameters                                                           | Return | Description                                       |
-| -------- | -------------------------------------------------------------------- | ------ | ------------------------------------------------- |
-| register | `name` (string) - The name of the element that you want to register. |        | This will register this element with the browser. |
+| Name     | Parameters                                                    | Return | Description                                              |
+| -------- | ------------------------------------------------------------- | ------ | -------------------------------------------------------- |
+| register | `name` (string) - The tag name to register the element under. |        | Registers the element with the browser under a tag name. |
 
 ### Slots
 
-| Name            | Description                                                                                                                                            |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| arrivalHeader   | Text on top of the arrival station's time                                                                                                              |
-| default         | anticipates `<auro-flightline>` instance to fill out the flight timeline                                                                               |
-| departureHeader | Text on top of the departure station's time                                                                                                            |
-| footer          | Lower section allowing for tertiary content to be attributed to the element. Per **DoT Regulations** do NOT edit the styles contained within this slot |
+| Name            | Description                                                                                                                                                                                                                                                                                     |
+| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| arrivalHeader   | Text shown above the arrival time, such as a scheduled time.                                                                                                                                                                                                                                    |
+| default         | The `<auro-flightline>` element that draws the timeline between the two stations. Add an `<auro-flight-segment>` inside it for each stop.                                                                                                                                                       |
+| departureHeader | Text shown above the departure time, such as a scheduled time.                                                                                                                                                                                                                                  |
+| footer          | Content shown below the flight, such as a government approval or operating carrier disclosure. Don't change the styles of this content, because DoT regulations set them. Screen readers read it after the flight summary, so hide any part that repeats the summary with `aria-hidden="true"`. |
 
 ### CSS shadow parts
 
-| Name            | Description                                                     |
-| --------------- | --------------------------------------------------------------- |
-| flightContainer | Apply css to the elements within the flight component container |
+| Name              | Description                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| arrivalStation    | The element that shows the arrival station, and the new station after a reroute.   |
+| arrivalTime       | The element that shows the arrival time.                                           |
+| departureStation  | The element that shows the departure station, and the new station after a reroute. |
+| departureTime     | The element that shows the departure time.                                         |
+| durationContainer | The element that holds the duration and the day change label.                      |
+| flightContainer   | The `<section>` element that wraps the whole flight listing.                       |
+| flightType        | The element that shows the flight number, or "Multiple flights" for more than one. |
 
 ### CSS custom properties
 
@@ -104,7 +127,7 @@ The following example illustrates a basic flight component. It includes the use 
 
 ## Property and attribute examples
 
-### Departure Reroute Information
+### Departure reroute information
 
 The following example illustrates additional data regarding departure reroute information, using the `reroutedDepartureStation` attribute.
 
@@ -141,7 +164,7 @@ The following example illustrates additional data regarding departure reroute in
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Arrival Reroute Information
+### Arrival reroute information
 
 The following example illustrates additional data regarding arrival reroute information, using the `reroutedArrivalStation` attribute.
 
@@ -180,7 +203,7 @@ The following example illustrates additional data regarding arrival reroute info
 
 ## Common usage patterns
 
-### Next Day Arrival/Departure (+1 day)
+### Next day arrival or departure (+1 day)
 
 This example illustrates a mainline nonstop with a next day arrival or departure.
 
@@ -215,18 +238,19 @@ This example illustrates a mainline nonstop with a next day arrival or departure
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Previous Day Arrival/Departure (-1 day)
+### Previous day arrival or departure (-1 day)
 
-This example illustrates a mainline nonstop with a -1 day arrival or departure.
+This example illustrates a mainline nonstop that arrives on the previous calendar day, as when a flight crosses the international date line. The header shows `-1 day`, but screen readers don't currently announce a previous-day arrival.
+
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/arrive-one-day-before.html) -->
 <!-- The below content is automatically added from ./../apiExamples/arrive-one-day-before.html -->
 <auro-flight
     flights='["AS 880"]'
-    duration="350"
-    departureTime="2022-05-31T22:55:00-10:00"
-    departureStation="KOA"
-    arrivalTime="2022-05-30T07:45:00-07:00"
+    duration="570"
+    departureTime="2022-06-01T00:30:00+09:00"
+    departureStation="NRT"
+    arrivalTime="2022-05-31T18:00:00-07:00"
     arrivalStation="SEA">
 <auro-flightline></auro-flightline>
 </auro-flight>
@@ -239,17 +263,17 @@ This example illustrates a mainline nonstop with a -1 day arrival or departure.
 
 <pre class="language-html"><code class="language-html">&lt;auro-flight
   flights='["AS 880"]'
-  duration="350"
-  departureTime="2022-05-31T22:55:00-10:00"
-  departureStation="KOA"
-  arrivalTime="2022-05-30T07:45:00-07:00"
+  duration="570"
+  departureTime="2022-06-01T00:30:00+09:00"
+  departureStation="NRT"
+  arrivalTime="2022-05-31T18:00:00-07:00"
   arrivalStation="SEA"&gt;
   &lt;auro-flightline&gt;&lt;/auro-flightline&gt;
 &lt;/auro-flight&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### One-Stop Flight
+### One-stop flight
 
 This example illustrates a one-stop `stopover` flight. Notice the additional information required for the `auro-flight-segment` element.
 
@@ -290,7 +314,7 @@ This example illustrates a one-stop `stopover` flight. Notice the additional inf
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Mainline Multi-Stop Flight
+### Mainline multi-stop flight
 
 The following example illustrates a mainline multi-stop `stopover` flight.
 
@@ -339,9 +363,9 @@ The following example illustrates a mainline multi-stop `stopover` flight.
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-### Flight with Layover/Connection
+### Flight with a layover or connection
 
-The following example illustrates a change of gauge flight with a layover in ORD for 3h 11m.
+The following example illustrates a connection between two flights, with a layover in ORD for 3h 10m.
 
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/connection.html) -->
@@ -349,7 +373,7 @@ The following example illustrates a change of gauge flight with a layover in ORD
 <auro-flight
     flights='["AS 161", "AA 2269"]'
     duration="704"
-    departureTime="2022-07-21T00:55:00-09:00"
+    departureTime="2022-07-21T00:55:00-08:00"
     departureStation="ANC"
     arrivalTime="2022-07-21T16:39:00-04:00"
     arrivalStation="BOS"
@@ -358,9 +382,9 @@ The following example illustrates a change of gauge flight with a layover in ORD
 <auro-flight-segment iata="ORD" duration="3h 10m"></auro-flight-segment>
 </auro-flightline>
 <span slot="footer">
-<auro-icon category="logos" name="tail-AS" style="width: 24px" aria-hidden="true"></auro-icon>
+<auro-icon category="logos" name="tail-AS" style="width: 24px"></auro-icon>
       AS161 is subject to government approval <br aria-hidden="true"/>
-<auro-icon category="logos" name="tail-AA" style="width: 24px" aria-hidden="true"></auro-icon>
+<auro-icon category="logos" name="tail-AA" style="width: 24px"></auro-icon>
       AA2269 is operated by American Airlines
 </span>
 </auro-flight>
@@ -374,7 +398,7 @@ The following example illustrates a change of gauge flight with a layover in ORD
 <pre class="language-html"><code class="language-html">&lt;auro-flight
   flights='["AS 161", "AA 2269"]'
   duration="704"
-  departureTime="2022-07-21T00:55:00-09:00"
+  departureTime="2022-07-21T00:55:00-08:00"
   departureStation="ANC"
   arrivalTime="2022-07-21T16:39:00-04:00"
   arrivalStation="BOS"
@@ -383,9 +407,9 @@ The following example illustrates a change of gauge flight with a layover in ORD
     &lt;auro-flight-segment iata="ORD" duration="3h 10m"&gt;&lt;/auro-flight-segment&gt;
   &lt;/auro-flightline&gt;
   &lt;span slot="footer"&gt;
-    &lt;auro-icon category="logos" name="tail-AS" style="width: 24px" aria-hidden="true"&gt;&lt;/auro-icon&gt;
+    &lt;auro-icon category="logos" name="tail-AS" style="width: 24px"&gt;&lt;/auro-icon&gt;
     AS161 is subject to government approval &lt;br aria-hidden="true"/&gt;
-    &lt;auro-icon category="logos" name="tail-AA" style="width: 24px" aria-hidden="true"&gt;&lt;/auro-icon&gt;
+    &lt;auro-icon category="logos" name="tail-AA" style="width: 24px"&gt;&lt;/auro-icon&gt;
     AA2269 is operated by American Airlines
   &lt;/span&gt;
 &lt;/auro-flight&gt;</code></pre>
@@ -396,9 +420,9 @@ The following example illustrates a change of gauge flight with a layover in ORD
 
 ### Using the footer slot
 
-For a flight that requires government approval or a flight that is operated by another subsidiary or partner carrier, you can use the `footer` custom element slot to insert additional information into the scope of the component. Notice the use of `<auro-icon>` and text within the named slot element.
+Use the `footer` slot to add information to the component for a flight that requires government approval or is operated by another subsidiary or partner carrier. Notice the use of `<auro-icon>` and text within the named slot element.
 
-This slot requires the consumer to manually manage what is read back via the screen reader through the use of `aria-hidden="true"`.
+This slot doesn't hide its content from screen readers, so use `aria-hidden="true"` to hide any part that repeats the flight summary.
 
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/footer-slot.html) -->
@@ -408,13 +432,13 @@ This slot requires the consumer to manually manage what is read back via the scr
     duration="465"
     departureTime="2022-05-04T07:50:00+04:00"
     departureStation="DXB"
-    arrivalTime="2022-05-04T15:35:00+04:00"
+    arrivalTime="2022-05-04T13:35:00+02:00"
     arrivalStation="CPT">
 <auro-flightline></auro-flightline>
 <span slot="footer">
-<auro-icon category="logos" name="tail-EK" style="width: 24px" aria-hidden="true"></auro-icon>
+<auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
       EK 772 is subject to government approval <br  aria-hidden="true"/>
-<auro-icon category="logos" name="tail-EK" style="width: 24px" aria-hidden="true"></auro-icon>
+<auro-icon category="logos" name="tail-EK" style="width: 24px"></auro-icon>
       EK 772 is operated by Emirates
 </span>
 </auro-flight>
@@ -430,13 +454,13 @@ This slot requires the consumer to manually manage what is read back via the scr
   duration="465"
   departureTime="2022-05-04T07:50:00+04:00"
   departureStation="DXB"
-  arrivalTime="2022-05-04T15:35:00+04:00"
+  arrivalTime="2022-05-04T13:35:00+02:00"
   arrivalStation="CPT"&gt;
   &lt;auro-flightline&gt;&lt;/auro-flightline&gt;
   &lt;span slot="footer"&gt;
-    &lt;auro-icon category="logos" name="tail-EK" style="width: 24px" aria-hidden="true"&gt;&lt;/auro-icon&gt;
+    &lt;auro-icon category="logos" name="tail-EK" style="width: 24px"&gt;&lt;/auro-icon&gt;
     EK 772 is subject to government approval &lt;br  aria-hidden="true"/&gt;
-    &lt;auro-icon category="logos" name="tail-EK" style="width: 24px" aria-hidden="true"&gt;&lt;/auro-icon&gt;
+    &lt;auro-icon category="logos" name="tail-EK" style="width: 24px"&gt;&lt;/auro-icon&gt;
     EK 772 is operated by Emirates
   &lt;/span&gt;
 &lt;/auro-flight&gt;</code></pre>
@@ -496,8 +520,8 @@ The following example illustrates the use of the optional departure and arrival 
     reroutedDepartureStation="PDX"
     reroutedArrivalStation="AVP">
 <auro-flightline></auro-flightline>
-<span slot="departureHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-07-30T07:20:00-07:00"></auro-datetime></span>
-<span slot="arrivalHeader">Scheduled <auro-datetime type="tzTime" setDate="2022-07-30T17:48:00-04:00"></auro-datetime></span>
+<span slot="departureHeader">Scheduled <auro-datetime type="time" value="2022-07-30T07:20:00-07:00"></auro-datetime></span>
+<span slot="arrivalHeader">Scheduled <auro-datetime type="time" value="2022-07-30T17:48:00-04:00"></auro-datetime></span>
 </auro-flight>
 <!-- AURO-GENERATED-CONTENT:END -->
 </div>
@@ -516,29 +540,30 @@ The following example illustrates the use of the optional departure and arrival 
   reroutedDepartureStation="PDX"
   reroutedArrivalStation="AVP"&gt;
   &lt;auro-flightline&gt;&lt;/auro-flightline&gt;
-  &lt;span slot="departureHeader"&gt;Scheduled &lt;auro-datetime type="tzTime" setDate="2022-07-30T07:20:00-07:00"&gt;&lt;/auro-datetime&gt;&lt;/span&gt;
-  &lt;span slot="arrivalHeader"&gt;Scheduled &lt;auro-datetime type="tzTime" setDate="2022-07-30T17:48:00-04:00"&gt;&lt;/auro-datetime&gt;&lt;/span&gt;
+  &lt;span slot="departureHeader"&gt;Scheduled &lt;auro-datetime type="time" value="2022-07-30T07:20:00-07:00"&gt;&lt;/auro-datetime&gt;&lt;/span&gt;
+  &lt;span slot="arrivalHeader"&gt;Scheduled &lt;auro-datetime type="time" value="2022-07-30T17:48:00-04:00"&gt;&lt;/auro-datetime&gt;&lt;/span&gt;
 &lt;/auro-flight&gt;</code></pre>
 <!-- AURO-GENERATED-CONTENT:END -->
 </auro-accordion>
 
-## Accessibility & Localization
+## Accessibility and localization
 
-### Localized Screen Reader Text (`i18n-*` attributes)
+### Localized screen reader text (`i18n-*` attributes)
 
-The `i18n-*` attributes let you localize the text announced by screen readers without affecting the visual display. Values are sentence templates — use `{station}`, `{time}`, `{duration}`, `{count}`, `{origin}`, and `{destination}` as placeholders. Only set the attributes that differ from English; omitted attributes fall back to the English default.
+The `i18n-*` attributes let you localize most of the text that screen readers announce, without changing what appears on screen. Each value is a sentence template with placeholders such as `{station}`, `{time}`, `{duration}`, `{count}`, `{origin}`, and `{destination}`. Set only the attributes that differ from English, and the rest use the English default.
 
-> **Note:** Placeholders are pre-processed before substitution: `{station}`, `{origin}`, and `{destination}` are letter-spaced for correct screen reader pronunciation (e.g. `SEA` → `S E A`); `{time}` is locale-formatted (e.g. `12:15 PM`).
+The flight number prefix ("Flight", "Multiple flights") and the duration (such as `2h 41m`) are always in English. To change them, set `aria-label`.
+
+> **Note:** `{station}`, `{origin}`, and `{destination}` are letter-spaced before substitution so screen readers say each letter, for example `SEA` becomes `S E A`. `{time}` is always formatted in US English, such as `12:15 PM`.
 
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/i18n.html) -->
 <!-- The below content is automatically added from ./../apiExamples/i18n.html -->
 <!--
-    i18n-* attributes localize the screen reader summary text.
-    Values are sentence templates — use {station}, {time}, {duration}, {count} as placeholders.
-    Only set the keys that differ from English; unset attributes fall back to the English default.
-    The card entry aria-label is automatically composed from your i18n-departure / i18n-arrival /
-    i18n-nonstop values — no separate card summary attribute needed.
+    The i18n-* attributes localize the screen reader summary text.
+    Values are sentence templates. Use {station}, {time}, {duration}, {count}, {origin}, and {destination} as placeholders.
+    Only set the attributes that differ from English; unset attributes use the English default.
+    The screen reader label is built from your i18n-* values, so you don't need a separate summary attribute.
   -->
 <auro-flight
     flights='["AS 1436"]'
@@ -560,11 +585,10 @@ The `i18n-*` attributes let you localize the text announced by screen readers wi
 <!-- The below code snippet is automatically added from ./../apiExamples/i18n.html -->
 
 <pre class="language-html"><code class="language-html">&lt;!--
-  i18n-* attributes localize the screen reader summary text.
-  Values are sentence templates — use {station}, {time}, {duration}, {count} as placeholders.
-  Only set the keys that differ from English; unset attributes fall back to the English default.
-  The card entry aria-label is automatically composed from your i18n-departure / i18n-arrival /
-  i18n-nonstop values — no separate card summary attribute needed.
+  The i18n-* attributes localize the screen reader summary text.
+  Values are sentence templates. Use {station}, {time}, {duration}, {count}, {origin}, and {destination} as placeholders.
+  Only set the attributes that differ from English; unset attributes use the English default.
+  The screen reader label is built from your i18n-* values, so you don't need a separate summary attribute.
 --&gt;
 &lt;auro-flight
   flights='["AS 1436"]'
@@ -602,7 +626,7 @@ Full list of `i18n-*` attributes:
 
 ### Custom `aria-label`
 
-The card entry `aria-label` is automatically composed from the `i18n-departure`, `i18n-arrival`, `i18n-nonstop`, and `i18n-canceled` values you already set — no separate card summary template needed. For cases where you need full control over the wording, use the `aria-label` attribute to override the entire computed label. Note: after setting `aria-label`, the attribute is removed from the host element (the value is stored internally) — `el.hasAttribute("aria-label")` will return `false` after the element processes it. This is expected behavior.
+The screen reader label for the listing is built from the `i18n-*` values you set, so you don't need a separate summary attribute. To control the wording completely, set `aria-label` to replace the built label. The element removes `aria-label` from the host after it reads the value, so `el.hasAttribute("aria-label")` returns `false`. This is expected.
 
 <div class="exampleWrapper">
 <!-- AURO-GENERATED-CONTENT:START (FILE:src=./../apiExamples/aria-label.html) -->
